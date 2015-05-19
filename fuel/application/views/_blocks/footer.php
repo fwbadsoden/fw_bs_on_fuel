@@ -1,0 +1,82 @@
+<footer id="endOfPage">
+
+	<div id="shortlinks">
+    	<h1><?=fuel_var('pagetitle'); ?></h1>
+        <?=fuel_nav(array('group_id' => 3, 'last_class' => ''));?>
+    </div>
+    <div id="share"></div>
+    <div id="sitemap">
+        
+        <div class="completeSitemap"> 
+        <div class="sitemapBox">   
+            <?=fuel_nav(array('group_id' => 4, 'first_class' => 'headline', 'last_class' => ''));?>
+            <?=fuel_nav(array('group_id' => 5, 'first_class' => 'headline', 'last_class' => ''));?>
+            <?=fuel_nav(array('group_id' => 6, 'first_class' => 'headline', 'last_class' => ''));?>
+            <?=fuel_nav(array('group_id' => 7, 'first_class' => 'headline', 'last_class' => ''));?>
+            <?=fuel_nav(array('group_id' => 8, 'first_class' => 'headline', 'last_class' => ''));?>
+
+        </div>
+
+        <div class="smallSitemap">               
+            <?=fuel_nav(array('group_id' => 9, 'container_tag' => '', 'item_tag' => '', 'first_class' => '', 'last_class' => ''));?>
+        </div>
+        
+    </div>
+    <div id="copyright">
+    	<p>&copy;<?php echo date("Y"); ?> <?=fuel_var('copyright'); ?></p>
+    </div>
+
+</footer>
+
+<div id="notruflayer_js" class="notruf_layer">
+	<div class="tele">
+		<h3>Notrufnummern</h3>
+		<div class="box boxtrenner">
+			<p class="number">112</p>
+			<p>Feuerwehr</p>
+			<p>Rettungsdienst</p>
+		</div>
+		<div class="box">
+			<p class="number">110</p>
+			<p>Polizei</p>
+		</div>
+	</div>
+	<div class="faq">
+		<h3>Notruf richtig absetzen</h3>
+		<ul>
+			<li>/ <span class="hightlight">Wo</span> ist es passiert?</li>
+			<li>/ <span class="hightlight">Was</span> ist passiert?</li>
+			<li>/ <span class="hightlight">Wie</span> viele Personen sind betroffen?</li>
+			<li>/ <span class="hightlight">Welche</span> Art der Erkrankung oder Verletzung liegt vor?</li>
+			<li>/ <span class="hightlight">Warten</span> auf Rückfragen.</li>
+		</ul>
+	</div>
+	<hr class="clear" />
+		<div class="greybox">
+			<p class="number">Zentrale Leitstelle <span>+49 6192-5095</span></p>
+			<p class="button"><a href="http://www.gehoerlosen-bund.de/dgb/images/stories/pdfs/dgb_notruftelefaxvorlage.pdf" class="button_black_gross" target="_blank">Notruffax &raquo;</a></p>
+			<hr class="clear" />
+		</div>
+	</div>
+</div>
+
+    <script type="text/javascript" charset="utf-8" src="<?=base_url("assets/js/basic-min.js")?>"></script>
+    <script type="text/javascript" charset="utf-8" src="<?=base_url("assets/js/doubletaptogo.js")?>"></script>
+
+	<script type="text/javascript" src="<?=base_url("assets/js/jquery.mousewheel-3.0.6.pack.js")?>"></script>
+	<script type="text/javascript" src="<?=base_url("assets/js/fancyBox/jquery.fancybox.js?v=2.1.5")?>"></script>
+    
+    <link rel="stylesheet" type="text/css" href="<?=base_url("assets/js/fancyBox/jquery.fancybox.css?v=2.1.5")?>" media="screen" />
+	<link rel="stylesheet" type="text/css" href="<?=base_url("assets/js/fancyBox/helpers/jquery.fancybox-buttons.css?v=1.0.5")?>" />
+	
+	<script type="text/javascript" src="<?=base_url("assets/js/fancyBox/helpers/jquery.fancybox-buttons.js?v=1.0.5")?>"></script>
+	<link rel="stylesheet" type="text/css" href="<?=base_url("assets/js/fancyBox/helpers/jquery.fancybox-thumbs.css?v=1.0.7")?>" />
+	
+	<script type="text/javascript" src="<?=base_url("assets/js/fancyBox/helpers/jquery.fancybox-thumbs.js?v=1.0.7")?>"></script>
+	<script type="text/javascript" src="<?=base_url("assets/js/fancyBox/helpers/jquery.fancybox-media.js?v=1.0.6")?>"></script>    
+ 
+    <script type="text/javascript">
+        $( function() { $( '#menu li:has(div)' ).doubleTapToGo(); });      
+      </script>
+</body>
+</html>
