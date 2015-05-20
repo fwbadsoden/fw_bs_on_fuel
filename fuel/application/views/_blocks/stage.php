@@ -1,17 +1,23 @@
-<?php
-    $stage_outer_class = fuel_var('stage_outer_class');
-    $stage_inner_class = fuel_var('stage_inner_class');
-    $stage_wrapper_class = fuel_var('stage_wrapper_class');
-?>
-
 <section id="stage">
     
-    <div class="<?=$stage_outer_class?>" id="pictures_0" style="background-image: url(http://feuerwehr-bs.de/images/content/stage_verein.jpg); display: none;">
-        <div id="<?=$stage_wrapper_class?>">   
-            <div class="<?=$stage_inner_class?>">
-                <h1>Der Verein</h1>  <h2>Freiwillige Feuerwehr Bad Soden am Taunus e.V.</h2>                    
+<?
+    foreach($stage["images"] as $key => $image) { 
+        
+        if(isset($image['css_text_class_1'])) $image['css_text_class_1'] = ' class="'.$image['css_text_class_1'].'"';
+        if(isset($image['css_text_class_2'])) $image['css_text_class_2'] = ' class="'.$image['css_text_class_2'].'"';
+        if(isset($image['css_text_class_3'])) $image['css_text_class_3'] = ' class="'.$image['css_text_class_3'].'"';
+?>    
+    
+    <div class="<?=$image["css_outer_class"]?>" id="pictures_<?=$key?>" style="background-image: url(<?=$image["file"]?>); display: none;">
+        <div id="<?=$stage["css_wrapper_class"]?>">   
+            <div class="<?=$image["css_inner_class"]?>">
+<? if($image['text_1'] != "") : ?> <h1<?=$image['css_text_class_1']?>><?=$image['text_1']?></h1> <? endif; ?>
+<? if($image['text_2'] != "") : ?> <h2<?=$image['css_text_class_2']?>><?=$image['text_2']?></h2> <? endif; ?>
+<? if($image['text_3'] != "") : ?> <p<?=$image['css_text_class_3']?>><?=$image['text_3']?></p> <? endif; ?>
+<? if($image['link'] != '')     : ?> <h2 class="button"><a href="<?=base_url($image['link'])?>" class="button_white">weiter lesen</a></h2><? endif; ?>                   
             </div>        
         </div>
     </div>
-      
+
+<?  }   ?>      
 </section>

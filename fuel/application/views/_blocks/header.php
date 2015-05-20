@@ -96,11 +96,11 @@
 <header>
 	<div class="site" id="top">
         <h1>
-        	<a href="http://feuerwehr-bs.de/" title="Home">Freiwillige Feuerwehr Bad Soden am Taunus</a>
+        	<a href="<?=base_url()?>" title="Home"><?=fuel_var('pagetitle'); ?></a>
         </h1>
         <nav>    
             <div id="metanavigation"> 
-                <?=fuel_nav(array('group_id' => 2, 'last_class' => ''));?>
+                <?=$metanavigation?>
             </div>
             <ul id="menu">  
              
@@ -363,14 +363,7 @@
           </ul>
       </li>
       <li class="metanav">
-        <?=fuel_nav(array('group_id' => 2, 'first_class' => '', 'last_class' => ''));?>
-      <!--	<ul>
-          <li><a href="http://feuerwehr-bs.de/admin" target="_blank">Login</a></li>
-          <li><a href="https://portal-fwbs.de/" target="_blank">Infoportal</a></li>
-          <li><a href="http://feuerwehr-bs.de/kontakt">Kontakt</a></li>               
-   	      <li><a href="http://feuerwehr-bs.de/links">Links</a></li>
-          <li><a class="fancybox-metaLayer" href="#notruflayerjs">Notfall</a></li>
-        </ul>-->
+        <?=$metanavigation_mobile?>
       </li>
    </ul>
 </div>

@@ -20,7 +20,7 @@ $lang['fuel_copyright'] = 'Copyright &copy; %1s Feuerwehr Bad Soden am Taunus.';
 $lang['error_no_access'] = "Sie haben keine Berechtigung diese Seite aufzurufen.";
 $lang['error_missing_module'] = "Das Modul %1s ist nicht vorhanden.";
 $lang['error_invalid_login'] = 'Anmeldung nicht erfolgreich.';
-$lang['error_max_attempts'] = 'Sorry, but your login information was incorrect and you are temporarily locked out. Please try again in %s seconds.';
+$lang['error_max_attempts'] = 'Es tut uns leid, aber Ihre Anmeldeinformationen sind falsch und Sie wurden temporär gesperrt. Bitte probieren Sie es in %s Sekunden nochmal.';
 $lang['error_empty_user_pwd'] = 'Bitte geben Sie einen Benutzernamen und ein Passwort an.';
 $lang['error_pwd_reset'] = 'Es gab einen Fehler beim zur&uuml;cksetzen des Passworts.';
 $lang['error_invalid_email'] = 'Die angebene Emailadresse ist im System nicht bekannt.';
@@ -75,13 +75,13 @@ $lang['login_reset_pwd'] = 'Passwort zurücksetzen';
 $lang['login_btn'] = 'Anmeldung';
 $lang['logout_restore_original_user'] = 'Originalbenutzer wiederherstellen';
 
-$lang['auth_log_pass_reset_request'] = "Password reset request for '%1s' from %2s";
-$lang['auth_log_pass_reset'] = "Password reset for '%1s' from %2s";
-$lang['auth_log_cms_pass_reset'] = "Password reset from CMS for '%1s' from %2s";
-$lang['auth_log_login_success'] = "Successful login by '%1s' from %2s";
-$lang['auth_log_failed_updating_login_info'] = "There was an error updating the login information for by '%1s' from %2s";
-$lang['auth_log_failed_login'] = "Failed login by '%1s' from %2s, login attempts: %3s";
-$lang['auth_log_account_lockout'] = "Account lockout for '%1s' from %2s";
+$lang['auth_log_pass_reset_request'] = "Anforderung zum Passwortreset für '%1s' über %2s";
+$lang['auth_log_pass_reset'] = "Passwortreset für '%1s' über %2s";
+$lang['auth_log_cms_pass_reset'] = "Passwortreset durch das CMS für '%1s' über %2s";
+$lang['auth_log_login_success'] = "Erfolgreicher Login von '%1s' über %2s";
+$lang['auth_log_failed_updating_login_info'] = "Es gab einen Fehler beim Aktualisieren der Anmeldeinformationen für '%1s' über %2s";
+$lang['auth_log_failed_login'] = "Fehlgeschlagener Login von '%1s' über %2s, Anmeldeversuche: %3s";
+$lang['auth_log_account_lockout'] = "Account gesperrt für '%1s' über %2s";
 
 /*
 |--------------------------------------------------------------------------
@@ -123,13 +123,13 @@ $lang['section_my_modules'] = 'Meine Module';
 | Login/Password Reset
 |--------------------------------------------------------------------------
 */
-$lang['pwd_reset'] = 'An email to confirm your password reset is on its way.';
-$lang['pwd_reset_subject'] = "FUEL admin password reset request";
-$lang['pwd_reset_email'] = "Click the following link to confirm the reset of your FUEL password:\n%1s";
-$lang['pwd_reset_subject_success'] = "FUEL admin password reset success";
-$lang['pwd_reset_email_success'] = "Your FUEL password has been reset to %1s. To change your password, login to the FUEL CMS admin with this password and click on your login name in the upper right to access your profile information.";
-$lang['pwd_reset_success'] = 'Your password was successfully reset and an email has been sent to you with the new password.';
-$lang['cache_cleared'] = "Site cache cleared explicitly";
+$lang['pwd_reset'] = 'Eine Email zur Bestätigung Ihres Passwortreset ist unterwegs.';
+$lang['pwd_reset_subject'] = "FUEL Backend Passwortreset-Anforderung";
+$lang['pwd_reset_email'] = "Klicken Sie auf den folgenden Link zur Bestätigung des Zurücksetzens Ihres FUEL Passworts:\n%1s";
+$lang['pwd_reset_subject_success'] = "Zurücksetzen des FUEL Backend Passworts erfolgreich";
+$lang['pwd_reset_email_success'] = "Ihr FUEL Passwort wurde auf %1s zurückgesetzt. Um das Passwort zu ändern loggen Sie sich bitte in das FUEL CMS Backend mit diesem Passwort ein und klicken Sie auf Ihren Benutzernamen in der oberen rechten Ecke, um auf Ihre Profilinformationen zuzugreifen.";
+$lang['pwd_reset_success'] = 'Ihr Passwort wurde erfolgreich zurückgesetzt und es wurde eine Email mit dem neuen Passwort an Sie gesendet.';
+$lang['cache_cleared'] = "Seitencache wurde explizit gelöscht.";
 
 
 /*
@@ -169,31 +169,31 @@ $lang['section_recently_viewed'] = 'Kürzlich angesehen';
 | Generic Module
 |--------------------------------------------------------------------------
 */
-$lang['module_created']= "%1s item <em>%2s</em> created";
-$lang['module_edited'] = "%1s item <em>%2s</em> edited";
-$lang['module_deleted'] = "%1s item for <em>%2s</em> deleted";
-$lang['module_multiple_deleted'] = "Multiple <em>%1s</em> deleted";
-$lang['module_restored'] = "%1s item restored from archive";
-$lang['module_instructions_default'] = "Here you can manage the %1s for your site.";
-$lang['module_restored_success'] = 'Previous version successfully restored.';
-$lang['module_replaced_success'] = 'The contents of this record were successfully replaced.';
-$lang['module_incompatible'] = 'The version of this module is not compatible with the install FUEL version of '.FUEL_VERSION;
+$lang['module_created']= "%1s Element <em>%2s</em> erstellt";
+$lang['module_edited'] = "%1s Element <em>%2s</em> bearbeitet";
+$lang['module_deleted'] = "%1s Element for <em>%2s</em> gelöscht";
+$lang['module_multiple_deleted'] = "Mehrere <em>%1s</em> gelöscht";
+$lang['module_restored'] = "%1s Element aus Archiv wiederhergestellt";
+$lang['module_instructions_default'] = "Hier können Sie die %1s für Ihre Seite verwalten.";
+$lang['module_restored_success'] = 'Vorgängerversion erfolgreich wiederhergestellt.';
+$lang['module_replaced_success'] = 'Der Inhalt dieses Eintrags wurde erfolgreich ersetzt.';
+$lang['module_incompatible'] = 'Die Version dieses Moduls ist nicht kompatibel mit der installierten FUEL Version '.FUEL_VERSION;
 
-$lang['cannot_determine_module'] = "Cannot determine module.";
-$lang['incorrect_route_to_module'] = "Incorrect route to access this module.";
-$lang['data_saved'] = 'Data has been saved.';
-$lang['data_deleted'] = 'Data has been deleted.';
-$lang['data_not_deleted'] = 'Some or all data couldn\'t be deleted.';
+$lang['cannot_determine_module'] = "Kann Modul nicht bestimmen.";
+$lang['incorrect_route_to_module'] = "Falsche Route, um auf dieses Modul zuzugreifen.";
+$lang['data_saved'] = 'Daten wurden gespeichert.';
+$lang['data_deleted'] = 'Daten wurden gelöscht.';
+$lang['data_not_deleted'] = 'Einige oder alle Daten konnten nicht gelöscht werden.';
 $lang['no_data'] = 'Keine Datensätze vorhanden.';
-$lang['no_preview_path'] = 'There is no preview path assigned to this module.';
-$lang['delete_item_message'] = 'You are about to delete the item:';
-$lang['replace_item_message'] = 'Select a record from the list below that you would like to replace. Replacing will transfer the data from one record to the other and then delete the old record.';
+$lang['no_preview_path'] = 'Diesem Modul ist kein Vorschau-Pfad zugeordnet.';
+$lang['delete_item_message'] = 'Sie wollen dieses Element löschen:';
+$lang['replace_item_message'] = 'Wählen Sie einen Eintrag aus der nachstehenden Liste, den Sie ersetzen möchten. Die Ersetzung übernimmt die Daten eines Datensatzes in den anderen und löscht dann den alten Datensatz.';
 
 // command line
-$lang['module_install'] = "The '%1s' module has successfully been installed.\n";
-$lang['module_install_error'] = "There was an error installing the '%1s' module.\n";
+$lang['module_install'] = "Das '%1s' Modul wurde erfolgreich installiert.\n";
+$lang['module_install_error'] = "Es gab einen Fehler beim Installieren des Moduls '%1s'.\n";
 
-$msg = "The module %1s has been uninstalled in FUEL.\n\n";
+$msg = "Das Modul %1s wurde in FUEL deinstalliert.\n\n";
 $msg .= "However, removing a module from GIT is a little more work that we haven't automated yet. However, the below steps should help.\n\n";
 $msg .= "1. Delete the relevant section from the .gitmodules file.\n";
 $msg .= "2. Delete the relevant section from .git/config.\n";
@@ -209,16 +209,16 @@ $lang['module_build_asset'] = "%1s optimized and ouput to %2s\n";
 | Migrations
 |--------------------------------------------------------------------------
 */
-$lang['migrate_success'] = "You have successfully migrated to version %s.\n";
-$lang['migrate_nothing_todo'] = "No migrations were necessary.\n";
+$lang['migrate_success'] = "Sie haben erfolgreich auf Version %s migriert.\n";
+$lang['migrate_nothing_todo'] = "Es waren keine Migrationen erforderlich.\n";
 
 /*
 |--------------------------------------------------------------------------
 | List View
 |--------------------------------------------------------------------------
 */
-$lang['adv_search'] = 'Advanced Search';
-$lang['reset_search'] = 'Reset Search';
+$lang['adv_search'] = 'Erweiterte Suche';
+$lang['reset_search'] = 'Suche zurücksetzen';
 
 
 /*
@@ -227,9 +227,9 @@ $lang['reset_search'] = 'Reset Search';
 |--------------------------------------------------------------------------
 */
 
-$lang['page_route_warning'] = 'The location specified has the following routes already specified in the routes file (%1s):';
-$lang['page_controller_assigned'] = 'There is a controller method already assigned to this page.';
-$lang['page_updated_view'] = 'There is an updated view file located at <strong>%1s</strong>. Would you like to upload it into the body of your page (if available)?';
+$lang['page_route_warning'] = 'Die angegebene Position hat bereits folgende Routen in der Routen-Datei spezifiziert (%1s):';
+$lang['page_controller_assigned'] = 'Dieser Seite ist bereits eine Controller-Methode zugeordnet.';
+$lang['page_updated_view'] = 'Es liegt eine aktualisierte View-Datei unter <strong>%1s</strong> vor. Wollen Sie diese in den Body der Seite laden (falls verfügbar)?';
 $lang['page_not_published'] = 'Diese Seite ist nicht veröffentlicht.';
 
 $lang['page_no_upload'] = 'Nein, nicht hochladen';
@@ -278,9 +278,9 @@ $lang['form_label_view'] = 'View';
 |--------------------------------------------------------------------------
 */
 $lang['navigation_import'] = 'Navigation importieren';
-$lang['navigation_instructions'] = 'Here you create and edit the top menu items of the page.';
-$lang['navigation_import_instructions'] = 'Select a navigation group and upload a file to import below. The file should contain the PHP array variable assigned in the variable field below (e.g. <strong>$nav</strong>). For a reference of the array format, please consult the <a href="http://docs.getfuelcms.com/general/navigation" target="_blank">user guide</a>.';
-$lang['navigation_success_upload'] = 'The navigation was successfully uploaded.';
+$lang['navigation_instructions'] = 'Hier erstellen und bearbeiten Sie die Menüeinträge der Seite.';
+$lang['navigation_import_instructions'] = 'Wählen Sie eine Navigationsgruppe und eine Datei für den Upload aus. Die Datei muss ein Array enthalten, welches den Variablennamen aus dem unten stehenden Feld Variable hat (z.B. <strong>$nav</strong>).  Für eine Beschreibung des Array-Formats konsultieren Sie den <a href="http://docs.getfuelcms.com/general/navigation" target="_blank">User Guide</a>.';
+$lang['navigation_success_upload'] = 'Die Navigation wurde erfolgreich hochgeladen.';
 $lang['form_label_navigation_group'] = 'Navigationsgruppe:';
 $lang['form_label_nav_key'] = 'Schlüssel';
 $lang['form_label_parent_id'] = 'Vorgänger';
@@ -320,16 +320,16 @@ $lang['form_label_unzip'] = 'Zipdateien entpacken';
 $lang['assets_upload_action'] = 'Hochladen';
 $lang['assets_select_action'] = 'Auswählen';
 $lang['assets_comment_asset_folder'] = 'Das Asset Verzeichnis, in das hochgeladen wird';
-$lang['assets_comment_filename'] = 'Wenn kein Name übermittelt wird, dann wird der bereits existierende DateinIf no name is provided, the filename that already exists will be used.';
+$lang['assets_comment_filename'] = 'Wenn kein Name übermittelt wird, dann wird der bereits existierende Dateiname benutzt.';
 $lang['assets_comment_subfolder'] = 'Es wird versucht, ein Unterverzeichnis anzulegen, um das Asset darin zu platzieren.';
 $lang['assets_comment_overwrite'] = 'Eine Datei mit identischem Namen überschreiben. Wenn nicht angehakt, dann wird eine neue Datei mit einer Versionsnummer am Ende hochgeladen.';
 $lang['assets_heading_general'] = 'Allgemein';
 $lang['assets_heading_image_specific'] = 'Bild-bezogen';
 $lang['assets_comment_thumb'] = 'Ein Thumbnail des Bilds erstellen.';
-$lang['assets_comment_resize_method'] = 'Maintains the aspect ratio or resizes and crops the image to fit the provided dimensions. If "Create thumbnail" is selected, it will only effect the size of the thumbnail.';
-$lang['assets_comment_width'] = 'Will change the width of an image to the desired amount. If "Create thumbnail" is selected, then it will only effect the size of the thumbnail.';
-$lang['assets_comment_height'] = 'Will change the height of an image to the desired amount. If "Create thumbnail" is selected, it will only effect the size of the thumbnail.';
-$lang['assets_comment_master_dim'] = 'Specifies the master dimension to use for resizing. If the source image size does not allow perfect resizing to those dimensions, this setting determines which axis should be used as the hard value. "auto" sets the axis automatically based on whether the image is taller then wider, or vice versa.';
+$lang['assets_comment_resize_method'] = 'Erhält das Seitenverhältnis oder passt die Größe an und schneidet das Bild zu, um den angegeben Dimensionen zu entsprechen. Wenn "Thumbnail erstellen" gewählt ist, dann wird nur die Größe des Thumbnails beeinflusst.';
+$lang['assets_comment_width'] = 'Ändert die Breite eines Bildes auf den gewünschten Wert. Wenn "Thumbnail erstellen" gewählt ist, dann wird nur die Größe des Thumbnails beeinflusst.';
+$lang['assets_comment_height'] = 'Ändert die Höhe eines Bildes auf den gewünschten Wert. Wenn "Thumbnail erstellen" gewählt ist, dann wird nur die Größe des Thumbnails beeinflusst.';
+$lang['assets_comment_master_dim'] = 'Spezifizert die Bezugsachse für die Größenänderung. Wenn das Quellbild keine perfekte Größenänderung für die gewählten Angaben ermöglicht, dann wird diese Achse als fixer Wert genommen. "auto" setzt die Achse automatisch, je nachdem, ob das Bild breiter als hoch oder höher als breit ist.';
 $lang['assets_comment_unzip'] = 'Entpackt eine Zip Datei';
 
 /*
@@ -351,12 +351,12 @@ $lang['permissions_heading'] = 'Berechtigungen';
 $lang['form_label_language'] = 'Sprache';
 $lang['form_label_send_email'] = 'Email senden';
 $lang['btn_send_email'] = 'Email senden';
-$lang['new_user_email_subject'] = 'Your FUEL CMS account has been created';
-$lang['new_user_email'] = 'Your FUEL CMS account has been created. You can login with the following information:
+$lang['new_user_email_subject'] = 'Ihr FUEL CMS Account wurde erstellt';
+$lang['new_user_email'] = 'Ihr FUEL CMS Account wurde erstellt. Sie können Sich nun mit den folgenden Informationen anmelden:
 Login URL: %1s
 Benutzername: %2s
 Passwort: %3s';
-$lang['new_user_created_notification'] = 'The user information was successfully saved and a notification was sent to %1s.';
+$lang['new_user_created_notification'] = 'Die Benutzerdaten wurden erfolgreich gespeichert und eine Benachrichtigung wurde an %1s gesendet.';
 $lang['error_cannot_deactivate_yourself'] = 'Sie können Sich nicht selber deaktivieren.';
 
 
@@ -365,8 +365,8 @@ $lang['error_cannot_deactivate_yourself'] = 'Sie können Sich nicht selber deakt
 | Permissions
 |--------------------------------------------------------------------------
 */
-$lang['permissions_instructions'] = 'Here you can manage the permissions for FUEL modules and later assign them to users.';
-$lang['form_label_other_perms'] = 'Generate related simple<br /> module permissions';
+$lang['permissions_instructions'] = 'Hier können Sie die Berechtigungen für FUEL Module verwalten und sie später Benutzern zuweisen.';
+$lang['form_label_other_perms'] = 'Für abhängige einfache Module <br/>Berechtigungen generieren';
 
 /*
 |--------------------------------------------------------------------------
@@ -384,9 +384,9 @@ $lang['cache_yes_clear'] = 'Ja, Cache leeren';
 | Settings
 |--------------------------------------------------------------------------
 */
-$lang['settings_none'] = 'There are no settings for any advanced modules to manage.';
-$lang['settings_manage'] = 'Manage the settings for the following advanced modules:';
-$lang['settings_problem'] = 'There was a problem with the settings for the advanced module <strong>%1s</strong>. <br />Check that <strong>/fuel/modules/%1s/config/%1s.php</strong> config is configured to handle settings.';
+$lang['settings_none'] = 'Es gibt keine Einstellungen für erweiterte Module.';
+$lang['settings_manage'] = 'Verwalten Sie die Einstellungen der folgenden erweiterten Module:';
+$lang['settings_problem'] = 'Es ist ein Problem mit den Einstellungen des erweiterten Moduls <strong>%1s</strong> aufgetreten. <br />Prüfen Sie, dass die <strong>/fuel/modules/%1s/config/%1s.php</strong> Konfigurationsdatei zur Behandlung der Einstellungen konfiguriert ist.';
 
 
 /*
@@ -394,9 +394,9 @@ $lang['settings_problem'] = 'There was a problem with the settings for the advan
 | Generate
 |--------------------------------------------------------------------------
 */
-$lang['error_not_cli_request'] = 'This is not a CLI request.';
-$lang['error_not_in_dev_mode'] = 'This will only run in dev mode.';
-$lang['error_missing_generation_files'] = 'There are no generation files to create for %1s.';
+$lang['error_not_cli_request'] = 'Dies ist ein CLI Request.';
+$lang['error_not_in_dev_mode'] = 'Dies läuft nur im Entwicklungsmodus.';
+$lang['error_missing_generation_files'] = 'Es gibt keine Generierungsdateien für %1s zu erstellen.';
 
 
 /*
@@ -419,8 +419,8 @@ $lang['table_action_login_as'] = 'ANMELDEN ALS';
 $lang['label_show'] = 'Zeigen:';
 $lang['label_language'] = 'Sprache:';
 $lang['label_restore_from_prev'] = 'Aus vorheriger Version wiederherstellen...';
-$lang['label_select_another'] = 'Wählen Sie ein anderes...';
-$lang['label_select_one'] = 'Wählen Sie eins...';
+$lang['label_select_another'] = 'Wählen Sie einen anderen Eintrag...';
+$lang['label_select_one'] = 'Wählen Sie einen Eintrag...';
 $lang['label_belongs_to'] = 'Gehört';
 $lang['label_select_a_language'] = 'Wählen Sie eine Sprache...';
 
@@ -511,21 +511,21 @@ $lang['required_text'] = 'Pflichtfelder';
 | Layouts
 |--------------------------------------------------------------------------
 */
-$lang['layout_field_main_copy'] = 'This is the main layout to be used for your site.';
+$lang['layout_field_main_copy'] = 'Dies ist das Hauptlayout, dass für Ihre Seite genutzt werden soll.';
 $lang['layout_field_page_title'] = 'Seitentitel';
-$lang['layout_field_meta_description'] = 'Meta description';
-$lang['layout_field_meta_keywords'] = 'Meta keywords';
+$lang['layout_field_meta_description'] = 'Meta Description';
+$lang['layout_field_meta_keywords'] = 'Meta Keywords';
 $lang['layout_field_body'] = 'Body';
 $lang['layout_field_heading'] = 'Überschrift';
 $lang['layout_field_body_description'] = 'Hauptinhalt der Seite';
 $lang['layout_field_body_class'] = 'Body Klasse';
 $lang['layout_field_redirect_to'] = 'Weiterleiten zu';
 
-$lang['layout_field_301_redirect_copy'] = 'This layout will do a 301 redirect to another page.';
-$lang['layout_field_alias_copy'] = 'This layout is similar to a 301 redirect but the location of the page does not change and <br />the page content from the specifiec location is used to render the page.';
-$lang['layout_field_sitemap_xml_copy'] = 'This layout is used to generate a sitemap. For this page to appear, a sitemap.xml must not exist on the server.';
-$lang['layout_field_robots_txt_copy'] = 'This layout is used to generate a robots.txt file. For this page to appear, a robots.txt must not exist on the server.';
-$lang['layout_field_none_copy'] = 'This layout is the equivalent of having no layout assigned.';
+$lang['layout_field_301_redirect_copy'] = 'Dieses Layout führt einen 301 Redirect zu einer anderen Seite durch.';
+$lang['layout_field_alias_copy'] = 'Dieses Layout ist gleichbedeutend mit dem 301 Redirect aber die Positionsangabe der Seite ändert sich nicht und <br />der Seiteninhalt der spezifizierten Position wird genutzt, um die Seite zu rendern.';
+$lang['layout_field_sitemap_xml_copy'] = 'Dieses Layout wird genutzt, eine Sitemap zu generieren. Damit diese Seite angezeigt wird, darf keine sitemap.xml auf dem Server existieren.';
+$lang['layout_field_robots_txt_copy'] = 'Dieses Layout wird genutzt, eine robots.txt Datei zu generieren. Damit diese Seite angezeigt wird, darf keine robots.txt Datei auf dem Server existieren.';
+$lang['layout_field_none_copy'] = 'Dieses Layout ist gleichbedeutend damit, kein Layout zuzuordnen.';
 
 $lang['layout_field_frequency'] = 'Häufigkeit';
 $lang['layout_field_frequency_always'] = 'immer';

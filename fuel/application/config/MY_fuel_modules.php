@@ -27,6 +27,13 @@ $config['modules']['pressarticles'] = array(
     'permission' => 'pressarticles',
 );
 
+$config['modules']['pressarticle_sources'] = array(
+    'module_name' => 'Presseartikel - Quellen',
+    'display_field' => 'name',
+    'instructions' => lang("presse_sources_instructions"),
+    'permission' => 'pressarticle_sources',
+);
+
 $config['modules']['stages'] = array(
     'module_name' => 'Bildbühnen',
     'instructions' => lang("stage_instructions"),
@@ -35,7 +42,7 @@ $config['modules']['stages'] = array(
 
 $config['modules']['stage_types'] = array(
     'module_name' => 'Bildbühnentypen',
-    'hidden' => 'TRUE',
+    'permission' => 'stage_types',
 );
 
 /*********************** OVERWRITES ************************************/
