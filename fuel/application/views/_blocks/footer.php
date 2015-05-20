@@ -2,23 +2,18 @@
 
 	<div id="shortlinks">
     	<h1><?=fuel_var('pagetitle'); ?></h1>
-        <?=fuel_nav(array('group_id' => 3, 'last_class' => ''));?>
+        <?=$shortlinks?>
     </div>
     <div id="share"></div>
     <div id="sitemap">
         
         <div class="completeSitemap"> 
         <div class="sitemapBox">   
-            <?=fuel_nav(array('group_id' => 4, 'first_class' => 'headline', 'last_class' => ''));?>
-            <?=fuel_nav(array('group_id' => 5, 'first_class' => 'headline', 'last_class' => ''));?>
-            <?=fuel_nav(array('group_id' => 6, 'first_class' => 'headline', 'last_class' => ''));?>
-            <?=fuel_nav(array('group_id' => 7, 'first_class' => 'headline', 'last_class' => ''));?>
-            <?=fuel_nav(array('group_id' => 8, 'first_class' => 'headline', 'last_class' => ''));?>
-
+            <?=$sitemap_box?>
         </div>
 
         <div class="smallSitemap">               
-            <?=fuel_nav(array('group_id' => 9, 'container_tag' => '', 'item_tag' => '', 'first_class' => '', 'last_class' => ''));?>
+            <?=$small_sitemap?>
         </div>
         
     </div>

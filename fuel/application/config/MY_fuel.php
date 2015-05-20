@@ -120,6 +120,7 @@ $config['tables'] = array(
 
 /* Uncomment if you want to control FUEL settings in the CMS. Below are a couple examples of ones you can configure
 $config['settings'] = array();
+$config['settings']['module_stages'] = array();
 $config['settings']['site_name'] = array();
 if (!empty($config['modules_allowed']))
 {
