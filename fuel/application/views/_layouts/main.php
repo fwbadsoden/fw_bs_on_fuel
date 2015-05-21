@@ -1,18 +1,8 @@
-<?php
-    $CI =& get_instance();
-    $CI->load->model('stages_model');
-    
-    if(isset($this->fuel_page->id)) {
-        // Stage für Inhaltsseite laden   
-        $stage = $CI->stages_model->get_stage_from_page_id($this->fuel_page->id);
-    } else {
-        // Stage für Modulseite laden
-    }
-    
+<?php 
     $stage_vars['stage'] = $stage;
+    $this->load->view('_blocks/header');
+    $this->load->view('_blocks/stage', $stage_vars);    
 ?>
-<?php $this->load->view('_blocks/header')?>
-<?php $this->load->view('_blocks/stage', $stage_vars)?>
 
 <section id="content">
     <div class="<?=$stage['css_slidewrapper_class']?>">
@@ -21,4 +11,6 @@
     </div>
 </section>
 	
-<?php $this->load->view('_blocks/footer')?>
+<?php 
+    $this->load->view('_blocks/footer');
+?>

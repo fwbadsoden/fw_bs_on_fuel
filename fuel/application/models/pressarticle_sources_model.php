@@ -1,8 +1,8 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-require_once(FUEL_PATH.'models/base_module_model.php');
+require_once('abstract_module_model.php');
 
-class PressArticle_Sources_model extends Base_module_model {
+class PressArticle_Sources_model extends Abstract_module_model {
     public $required = array('name', 'tag');
     
     function __construct() {
@@ -10,7 +10,7 @@ class PressArticle_Sources_model extends Base_module_model {
     }
 }
 
-class PressArticle_Source_model extends Base_module_record {
+class PressArticle_Source_model extends Abstract_module_record {
     
 }
 
