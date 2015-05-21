@@ -7,7 +7,9 @@ function menu_news_label($date, $text) {
 
 function main_navigation() {
 	$CI =& get_instance();
-    $main_navigation = "";
+    $main_navigation = fuel_nav();
+    
+    //internal_debug($main_navigation);
     
     return $main_navigation;
 }
