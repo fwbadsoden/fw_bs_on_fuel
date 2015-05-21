@@ -1,8 +1,8 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
  
-require_once(FUEL_PATH.'models/base_module_model.php');
+require_once('abstract_module_model.php');
 
-class Stages_model extends Base_module_model {
+class Stages_model extends Abstract_module_model {
     
     public $required = array('name', 'typeID');
     public $unique = array('name');
@@ -13,6 +13,14 @@ class Stages_model extends Base_module_model {
         parent::__construct('fw_stages');
     }
     
+    /**
+	 * Add specific changes to the form_fields method
+	 *
+	 * @access	public
+	 * @param	array Values of the form fields (optional)
+	 * @param	array An array of related fields. This has been deprecated in favor of using has_many and belongs to relationships (deprecated)
+	 * @return	array An array to be used with the Form_builder class
+	 */	
     public function form_fields($values = array(), $related = array()) {
         
         $fields = parent::form_fields($values, $related);  
@@ -94,7 +102,7 @@ class Stages_model extends Base_module_model {
     }
 }
 
-class Stage_model extends Base_module_record {
+class Stage_model extends Abstract_module_record {
     
     public function save($validate = TRUE, $ignore_on_insert = TRUE, $clear_related = NULL) {
         
