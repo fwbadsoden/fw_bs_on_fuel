@@ -19,8 +19,8 @@ $config['layouts']['main'] = array(
 	'filepath' => 'libraries/_layouts',
 	'filename' => 'Main_layout.php',	
 	'fields'	=> array(
-        'Stage' => array('type' => 'fieldset', 'label' => 'Bildbühne', 'class' => 'tab'),
-        'stagesel' => array('type' => 'select', 'label' => 'Bildbühne','model' => array('stages_model' => 'stages')),
+       // 'Stage' => array('type' => 'fieldset', 'label' => 'Bildbühne', 'class' => 'tab'),
+       // 'stagesel' => array('type' => 'select', 'label' => 'Bildbühne','model' => array('stages_model' => 'stages')),
     	'Body' => array('type' => 'fieldset', 'label' => 'Body', 'class' => 'tab'),
 		'body' => array('label' => lang('layout_field_body'), 'type' => 'textarea', 'description' => lang('layout_field_body_description')),
 	)
