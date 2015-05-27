@@ -7,7 +7,30 @@ $lang['stage_type_label'] = "Bildbühnenart";
 $lang["presse_instructions"] = "Hier können Sie die Presseartikel verwalten.";
 $lang["presse_sources_instructions"] = "Hier können Sie die Quellen für Presseartikel verwalten.";
 $lang["stage_instructions"] = "Hier können Sie die Bildbühnen verwalten.";
+$lang["appointments_instructions"] = "Hier können Sie die Termine verwalten.";
+$lang["stage_types_instructions"] = "Hier können Sie die Bildbühnen-Typen verwalten.";
+$lang["einsatz_cues_instructions"] = "Hier können Sie die Einsatzstichwörter verwalten.";
+$lang["einsatz_types_instructions"] = "Hier können Sie die Einsatzarten verwalten.";
+$lang["mannschaft_sections_instructions"] = "Hier können Sie die Mannschaftsabteilungen verwalten.";
+$lang["mannschaft_grades"] = "Hier können Sie die Dienstgrade verwalten.";
+$lang["mannschaft_executives"] = "Hier können Sie die Führungsfunktionen verwalten.";
+$lang["mannschaft_teams"] = "Hier können Sie die Teams der Mannschaft verwalten.";
+
+// Formulare
 $lang["form_label_press_source"] = "Quelle";
 $lang["form_label_press_link"] = "URL";
+
+$lang["form_label_einsatztype_shortname"] = "Tag";
+$lang["form_label_einsatztype_nameplural"] = "Name in Mehrzahl";
+
+$lang["form_label_appointments_shortcity"] = "Ort kurz";
+
+$lang["form_label_mannschaft_show_image"] = "Bild anzeigen";
+$lang["form_label_mannschaft_show_job"] = "Beruf anzeigen";
+$lang["form_label_mannschaft_show_birthday"] = "Geburtstag anzeigen";
+
+$lang["form_label_cssclass"] = "CSS Klasse";
+$lang["form_label_example"] = "Beispiel";
+$lang["form_label_category"] = "Kategorie";
 
 ?>

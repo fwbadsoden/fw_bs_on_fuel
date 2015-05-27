@@ -54,7 +54,7 @@ class Stages_model extends Abstract_module_model {
         $stage["images"]                    = array();
         
         $this->db->where(array('stageID' => $row->id));
-        $this->db->order_by('orderID', 'ascending');
+        $this->db->order_by('precedence', 'ascending');
         $query2 = $this->db->get('stage_images');
         foreach($query2->result() as $row2) {
             $image['file']              = $row2->file;
