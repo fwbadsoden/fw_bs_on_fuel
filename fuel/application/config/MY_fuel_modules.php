@@ -68,6 +68,7 @@ $config['modules']['mannschaft_grades'] = array(
     'default_col' => 'precedence',
     'instructions' => lang("mannschaft_grades_instructions"),
     'permission' => 'mannschaft_grades',
+    'hidden' => true,
 );
 
 $config['modules']['mannschaft_executives'] = array(
@@ -75,6 +76,7 @@ $config['modules']['mannschaft_executives'] = array(
     'default_col' => 'precedence',
     'instructions' => lang("mannschaft_executives_instructions"),
     'permission' => 'mannschaft_executives',
+    'hidden' => true,
 );
 
 $config['modules']['mannschaft_teams'] = array(

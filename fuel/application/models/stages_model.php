@@ -24,6 +24,14 @@ class Stages_model extends Abstract_module_model {
     public function form_fields($values = array(), $related = array()) {
         
         $fields = parent::form_fields($values, $related);  
+        $options = array('yes' => 'ja', 'no' => 'nein'); 
+        $fields['randomize'] = array('label' => lang('form_label_stage_randomize'),
+                                     'type' => 'enum',
+                                     'options' => $options
+                                     );
+        $fields['img_count'] = array('label' => lang('form_label_stage_image_count'),
+                                     'ignore_represantative' => true,
+                                     'type' => 'int');
 		$fields['userfile'] = array('label' => lang('form_label_file'), 'type' => 'file', 'class' => 'multifile', 'accept' => 'jpg|jpeg|png'); // key is userfile because that is what CI looks for in Upload Class
         
         return $fields;
