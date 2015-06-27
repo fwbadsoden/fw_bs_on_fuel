@@ -20,6 +20,10 @@ $lang["mannschaft_teams"] = "Hier können Sie die Teams der Mannschaft verwalten
 $lang["form_label_press_source"] = "Quelle";
 $lang["form_label_press_link"] = "URL";
 
+$lang["form_label_stage_randomize"] = "Zufallsbild wählen?";
+$lang["form_label_stage_type"]      = "Bildbühnentyp";
+$lang["form_label_stage_image_count"] = "Anzahl Bilder (0 = alle)";
+
 $lang["form_label_einsatztype_shortname"] = "Tag";
 $lang["form_label_einsatztype_nameplural"] = "Name in Mehrzahl";
 

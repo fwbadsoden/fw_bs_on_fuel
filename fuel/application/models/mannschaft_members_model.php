@@ -29,14 +29,23 @@ class Mannschaft_Members_model extends Abstract_module_model {
                                  'folder' => 'mannschaft',      
                                  'accept' => 'jpg|jpeg|png',
                                  'type' => 'asset',
-                                 'hide_image_options' => false,
-                                 'is_image' => true); 
-        $fields['show_image']['label'] = lang('form_label_mannschaft_show_image');
-        $fields['show_image']['type'] = 'enum';
-        $fields['show_beruf']['label'] = lang('form_label_mannschaft_show_job');
-        $fields['show_beruf']['type'] = 'enum';
-        $fields['show_geburtstag']['label'] = lang('form_label_mannschaft_show_birthday');
-        $fields['show_geburtstag']['type'] = 'enum';
+                                 'hide_image_options' => false 
+                                 ); 
+        $options = array('yes' => 'ja', 'no' => 'nein');                                 
+        $fields['show_image'] = array('label'   => lang('form_label_mannschaft_show_image'),
+                                      'ignore_representative' => true,
+                                      'type'    => 'enum',
+                                      'options' => $options,
+                                      'mode'    => 'radios'
+                                     );
+        $fields['show_beruf'] = array('label'   => lang('form_label_mannschaft_show_job'),
+                                      'type'    => 'enum',
+                                      'options' => $options
+                                      );
+        $fields['show_geburtstag'] = array('label'      => lang('form_label_mannschaft_show_birthday'),
+                                           'type'       => 'enum',
+                                           'options'    => $options
+                                           );
         //internal_debug($fields);
         
         return $fields;

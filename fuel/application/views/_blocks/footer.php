@@ -49,7 +49,7 @@
 	<hr class="clear" />
 		<div class="greybox">
 			<p class="number">Zentrale Leitstelle <span>+49 6192-5095</span></p>
-			<p class="button"><a href="http://www.gehoerlosen-bund.de/dgb/images/stories/pdfs/dgb_notruftelefaxvorlage.pdf" class="button_black_gross" target="_blank">Notruffax &raquo;</a></p>
+			<p class="button"><a href="<?=fuel_var('url_notruffax')?>" class="button_black_gross" target="_blank">Notruffax &raquo;</a></p>
 			<hr class="clear" />
 		</div>
 	</div>
