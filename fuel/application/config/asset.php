@@ -15,6 +15,8 @@ $config['assets_module'] = '';
 // relative to web_root.assets_path
 $config['assets_folders'] = array(
 	'images' => 'images/',
+    'bildbuehnen' => 'images/bildbuehnen/',
+    'mannschaft' => 'images/mannschaft/',
 	'css' => 'css/',
 	'js' => 'js/',
 	'pdf' => 'pdf/',

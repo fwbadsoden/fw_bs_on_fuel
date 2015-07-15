@@ -32,6 +32,12 @@ $config['modules']['stages'] = array(
     'permission' => 'stages',
 );
 
+$config['modules']['stage_images'] = array(
+    'module_name' => 'Bildbühnenbilder',
+    'instructions' => lang("stage_images_instructions"),
+    'permission' => 'stages',
+);
+
 $config['modules']['stage_types'] = array(
     'module_name' => 'Bildbühnentypen',
     'instructions' => lang("stage_types_instructions"),

@@ -7,8 +7,9 @@ $lang['stage_type_label'] = "Bildbühnenart";
 $lang["presse_instructions"] = "Hier können Sie die Presseartikel verwalten.";
 $lang["presse_sources_instructions"] = "Hier können Sie die Quellen für Presseartikel verwalten.";
 $lang["stage_instructions"] = "Hier können Sie die Bildbühnen verwalten.";
-$lang["appointments_instructions"] = "Hier können Sie die Termine verwalten.";
+$lang["stage_images_instructions"] = "Hier können Sie die Bilder der Bildbühnen verwalten.";
 $lang["stage_types_instructions"] = "Hier können Sie die Bildbühnen-Typen verwalten.";
+$lang["appointments_instructions"] = "Hier können Sie die Termine verwalten.";
 $lang["einsatz_cues_instructions"] = "Hier können Sie die Einsatzstichwörter verwalten.";
 $lang["einsatz_types_instructions"] = "Hier können Sie die Einsatzarten verwalten.";
 $lang["mannschaft_sections_instructions"] = "Hier können Sie die Mannschaftsabteilungen verwalten.";
@@ -22,7 +23,15 @@ $lang["form_label_press_link"] = "URL";
 
 $lang["form_label_stage_randomize"] = "Zufallsbild wählen?";
 $lang["form_label_stage_type"]      = "Bildbühnentyp";
-$lang["form_label_stage_image_count"] = "Anzahl Bilder (0 = alle)";
+
+$lang["form_label_stage_image_stageid"] = "Bildbühne";
+$lang["form_label_stage_image_css_inner_class"] = "CSS Klasse";
+$lang["form_label_stage_image_css_text_class_1"] = "CSS Klasse Text 1";
+$lang["form_label_stage_image_css_text_class_2"] = "CSS Klasse Text 2";
+$lang["form_label_stage_image_css_text_class_3"] = "CSS Klasse Text 3";
+$lang["form_label_stage_image_precedence"] = "Rangfolge (wenn leer, dann wird das Bild als letztes angefügt)";
+
+$lang["form_label_stagetype_css_outer_class"] = "Äußere CSS Klasse";
 
 $lang["form_label_einsatztype_shortname"] = "Tag";
 $lang["form_label_einsatztype_nameplural"] = "Name in Mehrzahl";
