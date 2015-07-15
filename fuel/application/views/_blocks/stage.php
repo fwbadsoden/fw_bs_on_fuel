@@ -9,7 +9,7 @@
 ?>    
     
     <div class="<?=$image["css_outer_class"]?>" id="pictures_<?=$key?>" style="background-image: url(<?=$image["file"]?>); display: none;">
-        <div id="<?=$stage["css_wrapper_class"]?>">   
+        <div id="stagewrapper">   
             <div class="<?=$image["css_inner_class"]?>">
 <? if($image['text_1'] != "") : ?> <h1<?=$image['css_text_class_1']?>><?=$image['text_1']?></h1> <? endif; ?>
 <? if($image['text_2'] != "") : ?> <h2<?=$image['css_text_class_2']?>><?=$image['text_2']?></h2> <? endif; ?>
