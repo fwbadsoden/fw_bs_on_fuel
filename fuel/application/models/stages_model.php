@@ -6,7 +6,9 @@ class Stages_model extends Abstract_module_model {
     
     public $required = array('name', 'typeID');
     public $unique = array('name');
-    public $foreign_keys = array('typeID' => 'stage_types_model');
+    public $foreign_keys = array('typeID' => 'stage_types_model',
+                                 'last_modified_by' => 'fuel_users_model');
+    public $has_many = array('stage_images' => 'stage_images_model');
     public $hidden_fields = array('last_modified');
     
     function __construct() {
@@ -26,13 +28,17 @@ class Stages_model extends Abstract_module_model {
         $fields = parent::form_fields($values, $related);  
         $options = array('yes' => 'ja', 'no' => 'nein'); 
         $fields['randomize'] = array('label' => lang('form_label_stage_randomize'),
+                                     'comment' => lang('form_comment_stage_randomize'),
                                      'type' => 'enum',
                                      'options' => $options
                                      );
+        $fields['typeID'] = array('label' => lang('form_label_stage_type'));                                     
         $fields['img_count'] = array('label' => lang('form_label_stage_image_count'),
+                                     'comment' => lang('form_comment_stage_image_count'),
                                      'ignore_represantative' => true,
                                      'type' => 'int');
-		$fields['userfile'] = array('label' => lang('form_label_file'), 'type' => 'file', 'class' => 'multifile', 'accept' => 'jpg|jpeg|png'); // key is userfile because that is what CI looks for in Upload Class
+        $fields['last_modified_by']['label'] = lang('form_label_last_modified');
+        $fields['stage_images']['label'] = lang('form_label_stage_images');
         
         return $fields;
     }
