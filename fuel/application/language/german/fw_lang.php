@@ -18,18 +18,23 @@ $lang["mannschaft_executives"] = "Hier können Sie die Führungsfunktionen verwa
 $lang["mannschaft_teams"] = "Hier können Sie die Teams der Mannschaft verwalten.";
 
 // Formulare
+$lang["form_label_last_modified"] = "Letzter Änderer";
+
 $lang["form_label_press_source"] = "Quelle";
 $lang["form_label_press_link"] = "URL";
 
-$lang["form_label_stage_randomize"] = "Zufallsbild wählen?";
+$lang["form_label_stage_randomize"] = "Zufallsbild(er) wählen?";
+$lang["form_comment_stage_randomize"] = "Wählt passend zur gewählten Bilderanzahl Zufallsbilder aus, falls mehr vorhanden sind als unter Anzahl angegeben";
 $lang["form_label_stage_type"]      = "Bildbühnentyp";
+$lang["form_label_stage_image_count"] = "Anzahl anzuzeigende Bilder";
+$lang["form_label_stage_images"] = "Bilder";
+$lang["form_comment_stage_image_count"] = "Schränkt die Anzahl der angezeigten Bilder ein, falls mehr vorhanden sind, als der hier angegebene Wert";
 
-$lang["form_label_stage_image_stageid"] = "Bildbühne";
-$lang["form_label_stage_image_css_inner_class"] = "CSS Klasse";
+$lang["form_label_stage_image_type"] = "Bildklassifizierung";
+$lang["form_label_stage_image_text_1"] = "Text 1 (Überschrift)";
+$lang["form_label_stage_image_text_2"] = "Text 2 (Untertitel)";
 $lang["form_label_stage_image_css_text_class_1"] = "CSS Klasse Text 1";
 $lang["form_label_stage_image_css_text_class_2"] = "CSS Klasse Text 2";
-$lang["form_label_stage_image_css_text_class_3"] = "CSS Klasse Text 3";
-$lang["form_label_stage_image_precedence"] = "Rangfolge (wenn leer, dann wird das Bild als letztes angefügt)";
 
 $lang["form_label_stagetype_css_outer_class"] = "Äußere CSS Klasse";
 
