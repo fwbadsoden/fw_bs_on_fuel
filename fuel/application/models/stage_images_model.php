@@ -22,33 +22,43 @@ class Stage_Images_model extends Abstract_module_model {
         
         $fields = parent::form_fields($values, $related);
         
+        $fields['name']['order'] = 1;  
+         
+        // Asset-Ordner                                        
+        $fields['image'] = array('folder' => 'images/bildbuehnen',
+                                 'order' => 2,
+                                 'create_thumb' => FALSE,
+                                 'width' => '1280',
+                                 'master_dim' => 'width');
+        
         // Bildtyp / Bildbühnentyp - Zuordnung
         $options = array( 1 => 'kleine Bildbühne, Textbox links, 1280*650px',
                           2 => 'große Bildbühne, Textbox links, 1280*720px',
                           3 => 'große Bildbühne, Textbox rechts, 1280*720px',
                           4 => 'kleine Bildbühne, Fahrzeugdetailansicht, Textbox links, 1280*720px');
         $fields['stage_image_type_id'] = array('label' => lang('form_label_stage_image_type'),
-                                               'type' => 'select', 'options' => $options);  
+                                               'type' => 'select', 'options' => $options,
+                                               'order' => 3);  
      
         // Überschrift + CSS Klasse
-        $fields['text_1'] = array('label' => lang('form_label_stage_image_text_1'));
+        $fields['text_1'] = array('label' => lang('form_label_stage_image_text_1'),
+                                  'order' => 4);
         $options = array( '' => 'Standard',
                           'quote' => 'Startseite');
         $fields['css_text_class_1'] = array('label' => lang('form_label_stage_image_css_text_class_1'),
-                                            'type' => 'select', 'options' => $options);   
+                                            'type' => 'select', 'options' => $options,
+                                            'order' => 5);   
         
         // Untertitel + CSS Klasse
-        $fields['text_2'] = array('label' => lang('form_label_stage_image_text_2'));
+        $fields['text_2'] = array('label' => lang('form_label_stage_image_text_2'),
+                                  'order' => 6);
         $options = array( '' => 'Standard',
                           'quotePerson' => 'Startseite');
         $fields['css_text_class_2'] = array('label' => lang('form_label_stage_image_css_text_class_2'),
-                                            'type' => 'select', 'options' => $options);   
-         
-        // Asset-Ordner                                        
-        $fields['image'] = array('folder' => 'images/bildbuehnen',
-                                 'create_thumb' => FALSE,
-                                 'width' => '1280',
-                                 'master_dim' => 'width');
+                                            'type' => 'select', 'options' => $options,
+                                            'order' => 7); 
+                                            
+        $fields['link'] = array('order' => 8);                                            
 
         return $fields;
     }

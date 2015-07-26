@@ -18,7 +18,8 @@ $lang["mannschaft_executives"] = "Hier können Sie die Führungsfunktionen verwa
 $lang["mannschaft_teams"] = "Hier können Sie die Teams der Mannschaft verwalten.";
 
 // Formulare
-$lang["form_label_last_modified"] = "Letzter Änderer";
+$lang["form_label_last_modified"] = "Letzte Änderung";
+$lang["form_label_last_modified_by"] = "Letzter Änderer";
 
 $lang["form_label_press_source"] = "Quelle";
 $lang["form_label_press_link"] = "URL";
