@@ -30,12 +30,14 @@ $config['modules']['stages'] = array(
     'module_name' => 'Bildbühnen',
     'instructions' => lang("stage_instructions"),
     'permission' => 'stages',
+    'table_headers' => array('name', 'stage_type', 'img_count' => lang('form_label_stage_image_count'), 'date_added', 'last_modified', 'last_modified_by', 'published')
 );
 
 $config['modules']['stage_images'] = array(
     'module_name' => 'Bildbühnenbilder',
     'instructions' => lang("stage_images_instructions"),
     'permission' => 'stages',
+    'table_headers' => array('name', 'image', 'link', 'text_1', 'text_2')
 );
 
 $config['modules']['stage_types'] = array(

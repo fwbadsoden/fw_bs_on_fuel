@@ -16,6 +16,28 @@ class Stages_model extends Abstract_module_model {
     }
     
     /**
+	 * Lists the module's items
+	 *
+	 * @access	public
+	 * @param	int The limit value for the list data (optional)
+	 * @param	int The offset value for the list data (optional)
+	 * @param	string The field name to order by (optional)
+	 * @param	string The sorting order (optional)
+	 * @param	boolean Determines whether the result is just an integer of the number of records or an array of data (optional)
+	 * @return	mixed If $just_count is true it will return an integer value. Otherwise it will return an array of data (optional)
+	 */	
+	public function list_items($limit = NULL, $offset = 0, $col = 'id', $order = 'asc', $just_count = FALSE)
+	{
+	   
+       $this->db->join('stage_types', 'stage_types.id = stages.typeID');
+       $this->db->join('users', 'users.id = stages.last_modified_by');
+       $this->db->select('stages.id as id, stages.name as name, stage_types.name as stage_type, img_count, date_added, last_modified, users.user_name as last_modified_by, published');
+	   $data = parent::list_items($limit, $offset, $col, $order, $just_count);
+       
+       return $data;   
+    }
+    
+    /**
 	 * Add specific changes to the form_fields method
 	 *
 	 * @access	public
@@ -37,7 +59,8 @@ class Stages_model extends Abstract_module_model {
                                      'comment' => lang('form_comment_stage_image_count'),
                                      'ignore_represantative' => true,
                                      'type' => 'int');
-        $fields['last_modified_by']['label'] = lang('form_label_last_modified');
+        $fields['last_modified']['label'] = lang('form_label_last_modified');
+        $fields['last_modified_by']['label'] = lang('form_label_last_modified_by');
         $fields['stage_images']['label'] = lang('form_label_stage_images');
         
         return $fields;
