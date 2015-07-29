@@ -20,7 +20,7 @@ class Main_layout extends Fuel_layout {
         
         // Stage für Inhaltsseite laden   
         $stage_id = $this->fuel->page->properties('stage_id');
-        $stage = fuel_model('stages', array('find' => 'one', 'where' => array('id' => $stage_id)));
+        $stage = $CI->stages_model->get_stage_for_frontend($stage_id);
 
         $vars['stage'] = $stage;
                
