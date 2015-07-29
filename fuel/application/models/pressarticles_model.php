@@ -12,6 +12,26 @@ class PressArticles_model extends Abstract_module_model {
     }
     
     /**
+	 * Lists the module's items
+	 *
+	 * @access	public
+	 * @param	int The limit value for the list data (optional)
+	 * @param	int The offset value for the list data (optional)
+	 * @param	string The field name to order by (optional)
+	 * @param	string The sorting order (optional)
+	 * @param	boolean Determines whether the result is just an integer of the number of records or an array of data (optional)
+	 * @return	mixed If $just_count is true it will return an integer value. Otherwise it will return an array of data (optional)
+	 */	
+	public function list_items($limit = NULL, $offset = 0, $col = 'id', $order = 'asc', $just_count = FALSE)
+	{
+       $this->db->join('pressarticle_sources', 'pressarticle_sources.id = pressarticles.source_id');
+       $this->db->select('pressarticles.id as id, pressarticles.name as name, pressarticle_sources.name as quelle, pressarticles.datum as datum, pressarticles.published as published');
+	   $data = parent::list_items($limit, $offset, $col, $order, $just_count);
+       
+       return $data;   
+    }
+    
+    /**
 	 * Add specific changes to the form_fields method
 	 *
 	 * @access	public

@@ -1,4 +1,0 @@
-<?php 
-define('PHPMYADMIN_VERSION', '0.1');
-define('PHPMYADMIN_FOLDER', 'phpmyadmin');
-define('PHPMYADMIN_PATH', APPPATH.MODULES_FOLDER.'/'.PHPMYADMIN_FOLDER.'/');

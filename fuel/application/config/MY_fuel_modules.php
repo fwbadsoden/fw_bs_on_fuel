@@ -30,7 +30,7 @@ $config['modules']['stages'] = array(
     'module_name' => 'Bildbühnen',
     'instructions' => lang("stage_instructions"),
     'permission' => 'stages',
-    'table_headers' => array('name', 'stage_type', 'img_count' => lang('form_label_stage_image_count'), 'date_added', 'last_modified', 'last_modified_by', 'published')
+    'table_headers' => array('name', 'stage_id', 'img_count' => lang('form_label_stage_image_count'), 'date_added', 'last_modified', 'last_modified_by', 'published')
 );
 
 $config['modules']['stage_images'] = array(
@@ -60,6 +60,7 @@ $config['modules']['einsatz_cues'] = array(
 
 $config['modules']['mannschaft_members'] = array(
     'module_name' => 'Mannschaft',
+    'instructions' => lang("mannschaft_members_instructions"),
     'permission' => 'mannschaft_members',
 );
 

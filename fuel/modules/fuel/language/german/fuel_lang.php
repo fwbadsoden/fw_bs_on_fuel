@@ -229,7 +229,7 @@ $lang['reset_search'] = 'Suche zurücksetzen';
 
 $lang['page_route_warning'] = 'Die angegebene Position hat bereits folgende Routen in der Routen-Datei spezifiziert (%1s):';
 $lang['page_controller_assigned'] = 'Dieser Seite ist bereits eine Controller-Methode zugeordnet.';
-$lang['page_updated_view'] = 'Es liegt eine aktualisierte View-Datei unter <strong>%1s</strong> vor. Wollen Sie diese in den Body der Seite laden (falls verfügbar)?';
+$lang['page_updated_view'] = 'Es liegt eine aktualisierte View-Datei unter <strong>%1s</strong> vor. Wollen Sie diese in den Hauptinhalt der Seite laden (falls verfügbar)?';
 $lang['page_not_published'] = 'Diese Seite ist nicht veröffentlicht.';
 
 $lang['page_no_upload'] = 'Nein, nicht hochladen';
@@ -515,10 +515,10 @@ $lang['layout_field_main_copy'] = 'Dies ist das Hauptlayout, dass für Ihre Seit
 $lang['layout_field_page_title'] = 'Seitentitel';
 $lang['layout_field_meta_description'] = 'Meta Description';
 $lang['layout_field_meta_keywords'] = 'Meta Keywords';
-$lang['layout_field_body'] = 'Body';
+$lang['layout_field_body'] = 'Inhalt';
 $lang['layout_field_heading'] = 'Überschrift';
 $lang['layout_field_body_description'] = 'Hauptinhalt der Seite';
-$lang['layout_field_body_class'] = 'Body Klasse';
+$lang['layout_field_body_class'] = 'Hauptinhalt Klasse';
 $lang['layout_field_redirect_to'] = 'Weiterleiten zu';
 
 $lang['layout_field_301_redirect_copy'] = 'Dieses Layout führt einen 301 Redirect zu einer anderen Seite durch.';

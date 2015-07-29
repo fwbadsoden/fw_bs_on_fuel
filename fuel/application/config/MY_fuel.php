@@ -57,6 +57,31 @@ $config['assets_upload_max_height']  = 768;
 // ckeditor: suitable for clients; shows what the output will look like in the page (http://ckeditor.com/)
 $config['text_editor'] = 'markitup';
 
+// The parsing engine to use for FUEL. Options are dwoo, ci and now 'twig'!
+$config['parser_engine'] = 'dwoo';
+
+// The directory to put the parsed compiled files
+$config['parser_compile_dir'] = APPPATH.'cache/dwoo/compiled/';
+
+// The delimiters used by the parsing engine
+$config['parser_delimiters'] = array(
+				'tag_comment'   => array('{#', '#}'), // Twig only
+				'tag_block'     => array('{%', '%}'), // Twig only
+				'tag_variable'  => array('{', '}'), // Used by Twig, Dwoo and CI. Default for twig is '{{', '}}' and Dwoo is '{', '}'
+				'interpolation' => array('#{', '}'), // Twig only
+			);
+
+// Functions allowed by the parsing engine
+$config['parser_allowed_functions'] = array(
+	'strip_tags', 'date', 
+	'detect_lang','lang',
+	'js', 'css', 'swf', 'img_path', 'css_path', 'js_path', 'swf_path', 'pdf_path', 'media_path', 'cache_path', 'captcha_path', 'assets_path', // assets specific
+	'fuel_block', 'fuel_model', 'fuel_nav', 'fuel_edit', 'fuel_set_var', 'fuel_var', 'fuel_var_append', 'fuel_form', 'fuel_page', // FUEL specific
+	'quote', 'safe_mailto', // HTML/URL specific
+	'session_flashdata', 'session_userdata', // Session specific
+	'prep_url', 'site_url', 'show_404', 'redirect', 'uri_segment', 'auto_typography', 'current_url' // CI specific
+);
+
 /*
 |--------------------------------------------------------------------------
 | Language settings 
@@ -104,7 +129,7 @@ $config['parser_delimiters'] = array(
 $config['parser_allowed_functions'] = array(
 	'strip_tags', 'date', 
 	'detect_lang','lang',
-	'js', 'css', 'swf', 'img_path', 'css_path', 'js_path', 'swf_path', 'pdf_path', 'media_path', 'cache_path', 'captcha_path', 'assets_path', // assets specific
+	'js', 'css', 'swf', 'img_path', 'css_path', 'js_path', 'swf_path', 'pdf_path', 'media_path', 'cache_path', 'captcha_path', 'assets_path', 'asset_filesize', // assets specific
 	'fuel_block', 'fuel_model', 'fuel_nav', 'fuel_edit', 'fuel_set_var', 'fuel_var', 'fuel_var_append', 'fuel_form', 'fuel_page', // FUEL specific
 	'quote', 'safe_mailto', // HTML/URL specific
 	'session_flashdata', 'session_userdata', // Session specific
@@ -119,8 +144,6 @@ if (!empty($config['modules_allowed']))
 	$config['settings']['modules_allowed'] = array('type' => 'multi', 'options' => array_combine($config['modules_allowed'], $config['modules_allowed']));
 }
 */
-
-
 
 /* End of file MY_fuel.php */
 /* Location: ./application/config/MY_fuel.php */
