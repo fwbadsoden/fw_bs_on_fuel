@@ -75,8 +75,6 @@
 
 	<?php
 		echo css('main').css($css);
-
-
 	?>
 
 </head>

@@ -16,6 +16,7 @@ $lang["mannschaft_sections_instructions"] = "Hier können Sie die Mannschaftsabt
 $lang["mannschaft_grades"] = "Hier können Sie die Dienstgrade verwalten.";
 $lang["mannschaft_executives"] = "Hier können Sie die Führungsfunktionen verwalten.";
 $lang["mannschaft_teams"] = "Hier können Sie die Teams der Mannschaft verwalten.";
+$lang["mannschaft_members_instructions"] = "Hier können Sie die Mannschaft verwalten.";
 
 // Formulare
 $lang["form_label_last_modified"] = "Letzte Änderung";
@@ -23,6 +24,11 @@ $lang["form_label_last_modified_by"] = "Letzter Änderer";
 
 $lang["form_label_press_source"] = "Quelle";
 $lang["form_label_press_link"] = "URL";
+
+$lang["form_label_mannschaft_section"] = "Abteilung";
+$lang["form_label_mannschaft_team"] = "Bereich";
+$lang["form_label_mannschaft_grade"] = "Dienstgrad";
+$lang["form_label_mannschaft_executive"] = "Führungsfunktion";
 
 $lang["form_label_stage_randomize"] = "Zufallsbild(er) wählen?";
 $lang["form_comment_stage_randomize"] = "Wählt passend zur gewählten Bilderanzahl Zufallsbilder aus, falls mehr vorhanden sind als unter Anzahl angegeben";
@@ -38,6 +44,7 @@ $lang["form_label_stage_image_css_text_class_1"] = "CSS Klasse Text 1";
 $lang["form_label_stage_image_css_text_class_2"] = "CSS Klasse Text 2";
 
 $lang["form_label_stagetype_css_outer_class"] = "Äußere CSS Klasse";
+$lang["form_label_stagetype_css_slidewrapper_class"] = "Slidewrapper CSS Klasse";
 
 $lang["form_label_einsatztype_shortname"] = "Tag";
 $lang["form_label_einsatztype_nameplural"] = "Name in Mehrzahl";

@@ -4,7 +4,7 @@ require_once(FUEL_PATH.'libraries/Fuel_layouts.php');
 
 class Main_layout extends Fuel_layout {
     
-    /**
+    /**y
      * Hook used for processing variables specific to a layout
      *
      * @access  public
@@ -19,9 +19,11 @@ class Main_layout extends Fuel_layout {
         $CI->load->model('stages_model');
         
         // Stage für Inhaltsseite laden   
-        $stage = $CI->stages_model->get_stage_from_page_id($CI->fuel_page->id);
+        $stage_id = $this->fuel->page->properties('stage_id');
+        $stage = fuel_model('stages', array('find' => 'one', 'where' => array('id' => $stage_id)));
+
         $vars['stage'] = $stage;
-       
+               
         // Navigation
         $main_nav = main_navigation();
         $vars['main_nav'] = $main_nav;

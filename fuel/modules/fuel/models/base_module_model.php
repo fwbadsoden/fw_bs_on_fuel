@@ -322,6 +322,7 @@ class Base_module_model extends MY_Model {
 			$data = $this->list_items->process($data);
 		}
 
+		//$this->debug_query();
 		return $data;
 	}
 
