@@ -45,3 +45,5 @@ $nav['informationen/buergerinformationen/rauchmelder']                  = array(
 $nav['informationen/buergerinformationen/hausnummern']                  = array('label' => 'Mannschaft', 'parent_id' => 'informationen');
 
 $nav['verein']                                                          = 'Verein';
+
+$nav['#']                                                               = '';

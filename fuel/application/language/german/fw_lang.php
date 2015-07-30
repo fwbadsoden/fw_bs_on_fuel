@@ -17,10 +17,20 @@ $lang["mannschaft_grades"] = "Hier können Sie die Dienstgrade verwalten.";
 $lang["mannschaft_executives"] = "Hier können Sie die Führungsfunktionen verwalten.";
 $lang["mannschaft_teams"] = "Hier können Sie die Teams der Mannschaft verwalten.";
 $lang["mannschaft_members_instructions"] = "Hier können Sie die Mannschaft verwalten.";
+$lang["fahrzeuge_instructions"] = "Hier können Sie die Fahrzeuge verwalten.";
 
 // Formulare
 $lang["form_label_last_modified"] = "Letzte Änderung";
 $lang["form_label_last_modified_by"] = "Letzter Änderer";
+
+$lang["form_label_fahrzeug_name_lang"] = "Name (lang)";
+$lang["form_label_fahrzeug_prefix_rufname"] = "Prefix Funkrufname";
+$lang["form_label_fahrzeug_rufname"] = "Funkrufname";
+$lang["form_label_fahrzeug_text_kurz"] = "Text (kurz)";
+$lang["form_label_fahrzeug_laenge"] = "Länge";
+$lang["form_label_fahrzeug_hoehe"] = "Höhe";
+$lang["form_label_fahrzeug_einsaetze_zeigen"] = "Einsätze anzeigen";
+$lang["form_label_fahrzeug_retired"] = "Ausser Dienst";
 
 $lang["form_label_press_source"] = "Quelle";
 $lang["form_label_press_link"] = "URL";
