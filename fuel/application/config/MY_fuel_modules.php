@@ -46,16 +46,22 @@ $config['modules']['stage_types'] = array(
     'permission' => 'stage_types',
 );
 
-$config['modules']['einsatz_types'] = array(
+$config['modules']['mission_types'] = array(
     'module_name' => 'Einsatzarten',
     'instructions' => lang("einsatz_types_instructions"),
-    'permission' => 'einsatz_types',
+    'permission' => 'mission_types',
 );
 
-$config['modules']['einsatz_cues'] = array(
+$config['modules']['mission_cues'] = array(
     'module_name' => 'Einsatzstichwörter',
     'instructions' => lang("einsatz_cues_instructions"),
-    'permission' => 'einsatz_cues',
+    'permission' => 'mission_cues',
+);
+
+$config['modules']['fahrzeuge'] = array(
+    'module_name' => 'Fahrzeuge',
+    'instructions' => lang("fahrzeuge_instructions"),
+    'permission' => 'vehicles',
 );
 
 $config['modules']['mannschaft_members'] = array(

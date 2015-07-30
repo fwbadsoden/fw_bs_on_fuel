@@ -2,12 +2,12 @@
 
 require_once('abstract_module_model.php');
 
-class Einsatz_Types_model extends Abstract_module_model {
+class Mission_Cues_model extends Abstract_module_model {
     public $unique = array('name');
-    public $required = array('name', 'short_name', 'name_plural', 'class');
+    public $required = array('name', 'description', 'aao');
     
     function __construct() {
-        parent::__construct('fw_einsatz_types');
+        parent::__construct('fw_mission_cues');
     }
     
     /**
@@ -22,16 +22,13 @@ class Einsatz_Types_model extends Abstract_module_model {
         
         $fields = parent::form_fields($values, $related);  
         
-        $fields['short_name']['label'] = lang('form_label_einsatztype_shortname');
-        $fields['name_plural']['label'] = lang('form_label_einsatztype_nameplural');
-        $fields['class']['label'] = lang('form_label_cssclass');
-                
+        $fields['example'] = array('label' => lang('form_label_example'),'type' => 'textarea', 'rows' => 5, 'class' => 'no_editor');
         return $fields;
     }   
 
 }
 
-class Einsatz_Type_model extends Abstract_module_record {
+class Mission_Cue_model extends Abstract_module_record {
     
 }
 

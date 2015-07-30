@@ -26,10 +26,7 @@ class Mannschaft_Members_model extends Abstract_module_model {
 	 */	
 	public function list_items($limit = NULL, $offset = 0, $col = 'id', $order = 'asc', $just_count = FALSE)
 	{
-	   
-     //  $this->db->join('mannschaft_executives', 'mannschaft_executives.id = mannschaft_members.executive_id');
-     //  $this->db->join('mannschaft_grades', 'mannschaft_grades.id = mannschaft_members.grade_id');
-       $this->db->join('mannschaft_teams', 'mannschaft_teams.id = mannschaft_members.team_id');
+	   $this->db->join('mannschaft_teams', 'mannschaft_teams.id = mannschaft_members.team_id');
        $this->db->select('mannschaft_members.id as id, mannschaft_members.name as name, mannschaft_members.vorname as vorname, mannschaft_teams.name as bereich, published');
 	   $data = parent::list_items($limit, $offset, $col, $order, $just_count);
        
