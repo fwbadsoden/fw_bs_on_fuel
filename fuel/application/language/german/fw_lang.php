@@ -23,7 +23,8 @@ $lang["fahrzeuge_instructions"] = "Hier können Sie die Fahrzeuge verwalten.";
 $lang["form_label_last_modified"] = "Letzte Änderung";
 $lang["form_label_last_modified_by"] = "Letzter Änderer";
 
-$lang["form_label_fahrzeug_name_lang"] = "Name (lang)";
+$lang["form_label_fahrzeuge_name"] = "Fahrzeugname";
+$lang["form_label_fahrzeug_name_lang"] = "Fahrzeugname (lang)";
 $lang["form_label_fahrzeug_prefix_rufname"] = "Prefix Funkrufname";
 $lang["form_label_fahrzeug_rufname"] = "Funkrufname";
 $lang["form_label_fahrzeug_text_kurz"] = "Text (kurz)";
@@ -31,6 +32,8 @@ $lang["form_label_fahrzeug_laenge"] = "Länge";
 $lang["form_label_fahrzeug_hoehe"] = "Höhe";
 $lang["form_label_fahrzeug_einsaetze_zeigen"] = "Einsätze anzeigen";
 $lang["form_label_fahrzeug_retired"] = "Ausser Dienst";
+$lang["form_label_fahrzeug_kw"] = "Leistung in KW";
+$lang["form_label_fahrzeug_ps"] = "Leistung in PS";
 
 $lang["form_label_press_source"] = "Quelle";
 $lang["form_label_press_link"] = "URL";

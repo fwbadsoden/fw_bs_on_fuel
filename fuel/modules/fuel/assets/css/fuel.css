@@ -754,3 +754,5 @@ div.perms_list label { font-weight: bold; }
 
 /* CI profiler */
 #codeigniter_profiler { position: absolute; bottom: 0; left: 200px; height: 300px; overflow: auto; }
+
+@import url('../../../../../assets/css/my_fuel.css');
