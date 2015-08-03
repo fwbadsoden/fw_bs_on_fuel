@@ -1,0 +1,30 @@
+/* #login */
+div#login { padding: 15% 0 0 0; border: none; background-color: #9a0000; margin: 0 auto; height: 100% }
+div#login h3, div#login p { color: #fff; text-align: center; }
+div#login form { width: 270px; margin: 0 auto; }
+div#login input { background-color: #474747; color: #fff; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; border: 2px solid #191919; height: 40px;  width: 270px; padding: 0 1em; }
+.login_logo { background: transparent url(../layout/logo.png) no-repeat; background-size: 100%; width: 215px; height: 53px; overflow: hidden; margin: 0 auto 1.5em auto; }
+div#login ::-webkit-input-placeholder {color: #191919; }
+div#login :-moz-placeholder { color: #191919; }
+div#login :-ms-input-placeholder { color:  #191919; }
+div#login input[type="submit"] { background: #474747 !important; color: #fff; font-size: 16px; text-shadow: none; }
+div#login_notification { text-overflow: ellipsis; overflow: hidden; width: 440px; margin: auto; }
+a#forgotten_pwd { text-align: center; display: block; padding-top: 15px; padding-left:20px; color: #191919; font-weight: bold; }
+
+/* bread nav */
+div#fuel_main_top_panel { height: 29px; font-size: 13px; color: #fff; background-color: #9a0000; border-bottom: 1px solid #5c0001; overflow: hidden; }
+div#fuel_main_top_panel h2 { color: #fff; line-height: 30px; margin-left: 11px; }
+div#fuel_main_top_panel h2 a { color: #fff; }
+div#fuel_main_top_panel li { float: left; display: block; list-style: none; line-height: 29px; font-weight: bold; border-right: 1px solid #fff;}
+div#fuel_main_top_panel li a { display: block; color: #fff; background: #6d6d6d url(../images/tab.png) repeat-x;  padding: 0 15px; }
+div#fuel_main_top_panel li a:hover { background: #7c7c7c url(../images/tab.png) repeat-x 0 -29px; }
+div#fuel_main_top_panel li.active a { background: #9a0000 url(../images/tab.png) repeat-x 0 -58px; color: #fff;   }
+div#fuel_login_logout { position: absolute; top: 8px; right: 15px; font-size: 11px; color: #fff; background-color: #9a0000; height: 21px;  }
+
+div#fuel_actions { height: 46px; border-bottom: 1px solid #5c0001; position: relative; min-width: 680px;
+background: #9a0000; 
+/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #9a0000), color-stop(1, whiteSmoke));*/
+background: -moz-linear-gradient(top center, #f6f6f6 0%, #ddd 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#dddddd');
+ }
+ 
