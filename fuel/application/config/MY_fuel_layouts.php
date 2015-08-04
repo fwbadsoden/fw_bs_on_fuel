@@ -23,6 +23,13 @@ $config['layouts']['Inhaltsseiten'] = array(
 		'body' => array('label' => lang('layout_field_body'), 'type' => 'textarea', 'description' => lang('layout_field_body_description')),
 	)
 );
+                
+$config['layouts']['Modulseiten'] = array(
+	'file' 		=> $config['layouts_path'].'news_module',
+	'class'		=> 'News_layout',
+	'filepath' => 'libraries/_layouts',
+	'filename' => 'News_layout.php'
+);
 
 /* End of file MY_fuel_layouts.php */
 /* Location: ./application/config/MY_fuel_layouts.php */
