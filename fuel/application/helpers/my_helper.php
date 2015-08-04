@@ -16,8 +16,8 @@ function main_navigation() {
     $nav['aktuelles/einsaetze']                                             = array('label' => 'Einsätze',  'parent_id' => 'aktuelles');
     
     // Einsätze aus DB
-    $this->db->limit(5,0);
-    $query = $this->db->get('mannschaft_members');
+    $CI->db->limit(5,0);
+    $query = $CI->db->get('mannschaft_members');
     foreach($query->result() as $row) {
         if(strlen($row->name) > 32) $row->name = substr($row->name,0,32).'...'; 
         

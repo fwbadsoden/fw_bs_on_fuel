@@ -1,8 +1,5 @@
 <?php 
-    $stage_vars['stage'] = $stage;
-             
-    $this->load->view('_blocks/header');
-    $this->load->view('_blocks/stage', $stage_vars);  
+    include("_header.php"); 
 ?>
 
 <section id="content">
@@ -13,5 +10,5 @@
 </section>
 	
 <?php 
-    $this->load->view('_blocks/footer');
+    include("_footer.php");
 ?>
