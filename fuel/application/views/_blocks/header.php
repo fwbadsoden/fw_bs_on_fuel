@@ -174,89 +174,46 @@
                     </div>  
 				</li>  
                  
-                <li><a href="http://feuerwehr-bs.de/technik">Technik</a>  
+<? if(strpos(current_url(), base_url('technik')) !== false) : $class = ' class="active"'; else : $class = ''; endif; ?>                    
+                <li><a href="<?=base_url('technik')?>"<?=$class?>>Technik</a> 
                     <div class="dropdown">  
                     	<ul>
                          
-                        	<li class="headline"><a href="http://feuerwehr-bs.de/technik/fahrzeuge">Fahrzeuge</a></li>
-            
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/29">
-                            KdoW - SBI - KdoW - Stadtbrandinspektor                            </a></li>  
-            
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/16">
-                            KdoW - Kommandowagen                            </a></li>  
-            
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/1">
-                            ELW 1 - Einsatzleitwagen                            </a></li>  
-            
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/12">
-                            PKW - Führungsdienst PKW                            </a></li>  
-            
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/11">
-                            Notdienst-PKW - Notdienst-/Werkstatt PKW                            </a></li>  
-            
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/26">
-                            MTF 1 - Mannschaftstransporter                            </a></li>  
-            
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/27">
-                            MTF 2 - Mannschaftstransporter                            </a></li>  
-            
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/28">
-                            TLF 4000 - Tanklöschfahrzeug                            </a></li>  
-            
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/4">
-                            DLK 23/12 - Drehleiter                            </a></li>  
+<? if(current_url() == base_url('technik/fahrzeuge')) : $class = ' class="active"'; else : $class = ''; endif; ?>                         
+                        	<li class="headline"><a href="<?=base_url('technik/fahrzeuge')?>"<?=$class?>>Fahrzeuge</a></li>
+<?  $counter = 0;
+    foreach($main_navigation["fahrzeuge"] as $f) : 
+        if($f->retired == 'no') : 
+            if($counter == 9) :
+                $counter = 0;        
+?>     
                         </ul><ul>                                  
-                        	<li class="headline"><a href="http://feuerwehr-bs.de/technik/fahrzeuge">&nbsp;</a></li>
-            
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/2">
-                            LF 16/2 - Löschgruppenfahrzeug                            </a></li>  
-            
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/3">
-                            LF 16/1 - Löschgruppenfahrzeug                            </a></li>  
-            
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/25">
-                            LF 20 KatS - Löschgruppenfahrzeug                            </a></li>  
-            
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/6">
-                            RW - Rüstwagen                            </a></li>  
-            
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/7">
-                            GW-L - Gerätewagen Logistik                            </a></li>  
-            
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/10">
-                            WLF - Wechselladerfahrzeug                            </a></li>  
-            
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/20">
-                            RH-Hänger - Rettungshundeanhänger                            </a></li>  
+                        	<li class="headline"><a href="<?=base_url('technik/fahrzeuge')?>"<?=$class?>>&nbsp;</a></li>       
+<?          endif;  ?>               
+<? if(current_url() == base_url('technik/fahrzeug/'.$f->id)) : $class = ' class="active"'; else : $class = ''; endif; ?>     
+                        	<li><a href="<?=base_url('technik/fahrzeug/'.$f->id)?>"<?=$class?>>
+                            <? if($f->name_lang != '') : echo $f->name.' - '.$f->name_lang; else : echo $f->name; endif; ?>
+                            </a></li>  
+<?          $counter++;
+        endif;
+    endforeach; 
+?>   
                     	</ul>  
    	                    <ul>
-                         
-                        	<li class="headline"><a href="http://feuerwehr-bs.de/technik/fahrzeuge/ausserdienst">Fahrzeuge a.D.</a></li>
-                        
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/8">
-                            KdoW - Kommandowagen                            </a></li>  
-                        
-     
-                        	<li><a href="http://feuerwehr-bs.de/technik/fahrzeug/5">
-                            TLF 24/50 - Tanklöschfahrzeug                            </a></li>  
+<? if(current_url() == base_url('technik/fahrzeuge/ausserdienst')) : $class = ' class="active"'; else : $class = ''; endif; ?>                         
+                        	<li class="headline"><a href="<?=base_url('technik/fahrzeuge/ausserdienst')?>"<?=$class?>>Fahrzeuge a.D.</a></li>
+<?  if($main_navigation["fahrzeuge_hasretired"]) : 
+        foreach($main_navigation["fahrzeuge"] as $f) : 
+            if($f->retired == 'yes') :
+?>                        
+<? if(current_url() == base_url('technik/fahrzeug/'.$f->id)) : $class = ' class="active"'; else : $class = ''; endif; ?>     
+                        	<li><a href="<?=base_url('technik/fahrzeug/'.$f->id)?>"<?=$class?>>
+                            <? if($f->name_lang != '') : echo $f->name.' - '.$f->name_lang; else : echo $f->name; endif; ?>
+                            </a></li>  
+<?          endif;
+        endforeach; 
+    endif; 
+?>           
                     	</ul>  
                     </div>  
                 </li>  

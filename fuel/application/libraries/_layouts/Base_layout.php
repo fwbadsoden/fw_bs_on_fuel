@@ -53,6 +53,7 @@ class Base_layout extends Fuel_layout {
         $CI->load->model('pressarticles_model', 'pressarticles');
         
         $nav["fahrzeuge"] = $CI->fahrzeuge->find_all(NULL, 'precedence asc');
+        $nav["fahrzeuge_hasretired"] = $CI->fahrzeuge->has_retired();
         $nav["mannschaft_leader"] = $CI->mannschaft->find_fuehrung();
         $nav["mannschaft_team"] = $CI->mannschaft->find_team();
         

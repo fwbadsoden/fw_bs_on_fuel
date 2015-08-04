@@ -149,6 +149,19 @@ class Fahrzeuge_model extends Abstract_module_model {
         
         return $fields;
     }
+    
+    public function has_retired() {
+        
+        $this->db->where('published', 1);
+        $this->db->where('retired', 1);
+        $query = $this->db->get('fahrzeuge');
+        
+        if($query->num_rows() > 0)
+            return true;
+        else 
+            return false;
+        
+    }
 }
 
 class Fahrzeug_model extends Abstract_module_record {
