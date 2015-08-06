@@ -3,6 +3,8 @@
 require_once('abstract_module_model.php');
 
 class Fahrzeuge_model extends Abstract_module_model {
+    
+    public $has_many = array('fahrzeug_images' => 'fahrzeug_images_model');
         
     function __construct() {
         parent::__construct('fw_fahrzeuge');
@@ -166,6 +168,22 @@ class Fahrzeuge_model extends Abstract_module_model {
 
 class Fahrzeug_model extends Abstract_module_record {
     
+    public function get_setcard_image() {
+                
+        $CI =& get_instance();
+        $CI->db->where(array("fahrzeug_id" => $this->key_value(), "small_pic" => 1));
+        $query = $CI->db->get("fahrzeug_images");
+        
+        $row = $query->row();
+        
+        return $row;
+    }
+    
+    public function is_retired() {
+        
+        if($this->retired == 'yes') return true;
+        else return false;
+    }
 }
 
 ?>

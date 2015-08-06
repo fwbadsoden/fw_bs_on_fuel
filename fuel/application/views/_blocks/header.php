@@ -191,7 +191,7 @@
                         	<li class="headline"><a href="<?=base_url('technik/fahrzeuge')?>"<?=$class?>>&nbsp;</a></li>       
 <?          endif;  ?>               
 <? if(current_url() == base_url('technik/fahrzeug/'.$f->id)) : $class = ' class="active"'; else : $class = ''; endif; ?>     
-                        	<li><a href="<?=base_url('technik/fahrzeug/'.$f->id)?>"<?=$class?>>
+                        	<li><a href="<?=base_url('technik/fahrzeuge/'.$f->id)?>"<?=$class?>>
                             <? if($f->name_lang != '') : echo $f->name.' - '.$f->name_lang; else : echo $f->name; endif; ?>
                             </a></li>  
 <?          $counter++;
@@ -207,7 +207,7 @@
             if($f->retired == 'yes') :
 ?>                        
 <? if(current_url() == base_url('technik/fahrzeug/'.$f->id)) : $class = ' class="active"'; else : $class = ''; endif; ?>     
-                        	<li><a href="<?=base_url('technik/fahrzeug/'.$f->id)?>"<?=$class?>>
+                        	<li><a href="<?=base_url('technik/fahrzeuge/'.$f->id)?>"<?=$class?>>
                             <? if($f->name_lang != '') : echo $f->name.' - '.$f->name_lang; else : echo $f->name; endif; ?>
                             </a></li>  
 <?          endif;

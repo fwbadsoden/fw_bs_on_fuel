@@ -24,11 +24,22 @@ $config['layouts']['Inhaltsseiten'] = array(
 	)
 );
                 
-$config['layouts']['Modulseiten'] = array(
-	'file' 		=> $config['layouts_path'].'news_module',
-	'class'		=> 'News_layout',
+//$fahrzeuge_layout = new Fuel_layout('fahrzeuge'); 
+//$fahrzeuge_layout->set_description("Layout für alle Modulbasierten Inhaltsseiten");
+//$fahrzeuge_layout->set_label("Fahrzeuge");
+//$fahrzeuge_layout->in               
+$config['layouts']['Fahrzeuge'] = array(
+	'file' 		=> $config['layouts_path'].'fahrzeuge_module',
+	'class'		=> 'Module_layout',
 	'filepath' => 'libraries/_layouts',
-	'filename' => 'News_layout.php'
+	'filename' => 'Module_layout.php'
+);
+                
+$config['layouts']['News'] = array(
+	'file' 		=> $config['layouts_path'].'news_module',
+	'class'		=> 'Module_layout',
+	'filepath' => 'libraries/_layouts',
+	'filename' => 'Module_layout.php'
 );
 
 /* End of file MY_fuel_layouts.php */

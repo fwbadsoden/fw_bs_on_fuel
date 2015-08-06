@@ -37,7 +37,7 @@ $config['default_pwd'] = 'admin';
 // maximum number of paramters that can be passed to the page. Used to cut down on queries to the db.
 // If it is an array, then it will loop through the array using the keys to match against a regular expression:
 // $config['max_page_params'] = array('about/news/' => 1);
-$config['max_page_params'] = 0;
+$config['max_page_params'] = 1;
 
 // will auto search view files. 
 // If the URI is about/history and the about/history view 
