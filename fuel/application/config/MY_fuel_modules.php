@@ -64,6 +64,13 @@ $config['modules']['fahrzeuge'] = array(
     'permission' => 'vehicles',
 );
 
+$config['modules']['fahrzeug_images'] = array(
+    'module_name' => 'Fahrzeugbilder',
+    'display_field' => 'description',
+  //  'instructions' => lang("fahrzeuge_instructions"),
+    'permission' => 'vehicles',
+);
+
 $config['modules']['mannschaft_members'] = array(
     'module_name' => 'Mannschaft',
     'instructions' => lang("mannschaft_members_instructions"),

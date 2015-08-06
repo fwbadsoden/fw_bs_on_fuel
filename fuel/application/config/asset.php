@@ -23,6 +23,8 @@ $config['assets_folders'] = array(
 	'media' => 'media/',
 	'captchas' => 'captchas/',
 	'docs' => 'docs/',
+    'icons' => 'icons/',
+    'layout' => 'layout/',
     'pressarticles' => 'pressarticles/'
 	);
 
