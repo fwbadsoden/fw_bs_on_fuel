@@ -9,7 +9,7 @@ class Stages_model extends Abstract_module_model {
     public $foreign_keys = array('type_id' => 'stage_types_model',
                                  'last_modified_by' => 'fuel_users_model');
     public $has_many = array('stage_images' => 'stage_images_model');
-    public $hidden_fields = array('last_modified');
+    public $hidden_fields = array('last_modified', 'last_modified_by');
     
     function __construct() {
         parent::__construct('fw_stages');
@@ -61,7 +61,7 @@ class Stages_model extends Abstract_module_model {
 	   
        $this->db->join('stage_types', 'stage_types.id = stages.type_id');
        $this->db->join('users', 'users.id = stages.last_modified_by');
-       $this->db->select('stages.id as id, stages.name as name, stage_types.name as stage_type, img_count, date_added, last_modified, users.user_name as last_modified_by, published');
+       $this->db->select('stages.id as id, stages.name as name, stage_types.name as stage_type, img_count as anzahl_bilder, date_added, last_modified, users.user_name as last_modified_by, published');
 	   $data = parent::list_items($limit, $offset, $col, $order, $just_count);
        
        return $data;   
@@ -90,7 +90,6 @@ class Stages_model extends Abstract_module_model {
                                      'ignore_represantative' => true,
                                      'type' => 'int');
         $fields['last_modified']['label'] = lang('form_label_last_modified');
-        $fields['last_modified_by']['label'] = lang('form_label_last_modified_by');
         $fields['stage_images']['label'] = lang('form_label_stage_images');
         
         return $fields;
@@ -102,6 +101,7 @@ class Stage_model extends Abstract_module_record {
     public function save($validate = TRUE, $ignore_on_insert = TRUE, $clear_related = NULL) {
         
         $this->last_modified = datetime_now();
+        $this->last_modified_by = $this->fuel->auth->user_data("id"); 
         $saved = parent::save($validate = TRUE, $ignore_on_insert = TRUE, $clear_related = NULL);
         return $saved;
     }

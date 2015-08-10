@@ -4,7 +4,7 @@ require_once('abstract_module_model.php');
 
 class Stage_Images_model extends Abstract_module_model {
     
-    public $required = array('description', 'image', 'stage_image_type_id');
+    public $required = array('name', 'image', 'stage_image_type_id');
     
     function __construct() {
         parent::__construct('fw_stage_images');
