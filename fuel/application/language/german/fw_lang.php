@@ -2,6 +2,10 @@
 
 // Layout
 $lang['stage_type_label'] = "Bildbühnenart";
+$lang["layout_field_stage"] = "Bildbühne";
+$lang["layout_field_stage_overview"] = "Bildbühne für Übersichtsseite";
+$lang["layout_field_stage_detail"] = "Bildbühne für Detailseite";
+$lang['layout_field_id_segment_description'] = "URI Segment, in dem sich die ID für die Detailseite des Moduls befindet. Z.B. http://www.feuerwehr-bs.de/technik/fahrzeuge/1 ist das Segment 3";
 
 // Module
 $lang["presse_instructions"] = "Hier können Sie die Presseartikel verwalten.";
