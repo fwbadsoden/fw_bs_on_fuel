@@ -84,7 +84,7 @@ class Stages_model extends Abstract_module_model {
                                      'type' => 'enum',
                                      'options' => $options
                                      );
-        $fields['type_id'] = array('label' => lang('form_label_stage_type'));                                     
+        $fields['type_id']['label'] = lang('form_label_stage_type');                                     
         $fields['img_count'] = array('label' => lang('form_label_stage_image_count'),
                                      'comment' => lang('form_comment_stage_image_count'),
                                      'ignore_represantative' => true,

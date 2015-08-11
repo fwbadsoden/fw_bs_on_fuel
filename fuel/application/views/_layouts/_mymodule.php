@@ -1,7 +1,4 @@
-<?php 
-/*
-This is an example of a Fuel_module_layout where you have a list view and an item view
-*/
+<?php
 
 $param = uri_segment($segment);
 
@@ -40,7 +37,7 @@ else
 }
 ?>
 
-<?php if (!empty($item)) : ?>
+<?php if ($item_block != NULL && !empty($item)) : ?>
 
 	<?=fuel_block(array('view' => $item_block, 'data' => $item));  ?>
 
