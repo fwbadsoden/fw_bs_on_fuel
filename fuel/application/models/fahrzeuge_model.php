@@ -164,6 +164,25 @@ class Fahrzeuge_model extends Abstract_module_model {
             return false;
         
     }
+    
+    public function get_fahrzeugliste($ad) {
+        
+        if($ad) {
+            $this->db->where(array("retired" => "yes", "published" => "yes"));
+        } else {
+            $this->db->where(array("retired" => "no", "published" => "yes"));
+        }
+        $this->db->order_by('precedence', 'ascending');
+        $this->db->select("name, name_lang, id");
+        $query = $this->db->get("fahrzeuge");
+        $fahrzeuge = array();
+        
+        foreach($query->result() as $row) {
+            array_push($fahrzeuge, $row);
+        }
+        
+        return $fahrzeuge;
+    }
 }
 
 class Fahrzeug_model extends Abstract_module_record {
