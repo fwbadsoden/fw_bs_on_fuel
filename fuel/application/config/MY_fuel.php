@@ -77,13 +77,13 @@ $config['parser_delimiters'] = array(
 $config['parser_allowed_functions'] = array(
 	'strip_tags', 'date', 
 	'detect_lang','lang',
-	'js', 'css', 'swf', 'img_path', 'css_path', 'js_path', 'swf_path', 'pdf_path', 'media_path', 'cache_path', 'captcha_path', 'assets_path', // assets specific
+	'js', 'css', 'swf', 'img_path', 'css_path', 'js_path', 'swf_path', 'pdf_path', 'media_path', 'cache_path', 'captcha_path', 'assets_path', 'asset_filesize', // assets specific
 	'fuel_block', 'fuel_model', 'fuel_nav', 'fuel_edit', 'fuel_set_var', 'fuel_var', 'fuel_var_append', 'fuel_form', 'fuel_page', // FUEL specific
 	'quote', 'safe_mailto', // HTML/URL specific
 	'session_flashdata', 'session_userdata', // Session specific
-	'prep_url', 'site_url', 'show_404', 'redirect', 'uri_segment', 'auto_typography', 'current_url' // CI specific
-);
+	'prep_url', 'site_url', 'show_404', 'redirect', 'uri_segment', 'auto_typography', 'current_url', 'base_url', // CI specific
 
+);
 /*
 |--------------------------------------------------------------------------
 | Language settings 
@@ -119,24 +119,7 @@ $config['tables'] = array(
 	'fuel_users' => 'fw_users'
 );
     
-// The delimiters used by the parsing engine
-$config['parser_delimiters'] = array(
-				'tag_comment'   => array('{#', '#}'), // Twig only
-				'tag_block'     => array('{%', '%}'), // Twig only
-				'tag_variable'  => array('{', '}'), // Used by Twig, Dwoo and CI. Default for twig is '{{', '}}' and Dwoo is '{', '}'
-				'interpolation' => array('#{', '}'), // Twig only
-			);
 
-// Functions allowed by the parsing engine
-$config['parser_allowed_functions'] = array(
-	'strip_tags', 'date', 
-	'detect_lang','lang',
-	'js', 'css', 'swf', 'img_path', 'css_path', 'js_path', 'swf_path', 'pdf_path', 'media_path', 'cache_path', 'captcha_path', 'assets_path', 'asset_filesize', // assets specific
-	'fuel_block', 'fuel_model', 'fuel_nav', 'fuel_edit', 'fuel_set_var', 'fuel_var', 'fuel_var_append', 'fuel_form', 'fuel_page', // FUEL specific
-	'quote', 'safe_mailto', // HTML/URL specific
-	'session_flashdata', 'session_userdata', // Session specific
-	'prep_url', 'site_url', 'show_404', 'redirect', 'uri_segment', 'auto_typography', 'current_url' // CI specific
-);
 /* Uncomment if you want to control FUEL settings in the CMS. Below are a couple examples of ones you can configure
 $config['settings'] = array();
 $config['settings']['module_stages'] = array();

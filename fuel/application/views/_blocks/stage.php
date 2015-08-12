@@ -10,7 +10,7 @@
         }    
 ?>
     
-    <div class="<?=$stage->type->css_outer_class?>" id="pictures_<?=$key?>" style="background-image: url(<?=$image->image?>); display: none;">
+    <div class="<?=$stage->type->css_outer_class?>" id="pictures_<?=$key?>" style="background-image: url(<?=img_path("bildbuehnen/".$image->image)?>); display: none;">
         <div id="stagewrapper">    
             <div class="<?=$css_inner_class?>">
                 <?php if($image->text_1 != "") : ?> <h1<?=$image->css_text_class_1?>><?=$image->text_1?></h1> <?php endif; ?>
