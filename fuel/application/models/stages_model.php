@@ -4,7 +4,7 @@ require_once('abstract_module_model.php');
 
 class Stages_model extends Abstract_module_model {
     
-    public $required = array('name');
+    public $required = array('name', 'type_id');
     public $unique = array('name');
     public $foreign_keys = array('type_id' => 'stage_types_model',
                                  'last_modified_by' => 'fuel_users_model');
@@ -94,17 +94,45 @@ class Stages_model extends Abstract_module_model {
         
         return $fields;
     }
+	
+	// --------------------------------------------------------------------
+
+	/**
+	 * Hook - right before saving of data
+	 *
+	 * @access	public
+	 * @param	array	values to be saved
+	 * @return	array
+	 */	
+	public function on_before_save($values)
+	{
+        $values = parent::on_before_save($values);
+        
+        if($values["img_count"] == 0 || $values["img_count"] == 1) {
+            $values["img_count"] = 1;
+            $values["randomize"] = 'no';
+        }
+        $values["last_modified_by"] = $this->fuel->auth->user_data("id"); 
+        
+		return $values;
+	}
 }
 
 class Stage_model extends Abstract_module_record {
     
-    public function save($validate = TRUE, $ignore_on_insert = TRUE, $clear_related = NULL) {
-        
-        $this->last_modified = datetime_now();
-        $this->last_modified_by = $this->fuel->auth->user_data("id"); 
-        $saved = parent::save($validate = TRUE, $ignore_on_insert = TRUE, $clear_related = NULL);
-        return $saved;
-    }
+//    public function save($validate = TRUE, $ignore_on_insert = TRUE, $clear_related = NULL) {
+//        
+//        if($this->img_count == 0 || $this->img_count == 1) {
+//            $this->img_count = 1;
+//            $this->randomize = 'no';
+//        }
+//        
+//        $this->last_modified = datetime_now();
+//        $this->last_modified_by = $this->fuel->auth->user_data("id"); 
+//        echo $this->last_modified_by; die();
+//        $saved = parent::save($validate = TRUE, $ignore_on_insert = TRUE, $clear_related = NULL);
+//        return $saved;
+//    }
 }
 
 ?>

@@ -5,7 +5,7 @@ require_once('abstract_module_model.php');
 class PressArticles_model extends Abstract_module_model {
     
     public $required = array('name', 'source_id', 'datum');
-    public $foreign_keys = array('source_id' => 'pressarticle_sources_model');
+    public $foreign_keys = array('source_id' => 'pressarticle_sources_model', 'category_id' => array(FUEL_FOLDER => 'fuel_categories_model', 'where' => array('context' => 'pressarticles')));
     
     function __construct() {
         parent::__construct('fw_pressarticles');
@@ -79,7 +79,7 @@ class PressArticles_model extends Abstract_module_model {
 	public function on_after_save($values)
 	{
 		$values = parent::on_after_save($values);
-        internal_debug($values);        
+             
         return $values;
 	}
 }

@@ -73,10 +73,10 @@
     </script>
     <!-- socialshareprivacy END -->
 
-	<?php
-		echo css('main').css($css);
-	?>
-
+    <!-- variables for javascript templates -->    
+    <script type="text/javascript">
+        var iconPath = "<?=assets_path("icons")?>/";
+    </script>
 </head>
 <body>
 
@@ -102,31 +102,31 @@
             </div>
             <ul id="menu">  
              
-                <li><a href="http://feuerwehr-bs.de/aktuelles">News</a>  
+                <li><a href="<?=base_url('aktuelles')?>">News</a>  
                    <div class="dropdown">  
                     	<ul>
                          
-                        	<li class="headline"><a href="http://feuerwehr-bs.de/aktuelles/news">News</a></li>
+                        	<li class="headline"><a href="<?=base_url('aktuelles/news')?>">News</a></li>
   
               
                 
-                        	<li><a href="http://feuerwehr-bs.de/aktuelles/news/24"><span class="subline">17.03.2015</span><br />Nachwuchs für die Einsatzabteil...</a></li>
+                        	<li><a href="<?=base_url('aktuelles/news/24')?>"><span class="subline">17.03.2015</span><br />Nachwuchs für die Einsatzabteil...</a></li>
   
                 
                     	</ul>                    
                     	<ul>
                          
-                        	<li class="headline"><a href="http://feuerwehr-bs.de/aktuelles/einsaetze">Einsätze</a></li>
+                        	<li class="headline"><a href="<?=base_url('aktuelles/einsaetze')?>">Einsätze</a></li>
  
              
                 
-                        	<li><a href="http://feuerwehr-bs.de/aktuelles/einsatz/2751"><span class="subline">04.04.2015 / Hilfeleistungseinsatz</span><br />Ölspur</a></li>
+                        	<li><a href="<?=base_url('aktuelles/einsatz/2751')?>"><span class="subline">04.04.2015 / Hilfeleistungseinsatz</span><br />Ölspur</a></li>
  
                  
                     	</ul>  
                     	<ul>
                          
-                        	<li class="headline"><a href="http://feuerwehr-bs.de/aktuelles/termine">Termine</a></li>
+                        	<li class="headline"><a href="<?=base_url('aktuelles/termine')?>">Termine</a></li>
                            
          
                         	<li><a><span class="subline">09.04.2015 / 19:30:00 Uhr</span><br />Zusatzdienst</a></li>
@@ -134,42 +134,42 @@
                     	</ul>  
                     	<ul>
                          
-                        	<li class="headline"><a href="http://feuerwehr-bs.de/aktuelles/presse">Presse</a></li>
+                        	<li class="headline"><a href="<?=base_url('aktuelles/presse')?>">Presse</a></li>
     
                         
-                	       <li><a href="http://feuerwehr-bs.de/files/content/FNP_2015-03-30_Der neue Kreisbrandmeister.jpg" class="fancybox-gallery" rel="gallery_presse_menue"><span class="subline">30.03.2015 / Frankfurter Neue Presse</span><br />Der neue Kreisbrandmeister</a></li>
+                	       <li><a href="<?=base_url('files/content/FNP_2015-03-30_Der neue Kreisbrandmeister.jpg')?>" class="fancybox-gallery" rel="gallery_presse_menue"><span class="subline">30.03.2015 / Frankfurter Neue Presse</span><br />Der neue Kreisbrandmeister</a></li>
     
                            
                        	</ul>  
                    </div>  
                 </li>  
                  
-                <li><a href="http://feuerwehr-bs.de/menschen/mannschaft">Menschen</a>  
+                <li><a href="<?=base_url('menschen/mannschaft')?>">Menschen</a>  
                     <div class="dropdown">  
                     	<ul>                      
-                        	<li class="headline"><a href="http://feuerwehr-bs.de/menschen/mannschaft">Mannschaft</a></li>
-                        	<li><a href="http://feuerwehr-bs.de/menschen/mannschaft#anker_fuehrung">Führung</a></li>
-                            <li><a href="http://feuerwehr-bs.de/menschen/mannschaft#anker_mannschaft">Mannschaft</a></li>
+                        	<li class="headline"><a href="<?=base_url('menschen/mannschaft')?>">Mannschaft</a></li>
+                        	<li><a href="<?=base_url('menschen/mannschaft#anker_fuehrung')?>">Führung</a></li>
+                            <li><a href="<?=base_url('menschen/mannschaft#anker_mannschaft')?>">Mannschaft</a></li>
                     	</ul>  
                     	<ul>
                          
-                        	<li class="headline"><a href="http://feuerwehr-bs.de/menschen/rettungshunde">Rettungshunde</a></li>
-                        	<li><a href="http://feuerwehr-bs.de/menschen/rettungshunde#anker_einleitung">Einleitung</a></li>
-                            <li><a href="http://feuerwehr-bs.de/menschen/rettungshunde#anker_ausbildung">Ablauf der Ausbildung</a></li>
+                        	<li class="headline"><a href="<?=base_url('menschen/rettungshunde')?>">Rettungshunde</a></li>
+                        	<li><a href="<?=base_url('menschen/rettungshunde#anker_einleitung')?>">Einleitung</a></li>
+                            <li><a href="<?=base_url('menschen/rettungshunde#anker_ausbildung')?>">Ablauf der Ausbildung</a></li>
                     	</ul> 
                     	<ul>
                          
-                        	<li class="headline"><a href="http://feuerwehr-bs.de/menschen/jugend">Nachwuchs</a></li>
+                        	<li class="headline"><a href="<?=base_url('menschen/jugend')?>">Nachwuchs</a></li>
                              
-                        	<li><a href="http://feuerwehr-bs.de/menschen/jugend">Jugendfeuerwehr</a></li>
+                        	<li><a href="<?=base_url('menschen/jugend')?>">Jugendfeuerwehr</a></li>
                              
-                            <li><a href="http://feuerwehr-bs.de/menschen/minifeuerwehr">Minifeuerwehr</a></li>
+                            <li><a href="<?=base_url('menschen/minifeuerwehr')?>">Minifeuerwehr</a></li>
                     	</ul>   
                     	<ul>
                          
-                        	<li class="headline"><a href="http://feuerwehr-bs.de/menschen/leistungsgruppe">Leistungsgruppe</a></li>
-                        	<li><a href="http://feuerwehr-bs.de/menschen/leistungsgruppe#anker_theorie">Theorie</a></li>
-                            <li><a href="http://feuerwehr-bs.de/menschen/leistungsgruppe#anker_praxis">Praxis</a></li>
+                        	<li class="headline"><a href="<?=base_url('menschen/leistungsgruppe')?>">Leistungsgruppe</a></li>
+                        	<li><a href="<?=base_url('menschen/leistungsgruppe#anker_theorie')?>">Theorie</a></li>
+                            <li><a href="<?=base_url('menschen/leistungsgruppe#anker_praxis"')?>>Praxis</a></li>
                     	</ul>  
                     </div>  
 				</li>  
@@ -218,47 +218,47 @@
                     </div>  
                 </li>  
                  
-                <li><a href="http://feuerwehr-bs.de/informationen">Infos</a>  
+                <li><a href="<?=base_url('informationen/buergerinformationen')?>">Infos</a>  
                     <div class="dropdown">  
                     	<ul>
                          
-                        	<li class="headline"><a href="http://feuerwehr-bs.de/informationen/buergerinformationen">B&uuml;rgerinfos</a></li>
+                        	<li class="headline"><a href="<?=base_url('informationen/buergerinformationen')?>">B&uuml;rgerinfos</a></li>
   
-                            	<li><a href="http://feuerwehr-bs.de/informationen/buergerinformationen/blaulicht">Blaulicht und Martinshorn</a></li>
+                            	<li><a href="<?=base_url('informationen/buergerinformationen/blaulicht')?>">Blaulicht und Martinshorn</a></li>
       
-                                <li><a href="http://feuerwehr-bs.de/informationen/buergerinformationen/nachdembrand">Nach dem Brand</a></li>
+                                <li><a href="<?=base_url('informationen/buergerinformationen/nachdembrand')?>">Nach dem Brand</a></li>
                                 <li><a class="fancybox-metaLayer" href="#notruflayer_js" >Notruf richtig absetzen</a></li>
       
-                                <li><a href="http://feuerwehr-bs.de/informationen/buergerinformationen/rauchmelder">Rauchwarnmelder</a></li>
+                                <li><a href="<?=base_url('informationen/buergerinformationen/rauchmelder')?>">Rauchwarnmelder</a></li>
       
-                                <li><a href="http://feuerwehr-bs.de/informationen/buergerinformationen/hausnummern">Sichtbare Hausnummern</a></li>
+                                <li><a href="<?=base_url('informationen/buergerinformationen/hausnummern')?>">Sichtbare Hausnummern</a></li>
                     	</ul>  
                         <ul>
   
-                        	<li class="headline"><a href="http://feuerwehr-bs.de/informationen/einsatzgebiet">Einsatzgebiet</a></li>
-                            <li><a href="http://feuerwehr-bs.de/informationen/einsatzgebiet#anker_allgemein">Allgemein</a></li>
-                            <li><a href="http://feuerwehr-bs.de/informationen/einsatzgebiet#anker_schwerpunkte">Schwerpunkte</a></li>
+                        	<li class="headline"><a href="<?=base_url('informationen/einsatzgebiet')?>">Einsatzgebiet</a></li>
+                            <li><a href="<?=base_url('informationen/einsatzgebiet#anker_allgemein')?>">Allgemein</a></li>
+                            <li><a href="<?=base_url('informationen/einsatzgebiet#anker_schwerpunkte')?>">Schwerpunkte</a></li>
                         </ul>
                         <ul>
   
-                        	<li class="headline"><a href="http://feuerwehr-bs.de/informationen/aufgaben">Aufgaben & Gesetze</a></li>
-                            <li><a href="http://feuerwehr-bs.de/informationen/aufgaben#anker_aufgaben">Aufgaben</a></li>
-                            <li><a href="http://feuerwehr-bs.de/informationen/aufgaben#anker_gesetze">Gesetze</a></li>                            
+                        	<li class="headline"><a href="<?=base_url('informationen/aufgaben')?>">Aufgaben &amp; Gesetze</a></li>
+                            <li><a href="<?=base_url('informationen/aufgaben#anker_aufgaben')?>">Aufgaben</a></li>
+                            <li><a href="<?=base_url('informationen/aufgaben#anker_gesetze')?>">Gesetze</a></li>                            
                         </ul>
                         <ul>
   
-                        	<li class="headline"><a href="http://feuerwehr-bs.de/informationen/aao">Alarm- und Ausrückeordnung</a></li>
-                            <li><a href="http://feuerwehr-bs.de/informationen/aao#anker_oertlich">Örtlich</a></li>
-                            <li><a href="http://feuerwehr-bs.de/informationen/aao#anker_uoertlich">Überörtlich</a></li>                        
+                        	<li class="headline"><a href="<?=base_url('informationen/aao')?>">Alarm- und Ausrückeordnung</a></li>
+                            <li><a href="<?=base_url('informationen/aao#anker_oertlich')?>">Örtlich</a></li>
+                            <li><a href="<?=base_url('informationen/aao#anker_uoertlich')?>">Überörtlich</a></li>                        
                         </ul>
                     </div>  
                 </li>
   
-                <li><a href="http://feuerwehr-bs.de/verein" class="active">Verein</a>  
+                <li><a href="<?=base_url('verein')?>">Verein</a>  
                 </li> 
                 <li><a href="#" class="desktopsearch">&nbsp;</a>
                     <div class="dropdown">
-                        <form action="http://feuerwehr-bs.de/search" method="post" accept-charset="utf8" id="search" name="search"><div style="display:none">
+                        <form action="<?=base_url('search')?>" method="post" accept-charset="utf8" id="search" name="search"><div style="display:none">
 <input type="hidden" name="csrf_f5g5h7z5b4f3f6g4_t" value="3cd435411c7fcf811b18f80f98a4e2a4" />
 </div>                        <div class="search">	
                             <input type="text" name="search_query" value="" id="search_query" class="searchtext"  />                        </div>
@@ -277,44 +277,44 @@
 
 <div id="mobileNavigation">    
    <ul class="mobileMainNavContainer">
-      <li><a href="http://feuerwehr-bs.de/aktuelles">News</a></li>
+      <li><a href="<?=base_url('aktuelles')?>">News</a></li>
       <li class="subnavi">    
           <ul> 
-              <li><a href="http://feuerwehr-bs.de/aktuelles/news">News</a></li>
-              <li><a href="http://feuerwehr-bs.de/aktuelles/einsaetze">Einsätze</a></li>
-              <li><a href="http://feuerwehr-bs.de/aktuelles/termine">Termine</a></li>
-              <li><a href="http://feuerwehr-bs.de/aktuelles/presse">Presse</a></li>
+              <li><a href="<?=base_url('aktuelles/news')?>">News</a></li>
+              <li><a href="<?=base_url('aktuelles/einsaetze')?>">Einsätze</a></li>
+              <li><a href="<?=base_url('aktuelles/termine')?>">Termine</a></li>
+              <li><a href="<?=base_url('aktuelles/presse')?>">Presse</a></li>
             </ul>
       </li>
-      <li><a href="http://feuerwehr-bs.de/menschen">Menschen</a></li>
+      <li><a href="<?=base_url('menschen')?>">Menschen</a></li>
       <li class="subnavi">    
           <ul> 
-              <li><a href="http://feuerwehr-bs.de/menschen/mannschaft">Mannschaft</a></li>
-              <li><a href="http://feuerwehr-bs.de/menschen/rettungshunde">Rettungshunde</a></li>
-              <li><a href="http://feuerwehr-bs.de/menschen/jugend">Jugendfeuerwehr</a></li>
-              <li><a href="http://feuerwehr-bs.de/menschen/minifeuerwehr">Minifeuerwehr</a></li>
-              <li><a href="http://feuerwehr-bs.de/menschen/leistungsgruppe">Leistungsgruppe</a></li>
+              <li><a href="<?=base_url('menschen/mannschaft')?>">Mannschaft</a></li>
+              <li><a href="<?=base_url('menschen/rettungshunde')?>">Rettungshunde</a></li>
+              <li><a href="<?=base_url('menschen/jugend')?>">Jugendfeuerwehr</a></li>
+              <li><a href="<?=base_url('menschen/minifeuerwehr')?>">Minifeuerwehr</a></li>
+              <li><a href="<?=base_url('menschen/leistungsgruppe')?>">Leistungsgruppe</a></li>
           </ul>
       </li>
-      <li><a href="http://feuerwehr-bs.de/technik">Technik</a></li>
+      <li><a href="<?=base_url('technik')?>">Technik</a></li>
       <li class="subnavi">    
           <ul>  
-            <li><a href="http://feuerwehr-bs.de/technik/fahrzeuge" class="first">Fahrzeuge</a></li>
+            <li><a href="<?=base_url('technik/fahrzeuge')?>" class="first">Fahrzeuge</a></li>
           </ul>
       </li>
-      <li><a href="http://feuerwehr-bs.de/informationen">Infos</a></li>
+      <li><a href="<?=base_url('informationen/buergerinformationen')?>">Infos</a></li>
       <li class="subnavi">    
           <ul>  
-                <li><a href="http://feuerwehr-bs.de/informationen/buergerinformationen">Bürgerinfos</a></li>
-                <li><a href="http://feuerwehr-bs.de/informationen/einsatzgebiet" class="active">Einsatzgebiet</a></li>
-               	<li><a href="http://feuerwehr-bs.de/informationen/aufgaben" class="active">Aufgaben &amp; Gesetze</a></li>
-               	<li><a href="http://feuerwehr-bs.de/informationen/aao" class="active">Alarm- und Ausrückeordnung</a></li>
+                <li><a href="<?=base_url('informationen/buergerinformationen')?>">Bürgerinfos</a></li>
+                <li><a href="<?=base_url('informationen/einsatzgebiet')?>" class="active">Einsatzgebiet</a></li>
+               	<li><a href="<?=base_url('informationen/aufgaben')?>" class="active">Aufgaben &amp; Gesetze</a></li>
+               	<li><a href="<?=base_url('informationen/aao')?>" class="active">Alarm- und Ausrückeordnung</a></li>
           </ul>
       </li>
-      <li><a href="http://feuerwehr-bs.de/verein">Verein</a></li>
+      <li><a href="<?=base_url('verein')?>">Verein</a></li>
       <li class="subnavi">    
           <ul>  
-            <li><a href="http://feuerwehr-bs.de/verein" class="first">Verein</a></li>
+            <li><a href="<?=base_url('verein')?>" class="first">Verein</a></li>
           </ul>
       </li>
       <li class="metanav">
