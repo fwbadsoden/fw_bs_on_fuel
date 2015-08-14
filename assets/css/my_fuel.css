@@ -1,3 +1,18 @@
+* { margin: 0; padding: 0; outline-style: none; }
+html, body { height: 100%; overflow: hidden; }
+body { background-color: #333; font-family: 'Lucida Grande', Verdana, Arial, Helvetica, Sans-serif; margin: 0; padding: 0; font-size: 11px; color: #333; }
+h1 { font-size: 20px; margin-bottom: 10px;  }
+h2 { font-size: 16px; margin-bottom: 10px; }
+h3 { font-size: 12px; margin: 15px 0 3px 0; }
+a { color: #0e3e7e; text-decoration: none; }
+img { border: 0; max-width: 100%; }
+a:hover { text-decoration: underline; }
+a:visited { color: #4679bd;}
+p { margin: 5px 0 15px 0; }
+option { margin: 0 2px; }
+input,select,textarea { font-size: 11px; font-family: 'Lucida Grande', Verdana, Arial, Helvetica, Sans-serif; }
+textarea { min-height: 40px; overflow: auto; resize: vertical; /*width: 100%;*/ }
+
 /* #login */
 div#login { padding: 15% 0 0 0; border: none; background-color: #9a0000; margin: 0 auto; height: 100% }
 div#login h3, div#login p { color: #fff; text-align: center; }
@@ -16,7 +31,7 @@ div#fuel_main_top_panel { height: 29px; font-size: 13px; color: #fff; background
 div#fuel_main_top_panel h2 { color: #fff; line-height: 30px; margin-left: 11px; }
 div#fuel_main_top_panel h2 a { color: #fff; }
 div#fuel_main_top_panel li { float: left; display: block; list-style: none; line-height: 29px; font-weight: bold; border-right: 1px solid #fff;}
-div#fuel_main_top_panel li a { display: block; color: #fff; background: #6d6d6d url(../images/tab.png) repeat-x;  padding: 0 15px; }
+div#fuel_main_top_panel li a, a:visited { display: block; color: #fff; background: #6d6d6d url(../images/tab.png) repeat-x;  padding: 0 15px; }
 div#fuel_main_top_panel li a:hover { background: #7c7c7c url(../images/tab.png) repeat-x 0 -29px; }
 div#fuel_main_top_panel li.active a { background: #9a0000 url(../images/tab.png) repeat-x 0 -58px; color: #fff;   }
 div#fuel_login_logout { position: absolute; top: 8px; right: 15px; font-size: 11px; color: #fff; background-color: #9a0000; height: 21px;  }
