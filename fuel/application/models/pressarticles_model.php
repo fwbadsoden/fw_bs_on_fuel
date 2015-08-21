@@ -24,6 +24,7 @@ class PressArticles_model extends Abstract_module_model {
 	 */	
 	public function list_items($limit = NULL, $offset = 0, $col = 'id', $order = 'asc', $just_count = FALSE)
 	{
+	   $this->db->order_by('datum', 'desc');
        $this->db->join('pressarticle_sources', 'pressarticle_sources.id = pressarticles.source_id');
        $this->db->select('pressarticles.id as id, pressarticles.name as name, pressarticle_sources.name as quelle, pressarticles.datum as datum, pressarticles.published as published');
 	   $data = parent::list_items($limit, $offset, $col, $order, $just_count);

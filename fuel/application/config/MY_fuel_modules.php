@@ -45,10 +45,23 @@ $config['modules']['stage_types'] = array(
     'permission' => 'stage_types',
 );
 
+$config['modules']['missions'] = array(
+    'module_name' => 'Einsätze',
+    'display_field' => 'name',
+    'instructions' => lang("einsatz_instructions"),
+    'permission' => 'missions',
+);
+
 $config['modules']['mission_types'] = array(
     'module_name' => 'Einsatzarten',
     'instructions' => lang("einsatz_types_instructions"),
     'permission' => 'mission_types',
+);
+
+$config['modules']['mission_images'] = array(
+    'module_name' => 'Einsatzbilder',
+    'instructions' => lang("einsatz_images_instructions"),
+    'permission' => 'missions',
 );
 
 $config['modules']['mission_cues'] = array(
