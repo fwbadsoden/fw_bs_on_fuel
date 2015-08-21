@@ -29,7 +29,26 @@ class Mission_Images_model extends Abstract_module_model {
 	   $data = parent::list_items($limit, $offset, $col, $order, $just_count);
        
        return $data;   
-    }    
+    } 
+    
+    /**
+	 * Add specific changes to the form_fields method
+	 *
+	 * @access	public
+	 * @param	array Values of the form fields (optional)
+	 * @param	array An array of related fields. This has been deprecated in favor of using has_many and belongs to relationships (deprecated)
+	 * @return	array An array to be used with the Form_builder class
+	 */	
+    public function form_fields($values = array(), $related = array()) {
+        
+        $fields = parent::form_fields($values, $related);
+         
+        // Asset-Ordner                                        
+        $fields['image'] = array('folder' => 'images/einsaetze',
+                                 'create_thumb' => FALSE);                                          
+
+        return $fields;
+    }   
 }
 
 class Mission_Image_model extends Abstract_module_record {

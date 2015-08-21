@@ -31,6 +31,25 @@ class Fahrzeug_Images_model extends Abstract_module_model {
        return $data;   
     }
     
+    /**
+	 * Add specific changes to the form_fields method
+	 *
+	 * @access	public
+	 * @param	array Values of the form fields (optional)
+	 * @param	array An array of related fields. This has been deprecated in favor of using has_many and belongs to relationships (deprecated)
+	 * @return	array An array to be used with the Form_builder class
+	 */	
+    public function form_fields($values = array(), $related = array()) {
+        
+        $fields = parent::form_fields($values, $related);
+         
+        // Asset-Ordner                                        
+        $fields['image'] = array('folder' => 'images/fahrzeuge',
+                                 'create_thumb' => TRUE);                                          
+
+        return $fields;
+    }   
+    
 }
 
 class Fahrzeug_Image_model extends Abstract_module_record {
