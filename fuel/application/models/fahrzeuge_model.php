@@ -5,6 +5,7 @@ require_once('abstract_module_model.php');
 class Fahrzeuge_model extends Abstract_module_model {
     
     public $has_many = array('fahrzeug_images' => 'fahrzeug_images_model');
+    public $belongs_to = array('missions' => 'missions_model');    
         
     function __construct() {
         parent::__construct('fw_fahrzeuge');
@@ -62,89 +63,91 @@ class Fahrzeuge_model extends Abstract_module_model {
                                            
         $fields["rufname"] = array('label' => lang("form_label_fahrzeug_funkrufname"),
                                    'order' => 5); 
+                                   
+        $fields["setcard_image"] = array('order' => 6);                                   
                                           
         $options = array('yes' => 'ja', 'no' => 'nein');                                 
         $fields['einsaetze_zeigen'] = array('label'   => lang('form_label_fahrzeug_einsaetze_zeigen'),
                                             'type'    => 'enum',
                                             'options' => $options,
-                                            'order'   => 6);              
+                                            'order'   => 7);              
                                             
         $options = array('no' => 'nein','yes' => 'ja'); 
         $fields['retired'] = array('label'   => lang('form_label_fahrzeug_retired'),
                                    'type'    => 'enum',
                                    'options' => $options,
-                                   'order' => 7); 
+                                   'order' => 8); 
         
         $fields["fahrzeugdaten"] = array('type' => 'fieldset',
                                       'class' => 'tab',
                                       'label' => 'Fahrzeugdaten',
-                                      'order' => 8);                                                                                                         
+                                      'order' => 9);                                                                                                         
         
         $fields["text_stage"]= array('label' => lang("form_label_fahrzeug_text_kurz"),
                                      'class' => 'no_editor',
-                                     'order' => 9);
+                                     'order' => 10);
         
         $fields["text"] = array('class' => 'no_editor',
                                 'type' => 'textarea',
-                                'order' => 10);  
+                                'order' => 11);  
                                            
-        $fields["hersteller"] = array('order' => 11); 
+        $fields["hersteller"] = array('order' => 12); 
                                            
-        $fields["aufbau"] = array('order' => 12); 
+        $fields["aufbau"] = array('order' => 13); 
                                            
-        $fields["baujahr"] = array('order' => 13); 
+        $fields["baujahr"] = array('order' => 14); 
         
         $options = array('1/8', '1/7', '1/5', '1/4', '1/3', '1/2', '1/1', '16' => '16 (RH Hänger)');
         $fields['besatzung'] = array('options' => $options,
                                      'type' => 'select',
-                                     'order' => 14);
+                                     'order' => 15);
         
         $fields["zusatzdaten_lf"] = array('type' => 'fieldset',
                                       'class' => 'tab',
                                       'label' => 'Zusatzdaten Löschfahrzeug (nur bei Löschfahrzeugen pflegen)',
-                                      'order' => 15);    
+                                      'order' => 16);    
         
-        $fields["pumpe"] = array('order' => 16);
+        $fields["pumpe"] = array('order' => 17);
         
-        $fields["loeschmittel"] = array('order' => 17);
+        $fields["loeschmittel"] = array('order' => 18);
         
         $fields["zusatzdaten_sonst"] = array('type' => 'fieldset',
                                       'class' => 'tab',
                                       'label' => 'Zusatzdaten sonstige Fahrzeuge (nicht bei Löschfahrzeugen pflegen)',
-                                      'order' => 18); 
+                                      'order' => 19); 
         
-        $fields["besonderheit"] = array('order' => 19);   
+        $fields["besonderheit"] = array('order' => 20);   
         
         $fields["fahrzeugwerte"] = array('type' => 'fieldset',
                                       'class' => 'tab',
                                       'label' => 'Fahrzeugwerte',
-                                      'order' => 20);      
+                                      'order' => 21);      
         
         $fields["kw"] = array('label' => lang("form_label_fahrzeug_kw"),
                                  'after_html' => 'KW',
-                                 'order' => 21);
+                                 'order' => 22);
         
         $fields["ps"] = array('label' => lang("form_label_fahrzeug_ps"),
                                  'after_html' => 'PW',
-                                 'order' => 22);
+                                 'order' => 23);
         
         $fields["hoehe"] = array('label' => lang("form_label_fahrzeug_hoehe"),
                                  'after_html' => 'm',
-                                 'order' => 23);
+                                 'order' => 24);
         
         $fields["breite"] = array('label' => lang("form_label_fahrzeug_breite"),
                                   'after_html' => 'm',
-                                  'order' => 24);
+                                  'order' => 25);
         
         $fields["laenge"] = array('label' => lang("form_label_fahrzeug_laenge"),
                                   'after_html' => 'm',
-                                  'order' => 25);
+                                  'order' => 26);
         
         $fields["gesamtmasse"] = array('after_html' => 't',
-                                       'order' => 26);
+                                       'order' => 27);
         
         $fields["leermasse"] = array('after_html' => 't',
-                                     'order' => 27);     
+                                     'order' => 28);     
                                      
         $fields["precedence"]["type"] = 'hidden';  
         $fields["published"]["type"] = 'hidden';                                              
@@ -183,20 +186,10 @@ class Fahrzeuge_model extends Abstract_module_model {
         
         return $fahrzeuge;
     }
+    
 }
 
 class Fahrzeug_model extends Abstract_module_record {
-    
-    public function get_setcard_image() {
-                
-        $CI =& get_instance();
-        $CI->db->where(array("fahrzeug_id" => $this->key_value(), "small_pic" => 1));
-        $query = $CI->db->get("fahrzeug_images");
-        
-        $row = $query->row();
-        
-        return $row;
-    }
     
     public function is_retired() {
         

@@ -15,6 +15,8 @@ $lang["stage_images_instructions"] = "Hier können Sie die Bilder der Bildbühne
 $lang["stage_types_instructions"] = "Hier können Sie die Bildbühnen-Typen verwalten.";
 $lang["appointments_instructions"] = "Hier können Sie die Termine verwalten.";
 $lang["einsatz_cues_instructions"] = "Hier können Sie die Einsatzstichwörter verwalten.";
+$lang["einsatz_instructions"] = "Hier können Sie die Einsätze verwalten.";
+$lang["einsatz_images_instructions"] = "Hier können Sie die Einsatzbilder verwalten.";
 $lang["einsatz_types_instructions"] = "Hier können Sie die Einsatzarten verwalten.";
 $lang["mannschaft_sections_instructions"] = "Hier können Sie die Mannschaftsabteilungen verwalten.";
 $lang["mannschaft_grades"] = "Hier können Sie die Dienstgrade verwalten.";
@@ -65,6 +67,12 @@ $lang["form_label_stagetype_css_slidewrapper_class"] = "Slidewrapper CSS Klasse"
 
 $lang["form_label_einsatztype_shortname"] = "Tag";
 $lang["form_label_einsatztype_nameplural"] = "Name in Mehrzahl";
+
+$lang["form_label_einsatz_anzahl_kraefte"] = "Anzahl Einsatzkräfte";
+$lang["form_label_einsatz_ort"] = "Einsatzort";
+$lang["form_label_einsatz_lage"] = "Kurze Lagemeldung";
+$lang["form_label_einsatz_bericht"] = "Einsatzbericht";
+$lang["form_label_einsatz_weiterekraefte"] = "Weitere Einsatzkräfte";
 
 $lang["form_label_appointments_shortcity"] = "Ort kurz";
 

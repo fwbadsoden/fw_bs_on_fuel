@@ -18,13 +18,15 @@ class Module_layout extends Base_layout {
         $vars["segment"] = 3;
         
         switch($vars["my_module"]) {
-            case "fahrzeug":    if(strpos(uri_string(), "fahrzeuge/ausserdienst")) {
+            case "fahrzeug":    $CI->load->model('fahrzeuge_model');
+            
+                                if(strpos(uri_string(), "fahrzeuge/ausserdienst")) {
                                     $vars["segment"] = 4;
                                     $vars["list_where"] = array("retired" => "yes", "published" => "yes");
-                                    $vars["fahrzeugliste"] = $this->_get_fahrzeugliste(TRUE);
+                                    $vars["fahrzeugliste"] = $CI->fahrzeuge_model->get_fahrzeugliste(TRUE);;
                                 } else {
                                     $list_where = array("retired" => "no", "published" => "yes");
-                                    $vars["fahrzeugliste"] = $this->_get_fahrzeugliste(FALSE);                                    
+                                    $vars["fahrzeugliste"] = $CI->fahrzeuge_model->get_fahrzeugliste(FALSE);;                                    
                                 }
                                 
                                 $vars["model"]      = "fahrzeuge_model";
@@ -74,13 +76,6 @@ class Module_layout extends Base_layout {
         
         return $vars;                         
     } 
-    
-    private function _get_fahrzeugliste($ad) {
-        
-            $CI =& get_instance();
-            $CI->load->model('fahrzeuge_model');
-            return $CI->fahrzeuge_model->get_fahrzeugliste($ad);
-    }   
 }
 
 ?>

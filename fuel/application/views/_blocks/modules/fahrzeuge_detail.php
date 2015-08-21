@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
     $tab_index_1  = 1;
     $tab_index_2  = 1;
-    if($data->rufname == 'n/a') : $rufname = 'n/a'; 
-    else : $rufname = $data->rufname_prefix.' '.$data->rufname; 
+    if($data->rufname == 'n/a') : $ruf_name = 'n/a'; 
+    else : $ruf_name = $data->prefix_rufname.' '.$data->rufname; 
     endif; 
     if($data->is_retired()) : $headline = "Ausser Dienst"; 
     else : $headline = "Alle Fahrzeuge";
@@ -12,14 +12,13 @@
 <section id="content">
     <div class="<?=$stage->type->css_slidewrapper_class?>">
         <div class="oneColumnBox">
-            <ul class="TeaserListe">
             
                 <div class="oneColumnBox">
                     <div class="factSheet">
                         <div class="table">
                             <div class="row">
                                 <div class="black">Funkrufname:</div>                   
-                                <div class="red"><?=$rufname?></div>
+                                <div class="red"><?=$ruf_name?></div>
                             </div>
                             <div class="row">
                                 <div class="black">Hersteller:</div>
@@ -96,8 +95,8 @@
                         <div class="TabBoxContent">                
                             <h1 class="reiter"><a href="#details_<?=$tab_index_2?>" func="tab" class="active">Beschreibung</a></h1>
                             <div id="box_details_<?=$tab_index_2?>" style="">
-        <?     if($data->is_retired()) : $rufname .= " (ausser Dienst)"; endif; ?>
-                                <h1><?=$tab_index_2?>: <?=$rufname?></h1>
+        <?     if($data->is_retired()) : $ruf_name .= " (ausser Dienst)"; endif; ?>
+                                <h1><?=$tab_index_2?>: <?=$ruf_name?></h1>
                                 <p><?=$data->text?></p>                     
         <? if($data->pumpe != '' && $data->loeschmittel != '') : ?>                        
                                 <div class="facttable">   
@@ -141,11 +140,11 @@
         <? else : ?>
                             <li>
         <? endif; ?>                                                  
-                                <a href="<?=base_url('technik/fahrzeuge/'.$data->id)?>"><?=$data->name_lang?> - <span class="downlight"><?=$data->name?></span></a>
+                                <a href="<?=base_url('technik/fahrzeuge/'.$fahrzeug->id)?>"><?=$fahrzeug->name_lang?> - <span class="downlight"><?=$fahrzeug->name?></span></a>
                             </li>
         <? endforeach; ?>                    
                         </ul>
-                        <h1 class="subnavi_opener_mobile">Alle Fahrzeuge</h1>
+                        <h1 class="subnavi_opener_mobile"><?=$headline?></h1>
                         <ul class="subnavi_content_mobile">
         <? foreach($fahrzeugliste as $key => $fahrzeug) : ?>      
         <? if(count($fahrzeugliste) == ($key + 1)) : ?>
@@ -164,23 +163,23 @@
                 <div class="BigBox firstColumn">  
                     <div class="slideshow">
         
-        		<?php if(count($images) > 1) {?>
+        		<?php if(count($data->fahrzeug_images) > 1) {?>
                         <div class="prevPic"><a href="#slideshow_car" id="slideshow_prev"><img src="<?=assets_path('button_detailShow_previous.png', 'layout')?>" /></a></div>
                         <div class="nextPic"><a href="#slideshow_car" id="slideshow_next"><img src="<?=assets_path('button_detailShow_next.png', 'layout')?>" /></a></div>
         		<?php }?>                
         
                         <ul id="slideshow_car">
-        <? foreach($images as $key => $img) : ?>           
+        <? foreach($data->fahrzeug_images as $key => $img) : ?>           
         <? if($key == 0) : ?>
                             <li id="slideshow_car_<?=$key+1?>" class="active">
         <? else : ?>
                             <li id="slideshow_car_<?=$key+1?>" class="noActive">
         <? endif; ?>
                                 <figure>
-                                	<img src="<?=base_url(CONTENT_IMG_FAHRZEUG_UPLOAD_PATH.$img['img_file'])?>" alt="<?=$img['description']?>" />
-                                	<div class="zoom"><a href="<?=base_url(CONTENT_IMG_FAHRZEUG_UPLOAD_PATH.$img['img_file'])?>" title="<?=$img['description']?>" class="fancybox-gallery" rel="gallery1"><img src="<?=assets_path('button_zoom.png', 'layout')?>" /></a></div>
+                                	<img src="<?=img_path('fahrzeuge/'.$img->image)?>" alt="<?=$img->description?>" />
+                                	<div class="zoom"><a href="<?=img_path('fahrzeuge/'.$img->image)?>" title="<?=$img->description?>" class="fancybox-gallery" rel="gallery1"><img src="<?=assets_path('button_zoom.png', 'layout')?>" /></a></div>
                                 </figure>
-                                <p><?=$key+1?>: <?=$img['text']?></p>
+                                <p><?=$key+1?>: <?=$img->text?></p>
                             </li>
         <? endforeach; ?>             
                         </ul>
@@ -191,11 +190,11 @@
             	    <div class="dateBox">
                         <h1>Die letzten Einsätze</h1>
                         <ul>
-        <? foreach($einsaetze as $einsatz) : ?>                
+        <? foreach($data->missions as $einsatz) : ?>                
                             <li>
-                                <a href="<?=base_url('aktuelles/einsatz/'.$einsatz['einsatzID'])?>">
-                                <h2><?=cp_get_ger_date($einsatz['datum'])?></h2>
-                                <p><?=$einsatz['lage']?></p>
+                                <a href="<?=base_url('aktuelles/einsatz/'.$einsatz->id)?>">
+                                <h2><?=cp_get_ger_date($einsatz->datum)?></h2>
+                                <p><?=$einsatz->lage?></p>
                                 </a>
                             </li>
         <? endforeach; ?>                    
@@ -203,8 +202,7 @@
                     </div>
                 </div>
                 <hr class="clear" />
-                                
-            </ul>
+                      
         </div>
         <hr class="clear" />
     </div>

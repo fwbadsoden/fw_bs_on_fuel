@@ -2,13 +2,13 @@
  
 require_once('abstract_module_model.php');
 
-class Fahrzeug_Images_model extends Abstract_module_model {
+class Mission_Images_model extends Abstract_module_model {
     
-    public $required = array('description', 'fahrzeug_id');
-    public $foreign_keys = array('fahrzeug_id' => 'fahrzeuge_model');
+    public $required = array('description', 'mission_id');
+    public $foreign_keys = array('mission_id' => 'missions_model');
         
     function __construct() {
-        parent::__construct('fw_fahrzeug_images');
+        parent::__construct('fw_mission_images');
     }
     
     /**
@@ -24,16 +24,15 @@ class Fahrzeug_Images_model extends Abstract_module_model {
 	 */	
 	public function list_items($limit = NULL, $offset = 0, $col = 'id', $order = 'asc', $just_count = FALSE)
 	{
-	   $this->db->order_by('fahrzeug_id', 'desc');
-       $this->db->select('id, description, image, text');
+	   $this->db->order_by('mission_id', 'desc');
+       $this->db->select('id, description, image, photographer as fotograf');
 	   $data = parent::list_items($limit, $offset, $col, $order, $just_count);
        
        return $data;   
-    }
-    
+    }    
 }
 
-class Fahrzeug_Image_model extends Abstract_module_record {
+class Mission_Image_model extends Abstract_module_record {
     
 }
 
