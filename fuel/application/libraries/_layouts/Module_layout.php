@@ -14,6 +14,7 @@ class Module_layout extends Base_layout {
     function pre_process($vars)
     { 
         $vars = parent::pre_process($vars);
+        $CI =& get_instance();
         
         $vars["segment"] = 3;
         
@@ -23,10 +24,14 @@ class Module_layout extends Base_layout {
                                 if(strpos(uri_string(), "fahrzeuge/ausserdienst")) {
                                     $vars["segment"] = 4;
                                     $vars["list_where"] = array("retired" => "yes", "published" => "yes");
-                                    $vars["fahrzeugliste"] = $CI->fahrzeuge_model->get_fahrzeugliste(TRUE);;
+                                    $vars["fahrzeugliste"] = $CI->fahrzeuge_model->get_fahrzeugliste(TRUE);
                                 } else {
                                     $list_where = array("retired" => "no", "published" => "yes");
-                                    $vars["fahrzeugliste"] = $CI->fahrzeuge_model->get_fahrzeugliste(FALSE);;                                    
+                                    $vars["fahrzeugliste"] = $CI->fahrzeuge_model->get_fahrzeugliste(FALSE);                                   
+                                }
+                                                                
+                                if(is_numeric(uri_segment($vars["segment"]))) {
+                                    $vars["stage_text"] = $CI->fahrzeuge_model->get_stage_text(uri_segment($vars["segment"]));
                                 }
                                 
                                 $vars["model"]      = "fahrzeuge_model";
@@ -46,13 +51,16 @@ class Module_layout extends Base_layout {
                                 $vars["item_block"] = "modules/news_detail";
                                 break;
             case "presse":      
-                                
+                                $vars["order"]      = "datum desc";
+                                $vars["list_where"] = array("published" => "yes");
                                 $vars["model"]      = "pressarticles_model";
                                 $vars["list_block"] = "modules/presse_uebersicht";
                                 $vars["item_block"] = NULL;
                                 break;
-            case "mannschaft":  
-                                
+            case "mannschaft":  $CI->load->model("mannschaft_members_model");
+                                $vars["team"]       = $CI->mannschaft_members_model->find_team();
+                                $vars["fuehrung"]   = $CI->mannschaft_members_model->find_fuehrung();
+            
                                 $vars["model"]      = "mannschaft_members_model";
                                 $vars["list_block"] = "modules/mannschaft_uebersicht";
                                 $vars["item_block"] = NULL;

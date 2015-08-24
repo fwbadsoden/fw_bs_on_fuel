@@ -27,5 +27,5 @@ $vars['sitemap_box']           .= fuel_nav(array('group_id' => 7, 'first_class' 
 $vars['sitemap_box']           .= fuel_nav(array('group_id' => 8, 'first_class' => 'headline', 'last_class' => ''));
 $vars['small_sitemap']          = fuel_nav(array('group_id' => 9, 'container_tag' => '', 'item_tag' => '', 'first_class' => '', 'last_class' => ''));
 
-$vars['main_navigation']        = main_navigation();
+//$vars['main_navigation']        = main_navigation();
 ?>
