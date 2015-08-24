@@ -144,7 +144,7 @@
                    </div>  
                 </li>  
                  
-                <li><a href="<?=base_url('menschen/mannschaft')?>">Menschen</a>  
+                <li><a href="<?=base_url('menschen')?>">Menschen</a>  
                     <div class="dropdown">  
                     	<ul>                      
                         	<li class="headline"><a href="<?=base_url('menschen/mannschaft')?>">Mannschaft</a></li>

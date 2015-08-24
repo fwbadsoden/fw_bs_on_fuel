@@ -1,12 +1,14 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
     $tab_index_1  = 1;
     $tab_index_2  = 1;
+    
     if($data->rufname == 'n/a') : $ruf_name = 'n/a'; 
     else : $ruf_name = $data->prefix_rufname.' '.$data->rufname; 
     endif; 
     if($data->is_retired()) : $headline = "Ausser Dienst"; 
     else : $headline = "Alle Fahrzeuge";
     endif;
+    
 ?>
 
 <section id="content">
@@ -190,14 +192,14 @@
             	    <div class="dateBox">
                         <h1>Die letzten Einsätze</h1>
                         <ul>
-        <? foreach($data->missions as $einsatz) : ?>                
+        <? for($i = 0; $i < 5; $i++) : ?>                
                             <li>
-                                <a href="<?=base_url('aktuelles/einsatz/'.$einsatz->id)?>">
-                                <h2><?=cp_get_ger_date($einsatz->datum)?></h2>
-                                <p><?=$einsatz->lage?></p>
+                                <a href="<?=base_url('aktuelles/einsatz/'.$data->missions[$i]->id)?>">
+                                <h2><?=get_ger_date($data->missions[$i]->datum_beginn)?></h2>
+                                <p><?=$data->missions[$i]->lage?></p>
                                 </a>
                             </li>
-        <? endforeach; ?>                    
+        <? endfor; ?>                    
                         </ul>
                     </div>
                 </div>

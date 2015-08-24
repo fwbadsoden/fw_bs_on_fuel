@@ -24,7 +24,7 @@ class Fahrzeug_Images_model extends Abstract_module_model {
 	 */	
 	public function list_items($limit = NULL, $offset = 0, $col = 'id', $order = 'asc', $just_count = FALSE)
 	{
-	   $this->db->order_by('fahrzeug_id', 'desc');
+	   $this->db->order_by('description', 'asc');
        $this->db->select('id, description, image, text');
 	   $data = parent::list_items($limit, $offset, $col, $order, $just_count);
        

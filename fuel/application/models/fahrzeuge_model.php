@@ -187,6 +187,18 @@ class Fahrzeuge_model extends Abstract_module_model {
         return $fahrzeuge;
     }
     
+    public function get_stage_text($id) {
+        
+        $this->db->where("id", $id);
+        $this->db->select("name, name_lang, text_stage");
+        $query = $this->db->get('fahrzeuge');
+        $row = $query->row();
+        $text['name']       = $row->name;
+        $text['name_lang']  = $row->name_lang;
+        $text['text_stage'] = $row->text_stage;
+        
+        return $text;
+    }
 }
 
 class Fahrzeug_model extends Abstract_module_record {

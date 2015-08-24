@@ -47,7 +47,6 @@ $config['modules']['stage_types'] = array(
 
 $config['modules']['missions'] = array(
     'module_name' => 'Einsätze',
-    'display_field' => 'name',
     'instructions' => lang("einsatz_instructions"),
     'permission' => 'missions',
 );
@@ -60,6 +59,7 @@ $config['modules']['mission_types'] = array(
 
 $config['modules']['mission_images'] = array(
     'module_name' => 'Einsatzbilder',
+    'display_field' => 'description',
     'instructions' => lang("einsatz_images_instructions"),
     'permission' => 'missions',
 );
@@ -79,7 +79,6 @@ $config['modules']['fahrzeuge'] = array(
 $config['modules']['fahrzeug_images'] = array(
     'module_name' => 'Fahrzeugbilder',
     'display_field' => 'description',
-  //  'instructions' => lang("fahrzeuge_instructions"),
     'permission' => 'vehicles',
 );
 

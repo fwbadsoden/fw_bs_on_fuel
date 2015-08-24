@@ -18,6 +18,7 @@ $config['nav']['forms'] = array(
 
 // you can add form configurations here which can then be referenced simply by one of the following methods form('test'), $this->fuel->forms->get('test')
 $config['forms']['forms'] = array(
+'submit_button_text' => '<p class="button"><input type="submit" name="sendeButton" value="Formular Senden" class="submitButton" /></p>',
 	/*'test' => array('javascript_validate' => FALSE, 'javascript_submit' => FALSE, 
 		'fields' => array(
 			'name' => array('required' => TRUE),
@@ -33,10 +34,10 @@ $config['forms']['custom_fields'] = array();
 $config['forms']['test_email'] = array();
 
 // The default from address to use when sending email notifications
-$config['forms']['email_from'] = 'Website Form Submission <website@'.$_SERVER['SERVER_NAME'].'>';
+$config['forms']['email_from'] = 'Formularübermittlung von <website@'.$_SERVER['SERVER_NAME'].'>';
 
 // The testing email address for when then application is not in production
-$config['forms']['email_subject'] = 'Website Form';
+$config['forms']['email_subject'] = 'Webseitenformular';
 
 // A list of IP addresses to block
 $config['forms']['blacklist'] = array();
