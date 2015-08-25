@@ -24,15 +24,18 @@ if ($param) {
 	}
 }
 else {
-    
-	// if no uri segment, then we do a query on the model to get a list of data
-	if (empty($list_where))	{
-		$list_where = array();
-	}
-    if (!isset($order)) {
-	   $data = fuel_model($model, array('find' => 'all', 'where' => $list_where));
+    if(!isset($external_data)) {
+    	// if no uri segment, then we do a query on the model to get a list of data
+    	if (empty($list_where))	{
+    		$list_where = array();
+    	}
+        if (!isset($order)) {
+    	   $data = fuel_model($model, array('find' => 'all', 'where' => $list_where));
+        } else {
+    	   $data = fuel_model($model, array('find' => 'all', 'where' => $list_where, 'order' => $order));
+        }
     } else {
-	   $data = fuel_model($model, array('find' => 'all', 'where' => $list_where, 'order' => $order));
+        $data = NULL;
     }
 }
 ?>
