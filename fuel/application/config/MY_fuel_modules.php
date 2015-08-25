@@ -119,6 +119,12 @@ $config['modules']['mannschaft_teams'] = array(
     'hidden' => true,
 );
 
+$config['modules']['news_articles'] = array(
+    'module_name' => 'Newsartikel',
+    'instructions' => lang("news_article_instructions"),
+    'permission' => 'news',
+);
+
 $config['modules']['pressarticles'] = array(
     'module_name' => 'Presseartikel',
     'instructions' => lang("presse_instructions"),

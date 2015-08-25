@@ -8,6 +8,7 @@ $lang["layout_field_stage_detail"] = "Bildbühne für Detailseite";
 $lang['layout_field_id_segment_description'] = "URI Segment, in dem sich die ID für die Detailseite des Moduls befindet. Z.B. http://www.feuerwehr-bs.de/technik/fahrzeuge/1 ist das Segment 3";
 
 // Module
+$lang["news_article_instructions"] = "Hier können Sie die Newsartikel verwalten.";
 $lang["presse_instructions"] = "Hier können Sie die Presseartikel verwalten.";
 $lang["presse_sources_instructions"] = "Hier können Sie die Quellen für Presseartikel verwalten.";
 $lang["stage_instructions"] = "Hier können Sie die Bildbühnen verwalten.";
@@ -83,5 +84,11 @@ $lang["form_label_mannschaft_show_birthday"] = "Geburtstag anzeigen";
 $lang["form_label_cssclass"] = "CSS Klasse";
 $lang["form_label_example"] = "Beispiel";
 $lang["form_label_category"] = "Kategorie";
+
+$lang["form_label_news_title"] = "Titel";
+$lang["form_label_news_stage_title"] = "Titel für Bildbühne";
+$lang["form_label_news_datum"] = "Gültig ab";
+$lang["form_label_news_teaser_image"] = "Teaserbild";
+$lang["form_label_news_og_image"] = "Facebookbild";
 
 ?>
