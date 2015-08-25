@@ -26,12 +26,20 @@ class Missions_model extends Abstract_module_model {
 	 */	
 	public function list_items($limit = NULL, $offset = 0, $col = 'id', $order = 'asc', $just_count = FALSE)
 	{
-	   $this->db->order_by('datum_beginn', 'desc');
-	   $this->db->order_by('uhrzeit_beginn', 'desc');
-       $this->db->select('id, datum_beginn, uhrzeit_beginn, name, ort, published');
-	   $data = parent::list_items($limit, $offset, $col, $order, $just_count);
+	    $this->db->order_by('datum_beginn', 'desc');
+	    $this->db->order_by('uhrzeit_beginn', 'desc');
+        $this->db->select('id, datum_beginn, uhrzeit_beginn, name, ort, published');
+ 	    $data = parent::list_items($limit, $offset, $col, $order, $just_count);
        
-       return $data;   
+        if (!$just_count)
+        {
+    		foreach($data as $key => $val)
+    		{
+    			$data[$key]['datum_beginn'] = get_ger_date($data[$key]['datum_beginn']);
+    		}
+    	}
+       
+        return $data;   
     }
     
     /**
