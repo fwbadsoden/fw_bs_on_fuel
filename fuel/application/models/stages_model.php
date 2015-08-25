@@ -120,19 +120,6 @@ class Stages_model extends Abstract_module_model {
 
 class Stage_model extends Abstract_module_record {
     
-//    public function save($validate = TRUE, $ignore_on_insert = TRUE, $clear_related = NULL) {
-//        
-//        if($this->img_count == 0 || $this->img_count == 1) {
-//            $this->img_count = 1;
-//            $this->randomize = 'no';
-//        }
-//        
-//        $this->last_modified = datetime_now();
-//        $this->last_modified_by = $this->fuel->auth->user_data("id"); 
-//        echo $this->last_modified_by; die();
-//        $saved = parent::save($validate = TRUE, $ignore_on_insert = TRUE, $clear_related = NULL);
-//        return $saved;
-//    }
 }
 
 ?>
