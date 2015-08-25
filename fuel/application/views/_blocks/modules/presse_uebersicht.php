@@ -1,6 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<section id="content">
-    <div class="<?=$stage->type->css_slidewrapper_class?>">
+
         <div id="MainContent">  
             <div class="article">
                 <p>Die Pressestelle der Feuerwehr Bad Soden am Taunus ist für die interne und externe Presse- und Öffentlichkeitsarbeit zuständig. Sie berichtet über alle nennenswerten Einsätze der Feuerwehr und steht für 
@@ -66,5 +65,3 @@
     		</div>
         </div>
         <hr class="clear" />     
-    </div>
-</section>

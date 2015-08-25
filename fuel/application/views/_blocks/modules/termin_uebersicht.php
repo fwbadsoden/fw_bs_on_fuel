@@ -1,11 +1,6 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<section id="content">
-    <div class="<?=$stage->type->css_slidewrapper_class?>">
-        
-<?php  
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
     $i=0;
     $j=0;
-
 ?>    
         <div class="oneColumnBox" id="submenue">
         
@@ -78,5 +73,3 @@
     $j++;
     endforeach; 
 ?>       
-    </div>
-</section>

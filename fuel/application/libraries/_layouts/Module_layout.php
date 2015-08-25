@@ -19,6 +19,12 @@ class Module_layout extends Base_layout {
         $vars["segment"] = 3;
         
         switch($vars["my_module"]) {
+            case "homepage":  
+                                $vars["external_data"] = true;
+                                $vars["model"]      = NULL;
+                                $vars["list_block"] = "modules/homepage";
+                                $vars["item_block"] = NULL;
+                                break;  
             case "fahrzeug":    $CI->load->model('fahrzeuge_model');
             
                                 if(strpos(uri_string(), "fahrzeuge/ausserdienst")) {
