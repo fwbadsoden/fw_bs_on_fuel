@@ -1,3 +1,5 @@
+    </div>
+</section>
 <footer id="endOfPage">
 
 	<div id="shortlinks">

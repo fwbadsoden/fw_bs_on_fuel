@@ -8,11 +8,9 @@
     if($data->is_retired()) : $headline = "Ausser Dienst"; 
     else : $headline = "Alle Fahrzeuge";
     endif;
-    
+
 ?>
 
-<section id="content">
-    <div class="<?=$stage->type->css_slidewrapper_class?>">
         <div class="oneColumnBox">
             
                 <div class="oneColumnBox">
@@ -207,5 +205,3 @@
                       
         </div>
         <hr class="clear" />
-    </div>
-</section>
