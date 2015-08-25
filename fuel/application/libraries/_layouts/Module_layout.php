@@ -60,13 +60,15 @@ class Module_layout extends Base_layout {
             case "mannschaft":  $CI->load->model("mannschaft_members_model");
                                 $vars["team"]       = $CI->mannschaft_members_model->find_team();
                                 $vars["fuehrung"]   = $CI->mannschaft_members_model->find_fuehrung();
-            
+                                $vars["external_data"] = true;
                                 $vars["model"]      = "mannschaft_members_model";
                                 $vars["list_block"] = "modules/mannschaft_uebersicht";
                                 $vars["item_block"] = NULL;
                                 break;
-            case "termin":      
-                                
+            case "termin":      $CI->load->model("appointments_model");
+                                $vars["termine"]    = $CI->appointments_model->get_appointments();
+                                $vars["monate"]     = $CI->appointments_model->get_months_for_filter();
+                                $vars["external_data"] = true;
                                 $vars["model"]      = "appointments_model";
                                 $vars["list_block"] = "modules/termin_uebersicht";
                                 $vars["item_block"] = NULL;

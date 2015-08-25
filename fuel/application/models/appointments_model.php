@@ -30,6 +30,57 @@ class Appointments_model extends Abstract_module_model {
         $fields['ort'] = array('type' => 'textarea', 'rows' => 3, 'class' => 'no_editor');
         return $fields;
     }   
+    
+    public function get_months_for_filter()
+    {   
+        $this->db->select('datum');
+        $this->db->where('datum >=', date('Y-m-d'));
+        $this->db->order_by('datum', 'ASC');
+        $query = $this->db->get('appointments');
+        $i=0;
+        $months = array();
+        $month = '';
+        
+        foreach($query->result() as $row)
+        {
+            if($month == '') $month = get_month_name(substr($row->datum,5,2));    
+            if($month != get_month_name(substr($row->datum,5,2)))
+            {
+                $i++;
+                $month = get_month_name(substr($row->datum,5,2));
+            }
+            $months[$i] = $month;
+        }
+        
+        return $months;
+    }
+    
+    public function get_appointments()
+    {
+        $this->db->order_by('datum asc, beginn asc');
+        $this->db->where(array('datum >=' => date('Y-m-d'), 'published' => 'yes'));
+        $this->db->select(array('id', 'datum'));
+        $query = $this->db->get('appointments');
+        
+        $termine = array();
+        $i = 0;
+        $month = '';      
+        
+        foreach($query->result() as $row)
+        { 
+            if($month == '') $month = get_month_name((int)substr($row->datum, 5, 2));
+            if($month != get_month_name((int)substr($row->datum, 5, 2)))
+            {
+                $month = get_month_name((int)substr($row->datum, 5, 2));
+                $i = 0;
+            }
+            
+            $termine[$month][$i] = fuel_model("appointments_model", array('find' => 'key', 'where' => $row->id));
+            $i++;
+        }
+        
+        return $termine;
+    }
 
 }
 
