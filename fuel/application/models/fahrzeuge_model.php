@@ -208,6 +208,12 @@ class Fahrzeug_model extends Abstract_module_record {
         if($this->retired == 'yes') return true;
         else return false;
     }
+    
+    public function is_published() {
+        
+        if($this->published == 'yes') return true;
+        else return false;        
+    }
 }
 
 ?>

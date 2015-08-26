@@ -29,7 +29,6 @@ class Mission_Cues_model extends Abstract_module_model {
 }
 
 class Mission_Cue_model extends Abstract_module_record {
-    
 }
 
 ?>

@@ -106,6 +106,18 @@ class News_articles_model extends Abstract_module_model {
              
         return $values;
 	}
+    
+    public function get_stage_text($id) {
+        
+        $this->db->where("id", $id);
+        $this->db->select("stage_title, title");
+        $query = $this->db->get('news_articles');
+        $row = $query->row();
+        $text['name']       = $row->stage_title;
+        $text['name_lang']  = $row->title;
+        
+        return $text;
+    }
 }
 
 class News_article_model extends Abstract_module_record {

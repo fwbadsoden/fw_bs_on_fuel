@@ -125,6 +125,13 @@ $config['modules']['news_articles'] = array(
     'permission' => 'news',
 );
 
+$config['modules']['news_images'] = array(
+    'module_name' => 'Newsbilder',
+    'display_field' => 'description',
+    'instructions' => lang("news_images_instructions"),
+    'permission' => 'news',
+);
+
 $config['modules']['pressarticles'] = array(
     'module_name' => 'Presseartikel',
     'instructions' => lang("presse_instructions"),

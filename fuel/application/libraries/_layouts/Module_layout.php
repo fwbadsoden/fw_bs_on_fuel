@@ -18,13 +18,7 @@ class Module_layout extends Base_layout {
         
         $vars["segment"] = 3;
         
-        switch($vars["my_module"]) {
-            case "homepage":  
-                                $vars["external_data"] = true;
-                                $vars["model"]      = NULL;
-                                $vars["list_block"] = "modules/homepage";
-                                $vars["item_block"] = NULL;
-                                break;  
+        switch($vars["my_module"]) {  
             case "fahrzeug":    $CI->load->model('fahrzeuge_model');
             
                                 if(strpos(uri_string(), "fahrzeuge/ausserdienst")) {
@@ -44,15 +38,39 @@ class Module_layout extends Base_layout {
                                 $vars["list_block"] = "modules/fahrzeuge_uebersicht";
                                 $vars["item_block"] = "modules/fahrzeuge_detail";
                                 break;
-            case "einsatz":     
+            case "einsatz":     $CI->load->model("missions_model");
                                 
+                                if(is_numeric(uri_segment($vars["segment"]))) {
+                                    $vars["stage_text"] = $CI->missions_model->get_stage_text(uri_segment($vars["segment"]));                               
+                                } else {
+                                    if($CI->input->post('mission_year')) $mission_year = $CI->input->post('mission_year'); else $mission_year = date('Y');
+                                    if($CI->input->post('mission_type') == 0) $mission_type = ""; else $mission_type = $CI->input->post('mission_type');
+                                    
+                                    $vars["mission_types"] = fuel_model("mission_types_model", array('find' => 'all', 'order' => 'name asc'));
+                                    $vars["years"]         = $CI->missions_model->get_years();
+                                    $vars["statistic"]     = $CI->missions_model->get_statistic($vars["mission_types"], $mission_year, $mission_type);
+                                }
+                                
+                                $vars["order"]      = "datum_beginn desc, uhrzeit_beginn desc";
+                                $vars["list_where"] = array("published" => "yes");
                                 $vars["model"]      = "missions_model";
                                 $vars["list_block"] = "modules/einsatz_uebersicht";
                                 $vars["item_block"] = "modules/einsatz_detail";
                                 break;
-            case "news":        
+            case "news":        $CI->load->model('news_articles_model');                                
+                                $CI->load->library('weather');
+                                              
+                                if(is_numeric(uri_segment($vars["segment"]))) {
+                                    $vars["stage_text"] = $CI->news_articles_model->get_stage_text(uri_segment($vars["segment"]));
+                                    $vars["latest_news"] = fuel_model("news_articles_model", array('find' => 'all', 'limit' => 10, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'datum desc, id desc'));
+                                } else {
+                                    $vars["weather"] = $CI->weather->get_weather();
+                                    $vars["termine"] = fuel_model("appointments_model",array('find' => 'all', 'limit' => 3, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'datum desc, beginn desc'));
+                                }
                                 
-                                $vars["model"]      = "news_model";
+                                $vars["order"]      = "datum desc, id desc";
+                                $vars["list_where"] = array("published" => "yes");
+                                $vars["model"]      = "news_articles_model";
                                 $vars["list_block"] = "modules/news_uebersicht";
                                 $vars["item_block"] = "modules/news_detail";
                                 break;

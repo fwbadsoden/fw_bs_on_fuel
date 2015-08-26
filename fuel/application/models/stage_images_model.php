@@ -35,7 +35,8 @@ class Stage_Images_model extends Abstract_module_model {
         $options = array( 1 => 'kleine Bildbühne, Textbox links, 1280*650px',
                           2 => 'große Bildbühne, Textbox links, 1280*720px',
                           3 => 'große Bildbühne, Textbox rechts, 1280*720px',
-                          4 => 'kleine Bildbühne, Fahrzeugdetailansicht, Textbox links, 1280*720px');
+                          4 => 'kleine Bildbühne, Fahrzeugdetailansicht, Textbox links, 1280*650px',
+                          5 => 'große Bildbühne, Einsatzdetailansicht, Textbox lang, 1280*720px');
         $fields['stage_image_type_id'] = array('label' => lang('form_label_stage_image_type'),
                                                'type' => 'select', 'options' => $options,
                                                'order' => 3);  
