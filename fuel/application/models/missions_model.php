@@ -113,12 +113,120 @@ class Missions_model extends Abstract_module_model {
         
         return $fields;
     }
+    
+	public function get_years()
+	{
+		$years = array();
+		
+		$query = $this->db->query('SELECT DISTINCT substring( datum_beginn, 1, 4 ) as datum FROM '.$this->db->dbprefix('missions')); 
+		
+		foreach ($query->result() as $row)
+		{ 
+			$years[] = $row->datum;
+		}
+		rsort($years);
+		return $years;
+	}
+    
+    public function get_statistic($types, $selected_year, $selected_type) {
+        
+        $statistic = array();
+        foreach($types as $type) {
+            $statistic[$type->id] = 0;
+        }
+        $statistic["all"] = 0;
+        $statistic["ueberoertlich"] = 0;
+        
+        if($selected_type != NULL && $selected_type != "") {
+            $this->db->where('type_id', $selected_type);
+            if($selected_year != NULL && $selected_year != "") {
+                $this->db->where('substring(datum_beginn,1,4)', $selected_year);
+            } 
+            $statistic[$selected_type] = $statistic["all"] = $this->db->count_all_results('missions');
+            
+            // überörtlich
+            $this->db->where('ueberoertlich', 'yes');
+            $this->db->where('type_id', $selected_type);
+            if($selected_year != NULL && $selected_year != "") {
+                $this->db->where('substring(datum_beginn,1,4)', $selected_year);
+            } 
+            $statistic["ueberoertlich"] = $this->db->count_all_results('missions');
+        } else {
+            foreach($types as $type) {
+                $this->db->where('type_id', $type->id);
+                if($selected_year != NULL && $selected_year != "") {
+                    $this->db->where('substring(datum_beginn,1,4)', $selected_year);
+                } 
+                $statistic[$type->id] = $this->db->count_all_results('missions');  
+                $statistic["all"] += $statistic[$type->id];         
+            
+                // überörtlich
+                $this->db->where('ueberoertlich', 'yes');
+                $this->db->where('type_id', $type->id);
+                if($selected_year != NULL && $selected_year != "") {
+                    $this->db->where('substring(datum_beginn,1,4)', $selected_year);
+                } 
+                $statistic["ueberoertlich"] += $this->db->count_all_results('missions');         
+            }
+        }
+        
+        return $statistic;
+    }
+	
+    public function get_stage_text($id)
+    {
+        $this->db->join('mission_types', 'mission_types.id = missions.type_id');
+        $this->db->select('missions.einsatz_nr as einsatz_nr, missions.name as name, mission_types.name as type_name, mission_types.class as type_class');
+        $query = $this->db->get_where('missions', array('missions.id' => $id));
+        $row = $query->row();
+        
+        $text['name']       = $row->name;
+        $text['name_lang']  = $row->type_name.' (#'.$row->einsatz_nr.')';
+        $text['class']   = $row->type_class;
+        
+        return $text;
+    }
 
 }
 
 class Mission_model extends Abstract_module_record {
     
-
+    
+    public function is_published() {
+        
+        if($this->published == 'yes') return true;
+        else return false;        
+    }
+    
+    public function is_ueberoertlich() {
+        
+        if($this->ueberoertlich == 'yes') return true;
+        else return false;        
+    }
+    
+    public function display_ort() {
+        
+        if($this->ort_zeigen == 'yes') return true;
+        else return false;               
+    }
+    
+    public function get_ort() {
+        
+        if($this->display_ort()) {
+            return parent::get_ort();
+        } else {
+            return "n/a";
+        }
+    }
+    
+    public function get_vehicle_count() {
+        
+        if(count($this->fahrzeuge) > 0) {
+            return count($this->fahrzeuge); 
+        } else {
+            return 0; 
+        }
+    }
 }
 
 ?>

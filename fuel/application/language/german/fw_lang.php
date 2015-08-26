@@ -9,6 +9,7 @@ $lang['layout_field_id_segment_description'] = "URI Segment, in dem sich die ID 
 
 // Module
 $lang["news_article_instructions"] = "Hier können Sie die Newsartikel verwalten.";
+$lang["news_images_instructions"] = "Hier können Sie die Newsbilder verwalten.";
 $lang["presse_instructions"] = "Hier können Sie die Presseartikel verwalten.";
 $lang["presse_sources_instructions"] = "Hier können Sie die Quellen für Presseartikel verwalten.";
 $lang["stage_instructions"] = "Hier können Sie die Bildbühnen verwalten.";

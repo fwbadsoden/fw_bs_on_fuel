@@ -37,7 +37,7 @@ else {
     } else {
         $data = NULL;
     }
-}
+} 
 ?>
 
 <?php if ($item_block != NULL && !empty($item)) : ?>
