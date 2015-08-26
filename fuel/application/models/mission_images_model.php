@@ -48,7 +48,7 @@ class Mission_Images_model extends Abstract_module_model {
                                  'create_thumb' => FALSE);                                          
 
         return $fields;
-    }   
+    }  
 }
 
 class Mission_Image_model extends Abstract_module_record {
