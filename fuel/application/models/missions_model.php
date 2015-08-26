@@ -103,8 +103,9 @@ class Missions_model extends Abstract_module_model {
                                             'order' => 13);                                                                                                  
         
         $fields["weitere_kraefte"]  = array('label' => lang("form_label_einsatz_weiterekraefte"),
-                                            'type'  => 'textarea',
+                                            'type'  => 'tagsinput',
                                             'class' => 'no_editor',
+                                            'autosuggests' => fuel_model('autosuggests_model', array('find' => 'all', 'where' => array('keyword' => 'einsatz_weitere_kraefte'))),
                                             'order' => 14);      
     
         $fields["published"]["type"] = 'hidden';      
@@ -112,6 +113,16 @@ class Missions_model extends Abstract_module_model {
         $fields["lfd_nr"]["type"] = 'hidden';                                       
         
         return $fields;
+    }
+    
+    public function options_list($key = 'id', $val = 'name', $where = array(), $order = TRUE, $group = TRUE)
+    {
+    	if (empty($val))
+    	{
+    		$val ='name';
+    	}
+    	$data = parent::options_list($key, $val, $where, $order);
+    	return $data;
     }
     
 	public function get_years()
