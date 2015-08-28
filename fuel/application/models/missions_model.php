@@ -4,7 +4,16 @@ require_once('abstract_module_model.php');
 
 class Missions_model extends Abstract_module_model {
     
-    public $required = array('name', 'datum_beginn', 'uhrzeit_beginn', 'datum_ende', 'uhrzeit_ende', 'lage', 'anzahl_kraefte', 'bericht', 'cue_id', 'type_id');
+    public $required = array('name', 
+                             'datum_beginn', 
+                             'uhrzeit_beginn', 
+                             'datum_ende', 
+                             'uhrzeit_ende', 
+                             'lage', 
+                             'anzahl_kraefte', 
+                             'bericht', 
+                             'cue_id', 
+                             'type_id');
     public $foreign_keys = array('cue_id' => 'mission_cues_model', 'type_id' => 'mission_types_model');
     public $has_many = array('mission_images' => 'mission_images_model', 'fahrzeuge' => 'fahrzeuge_model');
     public $filters = array('name', 'datum_beginn', 'ort');
@@ -38,6 +47,7 @@ class Missions_model extends Abstract_module_model {
     			$data[$key]['datum_beginn'] = get_ger_date($data[$key]['datum_beginn']);
     		}
     	}
+        if ($col == 'datum_beginn') array_sorter($data, $col, $order);	
        
         return $data;   
     }
@@ -53,75 +63,97 @@ class Missions_model extends Abstract_module_model {
     public function form_fields($values = array(), $related = array()) {
         
         $fields = parent::form_fields($values, $related); 
-        $fields["einsatzdaten"]     = array('type' => 'fieldset',
-                                            'label' => 'Einsatzdaten',
-                                            'order' => 1);
-                               
-        $fields["einsatz_nr"]       = array('readonly' => true,  
-                                            'order' => 2);  
+             
+        $fields["einsatz_nr"]               = array('label'   => lang('form_label_einsatz_nr'),
+                                                    'readonly' => true,  
+                                                    'order' => 1);  
         if(!isset($value["einsatz_nr"])) {
             $fields["einsatz_nr"]["value"] = "wird automatisch vergeben";
         }                                          
         
-        $fields["type_id"]          = array('order' => 3); 
+        $fields["type_id"]['order']         = 2; 
+        $fields["type_id"]['label']         = lang('form_label_einsatz_type');
+        
+        $fields["cue_id"]['order']          = 3; 
+        $fields["cue_id"]['label']          = lang('form_label_einsatz_cue');
+        
+        $options = array('no' => 'nein', 'yes' => 'ja');   
+        $fields["ueberoertlich"]            = array('label'   => lang('form_label_einsatz_ueberoertlich'),
+                                                    'type'    => 'enum',
+                                                    'options' => $options,
+                                                    'order'   => 4);   
+                                                
+        $fields["name"]['order']            = 10; 
+        
+        $fields['datum_beginn']['order']    = 11; 
+        $fields['datum_beginn']['label']    = lang('form_label_einsatz_datum_beginn'); 
+                                           
+        $fields["uhrzeit_beginn"]['order']  = 12; 
+        $fields['uhrzeit_beginn']['ampm']   = FALSE; 
+        $fields["uhrzeit_beginn"]['label']  = lang('form_label_einsatz_uhr_beginn'); 
+                                                                     
+        $fields['datum_ende']['order']      = 13;                     
+        $fields['datum_ende']['label']      = lang('form_label_einsatz_datum_ende');              
+                                            
+        $fields['uhrzeit_ende']['order']    = 14; 
+        $fields['uhrzeit_ende']['ampm']     = FALSE; 
+        $fields['uhrzeit_ende']['label']    = lang('form_label_einsatz_uhr_ende'); 
+        
+        $fields["ort"]                      = array('label' => lang("form_label_einsatz_ort"),
+                                                    'order' => 20);            
         
         $options = array('yes' => 'ja', 'no' => 'nein');   
-        $fields["ueberoertlich"]          = array('label'   => lang('form_label_einsatz_art'),
-                                            'type'    => 'enum',
-                                            'options' => $options,
-                                            'order'   => 4);   
-                                           
-        $fields["name"]             = array('order' => 5); 
+        $fields["ort_zeigen"]               = array('type'    => 'enum',
+                                                    'options' => $options,
+                                                    'comment' => lang('form_label_einsatz_ort_zeigen_comment'),
+                                                    'order'   => 21);                                                                                                          
         
-        $fields['datum_beginn']     = array('order' => 6); 
-                                           
-        $fields["uhrzeit_beginn"]   = array('order' => 7); 
-                                                                     
-        $fields['datum_ende']       = array('order' => 8);              
-                                            
-        $fields['uhrzeit_ende']     = array('order' => 9); 
+        $fields["lage"]                     = array('label' => lang("form_label_einsatz_lage"),
+                                                    'type'  => 'textarea',
+                                                    'class' => 'no_editor',
+                                                    'order' => 22);                                                                                                     
         
-        $fields["anzahl_kraefte"]   = array('label' => lang("form_label_einsatz_anzahl_kraefte"),
-                                            'after_html' => 'Personen',
-                                            'order' => 10);
+        $fields["bericht"]                  = array('label' => lang("form_label_einsatz_bericht"),
+                                                    'type'  => 'textarea',
+                                                    'class' => 'no_editor',
+                                                    'order' => 23);      
+                     
+        $fields["fahrzeuge"]["order"]       = 30;
+        $fields["fahrzeuge"]["mode"]        = "checkbox";
+        $fields["fahrzeuge"]["model"]       = array('' => array('fahrzeuge' => 'get_mission_vehicle_list'));
+                
+        $fields["anzahl_kraefte"]           = array('label' => lang("form_label_einsatz_anzahl_kraefte"),
+                                                    'after_html' => 'Personen',
+                                                    'order' => 31);
+                                                    
+        $fields["anzahl_einsaetze"]['order'] = 32; 
+        $fields["anzahl_einsaetze"]['label'] = lang('form_label_einsatz_anzahl_einsaetze'); 
+        $fields["anzahl_einsaetze"]['comment'] = lang('form_label_einsatz_anzahl_einsaetze_comment');                                                                                       
         
-        $fields["anzahl_einsaetze"] = array('order' => 11);
-        
-        $fields["ort"]              = array('label' => lang("form_label_einsatz_ort"),
-                                            'type'  => 'textarea',
-                                            'class' => 'no_editor',
-                                            'order' => 11);                                                                                                         
-        
-        $fields["lage"]             = array('label' => lang("form_label_einsatz_lage"),
-                                            'type'  => 'textarea',
-                                            'class' => 'no_editor',
-                                            'order' => 12);                                                                                                     
-        
-        $fields["bericht"]          = array('label' => lang("form_label_einsatz_bericht"),
-                                            'type'  => 'textarea',
-                                            'class' => 'no_editor',
-                                            'order' => 13);                                                                                                  
-        
-        $fields["weitere_kraefte"]  = array('label' => lang("form_label_einsatz_weiterekraefte"),
-                                            'type'  => 'tagsinput',
-                                            'class' => 'no_editor',
-                                            'autosuggests' => fuel_model('autosuggests_model', array('find' => 'all', 'where' => array('keyword' => 'einsatz_weitere_kraefte'))),
-                                            'order' => 14);      
+        $fields["weitere_kraefte"]          = array('label' => lang("form_label_einsatz_weiterekraefte"),
+                                                    'type'  => 'tagsinput',
+                                                    'class' => 'no_editor',
+                                                    'comment' => lang('form_label_einsatz_weiterekraefte_comment'),
+                                                    'autosuggests' => fuel_model('autosuggests_model', array('find' => 'all', 'where' => array('keyword' => 'einsatz_weitere_kraefte'))),
+                                                    'order' => 34);      
     
-        $fields["published"]["type"] = 'hidden';      
-        $fields["mission_images"]["type"] = 'hidden';  
-        $fields["lfd_nr"]["type"] = 'hidden';                                       
+        $fields["published"]["type"]        = 'hidden';      
+        $fields["mission_images"]["type"]   = 'hidden';  
+        $fields["lfd_nr"]["type"]           = 'hidden';                                       
         
         return $fields;
     }
     
     public function options_list($key = 'id', $val = 'name', $where = array(), $order = TRUE, $group = TRUE)
     {
-    	if (empty($val))
-    	{
-    		$val ='name';
-    	}
-    	$data = parent::options_list($key, $val, $where, $order);
+    	$this->db->order_by('datum_beginn desc, uhrzeit_beginn desc, id desc');
+        $this->db->select('id, name, datum_beginn, uhrzeit_beginn');
+        $query = $this->db->get('missions');
+        
+        foreach($query->result() as $row) {
+            $data[$row->id] = get_ger_date($row->datum_beginn).' '.$row->uhrzeit_beginn.' - '.$row->name;
+        }
+        
     	return $data;
     }
     
@@ -138,6 +170,15 @@ class Missions_model extends Abstract_module_model {
 		rsort($years);
 		return $years;
 	}
+    
+    public function get_mission_count($year) {
+        
+        $this->db->select_sum('anzahl_einsaetze');
+        $this->db->where(array('substring(datum_beginn,1,4)' => $year));
+        $query = $this->db->get('missions');
+        $row = $query->row();
+        return $row->anzahl_einsaetze;
+    }
     
     public function get_statistic($types, $selected_year, $selected_type) {
         

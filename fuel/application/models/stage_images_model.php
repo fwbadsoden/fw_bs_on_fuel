@@ -26,7 +26,7 @@ class Stage_Images_model extends Abstract_module_model {
          
         // Asset-Ordner                                        
         $fields['image'] = array('folder' => 'images/bildbuehnen',
-                                 'order' => 2,
+                                 'order' => 3,
                                  'create_thumb' => FALSE,
                                  'width' => '1280',
                                  'master_dim' => 'width');
@@ -39,27 +39,29 @@ class Stage_Images_model extends Abstract_module_model {
                           5 => 'große Bildbühne, Einsatzdetailansicht, Textbox lang, 1280*720px');
         $fields['stage_image_type_id'] = array('label' => lang('form_label_stage_image_type'),
                                                'type' => 'select', 'options' => $options,
-                                               'order' => 3);  
+                                               'order' => 4);  
      
         // Überschrift + CSS Klasse
         $fields['text_1'] = array('label' => lang('form_label_stage_image_text_1'),
-                                  'order' => 4);
+                                  'order' => 5);
+                                  
         $options = array( '' => 'Standard',
                           'quote' => 'Startseite');
         $fields['css_text_class_1'] = array('label' => lang('form_label_stage_image_css_text_class_1'),
                                             'type' => 'select', 'options' => $options,
-                                            'order' => 5);   
+                                            'order' => 6);   
         
         // Untertitel + CSS Klasse
         $fields['text_2'] = array('label' => lang('form_label_stage_image_text_2'),
-                                  'order' => 6);
+                                  'order' => 7);
+                                  
         $options = array( '' => 'Standard',
                           'quotePerson' => 'Startseite');
         $fields['css_text_class_2'] = array('label' => lang('form_label_stage_image_css_text_class_2'),
                                             'type' => 'select', 'options' => $options,
-                                            'order' => 7); 
+                                            'order' => 8); 
                                             
-        $fields['link'] = array('order' => 8);                                            
+        $fields['link']['order'] = 9;                                            
 
         return $fields;
     }
@@ -67,6 +69,13 @@ class Stage_Images_model extends Abstract_module_model {
 
 class Stage_Image_model extends Abstract_module_record {
     
+    public function get_css_text_class_1() {
+        return " class=".parent::get_css_text_class_1();
+    }
+    
+    public function get_css_text_class_2() {
+        return " class=".parent::get_css_text_class_2();        
+    }
 }
 
 ?>

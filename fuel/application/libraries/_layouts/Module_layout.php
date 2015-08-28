@@ -63,6 +63,7 @@ class Module_layout extends Base_layout {
                                 if(is_numeric(uri_segment($vars["segment"]))) {
                                     $vars["stage_text"] = $CI->news_articles_model->get_stage_text(uri_segment($vars["segment"]));
                                     $vars["latest_news"] = fuel_model("news_articles_model", array('find' => 'all', 'limit' => 10, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'datum desc, id desc'));
+                                    $vars["facebook_infos"][0] = $CI->news_articles_model->get_og_image(uri_segment($vars["segment"]));                                
                                 } else {
                                     $vars["weather"] = $CI->weather->get_weather();
                                     $vars["termine"] = fuel_model("appointments_model",array('find' => 'all', 'limit' => 3, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'datum desc, beginn desc'));
@@ -95,6 +96,11 @@ class Module_layout extends Base_layout {
                                 $vars["external_data"] = true;
                                 $vars["model"]      = "appointments_model";
                                 $vars["list_block"] = "modules/termin_uebersicht";
+                                $vars["item_block"] = NULL;
+                                break;
+            case "startseite":  
+                                $vars["external_data"] = true;
+                                $vars["list_block"] = "modules/startseite";
                                 $vars["item_block"] = NULL;
                                 break;
         }

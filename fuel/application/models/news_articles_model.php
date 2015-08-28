@@ -35,6 +35,7 @@ class News_articles_model extends Abstract_module_model {
     			$data[$key]['datum'] = get_ger_date($data[$key]['datum']);
     		}
     	}
+        if ($col == 'datum') array_sorter($data, $col, $order);	
        
         return $data;   
     }
@@ -117,6 +118,15 @@ class News_articles_model extends Abstract_module_model {
         $text['name_lang']  = $row->title;
         
         return $text;
+    }
+    
+    public function get_og_image($id) {
+        
+        $this->db->where('id', $id);
+        $this->db->select('og_image');
+        $query = $this->db->get('news_articles');
+        $row = $query->row();
+        return img_path('news/'.$row->og_image);
     }
 }
 

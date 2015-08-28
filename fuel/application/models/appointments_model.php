@@ -35,6 +35,7 @@ class Appointments_model extends Abstract_module_model {
     			$data[$key]['datum'] = get_ger_date($data[$key]['datum']);
     		}
     	}
+        if ($col == 'datum') array_sorter($data, $col, $order);
            
         return $data;   
     }

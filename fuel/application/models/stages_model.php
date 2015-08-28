@@ -18,13 +18,12 @@ class Stages_model extends Abstract_module_model {
     public function get_stage_for_frontend($stage_id) {
         
         $stage = fuel_model('stages', array('find' => 'one', 'where' => array('id' => $stage_id)));
-        
         $img_count = $stage->img_count;
         $randomize = $stage->randomize;
         
         $images = $stage->stage_images;
         $images_new = array();
-        
+                
         if($randomize == true) {
             $random_keys = array_rand($images, $img_count);
             if(is_array($random_keys)) {
@@ -59,12 +58,11 @@ class Stages_model extends Abstract_module_model {
 	public function list_items($limit = NULL, $offset = 0, $col = 'id', $order = 'asc', $just_count = FALSE)
 	{
 	   
-       $this->db->join('stage_types', 'stage_types.id = stages.type_id');
-       $this->db->join('users', 'users.id = stages.last_modified_by');
-       $this->db->select('stages.id as id, stages.name as name, stage_types.name as stage_type, img_count as anzahl_bilder, date_added, last_modified, users.user_name as last_modified_by, published');
-	   $data = parent::list_items($limit, $offset, $col, $order, $just_count);
+        $this->db->join('stage_types', 'stage_types.id = stages.type_id');
+        $this->db->select('stages.id as id, stages.name as name, stage_types.name as stage_type, img_count as anzahl_bilder, published');
+        $data = parent::list_items($limit, $offset, $col, $order, $just_count);       
        
-       return $data;   
+        return $data;   
     }
     
     /**
@@ -113,6 +111,7 @@ class Stages_model extends Abstract_module_model {
             $values["randomize"] = 'no';
         }
         $values["last_modified_by"] = $this->fuel->auth->user_data("id"); 
+        $values["last_modified"] = date("Y-m-d H:i:s");
         
 		return $values;
 	}
