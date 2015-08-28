@@ -8,28 +8,29 @@ class Homepage extends CI_Controller {
 	 * @return
 	 */
 	public function __construct()
-	{
+	{ 
+        parent::__construct();
         $this->load->library('weather');
+        //$this->load->model('stages_model');
+        $this->load->model('missions_model');
+        $this->load->model('fahrzeuge_model');
+        $this->load->model('mannschaft_members_model');
     }
      
-    public function index() {
+    public function index() {        
         
-        $this->load->model('stages_model');
-        $stage_id = fuel_model("fuel_sitevariables_model", array('find' => 'one', 'where' => array('name' => 'homepage_stage_id')));
-        
-        $head['main_navigation']  = main_navigation();
-        $head["stage"]            = $this->stages_model->get_stage_for_frontend($stage_id->value);
         $data["missions"]         = fuel_model("missions_model", array('find' => 'all', 'limit' => 10, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'datum_beginn desc, uhrzeit_beginn desc, einsatz_nr desc'));
-        $data["news"]             = fuel_model("news_model", array('find' => 'all', 'limit' => 2, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'valid_from desc, valid_from_time desc'));
-        $data["termine"]          = fuel_model("appointments_model",array('find' => 'all', 'limit' => 3, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'datum desc, beginn desc'));
+        $data["news"]             = fuel_model("news_articles_model", array('find' => 'all', 'limit' => 2, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'datum desc, id desc'));
+        $data["appointments"]     = fuel_model("appointments_model",array('find' => 'all', 'limit' => 3, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'datum desc, beginn desc'));
         $data["weather"]          = $this->weather->get_weather();
-        
-        $this->load->view('_blocks/header', $head);
-        $this->load->view('home', $data);
-        $this->load->view('_blocks/footer');
+        $data["mission_count"]    = $this->missions_model->get_mission_count(date('Y'));
+        $data["vehicle_count"]    = $this->fahrzeuge_model->get_fahrzeug_anzahl();
+        $data["member_count"]     = $this->mannschaft_members_model->get_mannschaft_members_anzahl_as_array();
+      
+        $this->fuel->pages->render("startseite", $data, array('render_mode' => 'cms'));
     }
 }
 
-/* End of file impressum.php */
-/* Location: ./application/controllers/impressum.php */
+/* End of file homepage.php */
+/* Location: ./application/controllers/homepage.php */
 ?>

@@ -24,12 +24,19 @@ class Fahrzeuge_model extends Abstract_module_model {
 	 */	
 	public function list_items($limit = NULL, $offset = 0, $col = 'id', $order = 'asc', $just_count = FALSE)
 	{
-       $this->db->order_by('published', 'descending');
-	   $this->db->order_by('precedence', 'ascending');
-       $this->db->select('id, name, rufname, precedence, retired as ausser_dienst, published');
-	   $data = parent::list_items($limit, $offset, $col, $order, $just_count);
-       
-       return $data;   
+        $this->db->order_by('published', 'descending');
+	    $this->db->order_by('precedence', 'ascending');
+        $this->db->select('id, name, rufname, retired as ausser_dienst, published');
+	    $data = parent::list_items($limit, $offset, $col, $order, $just_count);
+        if (!$just_count)
+        {
+    		foreach($data as $key => $val)
+    		{
+                $data[$key]['ausser_dienst'] = translate_enum($data[$key]['ausser_dienst']);
+    		}
+    	}
+        
+        return $data;   
     }
     
     /**
@@ -64,7 +71,7 @@ class Fahrzeuge_model extends Abstract_module_model {
         $fields["rufname"] = array('label' => lang("form_label_fahrzeug_funkrufname"),
                                    'order' => 5); 
                                    
-        $fields["setcard_image"] = array('order' => 6);                                   
+        $fields["setcard_image"]['order'] = 6;                                   
                                           
         $options = array('yes' => 'ja', 'no' => 'nein');                                 
         $fields['einsaetze_zeigen'] = array('label'   => lang('form_label_fahrzeug_einsaetze_zeigen'),
@@ -91,11 +98,11 @@ class Fahrzeuge_model extends Abstract_module_model {
                                 'type' => 'textarea',
                                 'order' => 11);  
                                            
-        $fields["hersteller"] = array('order' => 12); 
+        $fields["hersteller"]['order'] = 12; 
                                            
-        $fields["aufbau"] = array('order' => 13); 
+        $fields["aufbau"]['order'] = 13; 
                                            
-        $fields["baujahr"] = array('order' => 14); 
+        $fields["baujahr"]['order'] = 14; 
         
         $options = array('1/8', '1/7', '1/5', '1/4', '1/3', '1/2', '1/1', '16' => '16 (RH Hänger)');
         $fields['besatzung'] = array('options' => $options,
@@ -107,16 +114,16 @@ class Fahrzeuge_model extends Abstract_module_model {
                                       'label' => 'Zusatzdaten Löschfahrzeug (nur bei Löschfahrzeugen pflegen)',
                                       'order' => 16);    
         
-        $fields["pumpe"] = array('order' => 17);
+        $fields["pumpe"]['order'] = 17; 
         
-        $fields["loeschmittel"] = array('order' => 18);
+        $fields["loeschmittel"]['order'] = 18; 
         
         $fields["zusatzdaten_sonst"] = array('type' => 'fieldset',
                                       'class' => 'tab',
                                       'label' => 'Zusatzdaten sonstige Fahrzeuge (nicht bei Löschfahrzeugen pflegen)',
                                       'order' => 19); 
         
-        $fields["besonderheit"] = array('order' => 20);   
+        $fields["besonderheit"]['order'] = 20;    
         
         $fields["fahrzeugwerte"] = array('type' => 'fieldset',
                                       'class' => 'tab',
@@ -155,10 +162,29 @@ class Fahrzeuge_model extends Abstract_module_model {
         return $fields;
     }
     
+    public function options_list($key = 'id', $val = 'name', $where = array(), $order = TRUE, $group = TRUE)
+    {
+    	if (empty($val))
+    	{
+    		$val ='name';
+    	}
+    	$data = parent::options_list($key, $val, $where, $order);
+    	return $data;
+    }
+    
+    public function get_mission_vehicle_list() {
+        
+        $this->db->order_by('precedence asc');
+        $this->db->select('id, name');
+        $this->db->where(array('published' => 'yes', 'retired' => 'no'));
+        $query = $this->db->get('fahrzeuge');
+        return $query->result_assoc_array('id');
+    }
+    
     public function has_retired() {
         
-        $this->db->where('published', 1);
-        $this->db->where('retired', 1);
+        $this->db->where('published', 'yes');
+        $this->db->where('retired', 'yes');
         $query = $this->db->get('fahrzeuge');
         
         if($query->num_rows() > 0)
@@ -198,6 +224,13 @@ class Fahrzeuge_model extends Abstract_module_model {
         $text['text_stage'] = $row->text_stage;
         
         return $text;
+    }
+    
+    public function get_fahrzeug_anzahl()
+    {
+        $this->db->where('published', 'yes');
+        $this->db->where('retired', 'no');
+        return $this->db->count_all_results("fahrzeuge");
     }
 }
 

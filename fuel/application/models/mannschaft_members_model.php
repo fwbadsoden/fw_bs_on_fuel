@@ -200,6 +200,26 @@ class Mannschaft_Members_model extends Abstract_module_model {
         
         // delete asset
 	}
+    
+    public function get_mannschaft_members_anzahl_as_array() {
+        
+        $this->db->select('geschlecht');
+        $query = $this->db->get('mannschaft_members');    
+        
+        $member_count["anzahl"]   = 0;
+        $member_count["anzahl_m"] = 0;
+        $member_count["anzahl_w"] = 0;
+        
+        foreach($query->result() as $row)
+        {
+            if($row->geschlecht == 'w')
+                $member_count["anzahl_w"]++;
+            else
+                $member_count["anzahl_m"]++;
+            $member_count["anzahl"]++;
+        }
+        return $member_count;
+    }
 }
 
 class Mannschaft_Member_model extends Abstract_module_record {

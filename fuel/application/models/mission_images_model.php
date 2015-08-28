@@ -24,11 +24,21 @@ class Mission_Images_model extends Abstract_module_model {
 	 */	
 	public function list_items($limit = NULL, $offset = 0, $col = 'id', $order = 'asc', $just_count = FALSE)
 	{
-	   $this->db->order_by('mission_id', 'desc');
-       $this->db->select('id, description, image, photographer as fotograf');
-	   $data = parent::list_items($limit, $offset, $col, $order, $just_count);
+	    $this->db->join('missions', 'missions.id = mission_images.mission_id');
+ 	    $this->db->order_by('mission_images.mission_id desc, mission_images.id desc');
+        $this->db->select('mission_images.id as id, mission_images.description as description, missions.name as einsatz, missions.datum_beginn as datum, missions.uhrzeit_beginn as uhrzeit, mission_images.description as description, mission_images.image as image');
+	    $data = parent::list_items($limit, $offset, $col, $order, $just_count);
        
-       return $data;   
+        if (!$just_count)
+        {
+            foreach($data as $key => $val)
+    		{
+    			$data[$key]['datum'] = get_ger_date($data[$key]['datum']);
+    		}
+    	}
+        if ($col == 'datum') array_sorter($data, $col, $order);	
+       
+        return $data;   
     } 
     
     /**
@@ -42,10 +52,15 @@ class Mission_Images_model extends Abstract_module_model {
     public function form_fields($values = array(), $related = array()) {
         
         $fields = parent::form_fields($values, $related);
+        
+        $fields['mission_id']['label']          = lang('form_label_einsatz_images_mission');
          
         // Asset-Ordner                                        
-        $fields['image'] = array('folder' => 'images/einsaetze',
-                                 'create_thumb' => FALSE);                                          
+        $fields['image']['folder']              = 'images/einsaetze';
+        $fields['image']['create_thumb']        = FALSE;   
+        $fields['image']['hide_options']        = TRUE;     
+        
+        $fields["photographer"]['label']        = lang('form_label_photographer');                                     
 
         return $fields;
     }  

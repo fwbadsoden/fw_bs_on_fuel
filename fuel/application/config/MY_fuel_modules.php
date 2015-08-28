@@ -21,11 +21,6 @@ $config['modules']['projects'] = array(
 
 *********************** /EXAMPLE ***********************************/
 
-$config['modules']['autosuggests'] = array(
-    'module_name' => 'Autosuggestwerte',
-    //'instructions' => lang("autosuggests_instructions"),
-    'permission' => 'autosuggests',
-);
 $config['modules']['stages'] = array(
     'module_name' => 'Bildbühnen',
     'instructions' => lang("stage_instructions"),
@@ -36,7 +31,8 @@ $config['modules']['stage_images'] = array(
     'module_name' => 'Bildbühnenbilder',
     'instructions' => lang("stage_images_instructions"),
     'permission' => 'stages',
-    'table_headers' => array('id', 'name', 'image', 'link', 'text_1', 'text_2')
+    'display_field' => 'name',
+    'table_headers' => array('id', 'name', 'link', 'text_1', 'text_2')
 );
 
 $config['modules']['stage_types'] = array(
@@ -149,6 +145,11 @@ $config['modules']['appointments'] = array(
     'module_name' => 'Termine',
     'instructions' => lang("appointments_instructions"),
     'permission' => 'appointments',
+);
+$config['modules']['autosuggests'] = array(
+    'module_name' => 'Vorschlagswerte',
+    'instructions' => lang("autosuggests_instructions"),
+    'permission' => 'autosuggests',
 );
 
 /*********************** OVERWRITES ************************************/

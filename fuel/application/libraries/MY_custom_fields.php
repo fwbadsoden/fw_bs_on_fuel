@@ -51,7 +51,7 @@
 
             $form_builder->add_js($js);
             $params['type'] = 'textarea';
-            return $form_builder->create_text($params);
+            return $form_builder->create_textarea($params);
 
         }
     }

@@ -1,23 +1,36 @@
-<!DOCTYPE html>
+<?php
+    $meta = array(
+        array('name' => 'keywords', 'content' => fuel_var('metakeywords')),
+        array('name' => 'description', 'content' => fuel_var('metadescription')),
+        array('name' => 'page-topic', 'content' => fuel_var('metapagetopic')),
+        array('name' => 'revisit-after', 'content' => "1 days"),
+        array('name' => 'language', 'content' => "de"),
+        array('name' => 'copyright', 'content' => "feuerwehr-bs.de"),
+        array('name' => 'author', 'content' => "into[at]feuerwehr-bs.de"),
+        array('name' => 'publisher', 'content' => fuel_var('pagetitle')),
+        array('name' => 'audience', 'content' => "Alle"),
+        array('name' => 'expires', 'content' => "never"),
+        array('name' => 'page-type', 'content' => "Portal"),
+        array('name' => 'robots', 'content' => "INDEX,FOLLOW"),
+        array('name' => 'rating', 'content' => "General"),
+        array('name' => 'Content-type', 'content' => "text/html; charset=utf-8", 'type' => 'equiv'),
+        array('name' => 'viewport', 'content' => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" ),
+        array('name' => 'X-UA-Compatible', 'content' => "edge"),
+        array('name' => 'imagetoolbar', 'content' => "no", 'type' => 'equiv')
+    );
+    
+    // Open Graph Tags
+    if($facebook_infos != null) {
+        foreach($facebook_infos as $info) {
+            array_push($meta, array('name' => $info["property"], 'content' => $info["content"], 'type' => 'property'));
+        }
+    }
+    echo doctype('html5');
+?>
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de-de" lang="de-de">
 <head>
-    <meta name="page-topic" content="<?=fuel_var('metapagetopic')?>" />
-	<meta name="keywords" content="<?=fuel_var('metakeywords')?>"/>
-	<meta name="description" content="<?=fuel_var('metadescription')?>"/>
-    <meta name="revisit-after" content="1 days" />
-    <meta name="language" content="de" />
-    <meta name="copyright" content="feuerwehr-bs.de" />
-    <meta name="author" content="info[at]feuerwehr-bs.de" />
-    <meta name="publisher" content="<?=fuel_var('pagetitle'); ?>" />
-    <meta name="audience" content="Alle" />
-    <meta name="expires" content="never" />
-    <meta name="page-type" content="Portal" />
-    <meta name="robots" content="INDEX,FOLLOW" />
-    <meta name="rating" content="General" />
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <meta name="X-UA-Compatible" content="edge" />
-    <meta http-equiv="imagetoolbar" content="no" />
+    <?=meta($meta)?>
  	<title><?=fuel_var('pagetitle'); ?></title>
 	
     <link rel="shortcut icon" href="<?=assets_path("favicon.ico", "icons")?>" type="image/x-icon" />
@@ -339,8 +352,8 @@
         <div id="stagewrapper">    
             <div class="<?=$css_inner_class?>">            
 <?php   if($stage_type == 'default') : ?>   
-                <?php if($text1 != "") : ?> <h1<?=$image->css_text_class_1?>><?=$text1?></h1> <?php endif; ?>
-                <?php if($text2 != "") : ?> <h2<?=$image->css_text_class_2?>><?=$text2?></h2> <?php endif; ?>  
+                <?php if($text1 != "") : ?> <h1<?=$image->get_css_text_class_1()?>><?=$text1?></h1> <?php endif; ?>
+                <?php if($text2 != "") : ?> <h2<?=$image->get_css_text_class_2()?>><?=$text2?></h2> <?php endif; ?>  
                 <?php if($text3 != "") : ?> <p><?=$text3?></p> <? endif; ?>       
 <?php   else : ?>
                 <figure><img src="<?=assets_path('icons/'.$stage_text["class"].'.png')?>" /></figure>
@@ -366,4 +379,4 @@
 <?  endforeach; ?>                
             </ul>
     	</div> 
-<?  endif;?>
+<?  endif; ?>

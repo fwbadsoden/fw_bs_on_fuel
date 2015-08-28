@@ -13,12 +13,13 @@
         <div class="sitemapBox">   
             <?=$sitemap_box?>
         </div>
-
-        <div class="smallSitemap">               
-            <?=$small_sitemap?>
-        </div>
         
     </div>
+
+    <div class="smallSitemap">               
+        <?=$small_sitemap?>
+    </div>
+    
     <div id="copyright">
     	<p>&copy;<?php echo date("Y"); ?> <?=fuel_var('copyright'); ?></p>
     </div>
