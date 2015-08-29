@@ -5,7 +5,8 @@ require_once('abstract_module_model.php');
 class Fahrzeuge_model extends Abstract_module_model {
     
     public $has_many = array('fahrzeug_images' => 'fahrzeug_images_model');
-    public $belongs_to = array('missions' => 'missions_model');    
+    public $belongs_to = array('missions' => 'missions_model');   
+    public $boolean_fields = array('retired', 'ausser_dienst'); 
         
     function __construct() {
         parent::__construct('fw_fahrzeuge');
@@ -32,7 +33,7 @@ class Fahrzeuge_model extends Abstract_module_model {
         {
     		foreach($data as $key => $val)
     		{
-                $data[$key]['ausser_dienst'] = translate_enum($data[$key]['ausser_dienst']);
+              //  $data[$key]['ausser_dienst'] = translate_enum($data[$key]['ausser_dienst']);
     		}
     	}
         

@@ -21,6 +21,7 @@ $config['memory_usage']                 = TRUE;
 $config['post']                         = TRUE;
 $config['uri_string']                   = TRUE;
 $config['query_toggle_count']           = 50;
+$config["session_data"]                 = TRUE;
 
 /* End of file profiler.php */
 /* Location: ./application/config/profiler.php */

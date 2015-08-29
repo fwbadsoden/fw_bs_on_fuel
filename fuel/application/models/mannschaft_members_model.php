@@ -79,6 +79,52 @@ class Mannschaft_Members_model extends Abstract_module_model {
         
         return $fields;
     }
+
+	/**
+	 * Placeholder hook - for right after posting. To be used outside of 
+	 * the saving process and must be called manually from your own code
+	 *
+	 * @access	public
+	 * @param	array	values to be saved
+	 * @return	array
+	 */	
+	public function on_after_post($values)
+	{
+        $db_record = $this->find_by_key($values["id"]);
+        
+        if($db_record->image != $values["image"]) {
+            $this->fuel->assets_model->delete(img_path('mannschaft/'.$db_record->image));
+        }
+       
+		return $values;
+	}
+    
+	/**
+	 * Hook - right before saving of data
+	 *
+	 * @access	public
+	 * @param	array	values to be saved
+	 * @return	array
+	 */	
+	public function on_before_save($values)
+	{
+		return $values;
+	}
+    
+    /**
+	 * Placeholder hook - right before delete
+	 *
+	 * @access	public
+	 * @param	array	where condition for deleting
+	 * @return	void
+	 */	
+	public function on_before_delete($where)
+	{
+       // internal_debug($where);
+		parent::on_before_delete($where);
+        
+        // delete asset
+	}
     
     public function find_fuehrung() {
         
@@ -173,33 +219,6 @@ class Mannschaft_Members_model extends Abstract_module_model {
         
         return $mannschaft;
     }
-    
-	/**
-	 * Hook - right before saving of data
-	 *
-	 * @access	public
-	 * @param	array	values to be saved
-	 * @return	array
-	 */	
-	public function on_before_save($values)
-	{
-		return $values;
-	}
-    
-    /**
-	 * Placeholder hook - right before delete
-	 *
-	 * @access	public
-	 * @param	array	where condition for deleting
-	 * @return	void
-	 */	
-	public function on_before_delete($where)
-	{
-       // internal_debug($where);
-		parent::on_before_delete($where);
-        
-        // delete asset
-	}
     
     public function get_mannschaft_members_anzahl_as_array() {
         
