@@ -20,7 +20,7 @@
     );
     
     // Open Graph Tags
-    if($facebook_infos != null) {
+    if(isset($facebook_infos)) {
         foreach($facebook_infos as $info) {
             array_push($meta, array('name' => $info["property"], 'content' => $info["content"], 'type' => 'property'));
         }
@@ -168,10 +168,9 @@
                         	<li><a href="<?=base_url('menschen/mannschaft#anker_fuehrung')?>">Führung</a></li>
                             <li><a href="<?=base_url('menschen/mannschaft#anker_mannschaft')?>">Mannschaft</a></li>
                     	</ul>  
-                    	<ul>
-                        	<li class="headline"><a href="<?=base_url('menschen/rettungshunde')?>">Rettungshunde</a></li>
-                        	<li><a href="<?=base_url('menschen/rettungshunde#anker_einleitung')?>">Einleitung</a></li>
-                            <li><a href="<?=base_url('menschen/rettungshunde#anker_ausbildung')?>">Ablauf der Ausbildung</a></li>
+                    	<ul>                      
+                        	<li class="headline"><a href="<?=base_url('menschen/altersundehrenabteilung')?>">Alters &amp; Ehrenabt.</a></li>                        
+                            <li><a href="<?=base_url('menschen/altersundehrenabteilung')?>">Alters &amp; Ehrenabteilung</a></li>
                     	</ul> 
                     	<ul>
                         	<li class="headline"><a href="<?=base_url('menschen/jugend')?>">Nachwuchs</a></li>                             
@@ -192,9 +191,16 @@
                     	<ul>                         
                             <li class="headline"><a href="<?=base_url('technik/fahrzeuge')?>">Fahrzeuge</a></li>
                             <?php $counter = 0;
+                                  $anz_fahrzeuge = 0;
+                                  foreach($main_navigation["fahrzeuge"] as $f) : 
+                                    if($f->retired == 'no') $anz_fahrzeuge++;
+                                  endforeach;
+                                  $break = $anz_fahrzeuge / 2;
+                                  $break = ceil($break);
+                                  
                                   foreach($main_navigation["fahrzeuge"] as $f) : 
                                     if($f->retired == 'no') : 
-                                        if($counter == 9) :
+                                        if($counter == $break) :
                                             $counter = 0;        
                             ?>     
                         </ul>
@@ -222,6 +228,11 @@
                                     endforeach; 
                                    endif; 
                             ?>           
+                    	</ul>  
+                    	<ul>                     
+                        	<li class="headline"><a>Spezialeinheiten</a></li>
+                        	<li><a href="<?=base_url('technik/rettungshunde')?>">Rettungshunde-Ortungstechnik</a></li>
+                            <li><a href="<?=base_url('menschen/gabc')?>">Gefahrstoffzug</a></li>
                     	</ul>  
                     </div>  
                 </li>  

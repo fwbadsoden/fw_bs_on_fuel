@@ -20,6 +20,21 @@ function main_navigation() {
         return $nav;
     }
 
+function send_mail($name, $to, $subject, $redaktion, $email, $telefon, $message) {
+    
+    $CI->load->library('email');
+    $this->email->from($email, $name);
+    $this->email->to(EMAIL_CONTACT_FORM_TO);
+    $this->email->subject($subject);
+    $email_message = 'Name: ' . $name . '<br />';
+    $email_message.= 'Redaktion: ' . $redaktion . '<br />';
+    $email_message.= 'Email-Adresse: ' . $this->input->post('email') . '<br />';
+    $email_message.= 'Telefon: ' . $telefon . '<br />';
+    $email_message.= 'Nachricht: <br />' . $message . '<br />';
+    $this->email->message($email_message);
+    $this->email->send();
+}
+
 function internal_debug($var) {
     echo"<pre>";
     var_dump($var);
