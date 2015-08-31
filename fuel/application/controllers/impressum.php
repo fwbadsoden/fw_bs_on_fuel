@@ -5,6 +5,7 @@ class Impressum extends CI_Controller {
     public function index() {
         
         $data = array();
+        $data["form_name"] = "impressum";
         
         $this->fuel->pages->render("impressum", $data, array('render_mode' => 'cms'));
     }

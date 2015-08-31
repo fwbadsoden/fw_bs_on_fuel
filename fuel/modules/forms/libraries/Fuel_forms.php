@@ -708,7 +708,7 @@ class Fuel_form extends Fuel_base_library {
 			$posted = $this->clean_posted();
 			$is_spam = $this->is_spam($posted);
 			if ($this->fuel->pages->mode() != 'views' && $this->get_save_entries())
-			{
+			{ 
 				if (!isset($this->CI->db))
 				{
 					$this->CI->load->database();
@@ -740,20 +740,20 @@ class Fuel_form extends Fuel_base_library {
 							return FALSE;
 						}
 						$this->call_hook('post_save'); 
-					}
+					} 
 				}
 			}
 
 			$this->call_hook('post_process');
 			if (!$is_spam OR ($is_spam AND $this->fuel->forms->config('send_spam')))
-			{
+			{ 
 				if (!$this->notify($_POST['__email_message__']))
-				{
+				{ 
 					$this->call_hook('error', array('errors' => $this->last_error()));
 					$this->_add_error($entry->errors());
 					return FALSE;
 				}
-			}
+			} 
 			$this->call_hook('success');
 			return TRUE;
 		}
@@ -1107,7 +1107,7 @@ class Fuel_form extends Fuel_base_library {
 	
 			// let her rip
 			if (!$email->send())
-			{
+			{ 
 				if (is_dev_mode())
 				{
 					echo $email->print_debugger();

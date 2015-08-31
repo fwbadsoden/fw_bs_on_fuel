@@ -31,10 +31,10 @@ $config['forms']['forms'] = array(
 $config['forms']['custom_fields'] = array();
 
 // The default testing email address for when then application is not in production
-$config['forms']['test_email'] = array();
+$config['forms']['test_email'] = array('habib@familiepleines.de', 'pa_ritter@arcor.de');
 
 // The default from address to use when sending email notifications
-$config['forms']['email_from'] = 'Formularübermittlung von <website@'.$_SERVER['SERVER_NAME'].'>';
+$config['forms']['email_from'] = 'noreply@feuerwehr-bs.de';
 
 // The testing email address for when then application is not in production
 $config['forms']['email_subject'] = 'Webseitenformular';
