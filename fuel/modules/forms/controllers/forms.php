@@ -9,14 +9,14 @@ class Forms extends CI_Controller {
 	}
 
 	public function process($slug)
-	{
+	{ 
 		$form = $this->fuel->forms->get($slug);
 		
 		$return_url = ($this->input->get_post('return_url')) ? $this->input->get_post('return_url') : $form->get_return_url();
 		$form_url = $this->input->get_post('form_url');
 
 		if ($form AND $form->process())
-		{
+		{ 
 			if (is_ajax())
 			{
 				// Set a 200 (okay) response code.
@@ -25,7 +25,7 @@ class Forms extends CI_Controller {
 				exit();
 			}
 			else
-			{
+			{ 
 				$this->session->set_flashdata('success', TRUE);
 				redirect($return_url);
 			}
@@ -35,7 +35,7 @@ class Forms extends CI_Controller {
 			$this->session->set_flashdata('posted', $this->input->post());
 
 			if (is_ajax())
-			{
+			{    
 				// Set a 500 (bad) response code.
 				set_status_header('500');
 				echo display_errors(NULL, '');

@@ -4,7 +4,10 @@ class Kontakt extends CI_Controller {
      
     public function index() {
         
-        $this->fuel->pages->render("kontakt", array(), array('render_mode' => 'cms'));
+        $data = array();
+        $data["form_name"] = "kontakt";
+        
+        $this->fuel->pages->render("kontakt", $data, array('render_mode' => 'cms'));
     }
 }
 

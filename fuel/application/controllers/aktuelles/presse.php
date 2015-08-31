@@ -4,7 +4,10 @@ class Presse extends CI_Controller {
      
     public function index() {
         
-        $this->fuel->pages->render("aktuelles/presse", array(), array('render_mode' => 'cms'));
+        $data = array();
+        $data["form_name"] = "presse";
+        
+        $this->fuel->pages->render("aktuelles/presse", $data, array('render_mode' => 'cms'));
         
        // $this->fuel->pages->render("aktuelles/presse");
     }
