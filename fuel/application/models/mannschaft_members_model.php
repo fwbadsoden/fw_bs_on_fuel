@@ -56,9 +56,9 @@ class Mannschaft_Members_model extends Abstract_module_model {
                                  'accept' => 'jpg|jpeg|png',
                                  'encrypt_name' => TRUE,
                                  'type' => 'file',
-                                 'overwrite' => TRUE,
-                                 'ignore_representative' => TRUE,
-                                 'hide_options' => TRUE
+                                 'overwrite' => FALSE,
+                                 'display_overwrite' => FALSE,
+                                 'ignore_representative' => TRUE
                                  ); 
         $options = array('yes' => 'ja', 'no' => 'nein');                                 
         $fields['show_image'] = array('label'   => lang('form_label_mannschaft_show_image'),
@@ -90,11 +90,13 @@ class Mannschaft_Members_model extends Abstract_module_model {
 	 */	
 	public function on_after_post($values)
 	{
+        $values = parent::on_after_post($values);
+        
         $db_record = $this->find_by_key($values["id"]);
         
-        if($db_record->image != $values["image"]) {
+        if($values["image"] != "" && $db_record->image != $values["image"]) {
             $this->load->model('fuel_assets_model');
-            $this->fuel_assets_model->delete(img_path('mannschaft/'.$db_record->image));
+            $this->fuel_assets_model->delete('images/mannschaft/'.$values["image"]); 
         }
        
 		return $values;
@@ -121,10 +123,13 @@ class Mannschaft_Members_model extends Abstract_module_model {
 	 */	
 	public function on_before_delete($where)
 	{
-        internal_debug($where);
+        
 		parent::on_before_delete($where);
         
         // delete asset
+        $this->load->model('fuel_assets_model');
+        $db_record = $this->find_by_key($where["id"]);        
+        $this->fuel_assets_model->delete('images/mannschaft/'.$db_record->image);
 	}
     
     public function find_fuehrung() {
