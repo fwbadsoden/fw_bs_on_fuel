@@ -26,6 +26,8 @@ $config['xtra_css'] = 'my_fuel.css';
 // specifies which modules are allowed to be used in the fuel admin
 $config['modules_allowed'] = array(
 	'forms',
+    'search',
+    'page_analysis',
 );
 
 // used for system emails

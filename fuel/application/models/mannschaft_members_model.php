@@ -54,15 +54,15 @@ class Mannschaft_Members_model extends Abstract_module_model {
         $fields['image'] = array('label' => lang('form_label_image'), 
                                  'folder' => 'images/mannschaft',      
                                  'accept' => 'jpg|jpeg|png',
-                                 'encrypt_name' => true,
+                                 'encrypt_name' => TRUE,
                                  'type' => 'file',
-                                 'overwrite' => true,
-                                 'ignore_representative' => true,
-                                 'hide_image_options' => false 
+                                 'overwrite' => TRUE,
+                                 'ignore_representative' => TRUE,
+                                 'hide_options' => TRUE
                                  ); 
         $options = array('yes' => 'ja', 'no' => 'nein');                                 
         $fields['show_image'] = array('label'   => lang('form_label_mannschaft_show_image'),
-                                      'ignore_representative' => true,
+                                      'ignore_representative' => TRUE,
                                       'type'    => 'enum',
                                       'options' => $options,
                                       'mode'    => 'radios'
@@ -93,7 +93,8 @@ class Mannschaft_Members_model extends Abstract_module_model {
         $db_record = $this->find_by_key($values["id"]);
         
         if($db_record->image != $values["image"]) {
-            $this->fuel->assets_model->delete(img_path('mannschaft/'.$db_record->image));
+            $this->load->model('fuel_assets_model');
+            $this->fuel_assets_model->delete(img_path('mannschaft/'.$db_record->image));
         }
        
 		return $values;
@@ -120,7 +121,7 @@ class Mannschaft_Members_model extends Abstract_module_model {
 	 */	
 	public function on_before_delete($where)
 	{
-       // internal_debug($where);
+        internal_debug($where);
 		parent::on_before_delete($where);
         
         // delete asset
