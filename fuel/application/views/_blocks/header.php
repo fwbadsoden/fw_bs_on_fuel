@@ -6,7 +6,7 @@
         array('name' => 'revisit-after', 'content' => "1 days"),
         array('name' => 'language', 'content' => "de"),
         array('name' => 'copyright', 'content' => "feuerwehr-bs.de"),
-        array('name' => 'author', 'content' => "into[at]feuerwehr-bs.de"),
+        array('name' => 'author', 'content' => "info[at]feuerwehr-bs.de"),
         array('name' => 'publisher', 'content' => fuel_var('pagetitle')),
         array('name' => 'audience', 'content' => "Alle"),
         array('name' => 'expires', 'content' => "never"),

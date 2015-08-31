@@ -49,7 +49,7 @@
     <hr class="clear" />
     
     <div class="dates">
-        <h1 class="first">Termine</h1>
+        <h1>Termine</h1>
         <ul> 
         <?php foreach($appointments as $a) : ?>
             <li>    
@@ -75,3 +75,4 @@
     <hr class="clear" />
     </div>
 </div>
+<hr class="clear" />  

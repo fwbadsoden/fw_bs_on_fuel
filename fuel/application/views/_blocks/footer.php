@@ -10,14 +10,15 @@
     <div id="sitemap">
         
         <div class="completeSitemap"> 
-        <div class="sitemapBox">   
-            <?=$sitemap_box?>
+            <div class="sitemapBox">   
+                <?=$sitemap_box?>
+            </div>        
+        </div>
+
+        <div class="smallSitemap">               
+            <?=$small_sitemap?>
         </div>
         
-    </div>
-
-    <div class="smallSitemap">               
-        <?=$small_sitemap?>
     </div>
     
     <div id="copyright">
@@ -50,31 +51,30 @@
 		</ul>
 	</div>
 	<hr class="clear" />
-		<div class="greybox">
-			<p class="number">Zentrale Leitstelle <span>+49 6192-5095</span></p>
-			<p class="button"><a href="<?=fuel_var('url_notruffax')?>" class="button_black_gross" target="_blank">Notruffax &raquo;</a></p>
-			<hr class="clear" />
-		</div>
+	<div class="greybox">
+    	<p class="number">Zentrale Leitstelle <span>+49 6192-5095</span></p>
+    	<p class="button"><a href="<?=fuel_var('url_notruffax')?>" class="button_black_gross" target="_blank">Notruffax &raquo;</a></p>
+    	<hr class="clear" />
 	</div>
 </div>
 
-    <script type="text/javascript" charset="utf-8" src="<?=base_url("assets/js/basic-min.js")?>"></script>
-    <script type="text/javascript" charset="utf-8" src="<?=base_url("assets/js/doubletaptogo.js")?>"></script>
+<script type="text/javascript" charset="utf-8" src="<?=base_url("assets/js/basic-min.js")?>"></script>
+<script type="text/javascript" charset="utf-8" src="<?=base_url("assets/js/doubletaptogo.js")?>"></script>
 
-	<script type="text/javascript" src="<?=base_url("assets/js/jquery.mousewheel-3.0.6.pack.js")?>"></script>
-	<script type="text/javascript" src="<?=base_url("assets/js/fancyBox/jquery.fancybox.js?v=2.1.5")?>"></script>
+<script type="text/javascript" src="<?=base_url("assets/js/jquery.mousewheel-3.0.6.pack.js")?>"></script>
+<script type="text/javascript" src="<?=base_url("assets/js/fancyBox/jquery.fancybox.js?v=2.1.5")?>"></script>
     
-    <link rel="stylesheet" type="text/css" href="<?=base_url("assets/js/fancyBox/jquery.fancybox.css?v=2.1.5")?>" media="screen" />
-	<link rel="stylesheet" type="text/css" href="<?=base_url("assets/js/fancyBox/helpers/jquery.fancybox-buttons.css?v=1.0.5")?>" />
+<link rel="stylesheet" type="text/css" href="<?=base_url("assets/js/fancyBox/jquery.fancybox.css?v=2.1.5")?>" media="screen" />
+<link rel="stylesheet" type="text/css" href="<?=base_url("assets/js/fancyBox/helpers/jquery.fancybox-buttons.css?v=1.0.5")?>" />
 	
-	<script type="text/javascript" src="<?=base_url("assets/js/fancyBox/helpers/jquery.fancybox-buttons.js?v=1.0.5")?>"></script>
-	<link rel="stylesheet" type="text/css" href="<?=base_url("assets/js/fancyBox/helpers/jquery.fancybox-thumbs.css?v=1.0.7")?>" />
+<script type="text/javascript" src="<?=base_url("assets/js/fancyBox/helpers/jquery.fancybox-buttons.js?v=1.0.5")?>"></script>
+<link rel="stylesheet" type="text/css" href="<?=base_url("assets/js/fancyBox/helpers/jquery.fancybox-thumbs.css?v=1.0.7")?>" />
 	
-	<script type="text/javascript" src="<?=base_url("assets/js/fancyBox/helpers/jquery.fancybox-thumbs.js?v=1.0.7")?>"></script>
-	<script type="text/javascript" src="<?=base_url("assets/js/fancyBox/helpers/jquery.fancybox-media.js?v=1.0.6")?>"></script>    
+<script type="text/javascript" src="<?=base_url("assets/js/fancyBox/helpers/jquery.fancybox-thumbs.js?v=1.0.7")?>"></script>
+<script type="text/javascript" src="<?=base_url("assets/js/fancyBox/helpers/jquery.fancybox-media.js?v=1.0.6")?>"></script>    
  
-    <script type="text/javascript">
-        $( function() { $( '#menu li:has(div)' ).doubleTapToGo(); });      
-      </script>
+ <script type="text/javascript">
+    $( function() { $( '#menu li:has(div)' ).doubleTapToGo(); });      
+ </script>
 </body>
 </html>
