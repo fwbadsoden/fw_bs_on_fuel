@@ -61,6 +61,19 @@ class Appointments_model extends Abstract_module_model {
         return $fields;
     }   
     
+    public function options_list($key = 'id', $val = 'name', $where = array(), $order = TRUE, $group = TRUE)
+    {
+    	$this->db->order_by('datum desc, beginn desc, name desc');
+        $this->db->select('id, name, datum, beginn');
+        $query = $this->db->get('appointments');
+        
+        foreach($query->result() as $row) {
+            $data[$row->id] = get_ger_date($row->datum).' '.$row->beginn.' - '.$row->name;
+        }
+        
+    	return $data;
+    }
+    
     public function get_months_for_filter()
     {   
         $this->db->select('datum');

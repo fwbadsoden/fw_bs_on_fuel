@@ -263,7 +263,7 @@ function get_year($date)
 }
 
 function get_alter($datum)
-{   
+{
     list($y, $m, $d) = explode('-', $datum);
     $alter = date('Y') - $y;
     $monat = date('m');

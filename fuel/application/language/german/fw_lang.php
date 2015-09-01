@@ -100,6 +100,11 @@ $lang["form_label_appointments_shortcity"]              = "Ort kurz";
 $lang["form_label_mannschaft_show_image"]               = "Bild anzeigen";
 $lang["form_label_mannschaft_show_job"]                 = "Beruf anzeigen";
 $lang["form_label_mannschaft_show_birthday"]            = "Geburtstag anzeigen";
+$lang["form_label_mannschaft_executive_afterhtml"]      = "(nur bei Einsatzabteilung relevant)";
+$lang["form_label_mannschaft_grade_afterhtml"]          = "(nur bei Einsatzabteilung relevant)";
+$lang["form_label_mannschaft_birthdate_afterhtml"]      = "(nur bei Einsatzabteilung relevant)";
+$lang["form_label_mannschaft_show_entrydate"]           = "Eintrittsdatum anzeigen";
+$lang["form_label_mannschaft_entrydate_afterhtml"]      = "(nur bei Alters- und Ehrenabteilung relevant)";
 
 $lang["form_label_news_title"]                          = "Titel";
 $lang["form_label_news_stage_title"]                    = "Titel für Bildbühne";

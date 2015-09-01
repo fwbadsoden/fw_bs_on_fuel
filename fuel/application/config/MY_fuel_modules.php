@@ -70,6 +70,7 @@ $config['modules']['fahrzeuge'] = array(
     'module_name' => 'Fahrzeuge',
     'instructions' => lang("fahrzeuge_instructions"),
     'permission' => 'vehicles',
+    'limit_options' => array('1000' => '1000'),
 );
 
 $config['modules']['fahrzeug_images'] = array(
@@ -82,6 +83,7 @@ $config['modules']['mannschaft_members'] = array(
     'module_name' => 'Mannschaft',
     'instructions' => lang("mannschaft_members_instructions"),
     'permission' => 'mannschaft_members',
+    'limit_options' => array('1000' => '1000'),
 );
 
 $config['modules']['mannschaft_sections'] = array(
