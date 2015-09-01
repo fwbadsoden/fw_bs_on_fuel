@@ -23,7 +23,7 @@ $config['layouts']['main'] = array(
                 	       'body'  => array('label' => lang('layout_field_body'), 'type' => 'textarea', 'description' => lang('layout_field_body_description')),)
 );
             
-$module_options = array('einsatz' => 'Einsätze', 'fahrzeug' => 'Fahrzeuge', 'mannschaft' => 'Mannschaft', 'news' => 'News', 'presse' => 'Presse', 'startseite' => 'Startseite', 'termin' => 'Termine' );
+$module_options = array('altersabteilung' => 'Alters- und Ehrenabteilung', 'einsatz' => 'Einsätze', 'fahrzeug' => 'Fahrzeuge', 'mannschaft' => 'Mannschaft', 'news' => 'News', 'presse' => 'Presse', 'startseite' => 'Startseite', 'termin' => 'Termine' );
 $config['layouts']['module'] = array(
 	'file' 		  => $config['layouts_path'].'module_pages',
     'label'       => "Modulseite",

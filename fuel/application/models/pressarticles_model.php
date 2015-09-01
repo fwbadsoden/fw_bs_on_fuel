@@ -65,6 +65,19 @@ class PressArticles_model extends Abstract_module_model {
         
         return $fields;
     }
+    
+    public function options_list($key = 'id', $val = 'name', $where = array(), $order = TRUE, $group = TRUE)
+    {
+    	$this->db->order_by('datum desc, name desc, id desc');
+        $this->db->select('id, name, datum');
+        $query = $this->db->get('pressarticles');
+        
+        foreach($query->result() as $row) {
+            $data[$row->id] = get_ger_date($row->datum).' - '.$row->name;
+        }
+        
+    	return $data;
+    }
 
 	/**
 	 * Hook - right before saving of data

@@ -79,6 +79,19 @@ class News_articles_model extends Abstract_module_model {
         
         return $fields;
     }
+    
+    public function options_list($key = 'id', $val = 'name', $where = array(), $order = TRUE, $group = TRUE)
+    {
+    	$this->db->order_by('datum desc, title desc, id desc');
+        $this->db->select('id, title, datum');
+        $query = $this->db->get('news_articles');
+        
+        foreach($query->result() as $row) {
+            $data[$row->id] = get_ger_date($row->datum).' - '.$row->title;
+        }
+        
+    	return $data;
+    }
 
 	/**
 	 * Hook - right before saving of data
