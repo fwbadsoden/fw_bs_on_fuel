@@ -119,6 +119,37 @@ class Stages_model extends Abstract_module_model {
 
 class Stage_model extends Abstract_module_record {
     
+    public function is_randomize() {
+        
+        if($this->randomize == "yes") return true;
+        else return false;
+    }
+    
+    public function get_stage_images_for_frontend() {
+        
+        $img_count = $this->img_count;
+        
+        $images = parent::get_stage_images();
+        $images_new = array();
+                
+        if($this->is_randomize()) { 
+            $random_keys = array_rand($images, $img_count);
+            
+            if(is_array($random_keys)) {
+                foreach($random_keys as $key) {
+                    array_push($images_new, $images[$key]);
+                }
+            } else {
+                array_push($images_new, $images[$random_keys]);
+            }
+        } else {
+            for($i = 0; i < count($images); $i++) {
+                array_push($images_new, $images[$i]);
+            }
+        }
+        
+        return $images_new;
+    }
 }
 
 ?>
