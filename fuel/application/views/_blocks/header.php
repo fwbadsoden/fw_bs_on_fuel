@@ -336,7 +336,8 @@
 </div>
 
 <section id="stage">
-<?php foreach($stage->stage_images as $key => $image) {   
+<?php $stage_images = $stage->get_stage_images_for_frontend(); ?>
+<?php foreach($stage_images as $key => $image) {   
     
         if(strtolower($image->text_1) == "dummy") {
             if(isset($stage_text["name"]))          $text1 = $stage_text["name"];       else $text1 = "";
@@ -384,7 +385,7 @@
 <? if($stage->img_count > 1) : ?>
         <div id="slider">
             <ul>
-<?  foreach($stage->stage_images as $key => $item) :
+<?  foreach($stage_images as $key => $item) :
         if($key == 0) $class = ' first'; else $class = ''; ?>             
                 <li><a href="#<?=$key?>" class="changeStage<?=$class?>" id="slide-link-<?=$key?>"><?=$key+1?></a></li>
 <?  endforeach; ?>                
