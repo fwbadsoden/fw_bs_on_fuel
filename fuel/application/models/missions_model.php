@@ -91,13 +91,15 @@ class Missions_model extends Abstract_module_model {
         $fields["uhrzeit_beginn"]['order']  = 12; 
         $fields['uhrzeit_beginn']['ampm']   = FALSE; 
         $fields["uhrzeit_beginn"]['label']  = lang('form_label_einsatz_uhr_beginn'); 
+        $fields['uhrzeit_beginn']['after_html'] = 'Uhr';
                                                                      
         $fields['datum_ende']['order']      = 13;                     
-        $fields['datum_ende']['label']      = lang('form_label_einsatz_datum_ende');              
+        $fields['datum_ende']['label']      = lang('form_label_einsatz_datum_ende');  
                                             
         $fields['uhrzeit_ende']['order']    = 14; 
         $fields['uhrzeit_ende']['ampm']     = FALSE; 
         $fields['uhrzeit_ende']['label']    = lang('form_label_einsatz_uhr_ende'); 
+        $fields['uhrzeit_ende']['after_html'] = 'Uhr';            
         
         $fields["ort"]                      = array('label' => lang("form_label_einsatz_ort"),
                                                     'order' => 20);            
@@ -111,11 +113,13 @@ class Missions_model extends Abstract_module_model {
         $fields["lage"]                     = array('label' => lang("form_label_einsatz_lage"),
                                                     'type'  => 'textarea',
                                                     'class' => 'no_editor',
+                                                    'preview' => false,
                                                     'order' => 22);                                                                                                     
         
         $fields["bericht"]                  = array('label' => lang("form_label_einsatz_bericht"),
                                                     'type'  => 'textarea',
                                                     'class' => 'no_editor',
+                                                    'preview' => false,
                                                     'order' => 23);      
                      
         $fields["fahrzeuge"]["order"]       = 30;
@@ -133,6 +137,7 @@ class Missions_model extends Abstract_module_model {
         $fields["weitere_kraefte"]          = array('label' => lang("form_label_einsatz_weiterekraefte"),
                                                     'type'  => 'tagsinput',
                                                     'class' => 'no_editor',
+                                                    'preview' => false,
                                                     'comment' => lang('form_label_einsatz_weiterekraefte_comment'),
                                                     'autosuggests' => fuel_model('autosuggests_model', array('find' => 'all', 'where' => array('keyword' => 'einsatz_weitere_kraefte'))),
                                                     'order' => 34);      

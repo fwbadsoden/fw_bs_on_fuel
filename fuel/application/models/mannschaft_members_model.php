@@ -66,8 +66,10 @@ class Mannschaft_Members_model extends Abstract_module_model {
                                  ); 
                                  
         $fields["geburtstag"]["after_html"] = lang('form_label_mannschaft_birthdate_afterhtml');
+        $fields['geburtstag']['attributes'] = 'placeholder="tt-mm-jjjj"';
         $fields["beruf"]["after_html"] = lang('form_label_mannschaft_birthdate_afterhtml');
         $fields["eintrittsdatum"]["after_html"] = lang('form_label_mannschaft_entrydate_afterhtml');
+        $fields['eintrittsdatum']['attributes'] = 'placeholder="tt-mm-jjjj"';
                                  
         $options = array('yes' => 'ja', 'no' => 'nein');                                 
         $fields['show_image'] = array('label'   => lang('form_label_mannschaft_show_image'),
@@ -323,6 +325,17 @@ class Mannschaft_Members_model extends Abstract_module_model {
         
         return $mannschaft;
     }
+    
+	public function find_photographers()
+	{
+        $this->db->where(array('published' => 'yes', 'section_id' => 1));
+        $this->db->order_by('vorname asc, name asc');
+
+		$query = $this->get(TRUE, NULL, NULL);
+		$data = $query->result();
+
+		return $data;
+	}
     
     public function get_mannschaft_members_anzahl_as_array() {
         

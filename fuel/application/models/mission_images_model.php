@@ -60,7 +60,10 @@ class Mission_Images_model extends Abstract_module_model {
         $fields['image']['create_thumb']        = FALSE;   
         $fields['image']['hide_options']        = TRUE;     
         
-        $fields["photographer"]['label']        = lang('form_label_photographer');                                     
+        //$fields["photographer"]['label']        = lang('form_label_photographer');      
+        $fields["photographer"]          = array('type'  => 'photographer_input',
+                                                 'comment' => lang('form_label_news_photographer_comment'),
+                                                 'photographers' => fuel_model('mannschaft_members_model', array('find' => 'photographers')));                                 
 
         return $fields;
     }  

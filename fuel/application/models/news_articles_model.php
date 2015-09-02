@@ -57,22 +57,30 @@ class News_articles_model extends Abstract_module_model {
         
         $fields['stage_title']      = array('label' => lang('form_label_news_stage_title'),
                                             'order' => 3);
+                                            
+        $fields['link']['comment']  = lang('form_label_news_link');                                            
         
         $fields['datum']["label"]   = lang('form_label_news_datum');
         $fields['datum']["order"]   = 4;
         
         $fields['teaser_image']     = array('label' => lang('form_label_news_teaser_image'),
+                                            'comment' => lang('form_comment_news_teaser_image'),
                                             'folder' => 'images/news',  
+                                            'hide_options' => true,
                                             'order' => 5);
         
         $fields['og_image']         = array('label' => lang('form_label_news_og_image'),
+                                            'comment' => lang('form_comment_news_og_image'),
                                             'folder' => 'images/news',  
+                                            'hide_options' => true,
                                             'order' => 6);
         
         $fields['teaser']           = array('type' => 'textarea',
+                                            'preview' => false,
                                             'order' => 7);
         
         $fields['text']             = array('type' => 'textarea',
+                                            'preview' => false,
                                             'order' => 8);
         
         $fields['published']['type'] = 'hidden';

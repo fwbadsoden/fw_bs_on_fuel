@@ -3,7 +3,8 @@
 require_once('abstract_module_model.php');
 
 class PressArticle_Sources_model extends Abstract_module_model {
-    public $required = array('name', 'tag');
+    public $required = array('name');
+    public $unique = array('name');
     
     function __construct() {
         parent::__construct('fw_pressarticle_sources');

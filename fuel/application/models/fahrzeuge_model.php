@@ -71,8 +71,12 @@ class Fahrzeuge_model extends Abstract_module_model {
                                            
         $fields["rufname"] = array('label' => lang("form_label_fahrzeug_funkrufname"),
                                    'order' => 5); 
-                                   
-        $fields["setcard_image"]['order'] = 6;                                   
+                                           
+        $fields['setcard_image']     = array('label' => lang('form_label_fahrzeug_setcard_image'),
+                                            'comment' => lang('form_comment_fahrzeug_setcard_image'),
+                                            'folder' => 'images/fahrzeuge',  
+                                            'hide_options' => true,
+                                            'order' => 6);                                 
                                           
         $options = array('yes' => 'ja', 'no' => 'nein');                                 
         $fields['einsaetze_zeigen'] = array('label'   => lang('form_label_fahrzeug_einsaetze_zeigen'),
@@ -93,10 +97,13 @@ class Fahrzeuge_model extends Abstract_module_model {
         
         $fields["text_stage"]= array('label' => lang("form_label_fahrzeug_text_kurz"),
                                      'class' => 'no_editor',
+                                     'type' => 'textarea',
+                                     'preview' => false,
                                      'order' => 10);
         
         $fields["text"] = array('class' => 'no_editor',
                                 'type' => 'textarea',
+                                'preview' => false,
                                 'order' => 11);  
                                            
         $fields["hersteller"]['order'] = 12; 
@@ -110,19 +117,14 @@ class Fahrzeuge_model extends Abstract_module_model {
                                      'type' => 'select',
                                      'order' => 15);
         
-        $fields["zusatzdaten_lf"] = array('type' => 'fieldset',
+        $fields["zusatzdaten"] = array('type' => 'fieldset',
                                       'class' => 'tab',
-                                      'label' => 'Zusatzdaten Löschfahrzeug (nur bei Löschfahrzeugen pflegen)',
+                                      'label' => 'Zusatzdaten',
                                       'order' => 16);    
         
         $fields["pumpe"]['order'] = 17; 
         
         $fields["loeschmittel"]['order'] = 18; 
-        
-        $fields["zusatzdaten_sonst"] = array('type' => 'fieldset',
-                                      'class' => 'tab',
-                                      'label' => 'Zusatzdaten sonstige Fahrzeuge (nicht bei Löschfahrzeugen pflegen)',
-                                      'order' => 19); 
         
         $fields["besonderheit"]['order'] = 20;    
         
@@ -158,7 +160,9 @@ class Fahrzeuge_model extends Abstract_module_model {
                                      'order' => 28);     
                                      
         $fields["precedence"]["type"] = 'hidden';  
-        $fields["published"]["type"] = 'hidden';                                              
+        $fields["published"]["type"] = 'hidden';
+        $fields["fahrzeug_images"]["type"] = 'hidden';       
+        $fields["missions"]["type"] = 'hidden';                                            
         
         return $fields;
     }

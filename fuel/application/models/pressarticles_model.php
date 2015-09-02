@@ -4,7 +4,7 @@ require_once('abstract_module_model.php');
 
 class PressArticles_model extends Abstract_module_model {
     
-    public $required = array('name', 'source_id', 'datum');
+    public $required = array('name', 'source_id', 'datum', 'category_id');
     public $foreign_keys = array('source_id' => 'pressarticle_sources_model', 'category_id' => array(FUEL_FOLDER => 'fuel_categories_model', 'where' => array('context' => 'pressarticles')));
     
     function __construct() {
@@ -53,15 +53,26 @@ class PressArticles_model extends Abstract_module_model {
         
         $fields = parent::form_fields($values, $related); 
         
+        $fields['name']['order'] = 1;          
+        $fields['category_id']['label'] = lang("form_label_category");
+        $fields['category_id']['order'] = 2;          
+        $fields['source_id']['label'] = lang('form_label_press_source');
+        $fields['source_id']['order'] = 3;          
+        $fields['datum']['order'] = 4;          
+        $fields['section_example'] = array('type' => 'section', 'tag' => 'h3', 'value' => lang("form_label_press_section"));        
+        $fields['section_example']['order'] = 5;   
+        $fields['online_article']['label'] = lang('form_label_press_link');
+        $fields['online_article']['comment'] = lang('form_comment_press_link');
+        $fields['online_article']['attributes'] = 'placeholder="http://"';        
+        $fields['online_article']['order'] = 6;   
 		$fields['asset'] = array('label' => lang('form_label_file'), 
                                  'folder' => 'pressarticles',                                 
                                  'type' => 'asset', 
-                                 'class' => 'file', 
+                                 'class' => 'file',
+                                 'order' => 7, 
+                                 'comment' => lang('form_comment_press_asset'),
                                  'accept' => 'jpg|jpeg|png|pdf'); 
-        $fields['source_id']['label'] = lang('form_label_press_source');
-        $fields['online_article']['label'] = lang('form_label_press_link');
-        $fields['online_article']['attributes'] = 'placeholder="http://"';
-        //internal_debug($fields);
+        $fields['published']['type'] = 'hidden';
         
         return $fields;
     }

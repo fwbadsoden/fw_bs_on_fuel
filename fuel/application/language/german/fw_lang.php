@@ -40,6 +40,8 @@ $lang["form_label_fahrzeug_name_lang"]                  = "Fahrzeugname (lang)";
 $lang["form_label_fahrzeug_prefix_rufname"]             = "Prefix Funkrufname";
 $lang["form_label_fahrzeug_rufname"]                    = "Funkrufname";
 $lang["form_label_fahrzeug_text_kurz"]                  = "Text (kurz)";
+$lang["form_label_fahrzeug_setcard_image"]              = "Setcard Bild";
+$lang["form_comment_fahrzeug_setcard_image"]            = "Bild für die Anzeige in der Fahrzeugübersicht und bei den Einsatzdetails";
 $lang["form_label_fahrzeug_laenge"]                     = "Länge";
 $lang["form_label_fahrzeug_hoehe"]                      = "Höhe";
 $lang["form_label_fahrzeug_einsaetze_zeigen"]           = "Einsätze anzeigen";
@@ -49,6 +51,9 @@ $lang["form_label_fahrzeug_ps"]                         = "Leistung in PS";
 
 $lang["form_label_press_source"]                        = "Quelle";
 $lang["form_label_press_link"]                          = "URL";
+$lang["form_comment_press_asset"]                       = "Bitte hier die Datei auswählen/hochladen, falls der Artikel als Datei vorliegt (jpg, jpeg, png oder pdf)";
+$lang["form_comment_press_link"]                        = "Bitte die URL angeben, falls der Artikel als Onlineversion verfügbar ist";
+$lang["form_label_press_section"]                       = "Bitte entweder eine URL oder eine Datei angeben.";
 
 $lang["form_label_mannschaft_section"]                  = "Abteilung";
 $lang["form_label_mannschaft_team"]                     = "Bereich";
@@ -95,7 +100,9 @@ $lang["form_label_einsatz_nr"]                          = "Einsatz Nr.";
 $lang["form_label_einsatz_images_mission"]              = "Einsatz";
 $lang["form_label_einsatz_image_thumbnail"]             = "Bild (Thumbnail)";
 
-$lang["form_label_appointments_shortcity"]              = "Ort kurz";
+$lang["form_label_appointments_shortcity"]              = "Ort (kurz)";
+$lang["form_comment_appointments_shortcity"]            = "kurze Ortsangabe für die Anzeige auf der Startseite";
+$lang["form_comment_appointments_city"]                 = "Ausführliche Ortsangabe für die Anzeige in den Termindetails";
 
 $lang["form_label_mannschaft_show_image"]               = "Bild anzeigen";
 $lang["form_label_mannschaft_show_job"]                 = "Beruf anzeigen";
@@ -106,10 +113,15 @@ $lang["form_label_mannschaft_birthdate_afterhtml"]      = "(nur bei Einsatzabtei
 $lang["form_label_mannschaft_show_entrydate"]           = "Eintrittsdatum anzeigen";
 $lang["form_label_mannschaft_entrydate_afterhtml"]      = "(nur bei Alters- und Ehrenabteilung relevant)";
 
+$lang["form_label_news_article"]                        = "News";
 $lang["form_label_news_title"]                          = "Titel";
 $lang["form_label_news_stage_title"]                    = "Titel für Bildbühne";
 $lang["form_label_news_datum"]                          = "Gültig ab";
+$lang["form_label_news_link"]                           = "Hiermit kann statt eines klassischen Newsartikels auf einen Onlineartikel oder eine andere Seite verlinkt werden.";
 $lang["form_label_news_teaser_image"]                   = "Teaserbild";
+$lang["form_comment_news_teaser_image"]                 = "Dieses Bild wird als Teaser auf der Startseite verwendet. Bitte die Größe beachten (570*260px).";
 $lang["form_label_news_og_image"]                       = "Facebookbild";
+$lang["form_comment_news_og_image"]                     = "Dieses Bild wird beim verlinken der News auf Facebook angezeigt.";
+$lang["form_label_news_photographer_comment"]           = "Der Fotograf des Bildes. Mögliche Werte sind als Vorschlagswerte hinterlegt.";
 
 ?>
