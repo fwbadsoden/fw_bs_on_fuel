@@ -143,7 +143,7 @@ class Stage_model extends Abstract_module_record {
                 array_push($images_new, $images[$random_keys]);
             }
         } else {
-            for($i = 0; i < count($images); $i++) {
+            for($i = 0; $i < count($images); $i++) {
                 array_push($images_new, $images[$i]);
             }
         }

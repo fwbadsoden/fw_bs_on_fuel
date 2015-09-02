@@ -54,10 +54,15 @@ class Appointments_model extends Abstract_module_model {
         
         $fields['category_id']['label'] = lang("form_label_category");
         $fields['ort_short']['label'] = lang("form_label_appointments_shortcity");
+        $fields['ort_short']['comment'] = lang("form_comment_appointments_shortcity");
+        $fields['datum']['attributes'] = 'placeholder="tt-mm-jjjj"';
         $fields['beginn']['ampm'] = false;
+        $fields['beginn']['after_html'] = 'Uhr';
         $fields['ende']['ampm'] = false;
+        $fields['ende']['after_html'] = 'Uhr';
         $fields['description'] = array('type' => 'textarea', 'class' => 'no_editor');
-        $fields['ort'] = array('type' => 'textarea', 'rows' => 3, 'class' => 'no_editor');
+        $fields['ort'] = array('type' => 'textarea', 'rows' => 3, 'class' => 'no_editor', 'comment' => lang("form_comment_appointments_city"));
+        $fields['published']['type'] = 'hidden';
         return $fields;
     }   
     

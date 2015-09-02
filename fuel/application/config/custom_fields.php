@@ -18,7 +18,10 @@ $fields['tagsinput'] = array(
                                 //),
                                 //'represents' => array('name' => 'color')
                             );
-
+$fields['photographer_input'] = array(
+                                'class'     => 'MY_custom_fields',
+                                'function'  => 'photographer_input',
+                            );
 
 include(FUEL_PATH.'config/custom_fields.php');
 
