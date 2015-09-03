@@ -350,7 +350,7 @@ class Fuel_form extends Fuel_base_library {
 	 * @param	array	config preferences
 	 * @return	void
 	 */	
-	public function initialize($params)
+	public function initialize($params = array())
 	{
 		parent::initialize($params);
 		$this->CI->load->library('validator');
@@ -645,7 +645,7 @@ class Fuel_form extends Fuel_base_library {
 	 $_POST['password2'] = 'xxx';
 
 	 $validation = array('name', 'is_equal_to', 'Please make sure the passwords match', array('{password}', '{password2'));
- 	 $fields['password'] = array('type' => 'password', 'validation' => array($validation_rule));
+ 	 $fields['password'] = array('type' => 'password', 'validation' => array($validation));
 	 $fields['password2'] = array('type' => 'password', 'label' => 'Password verfied');
 
 	 $form = $this->fuel->forms->create('myform', array('fields' => array('name' => array('required' => TRUE))));
@@ -708,7 +708,7 @@ class Fuel_form extends Fuel_base_library {
 			$posted = $this->clean_posted();
 			$is_spam = $this->is_spam($posted);
 			if ($this->fuel->pages->mode() != 'views' && $this->get_save_entries())
-			{ 
+			{
 				if (!isset($this->CI->db))
 				{
 					$this->CI->load->database();
@@ -740,20 +740,20 @@ class Fuel_form extends Fuel_base_library {
 							return FALSE;
 						}
 						$this->call_hook('post_save'); 
-					} 
+					}
 				}
 			}
 
 			$this->call_hook('post_process');
 			if (!$is_spam OR ($is_spam AND $this->fuel->forms->config('send_spam')))
-			{ 
+			{
 				if (!$this->notify($_POST['__email_message__']))
-				{ 
+				{
 					$this->call_hook('error', array('errors' => $this->last_error()));
 					$this->_add_error($entry->errors());
 					return FALSE;
 				}
-			} 
+			}
 			$this->call_hook('success');
 			return TRUE;
 		}
@@ -1107,7 +1107,7 @@ class Fuel_form extends Fuel_base_library {
 	
 			// let her rip
 			if (!$email->send())
-			{ 
+			{
 				if (is_dev_mode())
 				{
 					echo $email->print_debugger();
