@@ -30,6 +30,8 @@ $config['modules_allowed'] = array(
     'page_analysis',
 );
 
+$config['dashboards'] = array('fuel', 'google_analytics');
+
 // used for system emails
 $config['domain'] = '';
 
