@@ -102,13 +102,21 @@ class Missions_model extends Abstract_module_model {
         $fields['uhrzeit_ende']['after_html'] = 'Uhr';            
         
         $fields["ort"]                      = array('label' => lang("form_label_einsatz_ort"),
-                                                    'order' => 20);            
+                                                    'order' => 15);            
         
         $options = array('yes' => 'ja', 'no' => 'nein');   
         $fields["ort_zeigen"]               = array('type'    => 'enum',
                                                     'options' => $options,
                                                     'comment' => lang('form_label_einsatz_ort_zeigen_comment'),
-                                                    'order'   => 21);                                                                                                          
+                                                    'order'   => 16);                 
+                
+        $fields["anzahl_kraefte"]           = array('label' => lang("form_label_einsatz_anzahl_kraefte"),
+                                                    'after_html' => 'Personen',
+                                                    'order' => 17);
+                                                    
+        $fields["anzahl_einsaetze"]['order'] = 18; 
+        $fields["anzahl_einsaetze"]['label'] = lang('form_label_einsatz_anzahl_einsaetze'); 
+        $fields["anzahl_einsaetze"]['comment'] = lang('form_label_einsatz_anzahl_einsaetze_comment');                                                                                             
         
         $fields["lage"]                     = array('label' => lang("form_label_einsatz_lage"),
                                                     'type'  => 'textarea',
@@ -124,15 +132,7 @@ class Missions_model extends Abstract_module_model {
                      
         $fields["fahrzeuge"]["order"]       = 30;
         $fields["fahrzeuge"]["mode"]        = "checkbox";
-        $fields["fahrzeuge"]["model"]       = array('' => array('fahrzeuge' => 'get_mission_vehicle_list'));
-                
-        $fields["anzahl_kraefte"]           = array('label' => lang("form_label_einsatz_anzahl_kraefte"),
-                                                    'after_html' => 'Personen',
-                                                    'order' => 31);
-                                                    
-        $fields["anzahl_einsaetze"]['order'] = 32; 
-        $fields["anzahl_einsaetze"]['label'] = lang('form_label_einsatz_anzahl_einsaetze'); 
-        $fields["anzahl_einsaetze"]['comment'] = lang('form_label_einsatz_anzahl_einsaetze_comment');                                                                                       
+        $fields["fahrzeuge"]["model"]       = array('' => array('fahrzeuge' => 'get_mission_vehicle_list'));                                                                                   
         
         $fields["weitere_kraefte"]          = array('label' => lang("form_label_einsatz_weiterekraefte"),
                                                     'type'  => 'tagsinput',

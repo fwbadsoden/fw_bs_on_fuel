@@ -71,6 +71,7 @@ class PressArticles_model extends Abstract_module_model {
                                  'class' => 'file',
                                  'order' => 7, 
                                  'comment' => lang('form_comment_press_asset'),
+                                 'hide_options' => true,
                                  'accept' => 'jpg|jpeg|png|pdf'); 
         $fields['published']['type'] = 'hidden';
         

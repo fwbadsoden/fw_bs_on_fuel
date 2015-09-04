@@ -29,6 +29,8 @@ class Stage_Images_model extends Abstract_module_model {
                                  'order' => 3,
                                  'create_thumb' => FALSE,
                                  'width' => '1280',
+                                 'overwrite' => true,
+                                 'hide_options' => true,
                                  'master_dim' => 'width');
         
         // Bildtyp / Bildbühnentyp - Zuordnung
@@ -65,6 +67,25 @@ class Stage_Images_model extends Abstract_module_model {
 
         return $fields;
     }
+
+	/**
+	 * Hook - right before saving of data
+	 *
+	 * @access	public
+	 * @param	array	values to be saved
+	 * @return	array
+	 */	
+	public function on_before_save($values)
+	{
+        $values = parent::on_before_save($values);
+        
+        if($values["stage_image_type_id"] == 4 || $values["stage_image_type_id"] == 5) {
+            $values["text_1"] = "dummy";
+            $values["text_2"] = "dummy";
+        }
+        
+		return $values;
+	}
 }
 
 class Stage_Image_model extends Abstract_module_record {
