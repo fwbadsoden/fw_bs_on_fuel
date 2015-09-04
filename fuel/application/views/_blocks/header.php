@@ -170,7 +170,8 @@
                     	</ul>  
                     	<ul>                      
                         	<li class="headline"><a href="<?=base_url('menschen/altersundehrenabteilung')?>">Alters &amp; Ehrenabt.</a></li>                        
-                            <li><a href="<?=base_url('menschen/altersundehrenabteilung')?>">Alters &amp; Ehrenabteilung</a></li>
+                            <li><a href="<?=base_url('menschen/altersundehrenabteilung#anker_a')?>">Altersabteilung</a></li>                      
+                            <li><a href="<?=base_url('menschen/altersundehrenabteilung#anker_e')?>">Ehrenabteilung</a></li>
                     	</ul> 
                     	<ul>
                         	<li class="headline"><a href="<?=base_url('menschen/jugend')?>">Nachwuchs</a></li>                             

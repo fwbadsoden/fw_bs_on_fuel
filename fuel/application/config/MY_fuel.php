@@ -52,10 +52,10 @@ $config['auto_search_views'] = FALSE;
 $config['assets_upload_max_size']	= 5000;
 
 // max width for asset images being uploaded
-$config['assets_upload_max_width']  = 1024;
+$config['assets_upload_max_width']  = 1280;
 
 // max height for asset images being uploaded
-$config['assets_upload_max_height']  = 768;
+$config['assets_upload_max_height']  = 1024;
 
 
 // text editor settings  (options are markitup or ckeditor)
