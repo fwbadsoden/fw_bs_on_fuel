@@ -77,10 +77,12 @@ class News_articles_model extends Abstract_module_model {
         
         $fields['teaser']           = array('type' => 'textarea',
                                             'preview' => false,
+                                            'class' => 'no_editor',
                                             'order' => 7);
         
         $fields['text']             = array('type' => 'textarea',
                                             'preview' => false,
+                                            'img_folder' => 'news',
                                             'order' => 8);
         
         $fields['published']['type'] = 'hidden';
