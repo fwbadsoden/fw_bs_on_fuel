@@ -113,51 +113,66 @@ class Fahrzeuge_model extends Abstract_module_model {
         $fields["baujahr"]['order'] = 14; 
         
         $options = array('1/8', '1/7', '1/5', '1/4', '1/3', '1/2', '1/1', '16' => '16 (RH Hänger)');
-        $fields['besatzung'] = array('options' => $options,
-                                     'type' => 'select',
-                                     'order' => 15);
+        $fields['besatzung']    = array('options' => $options,
+                                        'type' => 'select',
+                                        'order' => 15);
         
-        $fields["zusatzdaten"] = array('type' => 'fieldset',
-                                      'class' => 'tab',
-                                      'label' => 'Zusatzdaten',
-                                      'order' => 16);    
+        $fields["zusatzdaten"]  = array('type' => 'fieldset',
+                                        'class' => 'tab',
+                                        'label' => 'Zusatzdaten',
+                                        'order' => 16);    
+         
+        $fields["pumpe"]        = array('type' => 'textarea',
+                                        'label' => lang('form_label_fahrzeug_pumpe'),
+                                        'comment' => lang('form_comment_fahrzeug_zusatz'),
+                                        'class' => 'no_editor',
+                                        'rows' => 3,
+                                        'order' => 17); 
         
-        $fields["pumpe"]['order'] = 17; 
+        $fields["loeschmittel"] = array('type' => 'textarea',
+                                        'label' => lang('form_label_fahrzeug_loeschmittel'),
+                                        'comment' => lang('form_comment_fahrzeug_zusatz'),
+                                        'class' => 'no_editor',
+                                        'rows' => 5,
+                                        'order' => 18);  
         
-        $fields["loeschmittel"]['order'] = 18; 
-        
-        $fields["besonderheit"]['order'] = 20;    
+        $fields["besonderheit"] = array('type' => 'textarea',
+                                        'label' => lang('form_label_fahrzeug_besonderheiten'),
+                                        'comment' => lang('form_comment_fahrzeug_zusatz'),
+                                        'class' => 'no_editor',
+                                        'rows' => 5,
+                                        'order' => 20);    
         
         $fields["fahrzeugwerte"] = array('type' => 'fieldset',
                                       'class' => 'tab',
                                       'label' => 'Fahrzeugwerte',
                                       'order' => 21);      
         
-        $fields["kw"] = array('label' => lang("form_label_fahrzeug_kw"),
-                                 'after_html' => 'KW',
-                                 'order' => 22);
+        $fields["kw"]            = array('label' => lang("form_label_fahrzeug_kw"),
+                                         'after_html' => 'KW',
+                                         'order' => 22);
         
-        $fields["ps"] = array('label' => lang("form_label_fahrzeug_ps"),
-                                 'after_html' => 'PW',
-                                 'order' => 23);
+        $fields["ps"]            = array('label' => lang("form_label_fahrzeug_ps"),
+                                         'after_html' => 'PW',
+                                         'order' => 23);
         
-        $fields["hoehe"] = array('label' => lang("form_label_fahrzeug_hoehe"),
-                                 'after_html' => 'm',
-                                 'order' => 24);
+        $fields["hoehe"]         = array('label' => lang("form_label_fahrzeug_hoehe"),
+                                         'after_html' => 'm',
+                                         'order' => 24);
         
-        $fields["breite"] = array('label' => lang("form_label_fahrzeug_breite"),
-                                  'after_html' => 'm',
-                                  'order' => 25);
+        $fields["breite"]        = array('label' => lang("form_label_fahrzeug_breite"),
+                                         'after_html' => 'm',
+                                         'order' => 25);
         
-        $fields["laenge"] = array('label' => lang("form_label_fahrzeug_laenge"),
-                                  'after_html' => 'm',
-                                  'order' => 26);
+        $fields["laenge"]        = array('label' => lang("form_label_fahrzeug_laenge"),
+                                         'after_html' => 'm',
+                                         'order' => 26);
         
-        $fields["gesamtmasse"] = array('after_html' => 't',
-                                       'order' => 27);
+        $fields["gesamtmasse"]   = array('after_html' => 't',
+                                         'order' => 27);
         
-        $fields["leermasse"] = array('after_html' => 't',
-                                     'order' => 28);     
+        $fields["leermasse"]     = array('after_html' => 't',
+                                         'order' => 28);     
                                      
         $fields["precedence"]["type"] = 'hidden';  
         $fields["published"]["type"] = 'hidden';
@@ -175,6 +190,25 @@ class Fahrzeuge_model extends Abstract_module_model {
     	}
     	$data = parent::options_list($key, $val, $where, $order);
     	return $data;
+    }
+    
+    public function get_fahrzeugliste($ad) {
+        
+        if($ad) {
+            $this->db->where(array("retired" => "yes", "published" => "yes"));
+        } else {
+            $this->db->where(array("retired" => "no", "published" => "yes"));
+        }
+        $this->db->order_by('precedence', 'ascending');
+        $this->db->select("name, name_lang, id");
+        $query = $this->db->get("fahrzeuge");
+        $fahrzeuge = array();
+        
+        foreach($query->result() as $row) {
+            array_push($fahrzeuge, $row);
+        }
+        
+        return $fahrzeuge;
     }
     
     public function get_mission_vehicle_list() {
@@ -197,25 +231,6 @@ class Fahrzeuge_model extends Abstract_module_model {
         else 
             return false;
         
-    }
-    
-    public function get_fahrzeugliste($ad) {
-        
-        if($ad) {
-            $this->db->where(array("retired" => "yes", "published" => "yes"));
-        } else {
-            $this->db->where(array("retired" => "no", "published" => "yes"));
-        }
-        $this->db->order_by('precedence', 'ascending');
-        $this->db->select("name, name_lang, id");
-        $query = $this->db->get("fahrzeuge");
-        $fahrzeuge = array();
-        
-        foreach($query->result() as $row) {
-            array_push($fahrzeuge, $row);
-        }
-        
-        return $fahrzeuge;
     }
     
     public function get_stage_text($id) {

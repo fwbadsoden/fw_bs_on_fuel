@@ -26,8 +26,8 @@ class Module_layout extends Base_layout {
                                         $vars["list_where"] = array("retired" => "yes", "published" => "yes");
                                         $vars["fahrzeugliste"] = $CI->fahrzeuge_model->get_fahrzeugliste(TRUE);
                                     } else {
-                                        $list_where = array("retired" => "no", "published" => "yes");
-                                        $vars["fahrzeugliste"] = $CI->fahrzeuge_model->get_fahrzeugliste(FALSE);                                   
+                                        $vars["list_where"] = array("retired" => "no", "published" => "yes");  
+                                        $vars["fahrzeugliste"] = $CI->fahrzeuge_model->get_fahrzeugliste(FALSE);                                 
                                     }
                                                                     
                                     if(is_numeric(uri_segment($vars["segment"]))) {
