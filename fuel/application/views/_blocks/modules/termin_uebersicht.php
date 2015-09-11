@@ -82,8 +82,8 @@
                         <div class="listContent">
                             <div class="row">
                                 <a href="<?=pdf_path('dienstplan/Dienstplan.pdf')?>" target="_blank">
-                                	<div class="date_small trenner"><span class="inline_date">27.11.2014</span></div>
-                                 	<div class="size trenner"><p>PDF</p><p class="bytes"><?=asset_filesize('pdf/dienstplan/Dienstplan.pdf', NULL, NULL, true)?></p></div>
+                                	<div class="date_small trenner"><span class="inline_date"><?=get_asset_date('pdf/dienstplan/Dienstplan.pdf')?></span></div>
+                                 	<div class="size trenner"><p>PDF</p><p class="bytes"><?=get_asset_size('pdf/dienstplan/Dienstplan.pdf')?></p></div>
                 	               	<div class="headline smallBoxHead"><span class="medium">Einsatzabteilung Bad Soden</span><br/>Dienstplan</div>
                                	</a>
                             </div>
