@@ -132,7 +132,7 @@
                             <?php foreach($main_navigation["missions"] as $m) : 
                                   if(strlen($m->name) > 32) $m->name = substr($m->name,0,32).'...';                                   
                             ?>   
-                        	<li><a href="<?=base_url('aktuelles/einsaetze/'.$m->id)?>"><span class="subline"><?=get_ger_date($m->datum)?> / <?=$m->type->name?></span><br /><?=$m->name?></a></li>
+                        	<li><a href="<?=base_url('aktuelles/einsaetze/'.$m->id)?>"><span class="subline"><?=get_ger_date($m->datum_beginn)?> / <?=$m->type->name?></span><br /><?=$m->name?></a></li>
                             <?php endforeach; ?>
                     	</ul>  
                     	<ul>                         
@@ -151,7 +151,7 @@
                                   if(strlen($p->name) > 32) $p->name = substr($p->name,0,32).'...'; 
                             ?>  
                             <?php if($p->online_article == '') : ?>                      
-                	        <li><a href="<?=assets_path($p->asset, 'pressarticles')?>" class="fancybox-gallery" rel="gallery_presse_menue"><span class="subline"><?=$p->datum?> / <?=$p->source->name?></span><br /><?=$p->name?></a></li>
+                	        <li><a href="<?=assets_path($p->asset, 'pressarticles')?>" class="fancybox-gallery" rel="gallery_presse_menue"><span class="subline"><?=get_ger_date($p->datum)?> / <?=$p->source->name?></span><br /><?=$p->name?></a></li>
                             <?php else : ?>
                             <li><a href="<?=$p->online_article?>" target="_blank"><span class="subline"><?=get_ger_date($p->datum)?> / <?=$p->source->name?></span><br /><?=$p->name?></a></li>
                             <?php endif; ?>        

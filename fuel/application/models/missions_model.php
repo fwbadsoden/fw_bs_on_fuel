@@ -143,11 +143,51 @@ class Missions_model extends Abstract_module_model {
                                                     'order' => 34);      
     
         $fields["published"]["type"]        = 'hidden';      
-        $fields["mission_images"]["type"]   = 'hidden';  
-        $fields["lfd_nr"]["type"]           = 'hidden';                                       
+        $fields["mission_images"]["type"]   = 'hidden';                                        
         
         return $fields;
     }
+
+	/**
+	 * Placeholder hook - right before validation of data
+	 *
+	 * @access	public
+	 * @param	array	values to be saved
+	 * @return	array
+	 */	
+	public function on_before_validate($values)
+	{
+        $values = parent::on_before_validate($values);
+        
+        if($values["einsatz_nr"] == "wird automatisch vergeben") {
+            $values["einsatz_nr"] = 0;
+        }
+        
+		return $values;
+	}
+
+	/**
+	 * Hook - right before saving of data
+	 *
+	 * @access	public
+	 * @param	array	values to be saved
+	 * @return	array
+	 */	
+	public function on_before_save($values)
+	{
+        $values = parent::on_before_save($values);
+        
+        if($values["einsatz_nr"] == 0) {
+            $this->db->select_max('einsatz_nr');
+		    $query = $this->db->get_where('missions', array('substr(datum_beginn,1,4)' => substr($values['datum_beginn'],0,4)));
+            $row = $query->row();
+            
+            if($row->einsatz_nr != null) $values["einsatz_nr"] = $row->einsatz_nr + 1;
+            else $values["einsatz_nr"] = 1;
+        } 
+        
+		return $values;
+	}
     
     public function options_list($key = 'id', $val = 'name', $where = array(), $order = TRUE, $group = TRUE)
     {

@@ -28,7 +28,7 @@
 <? endif; ?>
                 	<div class="date_small trenner"><span class="inline_date"><?=$date[2]?>. <?=get_month_short_name($date[1])?>. <?=$date[0]?></span></div>
 <? if($article->online_article == '') : ?>                    
-                 	<div class="size trenner"><p><?=strtoupper(substr($article->asset, -3))?></p><p class="bytes"><?=asset_filesize($article->asset, 'pressarticles', NULL, true)?></p></div>
+                 	<div class="size trenner"><p><?=strtoupper(substr($article->asset, -3))?></p><p class="bytes"><?=get_asset_size($article->asset, 'pressarticles')?></p></div>
 <? else : ?>
                     <div class="size trenner"><p>URL&nbsp;&nbsp;</p><p class="bytes"></p></div>
 <? endif; ?>                    
