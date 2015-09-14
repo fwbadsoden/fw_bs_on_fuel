@@ -48,9 +48,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'mysql5.feuerwehr-bs.de';
-$db['default']['username'] = 'db403895_4';
-$db['default']['password'] = 'bszS?K2ruyWe';
-$db['default']['database'] = 'db403895_4';
+$db['default']['username'] = 'db403895_3';
+$db['default']['password'] = '1kSqg+4TGcyx';
+$db['default']['database'] = 'db403895_3';
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = 'fw_';
 $db['default']['pconnect'] = TRUE;

@@ -22,7 +22,7 @@
     </div>
     
     <div id="copyright">
-    	<p>&copy;<?php echo date("Y"); ?> <?=fuel_var('copyright'); ?></p>
+    	<p>&copy;<?=date("Y")." ".fuel_var('copyright')?></p>
     </div>
 
 </footer>

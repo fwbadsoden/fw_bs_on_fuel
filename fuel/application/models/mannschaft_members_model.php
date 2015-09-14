@@ -240,6 +240,7 @@ class Mannschaft_Members_model extends Abstract_module_model {
                            mannschaft_members.geburtstag as geburtstag,
                            mannschaft_members.show_geburtstag as show_geburtstag,
                            mannschaft_members.show_beruf as show_beruf,
+                           mannschaft_members.beruf as beruf,
                            mannschaft_grades.name as grade_name,
                            mannschaft_grades.name_m as grade_name_m,
                            mannschaft_grades.name_w as grade_name_w,
@@ -256,8 +257,9 @@ class Mannschaft_Members_model extends Abstract_module_model {
             $m["image"] = $row->image; 
             $m["show_image"] = $row->show_image; 
             $m["geschlecht"] = $row->geschlecht; 
-            $m["geburstag"] = $row->geburtstag; 
-            $m["show_geburtstag"] = $row->show_geburtstag; 
+            $m["geburtstag"] = $row->geburtstag; 
+            $m["show_geburtstag"] = $row->show_geburtstag;
+            $m["beruf"] = $row->beruf; 
             $m["show_beruf"] = $row->show_beruf; 
             $m["grade_name"] = $row->grade_name; 
             $m["grade_name_m"] = $row->grade_name_m; 
