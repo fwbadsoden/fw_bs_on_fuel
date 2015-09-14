@@ -22,9 +22,9 @@
     foreach($fuehrung as $f) :
         if($listcount > 3) $listcount = 1;
         
-        if($f["show_geburtstag"] == 0) $f["geburtstag"] = "";
-        if($f["show_beruf"] == 0) $f["beruf"] = "";
-        if($f["show_image"] == 0) $f["image"] = "dummy.jpg";
+        if($f["show_geburtstag"] == 'no') $f["geburtstag"] = "0000-00-00";
+        if($f["show_beruf"] == 'no') $f["beruf"] = "";
+        if($f["show_image"] == 'no') $f["image"] = "dummy.jpg";
         
         if($f["executive_name"] != $lastFunktion && array_search($f["executive_name"], $nonLineBreakingFunktionen) === false){
             $class = '';
@@ -56,21 +56,16 @@
                         <p>
 <?php                      
             
-    if($f["geburtstag"] != '' && $f["geburtstag"] != '0000-00-00' && $f["beruf"] != ''){                      
-        echo cp_get_alter($f["geburtstag"]) . " Jahre, " .$f["beruf"];
-    }      
-    else{
-       if($f["geburtstag"] != '' and $f["geburtstag"] != '0000-00-00'  && $f["beruf"] == '') {                  
-        echo cp_get_alter($f["geburtstag"]) . " Jahre, " .$f["beruf"];
+       if(isset($f["geburtstag"]) && $f["geburtstag"] != '0000-00-00'  && isset($f["beruf"])) {                  
+        echo get_alter($f["geburtstag"]) . " Jahre, " .$f["beruf"];
        }else{
-           if($f["beruf"] != ''){
+           if(isset($f["beruf"]) && $f["beruf"] != "") {
                echo $f["beruf"];
            }
            else{ 
-               echo '&nbsp;';       
+               echo '&nbsp; ';       
            }
-       }        
-   }
+       }   
                             ?>         
                         </p>
                     </li>
@@ -87,9 +82,9 @@
 <? foreach($team as $t) : 
     if($listcount > 3) $listcount = 1;
         
-    if($t["show_geburtstag"] == 0) $t["geburtstag"] = "";
-    if($t["show_beruf"] == 0) $t["beruf"] = "";
-    if($t["show_image"] == 0) $t["image"] = "dummy.jpg";
+    if($t["show_geburtstag"] == 'no') $t["geburtstag"] = "0000-00-00";
+    if($t["show_beruf"] == 'no') $t["beruf"] = "";
+    if($t["show_image"] == 'no') $t["image"] = "dummy.jpg";
         
     switch($listcount)
     {
@@ -111,21 +106,17 @@
                         <h2><?=$dienstgrad_name?></h2>
                          <p>
                              <?php                              
-    if($t["geburtstag"] != '' && $t["geburtstag"] != '0000-00-00' && $t["beruf"] != ''){                      
-        echo cp_get_alter($t["geburtstag"]) . " Jahre, " .$t["beruf"];
-    }      
-    else{
-       if($t["geburtstag"] != '' and $t["geburtstag"] != '0000-00-00'  && $t["beruf"] == '') {                  
-        echo cp_get_alter($t["geburtstag"]) . " Jahre, " .$t["beruf"];
+
+       if(isset($t["geburtstag"]) && $t["geburtstag"] != '0000-00-00'  && isset($t["beruf"])) { 
+        echo get_alter($t["geburtstag"]) . " Jahre, " .$t["beruf"];
        }else{
-           if($t["beruf"] != ''){
+           if(isset($t["beruf"]) && $t["beruf"] != "") {
                echo $t["beruf"];
            }
            else{ 
-               echo '&nbsp;'; 
+               echo '&nbsp; '; 
            }
        }        
-   }
                             ?>
                          </p>
                     </li>
