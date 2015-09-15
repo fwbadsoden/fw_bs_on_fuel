@@ -16,14 +16,13 @@
             <?=$data->text?>
         </p>
     </div>
-</div>
-<? if(count($data->images) > 1) : ?>            
+<? if(count($data->news_images) > 1) : ?>            
 <div class="slideshow">
     <div class="prevPic"><a href="#slideshow_news" id="slideshow_prev"><img src="<?=assets_path('button_detailShow_previous.png', 'layout')?>" /></a></div>
     <div class="nextPic"><a href="#slideshow_news" id="slideshow_next"><img src="<?=assets_path('button_detailShow_next.png', 'layout')?>" /></a></div>
                 
-    <ul id="slideshow_car">
-<? foreach($data->images as $key => $image) : 
+    <ul id="slideshow_news">
+<? foreach($data->news_images as $key => $image) : 
     if($key == 0) $class = ' class="active"';
     else          $class = ' class="noActive"';
 ?>                
@@ -36,18 +35,19 @@
 <? endforeach; ?>                    
     </ul>
 </div>
-<? elseif(count($data->images) == 1) : ?> 
+<? elseif(count($data->news_images) == 1) : ?> 
 <div class="slideshow">        
     <ul id="slideshow_news">              
         <li id="slideshow_news_1" class="active">
             <figure>
-                <img src="<?=img_path('news/'.$data->images[0]->image)?>" alt="<?=$data->images[0]->title?>" />
-           	    <div class="zoom"><a href="<?=img_path('news/'.$data->images[0]->image)?>" class="fancybox-gallery" rel="gallery1" title="<?=$data->images[0]->title?>"><img src="<?=assets_path('button_zoom.png', 'layout')?>" /></a></div>
+                <img src="<?=img_path('news/'.$data->news_images[0]->image)?>" alt="<?=$data->news_images[0]->title?>" />
+           	    <div class="zoom"><a href="<?=img_path('news/'.$data->news_images[0]->image)?>" class="fancybox-gallery" rel="gallery1" title="<?=$data->news_images[0]->title?>"><img src="<?=assets_path('button_zoom.png', 'layout')?>" /></a></div>
             </figure>
         </li>                 
     </ul>
 </div>
-<? endif; ?>    
+<? endif; ?> 
+</div>   
         
 <div id="SidebarContent">   
     <div class="menueBox">
