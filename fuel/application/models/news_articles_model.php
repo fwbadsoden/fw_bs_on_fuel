@@ -4,6 +4,7 @@ require_once('abstract_module_model.php');
 
 class News_articles_model extends Abstract_module_model {
     
+    public $has_many = array('news_images' => 'news_images_model');
     public $required = array('title', 'stage_title', 'teaser');
     public $hidden_fields = array('last_modified', 'last_modified_by');
 
@@ -86,6 +87,7 @@ class News_articles_model extends Abstract_module_model {
                                             'order' => 8);
         
         $fields['published']['type'] = 'hidden';
+        $fields["news_images"]["type"] = 'hidden'; 
         
         return $fields;
     }
@@ -145,11 +147,16 @@ class News_articles_model extends Abstract_module_model {
     
     public function get_og_image($id) {
         
+        $this->load->library('opengraph'); 
         $this->db->where('id', $id);
         $this->db->select('og_image');
         $query = $this->db->get('news_articles');
         $row = $query->row();
-        return img_path('news/'.$row->og_image);
+        if($row->og_image != "") {            
+            return $this->opengraph->create_ogImage(img_path('news/'.$row->og_image));
+        } else {
+            return null;
+        }
     }
 }
 

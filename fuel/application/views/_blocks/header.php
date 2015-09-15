@@ -303,7 +303,7 @@
       <li class="subnavi">    
           <ul> 
               <li><a href="<?=base_url('menschen/mannschaft')?>">Mannschaft</a></li>
-              <li><a href="<?=base_url('menschen/rettungshunde')?>">Rettungshunde</a></li>
+              <li><a href="<?=base_url('menschen/altersundehrenabteilung')?>">Alters- und Ehrenabteilung</a></li>
               <li><a href="<?=base_url('menschen/jugend')?>">Jugendfeuerwehr</a></li>
               <li><a href="<?=base_url('menschen/minifeuerwehr')?>">Minifeuerwehr</a></li>
               <li><a href="<?=base_url('menschen/leistungsgruppe')?>">Leistungsgruppe</a></li>
@@ -313,6 +313,7 @@
       <li class="subnavi">    
           <ul>  
             <li><a href="<?=base_url('technik/fahrzeuge')?>" class="first">Fahrzeuge</a></li>
+            <li><a href="<?=base_url('technik/rettungshunde')?>">Rettungshunde-Ortungstechnik</a></li>
           </ul>
       </li>
       <li><a href="<?=base_url('informationen/buergerinformationen')?>">Infos</a></li>
