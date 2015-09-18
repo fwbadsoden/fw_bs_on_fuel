@@ -58,6 +58,11 @@ class News_Images_model extends Abstract_module_model {
 
 class News_Image_model extends Abstract_module_record {
     
+    public function get_image() {
+        $image = parent::get_image();
+        return html_entity_decode($image);
+    }
+    
 }
 
 ?>
