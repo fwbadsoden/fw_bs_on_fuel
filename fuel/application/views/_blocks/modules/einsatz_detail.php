@@ -111,8 +111,8 @@
         $slide_count++;       ?>                
             <li id="slideshow_mission_<?=$slide_count?>" <? if($slide_count == 1) : ?> class="active" <? endif; ?> >
                 <figure>
-               	    <img src="<?=img_path('einsaetze/'.$b->image)?>" alt="" />
-                   	<div class="zoom"><a href="<?=img_path('einsaetze/'.$b->image)?>" class="fancybox-gallery" rel="gallery1"><img src="<?=assets_path('button_zoom.png', 'layout')?>" /></a></div>
+               	    <img src="<?=img_path('einsaetze/'.$b->get_image())?>" alt="" />
+                   	<div class="zoom"><a href="<?=img_path('einsaetze/'.$b->get_image())?>" class="fancybox-gallery" rel="gallery1"><img src="<?=assets_path('button_zoom.png', 'layout')?>" /></a></div>
                 </figure>
                 <p><?=$slide_count?>: <?=$b->description?> <?=$b->photographer?></p>
             </li>

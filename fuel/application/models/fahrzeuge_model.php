@@ -4,6 +4,7 @@ require_once('abstract_module_model.php');
 
 class Fahrzeuge_model extends Abstract_module_model {
     
+    public $required = array('name', 'name_lang', 'prefix_rufname', 'rufname', 'text', 'besatzung', 'hersteller', 'setcard_image');
     public $has_many = array('fahrzeug_images' => 'fahrzeug_images_model');
     public $belongs_to = array('missions' => 'missions_model');   
     public $boolean_fields = array('retired', 'ausser_dienst'); 
@@ -141,7 +142,13 @@ class Fahrzeuge_model extends Abstract_module_model {
                                         'comment' => lang('form_comment_fahrzeug_zusatz'),
                                         'class' => 'no_editor',
                                         'rows' => 5,
-                                        'order' => 20);    
+                                        'order' => 19);             
+                                            
+        $options = array('no' => 'nein','yes' => 'ja'); 
+        $fields['abrollbehaelter_tauglich']  = array('label'   => lang('form_label_fahrzeug_abrollbehaelter'),
+                                        'type'    => 'enum',
+                                        'options' => $options,
+                                        'order' => 20);  
         
         $fields["fahrzeugwerte"] = array('type' => 'fieldset',
                                       'class' => 'tab',

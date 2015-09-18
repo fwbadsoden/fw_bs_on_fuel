@@ -127,7 +127,7 @@ class Maintenance extends CI_Controller
                             echo $target . " is now named " . $newName . "<br/>";
         
                             if($image->description == "") $image->description = $einsatz->name." ".$i;
-                            $image->image = $einsatzname . "_" . ".jpg";
+                            $image->image = $einsatzname . ".jpg";
                             $image->save();
                         } else
                         {
