@@ -24,7 +24,7 @@
     <ul class="news"> 
 <?php foreach($missions as $m) : ?>
         <li>
-            <a href="<?=base_url('aktuelles/einsatz/'.$m->id)?>">
+            <a href="<?=base_url('aktuelles/einsaetze/'.$m->id)?>">
                 <h2><span class="date"><?=get_ger_date($m->datum_beginn).' '.$m->uhrzeit_beginn?></span> / <?=$m->type->name?></h2>
                 <h1><?=$m->name?></h1>
                 <p><?=$m->lage?></p>
