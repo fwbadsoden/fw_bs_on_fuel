@@ -28,8 +28,8 @@
 ?>                
         <li id="slideshow_news_<?=$key+1?>"<?=$class?>>
             <figure>
-              	<img src="<?=img_path('news/'.$image->image)?>" alt="<?=$image->title?>" />
-               	<div class="zoom"><a href="<?=img_path('news/'.$image->image)?>" class="fancybox-gallery" rel="gallery1" title="<?=$image->title?>"><img src="<?=assets_path('button_zoom.png', 'layout')?>" /></a></div>
+              	<img src="<?=img_path('news/'.$image->get_image())?>" alt="<?=$image->title?>" />
+               	<div class="zoom"><a href="<?=img_path('news/'.$image->get_image())?>" class="fancybox-gallery" rel="gallery1" title="<?=$image->title?>"><img src="<?=assets_path('button_zoom.png', 'layout')?>" /></a></div>
             </figure>
         </li>
 <? endforeach; ?>                    
@@ -40,8 +40,8 @@
     <ul id="slideshow_news">              
         <li id="slideshow_news_1" class="active">
             <figure>
-                <img src="<?=img_path('news/'.$data->news_images[0]->image)?>" alt="<?=$data->news_images[0]->title?>" />
-           	    <div class="zoom"><a href="<?=img_path('news/'.$data->news_images[0]->image)?>" class="fancybox-gallery" rel="gallery1" title="<?=$data->news_images[0]->title?>"><img src="<?=assets_path('button_zoom.png', 'layout')?>" /></a></div>
+                <img src="<?=img_path('news/'.$data->news_images[0]->get_image())?>" alt="<?=$data->news_images[0]->title?>" />
+           	    <div class="zoom"><a href="<?=img_path('news/'.$data->news_images[0]->get_image())?>" class="fancybox-gallery" rel="gallery1" title="<?=$data->news_images[0]->title?>"><img src="<?=assets_path('button_zoom.png', 'layout')?>" /></a></div>
             </figure>
         </li>                 
     </ul>
