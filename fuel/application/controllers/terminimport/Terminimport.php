@@ -99,7 +99,7 @@ class Terminimport extends CI_Controller {
                     $termin['ort_short'] = 'Feuerwehr Bad Soden';
                     $termin['ort'] = 'Freiwillige Feuerwehr Bad Soden am Taunus<br />Hunsrückstr. 5-7<br />65812 Bad Soden am Taunus';
                     $termin['published'] = 'yes';
-                    $this->m_appointment->save($termin, TRUE, TRUE);
+                    $this->m_appointment->insert($termin);
                     echo "Inserted " . $lineToInsert . " into db\n";
                 }
             }
