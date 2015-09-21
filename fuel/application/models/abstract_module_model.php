@@ -6,6 +6,8 @@ abstract class Abstract_module_model extends Base_module_model {
     
     function __construct($table = NULL, $params = NULL) {
         parent::__construct($table, $params);
+        $this->xss_clean = true;
+        $this->auto_encode_entities = false;
     }
 }
 
