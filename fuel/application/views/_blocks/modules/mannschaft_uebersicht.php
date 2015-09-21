@@ -56,8 +56,10 @@
                         <p>
 <?php                      
             
-       if(isset($f["geburtstag"]) && $f["geburtstag"] != '0000-00-00'  && isset($f["beruf"])) {                  
+       if(isset($f["geburtstag"]) && $f["geburtstag"] != '0000-00-00'  && $f["beruf"] != "") {                  
         echo get_alter($f["geburtstag"]) . " Jahre, " .$f["beruf"];
+       }elseif(isset($f["geburtstag"]) && $f["geburtstag"] != '0000-00-00'  && $f["beruf"] == "") {                
+        echo get_alter($f["geburtstag"]) . " Jahre";
        }else{
            if(isset($f["beruf"]) && $f["beruf"] != "") {
                echo $f["beruf"];
@@ -107,8 +109,10 @@
                          <p>
                              <?php                              
 
-       if(isset($t["geburtstag"]) && $t["geburtstag"] != '0000-00-00'  && isset($t["beruf"])) { 
+       if(isset($t["geburtstag"]) && $t["geburtstag"] != '0000-00-00'  && $t["beruf"] != "") { 
         echo get_alter($t["geburtstag"]) . " Jahre, " .$t["beruf"];
+       }elseif(isset($t["geburtstag"]) && $t["geburtstag"] != '0000-00-00'  && $t["beruf"] == "") {                  
+        echo get_alter($t["geburtstag"]) . " Jahre";
        }else{
            if(isset($t["beruf"]) && $t["beruf"] != "") {
                echo $t["beruf"];
