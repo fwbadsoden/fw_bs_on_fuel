@@ -83,7 +83,7 @@ $config['modules']['mannschaft_members'] = array(
     'module_name' => 'Mannschaft',
     'instructions' => lang("mannschaft_members_instructions"),
     'permission' => 'mannschaft_members',
-    'limit_options' => array('1000' => '1000'),
+    'limit_options' => array('20' => '20', '50' => '50'),
 );
 
 $config['modules']['mannschaft_sections'] = array(
