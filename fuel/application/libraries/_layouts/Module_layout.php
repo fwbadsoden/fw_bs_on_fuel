@@ -24,9 +24,11 @@ class Module_layout extends Base_layout {
                                     if(strpos(uri_string(), "fahrzeuge/ausserdienst")) {
                                         $vars["segment"] = 4;
                                         $vars["list_where"] = array("retired" => "yes", "published" => "yes");
+                                        $vars["order"]  = "precedence asc";
                                         $vars["fahrzeugliste"] = $CI->fahrzeuge_model->get_fahrzeugliste(TRUE);
                                     } else {
-                                        $vars["list_where"] = array("retired" => "no", "published" => "yes");  
+                                        $vars["list_where"] = array("retired" => "no", "published" => "yes");
+                                        $vars["order"]  = "precedence asc";
                                         $vars["fahrzeugliste"] = $CI->fahrzeuge_model->get_fahrzeugliste(FALSE);                                 
                                     }
                                                                     
