@@ -190,11 +190,13 @@
             	    <div class="dateBox">
                         <h1>Die letzten Einsätze</h1>
                         <ul>
-        <? for($i = 0; $i < 5; $i++) : ?>                
+        <? for($i = 0; $i < 5; $i++) : 
+            $index = count($data->missions) - 1 - $i;
+        ?>                
                             <li>
-                                <a href="<?=base_url('aktuelles/einsatz/'.$data->missions[$i]->id)?>">
-                                <h2><?=get_ger_date($data->missions[$i]->datum_beginn)?></h2>
-                                <p><?=$data->missions[$i]->lage?></p>
+                                <a href="<?=base_url('aktuelles/einsatz/'.$data->missions[$index]->id)?>">
+                                <h2><?=get_ger_date($data->missions[$index]->datum_beginn)?></h2>
+                                <p><?=$data->missions[$index]->lage?></p>
                                 </a>
                             </li>
         <? endfor; ?>                    

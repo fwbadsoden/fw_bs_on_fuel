@@ -6,7 +6,7 @@
 	
 	$year_options = array();
 	if(isset($_POST['mission_year'])) $year_selected = $_POST['mission_year']; 
-	else 							 $year_selected = 0;
+	else 							 $year_selected = date('Y');
 	$year_attr = "class = 'input_dropdown' id = 'input_dropdown' onChange='this.form.submit()'";
 	foreach($years as $year)
 	{
