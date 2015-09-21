@@ -807,7 +807,7 @@ class Module extends Fuel_base_controller {
 					$url = fuel_uri($this->module_uri.'/inline_edit/'.$id, TRUE);
 				}
 				else
-				{
+				{  
 				    if($this->module_uri == "missions" || $this->module_uri == "mannschaft_members") {
 					   $url = fuel_uri($this->module_uri, TRUE);				        
 				    } else {				        
@@ -1013,7 +1013,11 @@ class Module extends Fuel_base_controller {
 				}
 				else
 				{
-					$url = fuel_uri($this->module_uri.'/edit/'.$id.'/'.$field, TRUE);
+				    if($this->module_uri == "missions" || $this->module_uri == "mannschaft_members") {
+					   $url = fuel_uri($this->module_uri, TRUE);				        
+				    } else {				        
+					   $url = fuel_uri($this->module_uri.'/edit/'.$id.'/'.$field, TRUE);
+				    }
 				}
 
 				if ($redirect)
