@@ -35,7 +35,7 @@
     if($listcount > 3) $listcount = 1;
         
     if($t["show_eintrittsdatum"] == "no") $t["eintrittsdatum"] = "";
-    if($t["show_image"] == "no") $t["image"] = "dummy.jpg";
+    if($t["show_image"] == "no") $t["image"] = "dummy_aue.jpg";
         
     switch($listcount)
     {
