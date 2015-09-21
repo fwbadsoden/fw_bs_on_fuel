@@ -808,7 +808,11 @@ class Module extends Fuel_base_controller {
 				}
 				else
 				{
-					$url = fuel_uri($this->module_uri.'/edit/'.$id, TRUE);
+				    if($this->module_uri == "missions" || $this->module_uri == "mannschaft_members") {
+					   $url = fuel_uri($this->module_uri, TRUE);				        
+				    } else {				        
+					   $url = fuel_uri($this->module_uri.'/edit/'.$id, TRUE);
+				    }
 				}
 
 				// save any tab states

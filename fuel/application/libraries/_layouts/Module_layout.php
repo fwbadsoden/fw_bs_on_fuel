@@ -54,7 +54,7 @@ class Module_layout extends Base_layout {
                                     }
                                     
                                     $vars["order"]      = "datum_beginn desc, uhrzeit_beginn desc";
-                                    $vars["list_where"] = array("published" => "yes");
+                                    $vars["list_where"] = array("published" => "yes", 'substring(datum_beginn,1,4)' => $mission_year);
                                     $vars["model"]      = "missions_model";
                                     $vars["list_block"] = "modules/einsatz_uebersicht";
                                     $vars["item_block"] = "modules/einsatz_detail";
