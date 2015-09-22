@@ -41,6 +41,7 @@
 
 $route['default_controller'] = 'homepage';
 $route['404_override'] = 'fuel/page_router';
+$route['admin'] = 'fuel';
 
 /*	
 | Uncomment this line if you want to use the automatically generated sitemap based on your navigation.
