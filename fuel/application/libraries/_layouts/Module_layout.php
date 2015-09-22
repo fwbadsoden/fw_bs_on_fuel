@@ -51,10 +51,10 @@ class Module_layout extends Base_layout {
                                         $vars["mission_types"] = fuel_model("mission_types_model", array('find' => 'all', 'order' => 'name asc'));
                                         $vars["years"]         = $CI->missions_model->get_years();
                                         $vars["statistic"]     = $CI->missions_model->get_statistic($vars["mission_types"], $mission_year, $mission_type);
+                                        $vars["list_where"] = array("published" => "yes", 'substring(datum_beginn,1,4)' => $mission_year);
+                                        $vars["order"]      = "datum_beginn desc, uhrzeit_beginn desc";
                                     }
                                     
-                                    $vars["order"]      = "datum_beginn desc, uhrzeit_beginn desc";
-                                    $vars["list_where"] = array("published" => "yes", 'substring(datum_beginn,1,4)' => $mission_year);
                                     $vars["model"]      = "missions_model";
                                     $vars["list_block"] = "modules/einsatz_uebersicht";
                                     $vars["item_block"] = "modules/einsatz_detail";

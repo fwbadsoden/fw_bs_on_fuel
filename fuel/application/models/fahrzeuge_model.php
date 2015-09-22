@@ -263,6 +263,18 @@ class Fahrzeuge_model extends Abstract_module_model {
 
 class Fahrzeug_model extends Abstract_module_record {
     
+//    public function get_missions() {
+//        
+//        $miss = $this->lazy_load(array('id' => $this->mission_id), "missions_model", true, array('order_by' => 'datum_beginn desc, uhrzeit_beginn desc', 'limit' => 10));
+//        return $miss;
+//    }
+//    
+//    public function get_fahrzeug_images() {
+//        
+//        $missions = $this->lazy_load(array('fahrzeug_id' => $this->key_value()), "fahrzeug_images_model", true);
+//        return $missions;
+//    }
+    
     public function is_retired() {
         
         if($this->retired == 'yes') return true;

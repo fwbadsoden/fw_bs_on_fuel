@@ -288,7 +288,6 @@ class Missions_model extends Abstract_module_model {
 
 class Mission_model extends Abstract_module_record {
     
-    
     public function is_published() {
         
         if($this->published == 'yes') return true;
