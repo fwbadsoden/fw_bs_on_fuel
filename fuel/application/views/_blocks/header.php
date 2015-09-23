@@ -233,7 +233,7 @@
                     	<ul>                     
                         	<li class="headline"><a>Spezialeinheiten</a></li>
                         	<li><a href="<?=base_url('technik/rettungshunde')?>">Rettungshunde-Ortungstechnik</a></li>
-                           <!-- <li><a href="<?=base_url('menschen/gabc')?>">Gefahrstoffzug</a></li>-->
+                            <li><a href="<?=base_url('technik/gabc')?>">Gefahrstoffzug</a></li>
                     	</ul>  
                     </div>  
                 </li>  
@@ -314,6 +314,7 @@
           <ul>  
             <li><a href="<?=base_url('technik/fahrzeuge')?>" class="first">Fahrzeuge</a></li>
             <li><a href="<?=base_url('technik/rettungshunde')?>">Rettungshunde-Ortungstechnik</a></li>
+            <li><a href="<?=base_url('technik/gabc')?>">Gefahrstoffzug</a></li>
           </ul>
       </li>
       <li><a href="<?=base_url('informationen/buergerinformationen')?>">Infos</a></li>
