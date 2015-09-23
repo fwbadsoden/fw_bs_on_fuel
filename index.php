@@ -80,7 +80,6 @@ if (!empty($environments))
 	}
 }
 
-
 // set default environment if one is not found above
 if (!defined('ENVIRONMENT'))
 {

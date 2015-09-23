@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
     $tab_index_1  = 1;
-    $tab_index_2  = 1;
+    $tab_index_2  = 2;
     
     if($data->rufname == 'n/a') : $ruf_name = 'n/a'; 
     else : $ruf_name = $data->prefix_rufname.' '.$data->rufname; 
@@ -91,9 +91,48 @@
                     <div class="TabBox">
                         <ul class="tabNav_details">
                             <li><a href="#details_<?=$tab_index_1?>" func="tab" class="active">Beschreibung</a></li>
+        <? if ($data->is_wlf()) : ?>      
+                            <li><a href="#details_<?=$tab_index_2?>" func="tab">Abrollbehälter</a></li>
+        <? endif; ?>
                         </ul>
                         <div class="TabBoxContent">                
-                            <h1 class="reiter"><a href="#details_<?=$tab_index_2?>" func="tab" class="active">Beschreibung</a></h1>
+                            <h1 class="reiter"><a href="#details_<?=$tab_index_1?>" func="tab" class="active">Beschreibung</a></h1>
+                            <div id="box_details_<?=$tab_index_1?>" style="">
+        <?     if($data->is_retired()) : $ruf_name .= " (ausser Dienst)"; endif; ?>
+                                <h1><?=$tab_index_2?>: <?=$ruf_name?></h1>
+                                <p><?=$data->text?></p>                     
+        <? if($data->pumpe != '' && $data->loeschmittel != '') : ?>                        
+                                <div class="facttable">   
+                                    <div class="left">
+                                        <h1>Pumpe</h1>
+                                        <ul>               
+                                            <li><?=str_replace("\n", "<br />", trim($data->pumpe));?></li>                                 
+                                        </ul>
+                                    </div>                            
+                                    <div class="right">
+                                        <h1>Löschmittelvorrat</h1>
+                                        <ul>     
+                                            <li><?=str_replace("\n", "<br />", trim($data->loeschmittel));?></li>                          
+                                        </ul>
+                                    </div>                         
+                                    <hr class="clear" />
+                                </div>
+        <? elseif($data->besonderheit != '') : ?>   
+                                <div class="facttable">   
+                                    <div class="left">
+                                        <h1>Besondere Ausrüstung</h1>
+                                        <ul>                              
+                                            <li><?=str_replace("\n", "<br />", trim($data->besonderheit));?></li>       
+                                        </ul>
+                                    </div>                           
+                                    <hr class="clear" />
+                                </div>
+        <? endif; ?>                                             
+                            </div>              
+                        </div>        
+        <? if($data->is_wlf()) : ?>                
+                        <div class="TabBoxContent">                
+                            <h1 class="reiter"><a href="#details_<?=$tab_index_2?>" func="tab" class="inactive">Abrollbehälter</a></h1>
                             <div id="box_details_<?=$tab_index_2?>" style="">
         <?     if($data->is_retired()) : $ruf_name .= " (ausser Dienst)"; endif; ?>
                                 <h1><?=$tab_index_2?>: <?=$ruf_name?></h1>
@@ -126,8 +165,9 @@
                                 </div>
         <? endif; ?>                                             
                             </div>              
-                        </div>
-                    </div>
+                        </div>   
+        <? endif; ?> 
+                    </div>                        
                 </div>        
                 
                 <div class="SmallBox secondColumn">   
@@ -190,7 +230,7 @@
             	    <div class="dateBox">
                         <h1>Die letzten Einsätze</h1>
                         <ul>
-        <? for($i = 0; $i < 5; $i++) : 
+        <? for($i = 0; $i < 5; $i++) :
             $index = count($data->missions) - 1 - $i;
         ?>                
                             <li>
