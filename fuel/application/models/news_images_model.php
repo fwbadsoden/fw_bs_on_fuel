@@ -4,8 +4,8 @@ require_once('abstract_module_model.php');
 
 class News_Images_model extends Abstract_module_model {
     
-    public $required = array('description', 'news_id');
-    public $foreign_keys = array('news_id' => 'news_articles_model');
+    public $required = array('description', 'news');
+    public $belongs_to = array('news' => 'news_articles_model');
         
     function __construct() {
         parent::__construct('fw_news_images');
@@ -43,7 +43,7 @@ class News_Images_model extends Abstract_module_model {
         
         $fields = parent::form_fields($values, $related);
         
-        $fields['news_id']['label'] = lang("form_label_news_article");
+ 
         
         // Asset-Ordner                                        
         $fields['image'] = array('folder' => 'images/news',
@@ -51,6 +51,8 @@ class News_Images_model extends Abstract_module_model {
         $fields["photographer"]          = array('type'  => 'photographer_input',
                                                  'comment' => lang('form_label_news_photographer_comment'),
                                                  'photographers' => fuel_model('mannschaft_members_model', array('find' => 'photographers')));  
+        
+        
         return $fields;
     }   
     

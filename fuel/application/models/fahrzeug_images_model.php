@@ -4,8 +4,8 @@ require_once('abstract_module_model.php');
 
 class Fahrzeug_Images_model extends Abstract_module_model {
     
-    public $required = array('description', 'fahrzeug_id');
-    public $foreign_keys = array('fahrzeug_id' => 'fahrzeuge_model');
+    public $required = array('description', 'fahrzeug');
+    public $belongs_to = array('fahrzeug' => 'fahrzeuge_model');
         
     function __construct() {
         parent::__construct('fw_fahrzeug_images');
