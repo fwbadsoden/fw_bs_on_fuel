@@ -15,5 +15,5 @@
 
 $environments = array(
 				'development' => array('dev.feuerwehr-bs.de'),
-                'production' => array('feuerwehr-bs.de'),
+                'production' => array('feuerwehr-bs.de', 'www.feuerwehr-bs.de'),
 				);
