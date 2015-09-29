@@ -40,7 +40,7 @@ class Terminimport extends CI_Controller {
         }
 
         //Print for each future appointment id and md5-hash of relevant data
-        $where = array('datum >=' => date('Y-m-d'), 'published' => 'yes');
+        $where = array('published' => 'yes');
         $order_by = ('datum asc, beginn asc');
         $termine = $this->m_appointment->find_all($where, $order_by);
         foreach ($termine as $termin) {
