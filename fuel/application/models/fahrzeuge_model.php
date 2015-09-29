@@ -30,13 +30,6 @@ class Fahrzeuge_model extends Abstract_module_model {
 	    $this->db->order_by('precedence', 'ascending');
         $this->db->select('id, name, rufname, retired as ausser_dienst, published');
 	    $data = parent::list_items($limit, $offset, $col, $order, $just_count);
-        if (!$just_count)
-        {
-    		foreach($data as $key => $val)
-    		{
-              //  $data[$key]['ausser_dienst'] = translate_enum($data[$key]['ausser_dienst']);
-    		}
-    	}
         
         return $data;   
     }
@@ -64,7 +57,7 @@ class Fahrzeuge_model extends Abstract_module_model {
         $fields["name_lang"] = array('label' => lang("form_label_fahrzeug_name_lang"),
                                      'order' => 3); 
         
-        $options = array('Florian Bad Soden', 'Florian Main-Taunus');
+        $options = array('Florian Bad Soden' => 'Florian Bad Soden','Florian Main-Taunus' => 'Florian Main-Taunus');
         $fields['prefix_rufname'] = array('label' => lang("form_label_fahrzeug_prefix_rufname"),
                                           'options' => $options,
                                           'type' => 'select',
@@ -145,41 +138,47 @@ class Fahrzeuge_model extends Abstract_module_model {
                                         'order' => 19);             
                                             
         $options = array('no' => 'nein','yes' => 'ja'); 
-        $fields['abrollbehaelter_tauglich']  = array('label'   => lang('form_label_fahrzeug_abrollbehaelter'),
+        $fields['abrollbehaelter_tauglich']  = array('label'   => lang('form_label_fahrzeug_abrollbehaelter_tauglich'),
                                         'type'    => 'enum',
                                         'options' => $options,
-                                        'order' => 20);  
+                                        'order' => 20);             
+                                            
+        $options = array('no' => 'nein','yes' => 'ja'); 
+        $fields['ist_abrollbehaelter'] = array('label'   => lang('form_label_fahrzeug_abrollbehaelter'),
+                                        'type'    => 'enum',
+                                        'options' => $options,
+                                        'order' => 21);  
         
         $fields["fahrzeugwerte"] = array('type' => 'fieldset',
                                       'class' => 'tab',
                                       'label' => 'Fahrzeugwerte',
-                                      'order' => 21);      
+                                      'order' => 31);      
         
         $fields["kw"]            = array('label' => lang("form_label_fahrzeug_kw"),
                                          'after_html' => 'KW',
-                                         'order' => 22);
+                                         'order' => 32);
         
         $fields["ps"]            = array('label' => lang("form_label_fahrzeug_ps"),
                                          'after_html' => 'PW',
-                                         'order' => 23);
+                                         'order' => 33);
         
         $fields["hoehe"]         = array('label' => lang("form_label_fahrzeug_hoehe"),
                                          'after_html' => 'm',
-                                         'order' => 24);
+                                         'order' => 34);
         
         $fields["breite"]        = array('label' => lang("form_label_fahrzeug_breite"),
                                          'after_html' => 'm',
-                                         'order' => 25);
+                                         'order' => 35);
         
         $fields["laenge"]        = array('label' => lang("form_label_fahrzeug_laenge"),
                                          'after_html' => 'm',
-                                         'order' => 26);
+                                         'order' => 36);
         
         $fields["gesamtmasse"]   = array('after_html' => 't',
-                                         'order' => 27);
+                                         'order' => 37);
         
         $fields["leermasse"]     = array('after_html' => 't',
-                                         'order' => 28);     
+                                         'order' => 38);     
                                      
         $fields["precedence"]["type"] = 'hidden';  
         $fields["published"]["type"] = 'hidden';
@@ -202,9 +201,9 @@ class Fahrzeuge_model extends Abstract_module_model {
     public function get_fahrzeugliste($ad) {
         
         if($ad) {
-            $this->db->where(array("retired" => "yes", "published" => "yes"));
+            $this->db->where(array("retired" => "yes", "published" => "yes", "ist_abrollbehaelter" => "no"));
         } else {
-            $this->db->where(array("retired" => "no", "published" => "yes"));
+            $this->db->where(array("retired" => "no", "published" => "yes", "ist_abrollbehaelter" => "no"));
         }
         $this->db->order_by('precedence', 'ascending');
         $this->db->select("name, name_lang, id");
@@ -222,15 +221,14 @@ class Fahrzeuge_model extends Abstract_module_model {
         
         $this->db->order_by('precedence asc');
         $this->db->select('id, name');
-        $this->db->where(array('published' => 'yes', 'retired' => 'no'));
+        $this->db->where(array('published' => 'yes', 'retired' => 'no', "ist_abrollbehaelter" => "no"));
         $query = $this->db->get('fahrzeuge');
         return $query->result_assoc_array('id');
     }
     
     public function has_retired() {
         
-        $this->db->where('published', 'yes');
-        $this->db->where('retired', 'yes');
+        $this->db->where(array('published' => 'yes', 'retired' => 'yes', "ist_abrollbehaelter" => "no"));
         $query = $this->db->get('fahrzeuge');
         
         if($query->num_rows() > 0)
@@ -257,6 +255,7 @@ class Fahrzeuge_model extends Abstract_module_model {
     {
         $this->db->where('published', 'yes');
         $this->db->where('retired', 'no');
+        $this->db->where('ist_abrollbehaelter', 'no');
         return $this->db->count_all_results("fahrzeuge");
     }
 }
@@ -265,14 +264,15 @@ class Fahrzeug_model extends Abstract_module_record {
     
 //    public function get_missions() {
 //        
-//        $miss = $this->lazy_load(array('id' => $this->mission_id), "missions_model", true, array('order_by' => 'datum_beginn desc, uhrzeit_beginn desc', 'limit' => 10));
+//        $miss = $this->lazy_load(array('id' => $this->mission_id), "missions_model", true, array('order_by' => 'datum_beginn desc, uhrzeit_beginn desc', 'limit' => 5));
+//        $this->debug_query();
 //        return $miss;
 //    }
 //    
 //    public function get_fahrzeug_images() {
 //        
-//        $missions = $this->lazy_load(array('fahrzeug_id' => $this->key_value()), "fahrzeug_images_model", true);
-//        return $missions;
+//        $imgs = $this->lazy_load(array('fahrzeug_id' => $this->key_value()), "fahrzeug_images_model", true);
+//        return $imgs;
 //    }
     
     public function is_retired() {
@@ -285,6 +285,23 @@ class Fahrzeug_model extends Abstract_module_record {
         
         if($this->published == 'yes') return true;
         else return false;        
+    }
+    
+    public function is_wlf() {
+        
+        if($this->abrollbehaelter_tauglich == 'yes') return true;
+        else return false;
+    }
+    
+    public function is_abrollbehaelter() {
+        
+        if($this->ist_abrollbehaelter == 'yes') return true;
+        else return false;
+    }
+    
+    public function get_abrollbehaelter() {
+        
+        return fuel_model('fahrzeuge_model', array('find' => 'all', 'order' => 'precedence asc', 'where' => array('ist_abrollbehaelter' => 'yes', 'published' => 'yes', 'retired' => 'no')));
     }
 }
 

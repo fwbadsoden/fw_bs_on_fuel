@@ -52,7 +52,8 @@ $lang["form_comment_fahrzeug_zusatz"]                   = "Bitte die Einträge m
 $lang["form_label_fahrzeug_pumpe"]                      = "Pumpe(n)";
 $lang["form_label_fahrzeug_besonderheiten"]             = "Besondernheit(en)";
 $lang["form_label_fahrzeug_loeschmittel"]               = "Löschmittel";
-$lang["form_label_fahrzeug_abrollbehaelter"]            = "Abrollbehälter-Tauglich";
+$lang["form_label_fahrzeug_abrollbehaelter_tauglich"]   = "Ist Wechsellader Fahrzeug";
+$lang["form_label_fahrzeug_abrollbehaelter"]            = "Ist Abrollbehälter";
 
 $lang["form_label_press_source"]                        = "Quelle";
 $lang["form_label_press_link"]                          = "URL";
