@@ -262,18 +262,23 @@ class Fahrzeuge_model extends Abstract_module_model {
 
 class Fahrzeug_model extends Abstract_module_record {
     
-//    public function get_missions() {
-//        
-//        $miss = $this->lazy_load(array('id' => $this->mission_id), "missions_model", true, array('order_by' => 'datum_beginn desc, uhrzeit_beginn desc', 'limit' => 5));
-//        $this->debug_query();
-//        return $miss;
-//    }
-//    
-//    public function get_fahrzeug_images() {
-//        
-//        $imgs = $this->lazy_load(array('fahrzeug_id' => $this->key_value()), "fahrzeug_images_model", true);
-//        return $imgs;
-//    }
+    public function get_missions() {
+        
+        CI()->db->select('relationships.foreign_key');
+        CI()->db->join('missions', 'missions.id = relationships.candidate_key');
+        CI()->db->where(array('relationships.candidate_table' => 'fw_missions', 'relationships.foreign_table' => 'fw_fahrzeuge'));
+        CI()->db->order_by('datum_beginn desc, uhrzeit_beginn desc');
+        CI()->db->limit(5);
+        $query = CI()->db->get('relationships');
+        
+        $i = 0;
+        $missions = array();
+        foreach($query->result() as $row) {
+            $missions[$i] = fuel_model('missions_model', array('find' => 'one', 'where' => array('id' => $row->foreign_key)));
+            $i++;
+        }
+        return $missions;
+    }
     
     public function is_retired() {
         
