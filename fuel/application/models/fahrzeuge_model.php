@@ -270,7 +270,7 @@ class Fahrzeug_model extends Abstract_module_record {
         CI()->db->order_by('datum_beginn desc, uhrzeit_beginn desc');
         CI()->db->limit(5);
         $query = CI()->db->get('relationships');
-        internal_debug(CI()->db->last_query());
+        internal_debug( CI()->db->last_query() );
         $i = 0;
         $missions = array();
         foreach($query->result() as $row) {
