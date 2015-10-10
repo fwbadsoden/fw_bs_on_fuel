@@ -68,7 +68,7 @@ class Module_layout extends Base_layout {
                                         $vars["facebook_infos"][0] = $CI->news_articles_model->get_og_image(uri_segment($vars["segment"]));                                
                                     } else {
                                         $vars["weather"] = $CI->weather->get_weather();
-                                        $vars["termine"] = fuel_model("appointments_model",array('find' => 'all', 'limit' => 3, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'datum desc, beginn desc'));
+                                        $vars["termine"] = fuel_model("appointments_model",array('find' => 'all', 'limit' => 3, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'datum asc, beginn asc'));
                                     }
                                     
                                     $vars["order"]      = "datum desc, id desc";
