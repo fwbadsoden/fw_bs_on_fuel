@@ -264,9 +264,9 @@ class Fahrzeug_model extends Abstract_module_record {
     
     public function get_missions() {
         
-        CI()->db->select('relationships.foreign_key');
+        CI()->db->select('relationships.candidate_key');
         CI()->db->join('missions', 'missions.id = relationships.candidate_key');
-        CI()->db->where(array('relationships.candidate_table' => 'fw_missions', 'relationships.foreign_table' => 'fw_fahrzeuge'));
+        CI()->db->where(array('relationships.candidate_table' => 'fw_missions', 'relationships.foreign_table' => 'fw_fahrzeuge', 'relationships.foreign_key' => $this->id));
         CI()->db->order_by('datum_beginn desc, uhrzeit_beginn desc');
         CI()->db->limit(5);
         $query = CI()->db->get('relationships');
@@ -274,7 +274,7 @@ class Fahrzeug_model extends Abstract_module_record {
         $i = 0;
         $missions = array();
         foreach($query->result() as $row) {
-            $missions[$i] = fuel_model('missions_model', array('find' => 'one', 'where' => array('id' => $row->foreign_key)));
+            $missions[$i] = fuel_model('missions_model', array('find' => 'one', 'where' => array('id' => $row->candidate_key)));
             $i++;
         }
         return $missions;
