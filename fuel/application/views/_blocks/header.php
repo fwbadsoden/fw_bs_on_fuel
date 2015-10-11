@@ -283,7 +283,7 @@
        	</nav>
         
         <div id="mobileHeader">
-           	<a href="#"><img src="http://feuerwehr-bs.de/images/layout/nav_mobileButton.png" width="18" height="18" id="mobileNavButton" /></a>
+           	<a href="#"><img src="<?=assets_path("layout/nav_mobileButton.png")?>" width="18" height="18" id="mobileNavButton" /></a>
         </div>
     </div>
 </header>
