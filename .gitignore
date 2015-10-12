@@ -51,3 +51,12 @@ application/cache
 
 .idea
 fuel/application/cache/
+
+# Netbeans            #
+#######################
+/nbproject/private/
+/nbproject/
+# Netbeans            #
+#######################
+/nbproject/private/
+/nbproject/
