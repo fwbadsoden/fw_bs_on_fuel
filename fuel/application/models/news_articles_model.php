@@ -87,7 +87,7 @@ class News_articles_model extends Abstract_module_model {
                                             'order' => 8);
         
         $fields['published']['type'] = 'hidden';
-        $fields["news_images"]["type"] = 'hidden'; 
+       // $fields["news_images"]["type"] = 'hidden'; 
         
         return $fields;
     }
