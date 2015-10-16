@@ -55,7 +55,7 @@ $config['modules']['mission_types'] = array(
 
 $config['modules']['mission_images'] = array(
     'module_name' => 'Einsatzbilder',
-    'display_field' => 'description',
+    'display_field' => 'image',
     'instructions' => lang("einsatz_images_instructions"),
     'permission' => 'missions',
 );
@@ -75,7 +75,7 @@ $config['modules']['fahrzeuge'] = array(
 
 $config['modules']['fahrzeug_images'] = array(
     'module_name' => 'Fahrzeugbilder',
-    'display_field' => 'description',
+    'display_field' => 'image',
     'permission' => 'vehicles',
 );
 
@@ -125,7 +125,7 @@ $config['modules']['news_articles'] = array(
 
 $config['modules']['news_images'] = array(
     'module_name' => 'Newsbilder',
-    'display_field' => 'description',
+    'display_field' => 'image',
     'instructions' => lang("news_images_instructions"),
     'permission' => 'news',
 );

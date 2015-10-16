@@ -182,7 +182,7 @@ class Fahrzeuge_model extends Abstract_module_model {
                                      
         $fields["precedence"]["type"] = 'hidden';  
         $fields["published"]["type"] = 'hidden';
-        $fields["fahrzeug_images"]["type"] = 'hidden';       
+        //$fields["fahrzeug_images"]["type"] = 'hidden';       
         $fields["missions"]["type"] = 'hidden';                                            
         
         return $fields;
