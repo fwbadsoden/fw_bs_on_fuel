@@ -7,6 +7,7 @@ class News_articles_model extends Abstract_module_model {
     public $has_many = array('news_images' => 'news_images_model');
     public $required = array('title', 'stage_title', 'teaser');
     public $hidden_fields = array('last_modified', 'last_modified_by');
+    protected $clear_related_on_save = FALSE;
 
     function __construct() {
         parent::__construct('fw_news_articles');
@@ -87,7 +88,7 @@ class News_articles_model extends Abstract_module_model {
                                             'order' => 8);
         
         $fields['published']['type'] = 'hidden';
-       // $fields["news_images"]["type"] = 'hidden'; 
+        $fields["news_images"]["type"] = 'hidden'; 
         
         return $fields;
     }

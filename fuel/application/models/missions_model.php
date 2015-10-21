@@ -20,6 +20,7 @@ class Missions_model extends Abstract_module_model {
     public $foreign_keys = array('cue_id' => 'mission_cues_model', 'type_id' => 'mission_types_model');
     public $has_many = array('mission_images' => 'mission_images_model', 'fahrzeuge' => 'fahrzeuge_model');
     public $filters = array('name', 'datum_beginn', 'ort');
+    protected $clear_related_on_save = FALSE;
 
     function __construct() {
         parent::__construct('fw_missions');
@@ -144,7 +145,7 @@ class Missions_model extends Abstract_module_model {
             'order' => 34);
 
         $fields["published"]["type"] = 'hidden';
-        //$fields["mission_images"]["type"] = 'hidden';
+        $fields["mission_images"]["type"] = 'hidden';
 
         return $fields;
     }

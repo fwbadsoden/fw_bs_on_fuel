@@ -8,6 +8,7 @@ class Fahrzeuge_model extends Abstract_module_model {
     public $has_many = array('fahrzeug_images' => 'fahrzeug_images_model');
     public $belongs_to = array('missions' => 'missions_model');   
     public $boolean_fields = array('retired', 'ausser_dienst'); 
+    protected $clear_related_on_save = FALSE;
         
     function __construct() {
         parent::__construct('fw_fahrzeuge');
@@ -182,7 +183,7 @@ class Fahrzeuge_model extends Abstract_module_model {
                                      
         $fields["precedence"]["type"] = 'hidden';  
         $fields["published"]["type"] = 'hidden';
-        //$fields["fahrzeug_images"]["type"] = 'hidden';       
+        $fields["fahrzeug_images"]["type"] = 'hidden';       
         $fields["missions"]["type"] = 'hidden';                                            
         
         return $fields;
