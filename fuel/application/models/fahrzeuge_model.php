@@ -309,6 +309,43 @@ class Fahrzeug_model extends Abstract_module_record {
         
         return fuel_model('fahrzeuge_model', array('find' => 'all', 'order' => 'precedence asc', 'where' => array('ist_abrollbehaelter' => 'yes', 'published' => 'yes', 'retired' => 'no')));
     }
+    
+    public function get_abrollbehaelter_besonderheit() {
+        if(parent::get_besonderheit() != "")
+        return $this->_prepare_fahrzeugbesonderheit(parent::get_besonderheit(), true);
+        else return null;
+    }
+    
+    public function get_besonderheit() {
+        if(parent::get_besonderheit() != "")
+        return $this->_prepare_fahrzeugbesonderheit(parent::get_besonderheit());
+        else return null;
+    }
+    
+    public function get_loeschmittel() {
+        if(parent::get_arloeschmittel() != "")
+        return $this->_prepare_fahrzeugbesonderheit(parent::get_arloeschmittel());  
+        else return null;      
+    }
+    
+    public function get_pumpe() {
+        if(parent::get_pumpe() != "")
+        return $this->_prepare_fahrzeugbesonderheit(parent::get_pumpe());     
+        else return null;   
+    }
+    
+    private function _prepare_fahrzeugbesonderheit($value, $list = false) {
+        if($list == false) {
+            return str_replace("\n", "<br />", trim($value));
+        } else {
+            $array = split("\n", $value);
+            $return = "";
+            foreach($array as $item) {
+                $return.="<li>".$item."</li>";
+            }
+            return $return;
+        }
+    }
 }
 
 ?>
