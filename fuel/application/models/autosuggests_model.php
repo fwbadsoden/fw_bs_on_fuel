@@ -21,10 +21,22 @@ class Autosuggests_model extends Abstract_module_model {
         
         $fields = parent::form_fields($values, $related);  
         
-        $options = array('einsatz_weitere_kraefte');
+        $options = array('einsatz_weitere_kraefte' => 'einsatz_weitere_kraefte');
         $fields['keyword'] = array('type' => 'select', 'options' => $options);
         return $fields;
-    }   
+    }  
+
+    public function options_list($key = 'id', $val = 'name', $where = array(), $order = TRUE, $group = TRUE) {
+        $this->db->order_by('keyword asc, value asc');
+        $this->db->select('id, keyword, value');
+        $query = $this->db->get('autosuggests');
+
+        foreach ($query->result() as $row) {
+            $data[$row->id] = $row->keyword.' - '.$row->value;
+        }
+
+        return $data;
+    } 
 
 }
 

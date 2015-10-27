@@ -808,7 +808,7 @@ class Module extends Fuel_base_controller {
 				}
 				else
 				{  
-				    if($this->module_uri == "missions" || $this->module_uri == "mannschaft_members") {
+				    if($this->module_uri == "missions" || $this->module_uri == "mannschaft_members" || "autosuggests") {
 					   $url = fuel_uri($this->module_uri, TRUE);				        
 				    } else {				        
 					   $url = fuel_uri($this->module_uri.'/edit/'.$id, TRUE);
@@ -1013,7 +1013,7 @@ class Module extends Fuel_base_controller {
 				}
 				else
 				{
-				    if($this->module_uri == "missions" || $this->module_uri == "mannschaft_members") {
+				    if($this->module_uri == "missions" || $this->module_uri == "mannschaft_members" || "autosuggests") {
 					   $url = fuel_uri($this->module_uri, TRUE);				        
 				    } else {				        
 					   $url = fuel_uri($this->module_uri.'/edit/'.$id.'/'.$field, TRUE);
