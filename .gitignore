@@ -49,8 +49,12 @@ application/logs
 application/cache
 .htaccess
 
-.idea
 fuel/application/cache/
+
+# IntelliJ IDEA       #
+#######################
+.idea
+*.iml
 
 # Netbeans            #
 ####################### 
