@@ -43,20 +43,21 @@ class Dashboard extends Fuel_base_controller {
 	function index()
 	{
 		if ($this->fuel->auth->has_permission('google_analytics'))
-		{  
-			try {
-
-				$visits = $this->fuel->google_analytics->visits();
-				$views = $this->fuel->google_analytics->views();
-
-			}
-			catch(Exception $e) {
-				echo '<p class="dashboard_error">'.lang('google_analytics_connect_error').'</p>';
-				die();
-			}
-			$data['analytic_visits'] = json_encode($visits);
-			$data['analytic_views'] = json_encode($views);
-			$this->load->view('_admin/graph', $data);
+		{
+            $this->load->view("my_dashboard");
+//			try {
+//
+//				$visits = $this->fuel->google_analytics->visits();
+//				$views = $this->fuel->google_analytics->views();
+//
+//			}
+//			catch(Exception $e) {
+//				echo '<p class="dashboard_error">'.lang('google_analytics_connect_error').'</p>';
+//				die();
+//			}
+//			$data['analytic_visits'] = json_encode($visits);
+//			$data['analytic_views'] = json_encode($views);
+//			$this->load->view('_admin/graph', $data);
 		}
 		
 	}
