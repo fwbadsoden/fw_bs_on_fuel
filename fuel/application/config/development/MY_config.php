@@ -10,7 +10,7 @@ $config['date_format_verbose'] = 'F j, Y';
 $config['time_format'] = 'G:I';
 
 // for debugging... there is a hook in place to turn this on
-$config['enable_profiler'] = TRUE;
+$config['enable_profiler'] = FALSE;
 
 /* End of file MY_config.php */
 /* Location: ./application/config/MY_config.php */
