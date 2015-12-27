@@ -584,7 +584,7 @@ class Form_builder {
 			if ($val['type'] == 'section')
 			{
 				$str .= "<div".$this->_open_row_attrs($val).'>';
-				$str .= "<span class=\"section\">".$this->create_section($val)."</span>\n";
+				$str .= "<div class=\"section\">".$this->create_section($val)."</div>\n";
 				$str .= "</div>\n";
 				continue;
 			}
@@ -596,14 +596,14 @@ class Form_builder {
 			if ($val['type'] == 'copy')
 			{
 				$str .= "<div".$this->_open_row_attrs($val).'>';
-				$str .= "<span class=\"copy\">".$this->create_copy($val)."</span>\n";
+				$str .= "<div class=\"copy\">".$this->create_copy($val)."</div>\n";
 				$str .= "</div>\n";
 				continue;
 			}
 			else if (!empty($val['copy']))
 			{
 				$str .= "<div".$this->_open_row_attrs($val).'>';
-				$str .= "<span class=\"copy\"><".$this->copy_tag.">".$val['copy']."</".$this->copy_tag."></span>\n";
+				$str .= "<div class=\"copy\"><".$this->copy_tag.">".$val['copy']."</".$this->copy_tag."></div>\n";
 				$str .= "</div>\n";
 			}
 			
@@ -799,7 +799,7 @@ class Form_builder {
 					if ($this->label_layout != 'top')
 					{
 						$str .= $this->create_label($val, TRUE);
-						$str .= "</td>\n\t<td".$this->_open_field_attrs($val).">".$this->_open_field_attrs($val).$val['custom']."</td>\n</tr>\n";
+						$str .= "</td>\n\t<td".$this->_open_field_attrs($val).">".$val['custom']."</td>\n</tr>\n";
 					}
 					else
 					{
@@ -1267,6 +1267,7 @@ class Form_builder {
 			'represents' => '', // specifies what other types of fields that this field should represent
 			'ignore_representative' => FALSE, // ignores any representative
 			'data' => array(), // data attributes
+			'title' => NULL, // the title attribute
 			'attributes' => '', // a generic string value of attributes for the form field (e.g. 'class="myclass"'
 			'__DEFAULTS__' => TRUE // set so that we no that the array has been processed and we can check it so it won't process it again'
 		);
@@ -1681,7 +1682,11 @@ class Form_builder {
 
 		if ($use_label)
 		{
-			if (!empty($this->name_prefix))
+			if (!empty($params['id']))
+			{
+				$id_name = $params['id'];
+			}
+			elseif (!empty($this->name_prefix))
 			{
 				$name_parts = explode($this->name_prefix.'--', $params['name']);
 				$id_name = $this->name_prefix.'--'.end($name_parts); // ugly... bug needed for nested repeatable fields
@@ -1759,6 +1764,7 @@ class Form_builder {
 			'tabindex' => $params['tabindex'],
 			'attributes' => $params['attributes'],
 			'disabled' => $params['disabled'],
+			'pattern' => (!empty($params['pattern']) ? $params['pattern'] : NULL),
 		);
 		
 		if (isset($params['attrs']))
@@ -2369,7 +2375,7 @@ class Form_builder {
 			$hour_format = ($params['ampm']) ? 'g' : 'G';
 			$time_params['value'] = date($hour_format, strtotime($params['value']));
 		}
-		$time_params['size'] = 2;
+		$time_params['size'] = 3;
 		$time_params['maxlength'] = 2;
 		$field_name = (empty($params['is_datetime'])) ? $params[$key] : $params[$key].'_hour';
 		$time_params['name'] = str_replace($params[$key], $field_name, $params['orig_name']);
@@ -2415,7 +2421,7 @@ class Form_builder {
 		$process_key = $params[$key];
 
 		// create post processer to recreate date value
-		$func_str = '
+$func_str = '
 			if (is_array($value))
 			{
 				foreach($value as $key => $val)
@@ -2435,11 +2441,14 @@ class Form_builder {
 							$ampm = "pm";
 						}
 					}
-					if ($hr !== "")
+
+					if (empty($hr))
 					{
-						$dateval = $hr.":".$min.$ampm;
-						$value[$key]["'.$process_key.'"] = date("H:i:s", strtotime($dateval));
+						$hr = "00";
 					}
+
+					$dateval = $hr.":".$min.$ampm;
+					$value[$key]["'.$process_key.'"] = date("H:i:s", strtotime($dateval));
 				}
 				return $value;
 			}
@@ -2461,17 +2470,17 @@ class Form_builder {
 					}
 				}
 
-				$dateval = "";
-				if ($hr !== "")
+				if (empty($hr))
 				{
-					$dateval = $hr.":".$min.$ampm;
-					$dateval = date("H:i:s", strtotime($dateval));
+					$hr = "00";
 				}
 
+				$dateval = $hr.":".$min.$ampm;
+				$dateval = date("H:i:s", strtotime($dateval));
 				return $dateval;
 			}
 		';
-
+		
 		// needed for post processing
 		if (!isset($_POST[$params['key']]))
 		{
@@ -2903,7 +2912,7 @@ class Form_builder {
 	public function create_readonly($params)
 	{
 		$params = $this->normalize_params($params);
-		$str = $params['value']."\n".$this->create_hidden($val);
+		$str = $params['value']."\n".$this->create_hidden($params);
 		return $str;
 	}
 	
@@ -4049,6 +4058,10 @@ class Form_builder {
 		$out = '';
 		$to_add = array();
 
+		if (is_string($files))
+		{
+			$files = array($files);
+		}
 		foreach($files as $module => $asset)
 		{
 			if (is_string($asset))
@@ -4123,15 +4136,33 @@ class Form_builder {
 			}
 			elseif ($type == 'js')
 			{
+				// $out .= ';
+				// var file = files[n].split("?")[0];
+				// var script = document.createElement("script");
+				// script.src = file;
+				// script.async = false;
+				
+				// // var attachElement = document.getElementsByTagName("head");
+				// // if (!attachElement.length){
+				// // 	attachElement = document.getElementsByTagName("body");
+				// // }
+				// // attachElement[0].appendChild(script);
+
+				// // Strangely doesn\'t appear in the DOM... would like to know why... oh... well here we go:
+				// // http://stackoverflow.com/questions/610995/cant-append-script-element
+				// $("head").append(script);
+
+				// $.ajaxSetup({cache: currentCacheSetting});
+				// ';
+
 				$out .= ';
 				var file = files[n].split("?")[0];
 				var script = document.createElement("script");
 				script.src = file;
-
-				//document.getElementsByTagName("head")[0].appendChild(script);
-
-				// Strangely doesn\'t appear in the DOM... would like to know why
+				script.async = false;
+				
 				$("head").append(script);
+
 				$.ajaxSetup({cache: currentCacheSetting});
 				';
 			}
