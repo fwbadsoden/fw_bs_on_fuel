@@ -17,7 +17,7 @@ $lang['fuel_copyright'] = 'Copyright &copy; %1s Feuerwehr Bad Soden am Taunus.';
 | Error Messages
 |--------------------------------------------------------------------------
 */
-$lang['error_no_access'] = "Sie haben keine Berechtigung diese Seite aufzurufen. <a href="'.fuel_url().'">Bitte versuchen Sie Sich neu anzumelden</a>.";
+$lang['error_no_access'] = 'Sie haben keine Berechtigung diese Seite aufzurufen. <a href="'.fuel_url().'">Bitte versuchen Sie Sich neu anzumelden</a>.';
 $lang['error_missing_module'] = "Das Modul %1s ist nicht vorhanden.";
 $lang['error_invalid_login'] = 'Anmeldung nicht erfolgreich.';
 $lang['error_max_attempts'] = 'Es tut uns leid, aber Ihre Anmeldeinformationen sind falsch und Sie wurden temporär gesperrt. Bitte probieren Sie es in %s Sekunden nochmal.';
