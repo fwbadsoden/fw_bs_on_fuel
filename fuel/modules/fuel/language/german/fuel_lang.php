@@ -17,7 +17,7 @@ $lang['fuel_copyright'] = 'Copyright &copy; %1s Feuerwehr Bad Soden am Taunus.';
 | Error Messages
 |--------------------------------------------------------------------------
 */
-$lang['error_no_access'] = "Sie haben keine Berechtigung diese Seite aufzurufen.";
+$lang['error_no_access'] = "Sie haben keine Berechtigung diese Seite aufzurufen. <a href="'.fuel_url().'">Bitte versuchen Sie Sich neu anzumelden</a>.";
 $lang['error_missing_module'] = "Das Modul %1s ist nicht vorhanden.";
 $lang['error_invalid_login'] = 'Anmeldung nicht erfolgreich.';
 $lang['error_max_attempts'] = 'Es tut uns leid, aber Ihre Anmeldeinformationen sind falsch und Sie wurden temporär gesperrt. Bitte probieren Sie es in %s Sekunden nochmal.';
@@ -30,7 +30,7 @@ $lang['error_folder_not_writable'] = 'Das Verzeichnis %1s ist schreibgesch&uuml;
 $lang['error_invalid_folder'] = 'Ungültiges Verzeichnis %1s';
 $lang['error_file_already_exists'] = 'Datei %1s existiert bereits.';
 $lang['error_zip'] = 'Es gab einen Fehler beim Anlegen des ZIP Archivs.';
-$lang['error_no_permissions'] = 'Sie verf&uuml;gen nicht &uuml;ber die Berechtigung zur Durchf&uuml;hrung der Aktion.';
+$lang['error_no_permissions'] = 'Sie verf&uuml;gen nicht &uuml;ber die Berechtigung zur Durchf&uuml;hrung der Aktion. <a href="'.fuel_url().'">Bitte versuchen Sie Sich neu anzumelden</a>.';
 $lang['error_no_lib_permissions'] = 'Sie verf&uuml;gen nicht &uuml;ber die Berechtigung, Methoden der Klasse %1s auszuf&uuml;hren.';
 $lang['error_page_layout_variable_conflict'] = 'Es gibt einen Fehler mit dem Layout. Entweder existiert es nicht oder es enth&auml;lt eines der folgenden reservierten W&ouml;rter: %1s';
 $lang['error_no_curl_lib'] = 'Die curl PHP Erweiterung muss aktiviert sein, um diese Tools zu nutzen.';
