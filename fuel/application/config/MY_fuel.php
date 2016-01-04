@@ -57,6 +57,8 @@ $config['assets_upload_max_width']  = 1280;
 // max height for asset images being uploaded
 $config['assets_upload_max_height']  = 1024;
 
+// The default view for home
+$config['default_home_view'] = '';
 
 // text editor settings  (options are markitup or ckeditor)
 // markitup: allows you to visualize the code in its raw format - not wysiwyg (http://markitup.jaysalvat.com/)
