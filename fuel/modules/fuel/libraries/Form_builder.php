@@ -1267,7 +1267,6 @@ class Form_builder {
 			'represents' => '', // specifies what other types of fields that this field should represent
 			'ignore_representative' => FALSE, // ignores any representative
 			'data' => array(), // data attributes
-			'title' => NULL, // the title attribute
 			'attributes' => '', // a generic string value of attributes for the form field (e.g. 'class="myclass"'
 			'__DEFAULTS__' => TRUE // set so that we no that the array has been processed and we can check it so it won't process it again'
 		);
@@ -1764,7 +1763,6 @@ class Form_builder {
 			'tabindex' => $params['tabindex'],
 			'attributes' => $params['attributes'],
 			'disabled' => $params['disabled'],
-			'pattern' => (!empty($params['pattern']) ? $params['pattern'] : NULL),
 		);
 		
 		if (isset($params['attrs']))
@@ -2421,7 +2419,7 @@ class Form_builder {
 		$process_key = $params[$key];
 
 		// create post processer to recreate date value
-$func_str = '
+		$func_str = '
 			if (is_array($value))
 			{
 				foreach($value as $key => $val)
@@ -2441,7 +2439,7 @@ $func_str = '
 							$ampm = "pm";
 						}
 					}
-
+					
 					if (empty($hr))
 					{
 						$hr = "00";
@@ -2480,7 +2478,7 @@ $func_str = '
 				return $dateval;
 			}
 		';
-		
+
 		// needed for post processing
 		if (!isset($_POST[$params['key']]))
 		{

@@ -224,11 +224,11 @@ class Fuel_pages extends Fuel_base_library {
 	// --------------------------------------------------------------------
 	
 	/**
-	 * Finds a Fuel_page object based on either a location or ID value
+	 * Finds a FUEL page based on either a location or ID value and returns an array of properties
 	 *
 	 * @access	public
 	 * @param	mixed	Either the pages location or ID value (CMS only)
-	 * @return	object
+	 * @return	array
 	 */	
 	public function find($id)
 	{
@@ -594,7 +594,8 @@ class Fuel_page extends Fuel_base_library {
 		$default_home = $this->fuel->config('default_home_view');
 
 		if (empty($this->location) OR $this->location == 'page_router') $this->location = $default_home;
-		
+		if (is_home($this->location)) $this->location = $default_home;
+
 		$page_data = array('id' => NULL, 'cache' => NULL, 'published' => NULL, 'layout' => NULL, 'location' => NULL);
 		$this->_page_data = $page_data;
 
@@ -820,26 +821,30 @@ class Fuel_page extends Fuel_base_library {
 			$output = $this->CI->load->module_view($this->layout->module(), $this->layout->view_path(), $layout_vars, TRUE);
 			unset($layout_vars);
 
-			// check if the content should be double parsed
-			if ($this->layout->is_double_parse())
+			// should we even parse the template... set to FALSE if you don't want to complie a bunch of template code for dynamic pages
+			if ($this->layout->parser() !== FALSE)
 			{
-				// first parse any template like syntax
-				$this->layout->parse($output, $vars);
+				// check if the content should be double parsed
+				if ($this->layout->is_double_parse())
+				{
+					// first parse any template like syntax
+					$this->layout->parse($output, $vars);
 
-				// then grab variables again
-				$ci_vars = $this->CI->load->get_vars();
+					// then grab variables again
+					$ci_vars = $this->CI->load->get_vars();
 
-				// then parse again to get any variables that were set from within a block
-				$output = $this->CI->load->module_view($this->layout->module(), $this->layout->view_path(), $ci_vars, TRUE);
-				$output = $this->layout->parse($output, $ci_vars);
-				unset($ci_vars);
+					// then parse again to get any variables that were set from within a block
+					$output = $this->CI->load->module_view($this->layout->module(), $this->layout->view_path(), $ci_vars, TRUE);
+					$output = $this->layout->parse($output, $ci_vars);
+					unset($ci_vars);
+				}
+				else
+				{
+					// parse any template like syntax
+					$output = $this->layout->parse($output, $vars);
+				}
 			}
-			else
-			{
-				// parse any template like syntax
-				$output = $this->layout->parse($output, $vars);
-			}
-			
+
 			// call layout hook
 			$this->layout->call_hook('post_render', array('vars' => $vars, 'output' => $output));
 			

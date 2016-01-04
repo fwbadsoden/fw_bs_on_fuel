@@ -1,3 +1,3 @@
 <?php
-header('Location: start'); 
+header('Location: start');
 exit();

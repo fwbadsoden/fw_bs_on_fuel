@@ -1357,7 +1357,7 @@ class CI_Email {
 	 * @return	bool
 	 */
 	public function send()
-	{ 
+	{
 		if ($this->_replyto_flag == FALSE)
 		{
 			$this->reply_to($this->_headers['From']);

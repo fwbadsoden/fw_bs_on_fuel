@@ -45,7 +45,7 @@ if (!function_exists('url_to'))
 	function url_to($uri = '', $https = NULL, $language = NULL)
 	{
 		if (is_http_path($uri)) return $uri;
-		if ($uri == '#' OR (strncmp('mailto', $uri, 6) === 0) OR (strncmp('javascript:', $uri, 11) === 0))
+		if ($uri == '#' OR (strncmp('mailto:', $uri, 7) === 0) OR (strncmp('javascript:', $uri, 11) === 0) OR (strncmp('tel:', $uri, 4) === 0))
 		{
 			return $uri;
 		}
@@ -227,7 +227,9 @@ if (!function_exists('is_home'))
 	function is_home()
 	{
 		$uri_path = uri_path(FALSE);
-		return ($uri_path == 'home' OR $uri_path == '');
+		$CI =& get_instance();
+		$segs = explode('/', $CI->router->routes['404_override']);
+		return ($uri_path == 'home' OR $uri_path == '' OR $uri_path == end($segs));
 	}
 }
 

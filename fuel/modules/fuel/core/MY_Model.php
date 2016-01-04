@@ -1306,14 +1306,7 @@ class MY_Model extends CI_Model {
 		{
 			$field = $fields[$key];
 
-			if ($field['type'] == 'datetime')
-			{
-				if (empty($values[$key]) OR (int)$values[$key] == 0)
-				{
-					$values[$key] = $this->default_date;
-				}
-			}
-			else if ($field['type'] == 'date')
+			if ($field['type'] == 'date' OR $field['type'] == 'datetime')
 			{
 				if (empty($values[$key]) OR (int)$values[$key] == 0) $values[$key] = $this->default_date;
 				if (!empty($values[$key]) AND !is_date_db_format($values[$key])) $values[$key] = english_date_to_db_format($values[$key]);
@@ -2809,6 +2802,7 @@ class MY_Model extends CI_Model {
 			{
 				$where = NULL;
 				$order = TRUE;
+				$label = NULL;
 				$model = $this->load_model($val);
 				if (is_array($val))
 				{
@@ -2823,9 +2817,14 @@ class MY_Model extends CI_Model {
 						$order = $val['order'];	
 						unset($val['order']);
 					}
+					if (!empty($val['label']))
+					{
+						$label = $val['label'];	
+						unset($val['label']);
+					}
 				}
 				$fields[$key]['type'] = 'select';
-				$fields[$key]['options'] = $CI->$model->options_list(NULL, NULL, $where, $order);
+				$fields[$key]['options'] = $CI->$model->options_list(NULL, $label, $where, $order);
 				$fields[$key]['first_option'] = lang('label_select_one');
 				$fields[$key]['label'] = ucfirst(str_replace('_', ' ', $CI->$model->singular_name(FALSE)));
 				$fields[$key]['module'] = $CI->$model->short_name(TRUE, FALSE);
@@ -2868,6 +2867,7 @@ class MY_Model extends CI_Model {
 				$related_model = $this->load_related_model($rel_config);
 				$where = NULL;
 				$order = TRUE;
+				$label = NULL;
 				if (is_array($rel_config))
 				{
 					if (!empty($rel_config['where']))
@@ -2880,8 +2880,13 @@ class MY_Model extends CI_Model {
 					{
 						$order = $rel_config['order'];	
 					}
+
+					if (!empty($rel_config['label']))
+					{
+						$label = $val['label'];
+					}
 				}
-				$related_options = $CI->$related_model->options_list(NULL, NULL, $where, $order);
+				$related_options = $CI->$related_model->options_list(NULL, $label, $where, $order);
 				$related_vals = ( ! empty($values['id'])) ? $this->get_related_keys($related_field, $values, $related_model, 'has_many', $rel_config) : array();
 				$fields[$related_field] = array('label' => humanize($related_field), 'type' => 'multi', 'options' => $related_options, 'value' => $related_vals, 'mode' => 'multi', 'module' => $CI->$related_model->short_name(TRUE));
 			}
@@ -2893,6 +2898,7 @@ class MY_Model extends CI_Model {
 			{
 				$where = NULL;
 				$order = TRUE;
+				$label = NULL;
 				if (is_array($rel_config))
 				{
 					if (!empty($rel_config['where']))
@@ -2905,9 +2911,14 @@ class MY_Model extends CI_Model {
 					{
 						$order = $rel_config['order'];	
 					}
+
+					if (!empty($rel_config['label']))
+					{
+						$label = $val['label'];
+					}
 				}
 				$related_model = $this->load_related_model($rel_config);
-				$related_options = $CI->$related_model->options_list(NULL, NULL, $where, $order);
+				$related_options = $CI->$related_model->options_list(NULL, $label, $where, $order);
 				$related_vals = ( ! empty($values['id'])) ? $this->get_related_keys($related_field, $values, $related_model, 'belongs_to', $rel_config, $related_field) : array();
 				$fields[$related_field] = array('label' => lang('label_belongs_to').'<br />' . humanize($related_field), 'type' => 'multi', 'options' => $related_options, 'value' => $related_vals, 'mode' => 'multi', 'module' => $CI->$related_model->short_name(TRUE));
 			}
@@ -4272,7 +4283,7 @@ class MY_Model extends CI_Model {
 				{
 					foreach($values as $key => $val)
 					{
-						if (is_string($val))
+						if (is_string($val) OR is_numeric($val))
 						{
 							$str = str_replace('{'.$key.'}', $val, $str);
 						}	
@@ -4297,7 +4308,7 @@ class MY_Model extends CI_Model {
 					{
 						foreach($values as $k => $v)
 						{
-							if (is_string($v))
+							if (is_string($val) OR is_numeric($val))
 							{
 								$return[$key] = str_replace('{'.$k.'}', $v, $val);
 							}	
@@ -5473,9 +5484,18 @@ class Data_record {
 		}
 		else if (preg_match("/^has_(.*)/", $method, $found))
 		{
+			$foreign_keys = $this->_parent_model->foreign_keys;
+			
 			if (array_key_exists($found[1], $this->_fields))
 			{
-				return !empty($this->_fields[$found[1]]);
+				return !empty($this->_fields[$found[1]]) AND $this->_fields[$found[1]] != '0000-00-00' AND $this->_fields[$found[1]] != '0000-00-00 00:00:00';
+			}
+			// then look in foreign keys, has_many and belongs_to
+			else if (in_array($found[1].'_id', array_keys($foreign_keys)) OR $this->_is_relationship_property($found[1], 'has_many') OR $this->_is_relationship_property($found[1], 'belongs_to'))
+			{
+				$return_object = $this->$found[1];
+				$key_field = $this->_parent_model->key_field();
+				return (isset($return_object->$key_field));
 			}
 		}
 

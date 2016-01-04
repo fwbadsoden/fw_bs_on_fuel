@@ -96,6 +96,7 @@ class Base_module_model extends MY_Model {
 															'camelize',
 															'upper'			=> 'strtoupper',
 															'lower'			=> 'strtolower',
+															'nl2br',
 															),
 								'number'			=> array(
 															'currency',
@@ -509,6 +510,12 @@ class Base_module_model extends MY_Model {
 		$form_filters = $this->CI->filters;
 
 		$filters = array();
+
+		$find = array('#_from$#', '#_fromequal$#', '#_to$#', '#_toequal$#', '#_equal$#');
+		$operators = array('>', '>=', '<', '<=', '=');
+
+		$cnt = count($values) - 1;
+		$i = 1;
 		foreach($values as $key => $val)
 		{
 			if (!empty($val) AND isset($form_filters[$key]))
@@ -526,7 +533,7 @@ class Base_module_model extends MY_Model {
 						$options = $form_filters[$key]['options'];
 					}
 					
-					$replace = array('#_from$#', '#_fromequal$#', '#_to$#', '#_toequal$#', '#_equal$#');
+
 					if (is_array($val))
 					{
 						foreach($val as $k => $v)
@@ -536,7 +543,8 @@ class Base_module_model extends MY_Model {
 								$val[$k] = $options[$v];
 							}
 
-							$val[$k] = preg_replace($replace, '', $val[$k]);
+							$val[$k] = preg_replace($find, '', $val[$k]);
+
 						}
 						$val = implode(', ', $val);
 					}
@@ -547,19 +555,50 @@ class Base_module_model extends MY_Model {
 							$val = $options[$val];
 						}
 
-						$val = preg_replace($replace, '', $val);
+						$val = preg_replace($find, '', $val);
+					}
+				}
+
+				$operator = '=';
+				foreach($find as $i => $f)
+				{
+					if (preg_match($f, $key))
+					{
+						$operator = $operators[$i];
+						break;
+					}
+				}
+				
+				$joiner = $this->filter_join;
+			
+				if (is_array($joiner))
+				{
+					if (isset($joiner[$key]))
+					{
+						$joiner = strtoupper($joiner[$key]);
+					}
+					else
+					{
+						$joiner = 'OR';
 					}
 				}
 
 				$label = (isset($form_filters[$key]['label'])) ? $form_filters[$key]['label'] : ucfirst(str_replace('_', ' ', $key));
-				$filters[] = $label.'="'.$val.'"';
+				$filter = str_replace(':', '', $label).' '.$operator.' "'.$val.'"';
+				if ($i < $cnt)
+				{
+					$filter .= ' '.strtoupper($joiner).' ';
+				}
+				$filters[] = $filter;
 			}
+
+			$i++;
 		}
 
 		$str = '';
 		if (!empty($filters))
 		{
-			$str = '<strong>Filters:</strong> '.$str .= implode(', ', $filters);
+			$str = '<strong>Filters:</strong> '.$str .= implode(' ', $filters);
 		}
 		return $str;
 	}
@@ -630,7 +669,7 @@ class Base_module_model extends MY_Model {
 			if ($prop == 'foreign_keys')
 			{
 				$groups = $rel_model->find_all_array(array(), $rel_model->key_field().' asc');
-				$children = $this->find_all_array(array(), $key_field.' asc');
+				$children = $this->find_all_array(array(), $model->table_name().'.'.$key_field.' asc');
 				$g_key_field = $rel_model->key_field();
 				$loc_field = $g_key_field;
 			}
@@ -1346,7 +1385,7 @@ class Base_module_model extends MY_Model {
 	protected function _publish_status()
 	{
 		//$fields = $this->fields();
-		$fields = $fields = array_keys($this->table_info()); // used to prevent an additional query that the fields() method would create
+		$fields = array_keys($this->table_info()); // used to prevent an additional query that the fields() method would create
 
 		if (in_array('published', $fields))
 		{
@@ -1390,24 +1429,8 @@ class Base_module_model extends MY_Model {
 	{
 		if (defined('FUEL_ADMIN') AND !empty($this->limit_to_user_field) AND !$this->fuel->auth->is_super_admin())
 		{
-			$join = TRUE;
-			if (!empty($this->db->ar_join))
-			{
-				foreach($this->db->ar_join as $joiner)
-				{
-					if (strncmp('LEFT JOIN `fuel_users`', $joiner, 22) === 0)
-					{
-						$join = FALSE;
-						break;
-					}
-				}
-			}
-
-			if ($join)
-			{
-				$this->db->join($this->_tables['fuel_users'], $this->_tables['fuel_users'].'.id = '.$this->limit_to_user_field, 'left');	
-			}
-			$this->db->where($this->_tables['fuel_users'].'.id = '.$this->fuel->auth->user_data('id'));
+			$this->db->join($this->_tables['fuel_users'].' AS fuser', 'fuser.id = '.$this->limit_to_user_field, 'left');	
+			$this->db->where('fuser.id = '.$this->fuel->auth->user_data('id'));
 		}
 	}
 
@@ -1435,6 +1458,30 @@ class Base_module_model extends MY_Model {
 	
 	// --------------------------------------------------------------------
 	
+	/**
+	* Function to return the display name as defined by the display_field in MY_fuel_modules
+	* @param  array $values The values of the current record
+	* @return string
+	*/
+	public function display_name($values)
+	{
+		$module =& $this->get_module();
+
+		$key = $module->info('display_field');
+
+		if(isset($values[$key]))
+		{
+			return (is_array($values[$key])) ? json_encode($values[$key]) : $values[$key];
+		}
+		else
+		{
+			return "";
+		}
+	}
+
+	// --------------------------------------------------------------------
+
+
 	/**
 	 * Model hook executed right before saving
 	 *
@@ -1583,8 +1630,22 @@ class Base_module_record extends Data_record {
 	protected function _parse($output)
 	{
 		$vars = $this->values();
-		$output = $this->_CI->fuel->parser->parse_string($output, $vars, TRUE);
-		return $output;
+		if (is_array($output))
+		{
+			foreach($output as $key => $val)
+			{
+				if (is_string($val))
+				{
+					$output[$key] = $this->_CI->fuel->parser->parse_string($val, $vars, TRUE);
+				}
+			}
+			return $output;
+		}
+		elseif(is_string($output))
+		{
+			$output = $this->_CI->fuel->parser->parse_string($output, $vars, TRUE);	
+			return $output;
+		}
 	}
 	
 }
