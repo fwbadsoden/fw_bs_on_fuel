@@ -158,14 +158,15 @@ if (typeof(window.fuel.fields) == 'undefined'){
 				return;
 			}
 
-			
+			// add this here instead to get around instanceReady delay
+			$(elem).addClass('ckeditor_applied');
+
 			// cleanup
 			if (CKEDITOR.instances[ckId]) {
 				CKEDITOR.remove(CKEDITOR.instances[ckId]);
 				//$('#cke_' + ckId).remove();
 				//CKEDITOR.instances[ckId].destroy();
 			}
-			
 
 			// add custom configs
 			var config = {
@@ -255,7 +256,8 @@ if (typeof(window.fuel.fields) == 'undefined'){
 				$elem = $('#' + ckId);
 				
 				// so we can check
-				$elem.addClass('ckeditor_applied');
+				//$elem.addClass('ckeditor_applied');
+				
 				// need so the warning doesn't pop up if you duplicate a value
 				if ($.changeChecksaveValue){
 					//$.changeChecksaveValue('#' + ckId, editor.getData());
@@ -288,6 +290,8 @@ if (typeof(window.fuel.fields) == 'undefined'){
 				$('#' + ckId).parent().append(sourceButton);
 
 				$('#' + ckId + '_viewsource').click(function(e){
+					var elem = $(e.currentTarget).closest('.field').find('textarea:first');
+					
 					$elem = $(elem);
 					ckInstance = CKEDITOR.instances[ckId];
 
@@ -1388,7 +1392,7 @@ if (typeof(window.fuel.fields) == 'undefined'){
 					$.extend(data, xtraData);
 				}
 
-				if (val.length){
+				if (val && val.length){
 					$.get(url, data, function(html){
 						var $select = $(replaceSelector);
 						$select.html(html);

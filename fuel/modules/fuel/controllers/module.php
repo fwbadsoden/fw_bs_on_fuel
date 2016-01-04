@@ -196,7 +196,7 @@ class Module extends Fuel_base_controller {
 			$languages = $this->model->get_languages($this->language_col);
 			$first_option = current($languages);
 
-			if ( ! empty($languages) AND (is_string($first_option) OR (is_array($first_option)) AND count($first_option) > 1))
+			if (( ! empty($languages) AND (is_string($first_option) OR (is_array($first_option)) AND count($first_option) > 1)) AND empty($this->filters[$this->language_col.'_equal']))
 			{
 				$lang_filter = array('type' => 'select', 'options' => $languages, 'label' => lang('label_language'), 'first_option' => lang('label_select_a_language'));
 				$this->filters[$this->language_col.'_equal'] = $lang_filter;
@@ -408,7 +408,8 @@ class Module extends Fuel_base_controller {
 			$this->data_table->lang_prefix = 'form_label_';
 			$this->data_table->row_id_key = $this->model->key_field();
 
-			$boolean_fields = $this->model->boolean_fields; 
+			$boolean_fields = $this->model->boolean_fields;
+
 			if ( ! in_array('published', $boolean_fields)) $boolean_fields[] = 'published';
 			if ( ! in_array('active', $boolean_fields)) $boolean_fields[] = 'active';
 
@@ -967,7 +968,8 @@ class Module extends Fuel_base_controller {
 
 				if ( ! empty($data))
 				{
-					$msg = lang('module_edited', $this->module_name, $data[$this->display_field]);
+					$msg_data = $this->model->display_name($data);
+					$msg = lang('module_edited', $this->module_name, $msg_data);
 					$this->fuel->logs->write($msg);
 					$this->_clear_cache();
 					return $id;
@@ -1077,9 +1079,10 @@ class Module extends Fuel_base_controller {
 
 		$crumbs = array($this->module_uri => $this->module_name);
 
-		if ( ! empty($data[$this->display_field]))
+        $msg_data = $this->model->display_name($data);
+        if ( ! empty($msg_data))
 		{
-			$crumbs[''] = character_limiter(strip_tags($data[$this->display_field]), 50);
+			$crumbs[''] = character_limiter(strip_tags($msg_data), 50);
 		}
 
 		$this->fuel->admin->set_titlebar($crumbs);
@@ -1088,9 +1091,9 @@ class Module extends Fuel_base_controller {
 		$this->fuel->admin->render($this->views['create_edit'], $vars, '', FUEL_FOLDER);
 
 		// do this after rendering so it doesn't render current page'
-		if ( ! empty($data[$this->display_field]) AND $inline !== TRUE)
+		if ( ! empty($msg_data) AND $inline !== TRUE)
 		{
-			$this->fuel->admin->add_recent_page($this->uri->uri_string(), $this->module_name.': '.$data[$this->display_field], $this->module);
+			$this->fuel->admin->add_recent_page($this->uri->uri_string(), $this->module_name.': '.$msg_data, $this->module);
 		}
 	}
 	
@@ -1164,7 +1167,9 @@ class Module extends Fuel_base_controller {
 				// run after_save hook
 				$this->_run_hook('after_save', $data);
 
-				$msg = lang('module_edited', $this->module_name, $data[$this->display_field]);
+				$msg_data = $this->model->display_name($data);
+				$msg = lang('module_edited', $this->module_name, $msg_data);
+
 				$this->fuel->logs->write($msg);
 				$this->_clear_cache();
 
@@ -1620,7 +1625,7 @@ class Module extends Fuel_base_controller {
 
 			foreach ($posted as $id)
 			{
-				if ($this->model->delete(array($this->model->key_field() => $id)))
+				if ($this->model->delete(array($this->model->table_name().'.'.$this->model->key_field() => $id)))
 				{
 					$any_success = TRUE;
 				}
@@ -1705,11 +1710,7 @@ class Module extends Fuel_base_controller {
 			{
 				$data = $this->model->find_by_key($id, 'array');
 				$vars['id'] = $id;
-
-				if (isset($data[$this->display_field]))
-				{
-					$vars['title'] = $data[$this->display_field];
-				}
+				$vars['title'] = $this->model->display_name($data);
 			}
 
 			if (empty($data)) show_404();
@@ -1999,7 +2000,7 @@ class Module extends Fuel_base_controller {
 				$this->output->set_header('Content-type: application/json');
 				$output = json_encode($results);
 
-				print($output);
+				echo $output;
 			}
 		}
 	}
@@ -2094,7 +2095,9 @@ class Module extends Fuel_base_controller {
 					// run after_save hook
 					$this->_run_hook('after_save', $data);
 
-					$msg = lang('module_edited', $this->module_name, $data[$this->display_field]);
+					$msg_data = $this->model->display_name($data);
+					$msg = lang('module_edited', $this->module_name, $msg_data);
+					
 					$this->fuel->logs->write($msg);
 				}
 				else
@@ -2318,7 +2321,8 @@ class Module extends Fuel_base_controller {
 				{
 					if (isset($posted[$matches[1]][$matches[2]][$matches[3]]) AND isset($data[$matches[1]][$matches[2]][$matches[3]]))
 					{
-						$data[$matches[1]][$matches[2]][$matches[3]] = $posted[$file_tmp];
+						//$data[$matches[1]][$matches[2]][$matches[3]] = $posted[$file_tmp];
+						$data[$matches[1]][$matches[2]][$matches[3]] = $val['file_name'];
 						$save = TRUE;
 					}
 				}
