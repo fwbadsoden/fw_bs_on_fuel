@@ -78,6 +78,7 @@ class Missions_model extends Abstract_module_model {
 
         $fields["cue_id"]['order'] = 3;
         $fields["cue_id"]['label'] = lang('form_label_einsatz_cue');
+        $fields["cue_id"]["model"] = array('' => array('mission_cues' => 'get_mission_cue_list'));
 
         $options = array('no' => 'nein', 'yes' => 'ja');
         $fields["ueberoertlich"] = array('label' => lang('form_label_einsatz_ueberoertlich'),
