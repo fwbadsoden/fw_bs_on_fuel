@@ -275,9 +275,8 @@ input.button_black:hover {
 	}
 	header h1 a {
 		display: block;
-		width: 215px;
 		height: 53px;
-		background: url(../layout/logo.png) no-repeat;
+		background: url(../layout/logo_2.png) no-repeat;
 		text-indent: -9999em;
 	}
 	header nav {
