@@ -5,7 +5,7 @@
 |---------------------------------------------------------------------------------------------------
 */
 
-$config['offline'] = TRUE;
+$config['offline'] = FALSE;
 
 // path to the fuel admin from the web base directory... MUST HAVE TRAILING SLASH!
 $config['fuel_path'] = 'fuel/';
