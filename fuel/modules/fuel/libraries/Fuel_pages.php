@@ -888,6 +888,12 @@ class Fuel_page extends Fuel_base_library {
 		$page = $this->location;
 
 		$vars = $this->variables();
+				
+		// force the view to offline if "offline" is specified in the FUEL config
+		if ($page == 'offline')
+		{
+			unset($vars['view']);
+		}
 		
 		$this->load_resources($vars);
 		
