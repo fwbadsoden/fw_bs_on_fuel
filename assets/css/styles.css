@@ -3173,6 +3173,13 @@ input.button_black:hover {
 	font-size: 18px;
 	color: #121212;
 }
+#content #MainContent .BildTextTeaser h1 a {
+	text-decoration: none;
+	color: #121212;
+}
+#content #MainContent .BildTextTeaser h1 a:active { color: #121212; }
+#content #MainContent .BildTextTeaser h1 a:visited { color: #121212; }
+#content #MainContent .BildTextTeaser h1 a:hover { color: #121212; }
 #content #MainContent .BildTextTeaser h2 {
 	text-align: center;
 	margin: -8px 0 15px 0;
