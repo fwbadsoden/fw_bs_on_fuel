@@ -8,7 +8,6 @@ class Mannschaft_Members_model extends Abstract_module_model {
                                  'grade_id' => 'mannschaft_grades_model',
                                  'executive_id' => 'mannschaft_executives_model',
                                  'team_id' => 'mannschaft_teams_model');
-    public $boolean_fields = array('beruf_zeigen', 'geburtsdatum_zeigen', 'eintritt_zeigen', 'bild_zeigen');
     function __construct() {
         parent::__construct('fw_mannschaft_members');
     }
@@ -29,7 +28,7 @@ class Mannschaft_Members_model extends Abstract_module_model {
 	   $this->db->join('mannschaft_sections', 'mannschaft_sections.id = mannschaft_members.section_id');
 	   $this->db->join('mannschaft_teams', 'mannschaft_teams.id = mannschaft_members.team_id');
        $this->db->order_by('mannschaft_members.section_id asc, mannschaft_members.name asc, mannschaft_members.vorname asc');
-       $this->db->select('mannschaft_members.id as id, mannschaft_sections.name as abteilung, mannschaft_members.name as name, mannschaft_members.vorname as vorname, mannschaft_members.show_image as bild_zeigen, mannschaft_members.show_beruf as beruf_zeigen, mannschaft_members.show_geburtstag as geburtsdatum_zeigen, mannschaft_members.show_eintrittsdatum as eintritt_zeigen, published');
+       $this->db->select('mannschaft_members.id as id, mannschaft_sections.name as abteilung, mannschaft_members.name as name, mannschaft_members.vorname as vorname, published');
 	   $data = parent::list_items($limit, $offset, $col, $order, $just_count);
        
        return $data;   
