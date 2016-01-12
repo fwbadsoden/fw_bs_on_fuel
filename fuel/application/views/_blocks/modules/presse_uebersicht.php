@@ -11,7 +11,7 @@
                 <div class="kontaktformularOpener"><p class="link_open active" id="js_openKontakt"><a href="#" rel="js_contact">Kontaktformular öffnen</a></p></div>
                 <div class="kontaktformularOpener"><p class="link_close" id="js_closeKontakt"><a href="#" rel="js_contact">Kontaktformular schlie&szlig;en</a></p></div>
                 <div class="kontaktformular">
-                    {form('presse')}
+                    <?=form('presse_cfg')?>
                 </div>
             </div>
             
