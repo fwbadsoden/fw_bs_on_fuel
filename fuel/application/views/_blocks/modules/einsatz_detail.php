@@ -4,6 +4,7 @@
     $dauer  = time_diff($ende, $beginn);
     $dauer_minuten = $dauer['minuten'];
     $dauer_stunden = $dauer['stunden']; 
+	$cue_data = $data->get_cue();
 ?>
 
 <div class="oneColumnBox">
@@ -15,7 +16,7 @@
             </div>                    
             <div class="row">
                 <div class="black">Alarmstichwort:</div>
-                <?php if($data->cue != null) : $cue = $data->cue->name.' - '.$data->cue->description;
+                <?php if($cue_data != null) : $cue = $cue_data["name"].' - '.$cue_data["description"];
                       else : $cue = "n/a";
                       endif; ?>
                 <div class="red"><?=$cue?></div>

@@ -329,6 +329,21 @@ class Mission_model extends Abstract_module_record {
         else
             return false;
     }
+	
+	public function get_cue() {
+		$CI = CI();
+		$CI->db->select('name, description');
+		$CI->db->where('id', $this->cue_id);
+		$query = $CI->db->get('mission_cues');
+		$row = $query->row();
+		if(isset($row->name)) {
+			$cue["name"] = $row->name;
+			$cue["description"] = $row->description;
+			return $cue;
+		} else {
+			return null;
+		}
+	}
 
     public function is_ueberoertlich() {
 
