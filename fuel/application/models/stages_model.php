@@ -20,7 +20,7 @@ class Stages_model extends Abstract_module_model {
         $stage = fuel_model('stages', array('find' => 'one', 'where' => array('id' => $stage_id)));
         $img_count = $stage->img_count;
         $randomize = $stage->randomize;
-        
+
         $images = $stage->stage_images;
         $images_new = array();
                 
@@ -29,6 +29,7 @@ class Stages_model extends Abstract_module_model {
             if(is_array($random_keys)) {
             foreach($random_keys as $key) {
                 array_push($images_new, $images[$key]);
+                shuffle($images_new);
             }
             } else {
                 array_push($images_new, $images[$random_keys]);
@@ -139,6 +140,7 @@ class Stage_model extends Abstract_module_record {
                 foreach($random_keys as $key) {
                     array_push($images_new, $images[$key]);
                 }
+                shuffle($images_new);
             } else {
                 array_push($images_new, $images[$random_keys]);
             }
