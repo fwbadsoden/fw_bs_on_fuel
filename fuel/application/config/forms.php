@@ -18,13 +18,28 @@ $config['nav']['forms'] = array(
 
 // you can add form configurations here which can then be referenced simply by one of the following methods form('test'), $this->fuel->forms->get('test')
 $config['forms']['forms'] = array(
-'submit_button_text' => '<p class="button"><input type="submit" name="sendeButton" value="Formular Senden" class="submitButton" /></p>',
-	/*'test' => array('javascript_validate' => FALSE, 'javascript_submit' => FALSE, 
-		'fields' => array(
-			'name' => array('required' => TRUE),
-			'email' => array('required' => TRUE),
-		),
-	)*/
+    'presse_cfg' => array(
+        'anti_spam_method' => array('method' => 'honeypot'),
+        'save_entries' => TRUE,
+        'name' => 'Presse',
+        'slug' => 'presse',
+        'fields' => array(
+            'message' => array('required' => TRUE, 'label' => 'Nachricht', 'type' => 'textarea'),
+            'name' => array('required' => TRUE, 'label' => 'Name', 'type' => 'text'),
+            'redaktion' => array('required' => FALSE, 'label' => 'Redaktion / Organisation', 'type' => 'text'),
+            'email' => array('required' => TRUE, 'label' => 'Email', 'type' => 'text'),
+            'telefon' => array('required' => FALSE, 'label' => 'Telefon', 'type' => 'text')
+        ),
+        'form_display' => 'block',
+        'block_view' => 'forms/contact_form',
+        'javascript_submit' => TRUE,
+        'javascript_validate' => TRUE,
+        'javascript_waiting_message' => 'Senden...',
+        'form_action' => 'forms/process/presse',
+        'after_submit_text' => 'Vielen Dank! Wir haben Ihre Anfrage erhalten und werden uns mit Ihnen in Verbindung setzen.',
+        'email_recipients' => 'pressestelle@feuerwehr-bs.de',
+        'email_subject' => 'feuerwehr-bs.de: Anfrage Presse',
+    )
 );
 
 // Custom fields you want to use with forms (http://docs.getfuelcms.com/general/forms#association_parameters)
