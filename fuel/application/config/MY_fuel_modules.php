@@ -25,6 +25,7 @@ $config['modules']['stages'] = array(
     'module_name' => 'Bildbühnen',
     'instructions' => lang("stage_instructions"),
     'permission' => 'stages',
+	'item_actions' => array('save', 'delete', 'create')
 );
 
 $config['modules']['stage_images'] = array(
@@ -32,25 +33,29 @@ $config['modules']['stage_images'] = array(
     'instructions' => lang("stage_images_instructions"),
     'permission' => 'stages',
     'display_field' => 'name',
-    'table_headers' => array('id', 'name', 'link', 'text_1', 'text_2')
+    'table_headers' => array('id', 'name', 'link', 'text_1', 'text_2'),
+	'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
 $config['modules']['stage_types'] = array(
     'module_name' => 'Bildbühnentypen',
     'instructions' => lang("stage_types_instructions"),
     'permission' => 'stage_types',
+	'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
 $config['modules']['missions'] = array(
     'module_name' => 'Einsätze',
     'instructions' => lang("einsatz_instructions"),
     'permission' => 'missions',
+	'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
 $config['modules']['mission_types'] = array(
     'module_name' => 'Einsatzarten',
     'instructions' => lang("einsatz_types_instructions"),
     'permission' => 'mission_types',
+	'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
 $config['modules']['mission_images'] = array(
@@ -58,12 +63,14 @@ $config['modules']['mission_images'] = array(
     'display_field' => 'image',
     'instructions' => lang("einsatz_images_instructions"),
     'permission' => 'missions',
+	'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
 $config['modules']['mission_cues'] = array(
     'module_name' => 'Einsatzstichwörter',
     'instructions' => lang("einsatz_cues_instructions"),
     'permission' => 'mission_cues',
+	'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
 $config['modules']['fahrzeuge'] = array(
@@ -71,12 +78,14 @@ $config['modules']['fahrzeuge'] = array(
     'instructions' => lang("fahrzeuge_instructions"),
     'permission' => 'vehicles',
     'limit_options' => array('1000' => '1000'),
+	'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
 $config['modules']['fahrzeug_images'] = array(
     'module_name' => 'Fahrzeugbilder',
     'display_field' => 'image',
     'permission' => 'vehicles',
+	'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
 $config['modules']['mannschaft_members'] = array(
@@ -84,6 +93,7 @@ $config['modules']['mannschaft_members'] = array(
     'instructions' => lang("mannschaft_members_instructions"),
     'permission' => 'mannschaft_members',
     'limit_options' => array('20' => '20', '50' => '50'),
+	'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
 $config['modules']['mannschaft_sections'] = array(
@@ -121,6 +131,7 @@ $config['modules']['news_articles'] = array(
     'module_name' => 'Newsartikel',
     'instructions' => lang("news_article_instructions"),
     'permission' => 'news',
+	'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
 $config['modules']['news_images'] = array(
@@ -128,12 +139,14 @@ $config['modules']['news_images'] = array(
     'display_field' => 'image',
     'instructions' => lang("news_images_instructions"),
     'permission' => 'news',
+	'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
 $config['modules']['pressarticles'] = array(
     'module_name' => 'Presseartikel',
     'instructions' => lang("presse_instructions"),
     'permission' => 'pressarticles',
+	'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
 $config['modules']['pressarticle_sources'] = array(
@@ -141,17 +154,20 @@ $config['modules']['pressarticle_sources'] = array(
     'display_field' => 'name',
     'instructions' => lang("presse_sources_instructions"),
     'permission' => 'pressarticle_sources',
+	'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
 $config['modules']['appointments'] = array(
     'module_name' => 'Termine',
     'instructions' => lang("appointments_instructions"),
     'permission' => 'appointments',
+	'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 $config['modules']['autosuggests'] = array(
     'module_name' => 'Vorschlagswerte',
     'instructions' => lang("autosuggests_instructions"),
     'permission' => 'autosuggests',
+	'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
 /*********************** OVERWRITES ************************************/
