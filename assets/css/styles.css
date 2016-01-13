@@ -3174,7 +3174,7 @@ input.button_black:hover {
 	color: #121212;
 }
 #content #MainContent .BildTextTeaser h1 a {
-	text-decoration: none;
+	text-decoration: underline;
 	color: #121212;
 }
 #content #MainContent .BildTextTeaser h1 a:active { color: #121212; }
