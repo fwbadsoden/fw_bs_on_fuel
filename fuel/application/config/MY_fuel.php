@@ -5,7 +5,7 @@
 |---------------------------------------------------------------------------------------------------
 */
 
-$config['offline'] = FALSE;
+@include(APPPATH.'config/maintenance_mode.php');
 
 // path to the fuel admin from the web base directory... MUST HAVE TRAILING SLASH!
 $config['fuel_path'] = 'fuel/';
