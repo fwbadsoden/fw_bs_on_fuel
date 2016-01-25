@@ -87,10 +87,10 @@ $config['parser_allowed_functions'] = array(
 	'detect_lang','lang',
 	'js', 'css', 'swf', 'img_path', 'css_path', 'js_path', 'swf_path', 'pdf_path', 'media_path', 'cache_path', 'captcha_path', 'assets_path', 'asset_filesize', // assets specific
 	'fuel_block', 'fuel_model', 'fuel_nav', 'fuel_edit', 'fuel_set_var', 'fuel_var', 'fuel_var_append', 'fuel_form', 'fuel_page', // FUEL specific
-	'quote', 'safe_mailto', // HTML/URL specific
+	'quote', 'safe_mailto', 'safe_mailto_notitleencoding', // HTML/URL specific
 	'session_flashdata', 'session_userdata', // Session specific
 	'prep_url', 'site_url', 'show_404', 'redirect', 'uri_segment', 'auto_typography', 'current_url', 'base_url', // CI specific
-    'get_date_as_array', 'get_month_short_name', 'strtoupper', 'substr', 'form', 'form_open', 'get_asset_size', 'get_asset_date'
+        'get_date_as_array', 'get_month_short_name', 'strtoupper', 'substr', 'form', 'form_open', 'get_asset_size', 'get_asset_date',
 
 );
 /*
