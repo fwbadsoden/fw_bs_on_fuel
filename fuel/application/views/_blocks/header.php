@@ -45,7 +45,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     
     <!-- socialshareprivacy -->
-    <script type="text/javascript" src="<?=js_path('socialshareprivacy/jquery.socialshareprivacy.min.js')?>"></script>
+   <!-- <script type="text/javascript" src="<?=js_path('socialshareprivacy/jquery.socialshareprivacy.min.js')?>"></script>
     <script type="text/javascript" src="<?=js_path('socialshareprivacy/socialshareprivacy.min.de.js')?>"></script>
     
     <script type="text/javascript">
@@ -83,7 +83,7 @@
             });
         }
     });    
-    </script>
+    </script>-->
     <!-- socialshareprivacy END -->
 
     <!-- variables for javascript templates -->    
@@ -92,6 +92,15 @@
     </script>
 </head>
 <body>
+    
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/de_DE/sdk.js#xfbml=1&version=v2.5&appId=1389865491270726";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>    
 
 <?php if(ENVIRONMENT == 'production') : ?>
 <script>
