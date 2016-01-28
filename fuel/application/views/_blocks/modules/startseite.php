@@ -59,7 +59,22 @@
         <?php endforeach; ?>
         </ul>
         <p class="more"><a href="<?=base_url('aktuelles/termine')?>" class="button_white">Mehr lesen</a></p>
-    </div> 
+    </div>     
+    <hr class="clear" />
+    
+    <div class="facebook">
+        <h1>Folge uns auf Facebook</h1>
+        <div class="wrapper">
+            <div class="fb-page" data-href="https://www.facebook.com/feuerwehr.badsoden/" data-width="265" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+
+                <div class="fb-xfbml-parse-ignore">
+                    <blockquote cite="https://www.facebook.com/feuerwehr.badsoden/">
+                        <a href="https://www.facebook.com/feuerwehr.badsoden/">Freiwillige Feuerwehr Bad Soden am Taunus</a>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
         
     <div class="weather">
         <h1>Wetter Aussichten</h1>
@@ -72,7 +87,9 @@
                 <p class="status"><?=$weather['weather_cond']['text']?></p>
             </div>
         </div>
-    <hr class="clear" />
     </div>
+    <hr class="clear" />
+    
+    <div style="height: 10px;"></div>
 </div>
 <hr class="clear" />  

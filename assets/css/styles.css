@@ -3575,6 +3575,18 @@ input.button_black:hover {
 	text-align: center;
 }
 
+/* --------] SideBar - Facebook [-------- */
+
+#content #SidebarContent .facebook {
+    margin: 0 0 30px 0;
+}
+
+#content #SidebarContent .facebook .wrapper {
+    margin: 10px auto 0 auto;
+    width: 265px;
+    text-align:center;
+}
+
 /* ---------------- */
 
 
@@ -3604,6 +3616,10 @@ input.button_black:hover {
 		width: 90%;
 		margin: 10px 0 0 4%;
 	}
+        #content #SidebarContent .facebook .wrapper {
+		width: 90%;
+		margin: 10px 0 0 4%;
+        }
 	#content .SBfahrzeugListe .info { margin: 0 0 0 1%; }
 	#content .SBfahrzeugListe figure { width: 36%; }
 	#content .SBfahrzeugListe ul li h2 { margin: 20px 0 0 0; }
@@ -3649,9 +3665,9 @@ input.button_black:hover {
 
 #endOfPage #share {
     width: 100%;
-	text-align: center;
-	border-bottom: 1px #464646 solid;
-	background-color: #191919;
+    text-align: center;
+    border-bottom: 1px #464646 solid;
+    background-color: #191919;
 }
 
 #endOfPage #shortlinks {

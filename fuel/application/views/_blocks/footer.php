@@ -6,7 +6,7 @@
     	<h1><?=fuel_var('pagetitle'); ?></h1>
         <?=$shortlinks?>
     </div>
-    <div id="share"></div>
+    <div id="share"><a href="https://www.facebook.com/feuerwehr.badsoden" target="_blank"><img src="<?=assets_path('button_facebook.png', 'layout')?>" width="90" height="23" alt="feuerwehr-bs.de auf Facebook" /></a></div>
     <div id="sitemap">
         
         <div class="completeSitemap"> 
