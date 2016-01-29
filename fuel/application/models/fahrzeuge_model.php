@@ -266,6 +266,7 @@ class Fahrzeug_model extends Abstract_module_record {
     public function get_missions() {
         
         CI()->db->select('relationships.candidate_key');
+		CI()->db->distinct();
         CI()->db->join('missions', 'missions.id = relationships.candidate_key');
         CI()->db->where(array('relationships.candidate_table' => 'fw_missions', 'relationships.foreign_table' => 'fw_fahrzeuge', 'relationships.foreign_key' => $this->id));
         CI()->db->order_by('datum_beginn desc, uhrzeit_beginn desc');
