@@ -3616,7 +3616,7 @@ input.button_black:hover {
 		margin: 10px 0 0 4%;
 	}
         #content #SidebarContent .facebook .wrapper {
-		width: 200px;
+		width: 90%;
 		margin: 10px auto auto 4%;
         }
 	#content .SBfahrzeugListe .info { margin: 0 0 0 1%; }
@@ -3638,7 +3638,6 @@ input.button_black:hover {
 	#content .SBfahrzeugListe ul li h2 { margin: 5px 0 0 0; }
 }
 
-
 @media only screen and (max-width: 525px) {
 	#content {
 		width: 100%;	
@@ -3649,6 +3648,14 @@ input.button_black:hover {
 	#content #slider li a  {
 		background-color: #b1b1b1;	
 	}
+}
+
+/* Iphone <= 5s Landscape */
+@media only screen and (min-device-width: 640px) and (max-device-width: 1136px) and (orientation: landscape) {    
+        #content #SidebarContent .facebook .wrapper {
+		width: 150px;
+		margin: 10px 0 0 4%;
+        }
 }
 
 
