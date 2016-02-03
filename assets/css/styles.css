@@ -3650,12 +3650,30 @@ input.button_black:hover {
 	}
 }
 
-/* Iphone <= 5s Landscape */
-@media only screen and (min-device-width: 640px) and (max-device-width: 1136px) and (orientation: landscape) {    
-        #content #SidebarContent .facebook .wrapper {
-		width: 150px;
-		margin: 10px 0 0 4%;
-        }
+/* Iphone 5/5s Landscape Facebook Plugin */
+@media only screen 
+and (min-device-width: 320px) 
+and (max-device-width: 568px)
+and (-webkit-device-pixel-ratio: 2) 
+and (device-aspect-ratio: 40/71)
+{
+    #content #SidebarContent .facebook .wrapper {
+	width: 180px;
+	margin: 10px auto auto 4%;
+    }
+}
+
+/* Iphone 4/4s Landscape Facebook Plugin */
+@media only screen 
+and (min-device-width: 320px)  
+and (max-device-width: 480px) 
+and (-webkit-device-pixel-ratio: 2) 
+and (device-aspect-ratio: 2/3) 
+{
+    #content #SidebarContent .facebook .wrapper {
+	width: 180px;
+	margin: 10px auto auto 4%;
+    }
 }
 
 
