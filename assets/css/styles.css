@@ -3589,7 +3589,6 @@ input.button_black:hover {
 
 /* ---------------- */
 
-
 @media only screen and (max-width: 1000px) {
 	#content #MainContent h1.module {
 		margin: 40px 3% 20px 3%;
@@ -3617,8 +3616,8 @@ input.button_black:hover {
 		margin: 10px 0 0 4%;
 	}
         #content #SidebarContent .facebook .wrapper {
-		width: 90%;
-		margin: 10px 0 0 4%;
+		width: 200px;
+		margin: 10px auto auto 4%;
         }
 	#content .SBfahrzeugListe .info { margin: 0 0 0 1%; }
 	#content .SBfahrzeugListe figure { width: 36%; }
