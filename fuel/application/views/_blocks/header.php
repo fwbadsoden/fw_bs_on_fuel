@@ -231,7 +231,7 @@
                                     foreach($main_navigation["fahrzeuge"] as $f) : 
                                         if($f->retired == 'yes') :
                             ?>                        
-                            <li><a href="<?=base_url('technik/fahrzeuge/'.$f->id)?>">
+                            <li><a href="<?=base_url('technik/fahrzeuge/ausserdienst/'.$f->id)?>">
                             <?php if($f->name_lang != '') : echo $f->name.' - '.$f->name_lang; else : echo $f->name; endif; ?>
                             </a></li>  
                             <?php       endif;
