@@ -116,9 +116,9 @@
                    	<div class="zoom"><a href="<?=img_path('einsaetze/'.$b->get_image())?>" class="fancybox-gallery" rel="gallery1"><img src="<?=assets_path('button_zoom.png', 'layout')?>" /></a></div>
                 </figure>
 <?  if($b->photographer != null && $b->photographer != "") : ?>                
-                <p><?=$slide_count?>: <?=$b->description?> <br/>Fotograf: <?=$b->photographer?></p>
+                <p><b>#<?=$slide_count?>: <?=$b->description?> </b><br/>Fotograf: <?=$b->photographer?></p>
 <?  else : ?>
-                <p><?=$slide_count?>: <?=$b->description?></p>
+                <p><b>#<?=$slide_count?>: <?=$b->description?> </b></p>
 <?  endif; ?>
             </li>
 <?  endforeach; ?>                    
