@@ -44,7 +44,7 @@ class Terminimport extends CI_Controller {
         $order_by = ('datum asc, beginn asc');
         $termine = $this->m_appointment->find_all($where, $order_by);
         foreach ($termine as $termin) {
-            $md5 = md5($termin->name . $termin->description . $termin->datum . $termin->beginn . $termin->ende);
+            $md5 = md5($termin->name . $termin->description . $termin->ort . $termin->ort_short . $termin->datum . $termin->beginn . $termin->ende);
             echo $termin->id . ";" . $md5 . "\n";
         }
         echo "FETCH_OK";
@@ -78,7 +78,7 @@ class Terminimport extends CI_Controller {
             //Insert additional appointments
             if (strlen($_GET['toInsert']) > 0) {
                 foreach (explode("\n", $_GET['toInsert']) as $lineToInsert) {
-                    list($name, $description, $datum, $beginn, $ende, $md5) = explode(";", $lineToInsert);
+                    list($name, $description, $ort, $ort_kurz, $datum, $beginn, $ende, $md5) = explode(";", $lineToInsert);
 
                     //Determine category id
                     if (strpos($name, 'Gesamte Wehr') != false) {
@@ -96,8 +96,8 @@ class Terminimport extends CI_Controller {
                     $termin["datum"] = $datum;
                     $termin["beginn"] = $beginn;
                     $termin["ende"] = $ende;
-                    $termin['ort_short'] = 'Feuerwehr Bad Soden';
-                    $termin['ort'] = 'Freiwillige Feuerwehr Bad Soden am Taunus<br />Hunsrückstr. 5-7<br />65812 Bad Soden am Taunus';
+                    $termin['ort_short'] = $ort_kurz;
+                    $termin['ort'] = $ort;
                     $termin['published'] = 'yes';
                     $this->m_appointment->insert($termin);
                     echo "Inserted " . $lineToInsert . " into db\n";
