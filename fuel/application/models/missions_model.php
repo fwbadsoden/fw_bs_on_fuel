@@ -257,7 +257,11 @@ class Missions_model extends Abstract_module_model {
         $this->db->where(array('substring(datum_beginn,1,4)' => $year));
         $query = $this->db->get('missions');
         $row = $query->row();
-        return $row->anzahl_einsaetze;
+        $count = $row->anzahl_einsaetze;
+        if (is_numeric($count))
+            return $count;
+        else
+            return 0;
     }
 
     public function get_statistic($types, $selected_year, $selected_type) {
@@ -329,21 +333,21 @@ class Mission_model extends Abstract_module_record {
         else
             return false;
     }
-	
-	public function get_cue() {
-		$CI = CI();
-		$CI->db->select('name, description');
-		$CI->db->where('id', $this->cue_id);
-		$query = $CI->db->get('mission_cues');
-		$row = $query->row();
-		if(isset($row->name)) {
-			$cue["name"] = $row->name;
-			$cue["description"] = $row->description;
-			return $cue;
-		} else {
-			return null;
-		}
-	}
+
+    public function get_cue() {
+        $CI = CI();
+        $CI->db->select('name, description');
+        $CI->db->where('id', $this->cue_id);
+        $query = $CI->db->get('mission_cues');
+        $row = $query->row();
+        if (isset($row->name)) {
+            $cue["name"] = $row->name;
+            $cue["description"] = $row->description;
+            return $cue;
+        } else {
+            return null;
+        }
+    }
 
     public function is_ueberoertlich() {
 
