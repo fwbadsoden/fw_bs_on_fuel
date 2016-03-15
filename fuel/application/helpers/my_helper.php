@@ -32,8 +32,6 @@ function main_navigation() {
         $nav["news"]                    = fuel_model("news_articles_model", array('find' => 'all', 'limit' => 5, 'where' => array('published' => 'yes'), 'order' => ('datum desc, id desc')));
         $nav["fahrzeuge"]               = $CI->fahrzeuge->find_all(NULL, 'precedence asc');
         $nav["fahrzeuge_hasretired"]    = $CI->fahrzeuge->has_retired();
-        $nav["mannschaft_leader"]       = $CI->mannschaft->find_fuehrung();
-        $nav["mannschaft_team"]         = $CI->mannschaft->find_team();
         
         return $nav;
     }

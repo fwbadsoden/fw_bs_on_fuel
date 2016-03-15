@@ -33,13 +33,10 @@
     $listcount = 1;
     foreach($alters as $t) : 
     if($listcount > 3) $listcount = 1;
-        
-    if($t["show_eintrittsdatum"] == "no") $t["eintrittsdatum"] = "";
-    if($t["show_image"] == "no") $t["image"] = "dummy_aue.jpg";
-        
+                
     switch($listcount)
     {
-        case '1': $class = ''; break;
+        case '1': $class = ' class="first"'; break;
         case '2': $class = ' class="second"'; break;
         case '3': $class = ' class="third"'; break;
     }
@@ -67,7 +64,7 @@
         
     switch($listcount)
     {
-        case '1': $class = ''; break;
+        case '1': $class = ' class="first"'; break;
         case '2': $class = ' class="second"'; break;
         case '3': $class = ' class="third"'; break;
     }
