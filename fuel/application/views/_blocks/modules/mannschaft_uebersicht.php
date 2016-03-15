@@ -16,27 +16,33 @@
 <?php       
     $listcount = 1;
     $class = ""; 
-    $nonLineBreakingFunktionen = array("Stadtbrandinspektor", "Wehrführer", "stellv. Wehrführer");
+    $nonLineBreakingFunktionen = array("Stadtbrandinspektor", "stellv. Stadtbrandinspektor", "Wehrführer", "stellv. Wehrführer");
     $lastFunktion = "";
+    $linebreakZwischenStabiUndFuehrung = false;
 
     foreach($fuehrung as $f) :
-        if($listcount > 3) $listcount = 1;
+        if($listcount > 3) {
+            $listcount = 1;
+        }
         
         if($f["show_geburtstag"] == 'no') $f["geburtstag"] = "0000-00-00";
         if($f["show_beruf"] == 'no') $f["beruf"] = "";
         if($f["show_image"] == 'no') $f["image"] = "dummy.jpg";
-        
         if($f["executive_name"] != $lastFunktion && array_search($f["executive_name"], $nonLineBreakingFunktionen) === false){
-            $class = '';
             $listcount = 1;
-        } else {
-            switch($listcount)
-            {
-                case '1': $class = ''; break;
-                case '2': $class = ' class="second"'; break;
-                case '3': $class = ' class="third"'; break;
+            if($linebreakZwischenStabiUndFuehrung == false) {
+                $linebreakZwischenStabiUndFuehrung = true;
+                echo "</ul><ul class=\"TeaserListe\"><hr class=\"clear\" />";
             }
         }
+        
+        switch($listcount)
+        {
+            case '1': $class = ' class="first"'; break;
+            case '2': $class = ' class="second"'; break;
+            case '3': $class = ' class="third"'; break;
+        }
+        
         $lastFunktion=$f["executive_name"];
         $listcount++;
         if($f["geschlecht"] == 'm') $dienstgrad_name = $f["grade_name_m"];
@@ -71,7 +77,7 @@
                             ?>         
                         </p>
                     </li>
-<? endforeach; 
+<?php endforeach; 
    $listcount = 1;
 ?>                    
                 </ul>
@@ -81,7 +87,7 @@
             <h1 class="module" id="anker_mannschaft">Mannschaft</h1>
             <div class="oneColumnBox">
                 <ul class="TeaserListe">
-<? foreach($team as $t) : 
+<?php foreach($team as $t) : 
     if($listcount > 3) $listcount = 1;
         
     if($t["show_geburtstag"] == 'no') $t["geburtstag"] = "0000-00-00";
@@ -90,7 +96,7 @@
         
     switch($listcount)
     {
-        case '1': $class = ''; break;
+        case '1': $class = ' class="first"'; break;
         case '2': $class = ' class="second"'; break;
         case '3': $class = ' class="third"'; break;
     }
@@ -124,7 +130,7 @@
                             ?>
                          </p>
                     </li>
-<? endforeach; ?>                    
+<?php endforeach; ?>                    
                 </ul>
                 <hr class="clear" />
     
