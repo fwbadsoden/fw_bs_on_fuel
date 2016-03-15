@@ -9,8 +9,12 @@ if ($data->is_wlf()) $abrollbehaelter = $data->get_abrollbehaelter();
 if ($data->rufname == 'n/a') : $ruf_name = 'n/a';
 else : $ruf_name = $data->prefix_rufname . ' ' . $data->rufname;
 endif;
-if ($data->is_retired()) : $headline = "Ausser Dienst";
-else : $headline = "Alle Fahrzeuge";
+if ($data->is_retired()) : 
+    $headline = "Ausser Dienst";
+    $overview_link = "ausserdienst/";
+else : 
+    $headline = "Alle Fahrzeuge";
+    $overview_link = "";
 endif;
 ?>
 
@@ -143,7 +147,7 @@ endif;
                     <? else : ?>
                 <li>
                     <? endif; ?>                                                  
-                    <a href="<?= base_url('technik/fahrzeuge/' . $fahrzeug->id) ?>"><?= $fahrzeug->name_lang ?> - <span class="downlight"><?= $fahrzeug->name ?></span></a>
+                    <a href="<?= base_url('technik/fahrzeuge/' . $overview_link . $fahrzeug->id) ?>"><?= $fahrzeug->name_lang ?> - <span class="downlight"><?= $fahrzeug->name ?></span></a>
                 </li>
                 <? endforeach; ?>                    
             </ul>
@@ -155,7 +159,7 @@ endif;
                     <? else : ?>
                 <li>
                     <? endif; ?>                                                  
-                    <a href="<?= base_url('technik/fahrzeuge/' . $fahrzeug->id) ?>"><?= $fahrzeug->name_lang ?> - <span class="downlight"><?= $fahrzeug->name ?></span></a>
+                    <a href="<?= base_url('technik/fahrzeuge/' . $overview_link . $fahrzeug->id) ?>"><?= $fahrzeug->name_lang ?> - <span class="downlight"><?= $fahrzeug->name ?></span></a>
                 </li>
                 <? endforeach; ?>   
             </ul>
