@@ -17,7 +17,7 @@ $wehrfuehrung = array("Wehrführer", "stellv. Wehrführer");
 <div class="jsplatzhalter"></div>
 
 <div class="oneColumnBox">
-    <ul class="TeaserListe">
+    <ul id="anker_fuehrung" class="TeaserListe">
 
         <?php
         //$class = "";
