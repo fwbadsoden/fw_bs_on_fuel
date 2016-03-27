@@ -24,7 +24,21 @@
 <? endif; ?>   
         <div class="oneColumnBox">               
             <ul class="terminListe">     
-<?          foreach($termine_pro_monat as $termin) : ?>               
+<?          foreach($termine_pro_monat as $termin) : 
+                $ort = "";
+                if(strpos($termin->ort, ",") != false) {
+                    $ort_array = explode(",", $termin->ort);
+                    foreach($ort_array as $key => $o) {
+                        if($key == count($ort_array)-1) {
+                            $ort.= $o;
+                        } else {
+                            $ort.= $o."<br/>";
+                        }
+                    }
+                } else {
+                    $ort = $termin->ort;
+                }
+?>               
                 <li>
                     <a href="#<?=$i?>" rel="js_terminopen">
                     <div class="row">
@@ -50,7 +64,7 @@
                                 </div>
                                 <div class="loction">
                                     <p>
-                                        <?=$termin->ort?>
+                                        <?=$ort?>
                                     </p>
                                 </div>
                             </div>
