@@ -106,16 +106,24 @@ if (typeof(window.fuel.fields) == 'undefined'){
 		var module = fuel.getModule();
 		//var _previewPath = myMarkItUpSettings.previewParserPath;
 
-		var createMarkItUp = function(elem){
+		var createPreviewParams = function(elem){
 			var $elem = $(elem);
 			var q = 'module=' + escape(module) + '&field=' + escape($elem.attr('name'));
 			if ($elem.attr('data-preview')){
 				q += '&preview=' + escape($elem.attr('data-preview'));
 			}
+			return q;
+		}
+
+		var createMarkItUp = function(elem){
+			
+			var $elem = $(elem);
 
 			// add custom configs
 			var editorSet = $elem.data('editor_set');
+			
 			var config = fuel.fields.getElementData($elem.attr('name'), 'editor');
+			
 			if (!config || config.length == 0 || $elem.hasClass('ckeditor_applied')){
 				if ($elem.hasClass('wysiwyg') || $elem.hasClass('ckeditor_applied')){
 					config = myMarkItUpSettings.sets['default'];
@@ -124,7 +132,8 @@ if (typeof(window.fuel.fields) == 'undefined'){
 				}
 			}
 
-			config.previewParserPath = config.previewParserPath + '?' + q;
+			config.previewParserPath = config.previewParserPath + '?' + createPreviewParams(elem);
+
 			var config = myMarkItUpSettings.processConfig(config, editorSet);
 			$elem.not('.markItUpEditor').markItUp(config);
 			
@@ -173,6 +182,10 @@ if (typeof(window.fuel.fields) == 'undefined'){
 				protectedSource: [/\{fuel_\w+\(.+\)\}/g, /<\?[\s\S]*?\?>/g]
 			};
 			config = $.extend(config, fuel.fields.getElementData($(elem).attr('name'), 'editor'));
+			config.previewParserPath = config.previewParserPath + '?' + createPreviewParams(elem);
+
+			// now set it back so that the preview will work
+			fuel.fields.setElementData($(elem).attr('name'), 'editor', config);
 
 			var hasCKEditorImagePlugin = (config.extraPlugins && config.extraPlugins.indexOf('fuelimage') != -1);
 			config.height = $(elem).height();
@@ -270,6 +283,8 @@ if (typeof(window.fuel.fields) == 'undefined'){
 				if ($elem.get(0).style.width){
 					$elem.after('<div style="width:' + $elem.get(0).style.width+ '"></div>');
 				}
+
+				createPreview(ckId);
 			})
 		
 			// translate image paths
@@ -351,7 +366,6 @@ if (typeof(window.fuel.fields) == 'undefined'){
 		var createPreview = function(id){
 
 			var $textarea = $('#' + id);
-
 			if ($textarea.data('preview') !== undefined && $textarea.data('preview').length === 0){
 				return;
 			}
@@ -372,6 +386,7 @@ if (typeof(window.fuel.fields) == 'undefined'){
 						var csrf = $('#csrf_test_name').val() ? $('#csrf_test_name').val() : '';
 
 						var config = fuel.fields.getElementData($textarea.attr('name'), 'editor');
+						
 						if (!config.previewParserPath || config.previewParserPath == 'preview') config.previewParserPath = __FUEL_PATH__ + '/' + myMarkItUpSettings.sets['default'].previewParserPath;
 						if (!config.previewParserVar) config.previewParserVar = 'data'
 
@@ -411,6 +426,7 @@ if (typeof(window.fuel.fields) == 'undefined'){
 
 			} else {
 				createMarkItUp(this);
+				createPreview(ckId);
 			}
 			
 			// setup update of element on save just in case
@@ -419,7 +435,7 @@ if (typeof(window.fuel.fields) == 'undefined'){
 					CKEDITOR.instances[ckId].updateElement();
 				}
 			})
-			createPreview(ckId);
+			
 			
 			
 		});
@@ -440,6 +456,21 @@ if (typeof(window.fuel.fields) == 'undefined'){
 			$multiFile.removeAttr('accept');// for Chrome bug
 			$multiFile.MultiFile({ namePattern: '$name___$i'});
 		}, 500);
+
+		$('.asset_delete', context).on('click', function(e){
+			e.preventDefault();
+			if (confirm(fuel.lang('confirm_asset_remove'))){
+				var deleteId = $(this).attr('href');
+				$(deleteId).val('');
+				$(this).closest('.asset_upload_preview').remove();
+			}
+		});
+
+		$('.deletable a', context).on('mouseover', function(e){
+			$(this).parent().find('.asset_delete').show();
+		}).on('mouseout', function(e){
+			$(this).parent().find('.asset_delete').hide();
+		});
 
 		fuel.fields.asset_field(context);
 	}
@@ -514,9 +545,11 @@ if (typeof(window.fuel.fields) == 'undefined'){
 				if (id){
 					var idArr = id.split('--');
 					id = idArr[idArr.length -1];
-					replaceValues[id] = $(this).val();
-					var regex = new RegExp('\{' + id + '\}', 'g');
-					folder = folder.replace(regex, replaceValues[id]);
+					if (id){
+						replaceValues[id] = $(this).val();
+						var regex = new RegExp('\{' + id + '\}', 'g');
+						folder = folder.replace(regex, replaceValues[id]);
+					}
 				}
 			})
 			return folder;
@@ -723,6 +756,7 @@ if (typeof(window.fuel.fields) == 'undefined'){
 			var $form = $field.closest('form');
 			var module = $field.data('module');
 			var addParams = ($field.data('add_params')) ? '?' + $field.data('add_params') : '';
+			var fields = ($field.data('fields')) ? '/' + $field.data('fields') : '';
 
 			var isMulti = ($field.attr('multiple')) ? true : false;
 			
@@ -730,7 +764,7 @@ if (typeof(window.fuel.fields) == 'undefined'){
 			var url = jqx_config.fuelPath + '/' + module + '/inline_';
 			var btnClasses = ($field.attr('multiple')) ? 'btn_field btn_field_right ' : 'btn_field';
 			if (!$field.parent().find('.edit_inline_button').length) $field.after('&nbsp;<a href="' + url + 'edit/" class="' + btnClasses+ ' edit_inline_button">' + fuel.lang('btn_edit') + '</a>');
-			if (!$field.parent().find('.add_inline_button').length) $field.after('&nbsp;<a href="' + url + 'create' + addParams + '" class="' + btnClasses+ ' add_inline_button">' + fuel.lang('btn_add') + '</a>');
+			if (!$field.parent().find('.add_inline_button').length) $field.after('&nbsp;<a href="' + url + 'create' + fields + addParams + '" class="' + btnClasses+ ' add_inline_button">' + fuel.lang('btn_add') + '</a>');
 			
 			var refreshField = function($field){
 
@@ -743,7 +777,6 @@ if (typeof(window.fuel.fields) == 'undefined'){
 				if (!selected) return;
 				var refreshUrl = jqx_config.fuelPath + '/' + parentModule + '/refresh_field';
 				var params = { field:fieldId, field_id: fieldId, selected:selected};
-
 
 				// fix for pages... a bit kludgy
 				if (parentModule == 'pages'){
@@ -769,10 +802,13 @@ if (typeof(window.fuel.fields) == 'undefined'){
 
 				var $form = $field.closest('form');
 
-				$fieldContainer = $('#' + fieldId, context).closest('td.field');
-				$field.closest('form').trigger('form-pre-serialize');
+				var $fieldContainer = $('#' + fieldId, context).closest('td.field');
+
+				// will delete fields if triggered
+				//$field.closest('form').trigger('form-pre-serialize');
 
 				// refresh value
+
 				$field = $(selector);
 				if ($field.length > 1){
 					var val = [];
@@ -802,7 +838,10 @@ if (typeof(window.fuel.fields) == 'undefined'){
 					//console.log($form.formBuilder())
 					//$form.formBuilder().call('inline_edit');
 					// refresh field with formBuilder jquery
-					fuel.fields.multi_field(context)
+					if (!$('#' + fieldId, context).hasClass('select2')){
+						fuel.fields.multi_field(context);
+					}
+
 					$('#form').formBuilder().initialize(context);
 					$('#' + fieldId, context).off('.addedit').on('change.addedit', function(){
 						changeField($(this));
@@ -814,7 +853,7 @@ if (typeof(window.fuel.fields) == 'undefined'){
 			var changeField = function($this){
 				if (!$this.is('[multiple]')){
 					if ($this.val() == '' || $this.find('option').length == 0){
-						if ($this.is('select') && $this.find('option').length == 0){
+						if ($this.is('select') && $this.find('option').length == 0 || $this.is('.select2_applied')){
 							$this.hide();
 						} else {
 							$this.show();
@@ -822,7 +861,7 @@ if (typeof(window.fuel.fields) == 'undefined'){
 						if ($this.is('input, select')) $this.parent().find('.edit_inline_button').hide();
 					} else {
 						$this.parent().find('.edit_inline_button').show();
-						$this.show();
+						if (!$this.is('.select2_applied')) $this.show();
 					}	
 				}
 			}
@@ -864,8 +903,8 @@ if (typeof(window.fuel.fields) == 'undefined'){
 					return false;
 				}
 				var editIds = val.toString().split(',');
+				var fields = ($elem.data('fields')) ? '/' + $elem.data('fields') : '';
 				var $selected = $elem.parent().find('.supercomboselect_right li.selected:first');
-
 				if ((!editIds.length || editIds.length > 1) && (!$selected.length || $selected.length > 1)) {
 					alert(fuel.lang('edit_multi_select_warning'));
 				} else {
@@ -873,12 +912,12 @@ if (typeof(window.fuel.fields) == 'undefined'){
 						var id = $selected.attr('id');
 						var idIndex = id.substr(id.lastIndexOf('_') + 1);
 						var val = $elem.find('option').eq(idIndex).attr('value');
-						var url = $(this).attr('href') + val;
+						var url = $(this).attr('href') + val + fields;
 					} else {
-						var url = $(this).attr('href') + editIds[0];
+						var url = $(this).attr('href') + editIds[0] + fields;
 					}
-					$field = $(this).closest('.field').find('select, input[type="checkbox"], input[type="radio"]:first');
-						editModule(url, null, function(){ refreshField($field)});
+					$field = $elem.filter(':first');
+					editModule(url, null, function(){ refreshField($field)});
 				}
 				return false;
 			});

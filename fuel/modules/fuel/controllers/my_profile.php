@@ -1,89 +1,85 @@
 <?php
-require_once(FUEL_PATH.'/libraries/Fuel_base_controller.php');
+
+require_once(FUEL_PATH . '/libraries/Fuel_base_controller.php');
 
 class My_profile extends Fuel_base_controller {
-	
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->module_model(FUEL_FOLDER, 'fuel_users_model');
-	}
-	
-	public function edit()
-	{
-		$user = $this->fuel->auth->user_data();
-		$id = $user['id'];
 
-		if ( ! empty($_POST))
-		{
-			if ($id)
-			{
-				if ($this->fuel_users_model->save())
-				{
-					$this->fuel->admin->set_notification(lang('data_saved'), Fuel_admin::NOTIFICATION_SUCCESS);
-					redirect(fuel_uri('my_profile/edit/'));
-				}
-			}
-		}
+    public function __construct() {
+        parent::__construct();
+        $this->load->module_model(FUEL_FOLDER, 'fuel_users_model');
+    }
 
-		$this->_form($id);
-	}
+    public function edit() {
+        $user = $this->fuel->auth->user_data();
+        $id = $user['id'];
 
-	// seperated to make it easier in subclasses to use the form without rendering the page
-	public function _form($id = null)
-	{
-		$this->load->library('form_builder');
-		$this->js_controller_params['method'] = 'add_edit';
+        if (!empty($_POST)) {
+            if ($id) {
+                if ($id != $this->fuel->auth->user_data('id')) {
+                    show_error(lang('error_no_permissions'));
+                }
 
-		// create fields... start with the table info and go from there
-		$values = array('id' => $id);
-		$fields = $this->fuel_users_model->form_fields($values);
+                $save = $this->input->post(NULL, TRUE);
+                $save['id'] = $id;
+                if ($this->fuel_users_model->save($save)) {
+                    $this->fuel->admin->set_notification(lang('data_saved'), Fuel_admin::NOTIFICATION_SUCCESS);
+                    redirect(fuel_uri('my_profile/edit/'));
+                }
+            }
+        }
 
-		// remove permissions
-		unset($fields['permissions']);
+        $this->_form($id);
+    }
 
-		// get saved data
-		$saved = array();
+    // seperated to make it easier in subclasses to use the form without rendering the page
+    public function _form($id = null) {
+        $this->load->library('form_builder');
+        $this->js_controller_params['method'] = 'add_edit';
 
-		if ( ! empty($id))
-		{
-			$saved = $this->fuel_users_model->user_info($id);
-		}
+        // create fields... start with the table info and go from there
+        $values = array('id' => $id);
+        $fields = $this->fuel_users_model->form_fields($values);
 
-		// remove active from field list to prevent them from updating it
-		unset($fields['active'], $fields['Permissions']);
+        // get saved data
+        $saved = array();
 
-		if ( ! empty($_POST))
-		{
-			$field_values = $this->fuel_users_model->clean();
-		}
-		else
-		{
-			$field_values = $saved;
-		}
+        if (!empty($id)) {
+            $saved = $this->fuel_users_model->user_info($id);
+        }
 
-		$this->form_builder->form->validator = &$this->fuel_users_model->get_validation();
-		$this->form_builder->submit_value = lang('btn_save');
-		$this->form_builder->use_form_tag = false;
-		$this->form_builder->set_fields($fields);
-		$this->form_builder->display_errors = false;
-		$this->form_builder->set_field_values($field_values);
+        // remove active from field list to prevent them from updating it
+        unset($fields['active'], $fields['Permissions'], $fields['permissions'], $fields['is_invite'], $fields['id']);
 
-		$vars['form'] = $this->form_builder->render();
+        if (!empty($_POST)) {
+            $field_values = $this->fuel_users_model->clean();
+        } else {
+            $field_values = $saved;
+        }
 
-		// other variables
-		$vars['id'] = $id;
-		$vars['data'] = $saved;
+        $this->form_builder->form->validator = &$this->fuel_users_model->get_validation();
+        $this->form_builder->submit_value = lang('btn_save');
+        $this->form_builder->use_form_tag = false;
+        $this->form_builder->set_fields($fields);
+        $this->form_builder->display_errors = false;
+        $this->form_builder->set_field_values($field_values);
 
-		// active or publish fields
-		$errors = $this->fuel_users_model->get_errors();
+        $vars['form'] = $this->form_builder->render();
 
-		if ( ! empty($errors)) add_errors($errors);
+        // other variables
+        $vars['id'] = $id;
+        $vars['data'] = $saved;
 
-		$this->fuel->admin->set_titlebar_icon('ico_users');
+        // active or publish fields
+        $errors = $this->fuel_users_model->get_errors();
 
-		$crumbs = lang('section_my_profile');
-		$this->fuel->admin->set_titlebar($crumbs);
-		$this->fuel->admin->render('my_profile', $vars, '', FUEL_FOLDER);
-	}
+        if (!empty($errors))
+            add_errors($errors);
+
+        $this->fuel->admin->set_titlebar_icon('ico_users');
+
+        $crumbs = lang('section_my_profile');
+        $this->fuel->admin->set_titlebar($crumbs);
+        $this->fuel->admin->render('my_profile', $vars, '', FUEL_FOLDER);
+    }
+
 }
