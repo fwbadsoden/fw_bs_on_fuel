@@ -17,12 +17,15 @@ $lang['fuel_copyright'] = 'Copyright &copy; %1s Feuerwehr Bad Soden am Taunus.';
 | Error Messages
 |--------------------------------------------------------------------------
 */
-$lang['error_no_access'] = 'Sie haben keine Berechtigung diese Seite aufzurufen. <a href="'.fuel_url().'">Bitte versuchen Sie Sich neu anzumelden</a>.';
+$lang['error_no_access'] = 'Sie haben keine Berechtigung,m diese Seite aufzurufen. <a href="%1s">Bitte versuchen Sie Sich neu anzumelden</a>.';
 $lang['error_missing_module'] = "Das Modul %1s ist nicht vorhanden.";
 $lang['error_invalid_login'] = 'Anmeldung nicht erfolgreich.';
 $lang['error_max_attempts'] = 'Es tut uns leid, aber Ihre Anmeldeinformationen sind falsch und Sie wurden temporär gesperrt. Bitte probieren Sie es in %s Sekunden nochmal.';
 $lang['error_empty_user_pwd'] = 'Bitte geben Sie einen Benutzernamen und ein Passwort an.';
 $lang['error_pwd_reset'] = 'Es gab einen Fehler beim zur&uuml;cksetzen des Passworts.';
+$lang['error_pwd_too_short'] = 'Das Passwort hat nicht die minimale L&auml;nge von %1s Zeichen.';
+$lang['error_pwd_too_long'] = 'Das eingegebene Passwort übersteigt die maximale L&auml;nge von %1s Zeichen.';
+$lang['error_pwd_invalid'] = 'Bitte w&auml;hlen Sie ein st&auml;rkeres Passwort. Versuchen Sie eine Kombination aus %1s.';
 $lang['error_invalid_email'] = 'Die angebene Emailadresse ist im System nicht bekannt.';
 $lang['error_invalid_password_match'] = 'Die Passwörter stimmen nicht überein.';
 $lang['error_empty_email'] = 'Bitte tragen Sie eine Emailadresse ein.';
@@ -30,7 +33,7 @@ $lang['error_folder_not_writable'] = 'Das Verzeichnis %1s ist schreibgesch&uuml;
 $lang['error_invalid_folder'] = 'Ungültiges Verzeichnis %1s';
 $lang['error_file_already_exists'] = 'Datei %1s existiert bereits.';
 $lang['error_zip'] = 'Es gab einen Fehler beim Anlegen des ZIP Archivs.';
-$lang['error_no_permissions'] = 'Sie verf&uuml;gen nicht &uuml;ber die Berechtigung zur Durchf&uuml;hrung der Aktion. <a href="'.fuel_url().'">Bitte versuchen Sie Sich neu anzumelden</a>.';
+$lang['error_no_permissions'] = 'Sie verf&uuml;gen nicht &uuml;ber die Berechtigung zur Durchf&uuml;hrung der Aktion. <a href="%1s">Bitte versuchen Sie Sich neu anzumelden</a>.';
 $lang['error_no_lib_permissions'] = 'Sie verf&uuml;gen nicht &uuml;ber die Berechtigung, Methoden der Klasse %1s auszuf&uuml;hren.';
 $lang['error_page_layout_variable_conflict'] = 'Es gibt einen Fehler mit dem Layout. Entweder existiert es nicht oder es enth&auml;lt eines der folgenden reservierten W&ouml;rter: %1s';
 $lang['error_no_curl_lib'] = 'Die curl PHP Erweiterung muss aktiviert sein, um diese Tools zu nutzen.';
@@ -50,6 +53,7 @@ $lang['error_class_method_does_not_exist'] = 'Klassenmethode %1s existiert nicht
 $lang['error_could_not_create_folder'] = 'Das Verzeichnis %1s konnte nicht erstellt werden.';
 $lang['error_could_not_create_file'] = 'Die Datei %1s konnte nicht angelegt werden.';
 $lang['error_no_build'] = "Kein Build-Setup f&uuml;r dieses Modul.\n";
+$lang['error_invalid_record'] = "Der Moduldatensatz existiert nicht.";
 
 
 /*
@@ -123,11 +127,20 @@ $lang['section_my_modules'] = 'Meine Module';
 | Login/Password Reset
 |--------------------------------------------------------------------------
 */
-$lang['pwd_reset'] = 'Eine Email zur Bestätigung Ihres Passwortreset ist unterwegs.';
+//$lang['pwd_reset'] = 'Eine Email zur Bestätigung Ihres Passwortreset ist unterwegs.';
+$lang['pwd_reset_error'] = 'F&uuml;r die eingegebene Emailadresse existiert kein g&uuml;ltiges Reset-Token. Bitte &uuml;bermitteln Sie das Formular zum zur&uuml;cksetzen des Passworts erneut, um einen neuen Link zu erhalten.';
+$lang['pwd_reset_success'] = 'Ihr Passwort wurde erfolgreich zur&uuml;ckgesetzt.';
+
+$lang['pwd_reset_error_not_match'] = 'Die Passw&ouml;rter stimmen nicht &uuml;berein.';
+
+$lang['pwd_reset_missing_token'] = 'Missing or invalid reset token.';
+$lang['pwd_reset_success'] = 'Ihr Passwort wurde erfolgreich zur&uuml;ckgesetzt. Bitte melden Sie Sich mit Ihrem Benutzernamen und Passwort an.';
+$lang['pwd_reset'] = 'Eine Email mit dem Link zum Zur&uuml;cksetzen Ihres Passworts wurde versendet.';
 $lang['pwd_reset_subject'] = "FUEL Backend Passwortreset-Anforderung";
-$lang['pwd_reset_email'] = "Klicken Sie auf den folgenden Link zur Bestätigung des Zurücksetzens Ihres FUEL Passworts:\n%1s";
+$lang['pwd_reset_email'] = "Klicken Sie auf den folgenden Link zum Zur&uuml;cksetzen Ihres Passworts:\n%1s";
 $lang['pwd_reset_subject_success'] = "Zurücksetzen des FUEL Backend Passworts erfolgreich";
-$lang['pwd_reset_email_success'] = "Ihr FUEL Passwort wurde auf %1s zurückgesetzt. Um das Passwort zu ändern loggen Sie sich bitte in das FUEL CMS Backend mit diesem Passwort ein und klicken Sie auf Ihren Benutzernamen in der oberen rechten Ecke, um auf Ihre Profilinformationen zuzugreifen.";
+//$lang['pwd_reset_email_success'] = "Ihr FUEL Passwort wurde auf %1s zurückgesetzt. Um das Passwort zu ändern loggen Sie sich bitte in das FUEL CMS Backend mit diesem Passwort ein und klicken Sie auf Ihren Benutzernamen in der oberen rechten Ecke, um auf Ihre Profilinformationen zuzugreifen.";
+$lang['pwd_reset_email_success'] = 'Eine Email mit dem Link zum Zur&uuml;cksetzen Ihres Passworts ist unterwegs.';
 $lang['pwd_reset_success'] = 'Ihr Passwort wurde erfolgreich zurückgesetzt und es wurde eine Email mit dem neuen Passwort an Sie gesendet.';
 $lang['cache_cleared'] = "Seitencache wurde explizit gelöscht.";
 
@@ -352,13 +365,10 @@ $lang['form_label_language'] = 'Sprache';
 $lang['form_label_send_email'] = 'Email senden';
 $lang['btn_send_email'] = 'Email senden';
 $lang['new_user_email_subject'] = 'Ihr FUEL CMS Account wurde erstellt';
-$lang['new_user_email'] = 'Ihr FUEL CMS Account wurde erstellt. Sie können Sich nun mit den folgenden Informationen anmelden:
-Login URL: %1s
-Benutzername: %2s
-Passwort: %3s';
+$lang['new_user_email'] = 'Ihr FUEL CMS Account wurde mit dem Benutzernamen "%1s" erstellt. Klicken Sie auf den folgenden Link, um Ihr Passwort zu wählen:
+Login URL: %1s		 +%2s';
 $lang['new_user_created_notification'] = 'Die Benutzerdaten wurden erfolgreich gespeichert und eine Benachrichtigung wurde an %1s gesendet.';
 $lang['error_cannot_deactivate_yourself'] = 'Sie können Sich nicht selber deaktivieren.';
-
 
 /*
 |--------------------------------------------------------------------------
@@ -483,6 +493,7 @@ $lang['form_label_super_admin'] = 'Superadmin';
 $lang['form_label_password'] = 'Passwort';
 $lang['form_label_confirm_password'] = 'Passwort bestätigen';
 $lang['form_label_new_password'] = 'Neues Passwort';
+$lang['form_label_new_invite'] = 'Neue Benutzereinladung versenden';
 $lang['form_label_description'] = 'Beschreibung';
 $lang['form_label_entry_date'] = 'Eintrittsdatum';
 $lang['form_label_message'] = 'Nachricht';

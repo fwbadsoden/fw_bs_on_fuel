@@ -23,6 +23,7 @@ $config['assets_folders'] = array(
 	'media' => 'media/',
 	'captchas' => 'captchas/',
 	'docs' => 'docs/',
+    'cache' => 'cache/',
     'icons' => 'icons/',
     'layout' => 'layout/',
     'pressarticles' => 'pressarticles/'
@@ -36,6 +37,10 @@ $config['assets_last_updated'] = '00/00/0000 00:00:00';
 
 // appends timestamp of last updated after file name
 $config['asset_append_cache_timestamp'] = array('js', 'css');
+
+// cache folder relative to the web root folder and is the key to a folder specified under the assets_folders config value
+// ... must be writable directory (default is the application/assets/cache folder)
+$config['assets_cache_folder'] = 'cache';
 
 /*
 |--------------------------------------------------------------------------

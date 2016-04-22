@@ -57,6 +57,7 @@ $config['ckeditor']['default'] = array(
 	'extraPlugins' => 'fuellink,fuelimage',
 	'removePlugins' => 'link,image',
 	'allowedContent' => TRUE,
+        //'previewParserPath' => fuel_url('preview'),
 
 );
 
