@@ -25,7 +25,7 @@ class Weather extends Fuel_base_library {
         $query = $CI->db->get("weather");
         $json = "";
         $now = new DateTime("now");
-      
+        
         if($query->num_rows() == 0) {
             $insert = true;
             $reload = true;
@@ -55,6 +55,7 @@ class Weather extends Fuel_base_library {
             $data = array('last_call' => $now->format("Y-m-d H:i:s"), 'json' => $json);
             
             if($insert) {
+                $data["id"] = 1;
                 $CI->db->insert('weather', $data);
             } else {
                 $CI->db->where('id', $row->id);
