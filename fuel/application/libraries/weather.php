@@ -52,7 +52,7 @@ class Weather extends Fuel_base_library {
             $json = curl_exec($ch);
             curl_close($ch);
             
-            $data = array('last_call' => $now->format("yyyy-MM-dd HH:mm:ss"), 'json' => $json);
+            $data = array('last_call' => $now->format("Y-m-d H:i:s"), 'json' => $json);
             
             if($insert) {
                 $CI->db->insert('weather', $data);
