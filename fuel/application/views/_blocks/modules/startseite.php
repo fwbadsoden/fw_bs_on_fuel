@@ -76,18 +76,19 @@
         </div>
     </div>
         
+    <?php if($weather != false) : ?>
     <div class="weather">
         <h1>Wetter Aussichten</h1>
         <div class="wrapper">    
-            <!-- <div class="icon"><?=$weather['weather_img']?></div>-->
-            <div class="text">
-                <?php if($weather['weather_cond']['temp'] != '_') : ?>                    
-                <p class="grad"><?=$weather['weather_cond']['temp']?>&deg;<span class="celsius">Celsius</span></p>
-                <?php endif; ?>                        
-                <p class="status"><?=$weather['weather_cond']['text']?></p>
+            <div class="icon"><!--<?=$weather['image']?>--></div>
+            <div class="text">                 
+                <p class="grad"><?=round($weather['temperature'])?>&deg;<span class="celsius">Celsius</span></p>
+                <p class="status"><?=$weather['description']?></p>
             </div>
         </div>
     </div>
+    <?php endif; ?>
+    
     <hr class="clear" />
     
     <div style="height: 10px;"></div>
