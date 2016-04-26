@@ -168,11 +168,13 @@ class Mannschaft_Members_model extends Abstract_module_model {
     public function on_before_delete($where) {
 
         parent::on_before_delete($where);
-
-        // delete asset
+        
+        // delete asset if not dummy
         $this->load->model('fuel_assets_model');
-        $db_record = $this->find_by_key($where["id"]);
-        $this->fuel_assets_model->delete('images/mannschaft/' . $db_record->image);
+        $db_record = $this->find_by_key($where["fw_mannschaft_members.id"]);
+        if($db_record->image != "dummy.jpg") {
+            $this->fuel_assets_model->delete('images/mannschaft/' . $db_record->image);
+        }
     }
 
     public function find_fuehrung() {
