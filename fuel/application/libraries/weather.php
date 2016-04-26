@@ -12,9 +12,9 @@ class Weather extends Fuel_base_library {
         
         if($interval->y > 0 || $interval->m > 0 || $interval->d > 0 || $interval->h > 1) return true;
         
-        if($interval->h == 1 && $interval->m < 50) return true;
+        if($interval->h == 1 && $interval->i < 50) return true;
             
-        if($interval->m > 10) return true;
+        if($interval->i > 10) return true;
         
         return false;
     }
