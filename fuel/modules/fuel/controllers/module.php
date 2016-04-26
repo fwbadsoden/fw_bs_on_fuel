@@ -2005,8 +2005,6 @@ class Module extends Fuel_base_controller {
     }
 
     protected function _process_upload_data($field_names, $uploaded_data, $posted) {
-        $field_name_parts = explode('--', $field_name);
-        $field_name = end($field_name_parts);
 
         foreach ($uploaded_data as $key => $val) {
             if (!isset($field_names[$key]))
