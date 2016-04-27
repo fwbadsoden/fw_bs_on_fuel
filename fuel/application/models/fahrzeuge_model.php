@@ -105,14 +105,17 @@ class Fahrzeuge_model extends Abstract_module_model {
                                            
         $fields["aufbau"]['order'] = 13; 
                                            
-        $fields["baujahr"]['order'] = 14; 
+        $fields["baujahr"]['order']   = 14; 
+        $fields["baujahr"]['comment'] = lang("form_comment_fahrzeug_baujahr");
                                            
-        $fields["ausserdienststellung"]['order'] = 15; 
+        $fields["ausserdienststellung"]['order']   = 15; 
+        $fields["ausserdienststellung"]['label']   = lang("form_label_fahrzeug_ausserdienststellung");
+        $fields["ausserdienststellung"]['comment'] = lang("form_comment_fahrzeug_ausserdienststellung");
         
         $options = array('1/8', '1/7', '1/5', '1/4', '1/3', '1/2', '1/1', '16' => '16 (RH Hänger)');
         $fields['besatzung']    = array('options' => $options,
                                         'type' => 'select',
-                                        'order' => 15);
+                                        'order' => 16);
         
         $fields["zusatzdaten"]  = array('type' => 'fieldset',
                                         'class' => 'tab',
