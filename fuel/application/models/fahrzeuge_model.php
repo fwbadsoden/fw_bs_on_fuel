@@ -106,6 +106,8 @@ class Fahrzeuge_model extends Abstract_module_model {
         $fields["aufbau"]['order'] = 13; 
                                            
         $fields["baujahr"]['order'] = 14; 
+                                           
+        $fields["ausserdienststellung"]['order'] = 15; 
         
         $options = array('1/8', '1/7', '1/5', '1/4', '1/3', '1/2', '1/1', '16' => '16 (RH Hänger)');
         $fields['besatzung']    = array('options' => $options,
@@ -115,71 +117,71 @@ class Fahrzeuge_model extends Abstract_module_model {
         $fields["zusatzdaten"]  = array('type' => 'fieldset',
                                         'class' => 'tab',
                                         'label' => 'Zusatzdaten',
-                                        'order' => 16);    
+                                        'order' => 30);    
          
         $fields["pumpe"]        = array('type' => 'textarea',
                                         'label' => lang('form_label_fahrzeug_pumpe'),
                                         'comment' => lang('form_comment_fahrzeug_zusatz'),
                                         'class' => 'no_editor',
                                         'rows' => 3,
-                                        'order' => 17); 
+                                        'order' => 31); 
         
         $fields["loeschmittel"] = array('type' => 'textarea',
                                         'label' => lang('form_label_fahrzeug_loeschmittel'),
                                         'comment' => lang('form_comment_fahrzeug_zusatz'),
                                         'class' => 'no_editor',
                                         'rows' => 5,
-                                        'order' => 18);  
+                                        'order' => 32);  
         
         $fields["besonderheit"] = array('type' => 'textarea',
                                         'label' => lang('form_label_fahrzeug_besonderheiten'),
                                         'comment' => lang('form_comment_fahrzeug_zusatz'),
                                         'class' => 'no_editor',
                                         'rows' => 5,
-                                        'order' => 19);             
+                                        'order' => 33);             
                                             
         $options = array('no' => 'nein','yes' => 'ja'); 
         $fields['abrollbehaelter_tauglich']  = array('label'   => lang('form_label_fahrzeug_abrollbehaelter_tauglich'),
                                         'type'    => 'enum',
                                         'options' => $options,
-                                        'order' => 20);             
+                                        'order' => 34);             
                                             
         $options = array('no' => 'nein','yes' => 'ja'); 
         $fields['ist_abrollbehaelter'] = array('label'   => lang('form_label_fahrzeug_abrollbehaelter'),
                                         'type'    => 'enum',
                                         'options' => $options,
-                                        'order' => 21);  
+                                        'order' => 35);  
         
         $fields["fahrzeugwerte"] = array('type' => 'fieldset',
                                       'class' => 'tab',
                                       'label' => 'Fahrzeugwerte',
-                                      'order' => 31);      
+                                      'order' => 50);      
         
         $fields["kw"]            = array('label' => lang("form_label_fahrzeug_kw"),
                                          'after_html' => 'KW',
-                                         'order' => 32);
+                                         'order' => 51);
         
         $fields["ps"]            = array('label' => lang("form_label_fahrzeug_ps"),
                                          'after_html' => 'PW',
-                                         'order' => 33);
+                                         'order' => 52);
         
         $fields["hoehe"]         = array('label' => lang("form_label_fahrzeug_hoehe"),
                                          'after_html' => 'm',
-                                         'order' => 34);
+                                         'order' => 53);
         
         $fields["breite"]        = array('label' => lang("form_label_fahrzeug_breite"),
                                          'after_html' => 'm',
-                                         'order' => 35);
+                                         'order' => 54);
         
         $fields["laenge"]        = array('label' => lang("form_label_fahrzeug_laenge"),
                                          'after_html' => 'm',
-                                         'order' => 36);
+                                         'order' => 55);
         
         $fields["gesamtmasse"]   = array('after_html' => 't',
-                                         'order' => 37);
+                                         'order' => 56);
         
         $fields["leermasse"]     = array('after_html' => 't',
-                                         'order' => 38);     
+                                         'order' => 57);     
                                      
         $fields["precedence"]["type"] = 'hidden';  
         $fields["published"]["type"] = 'hidden';
