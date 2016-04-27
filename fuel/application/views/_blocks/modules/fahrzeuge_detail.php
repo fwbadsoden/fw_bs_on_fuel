@@ -10,11 +10,15 @@ if ($data->rufname == 'n/a') : $ruf_name = 'n/a';
 else : $ruf_name = $data->prefix_rufname . ' ' . $data->rufname;
 endif;
 if ($data->is_retired()) : 
-    $headline = "Ausser Dienst";
+    $headline = "Außer Dienst";
     $overview_link = "ausserdienst/";
+    $baujahr_headline = "Außer Dienst:";
+    $baujahr_value = $data->ausserdienststellung;
 else : 
     $headline = "Alle Fahrzeuge";
     $overview_link = "";
+    $baujahr_headline = "Baujahr:";
+    $baujahr_value = $data->baujahr;
 endif;
 ?>
 
@@ -36,8 +40,8 @@ endif;
                     <div class="red"><?= $data->aufbau ?></div>
                 </div>
                 <div class="row">
-                    <div class="black lastRow">Baujahr:</div>
-                    <div class="red lastRow"><?= $data->baujahr ?></div>
+                    <div class="black lastRow"><?= $baujahr_headline ?></div>
+                    <div class="red lastRow"><?= $baujahr_value ?></div>
                 </div>
             </div>        
             <div class="data">
@@ -102,7 +106,7 @@ endif;
             <div class="TabBoxContent">                
                 <h1 class="reiter"><a href="#details_<?= $tab_index_1 ?>" func="tab" class="active">Beschreibung</a></h1>
                 <div id="box_details_<?= $tab_index_1 ?>" style="">
-                    <?     if($data->is_retired()) : $ruf_name .= " (ausser Dienst)"; endif; ?>
+                    <?     if($data->is_retired()) : $ruf_name .= " (außer Dienst)"; endif; ?>
                     <h1><?= $tab_index_2 ?>: <?= $ruf_name ?></h1>
                     <p><?= $data->text ?></p>                     
                     <? if($data->pumpe != '' && $data->loeschmittel != '') : ?>                        
