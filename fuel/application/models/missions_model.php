@@ -20,7 +20,7 @@ class Missions_model extends Abstract_module_model {
     public $foreign_keys = array('cue_id' => 'mission_cues_model', 'type_id' => 'mission_types_model');
     public $has_many = array('mission_images' => 'mission_images_model', 'fahrzeuge' => 'fahrzeuge_model');
     public $filters = array('name', 'datum_beginn', 'ort');
-    protected $clear_related_on_save = FALSE;
+    protected $clear_related_on_save = TRUE;
 
     function __construct() {
         parent::__construct('fw_missions');
@@ -136,6 +136,11 @@ class Missions_model extends Abstract_module_model {
         $fields["fahrzeuge"]["order"] = 30;
         $fields["fahrzeuge"]["mode"] = "checkbox";
         $fields["fahrzeuge"]["model"] = array('' => array('fahrzeuge' => 'get_mission_vehicle_list'));
+        // forum.getfuelcms.com/discussion/comment/9315 
+        // The issue may be because a checkbox or multi select that doesn't have anything selected will not send anything
+        // in the POST so FUEL doesn't know whether it should process it. So the solution is to setup a hidden field with 
+        // the name of 'exists_{field_name}' (so an "exists_" prefix) with a value of 1.
+        $fields["exists_fahrzeuge"] = array('type' => 'hidden', 'value' => 1);
 
         $fields["weitere_kraefte"] = array('label' => lang("form_label_einsatz_weiterekraefte"),
             'type' => 'tagsinput',
