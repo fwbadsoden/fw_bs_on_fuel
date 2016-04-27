@@ -6,9 +6,9 @@ class Fahrzeuge_model extends Abstract_module_model {
     
     public $required = array('name', 'name_lang', 'prefix_rufname', 'rufname', 'text', 'besatzung', 'hersteller', 'setcard_image');
     public $has_many = array('fahrzeug_images' => 'fahrzeug_images_model');
-    public $belongs_to = array('missions' => 'missions_model');   
+    //public $belongs_to = array('missions' => 'missions_model');   
     public $boolean_fields = array('retired', 'ausser_dienst'); 
-    protected $clear_related_on_save = FALSE;
+    protected $clear_related_on_save = TRUE;
         
     function __construct() {
         parent::__construct('fw_fahrzeuge');
