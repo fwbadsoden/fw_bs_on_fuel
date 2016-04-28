@@ -15,9 +15,15 @@
             case '2': $class = ' class="second"'; break;
             case '3': $class = ' class="third"'; break;
         }
+        
+        if($fahrzeug->is_retired()) {
+            $link_ext = "ausserdienst/";
+        } else {
+            $link_ext = "";
+        }
 ?> 
 
-                <a href="<?=base_url('technik/fahrzeuge/'.$fahrzeug->id)?>">
+                <a href="<?=base_url('technik/fahrzeuge/'.$link_ext.$fahrzeug->id)?>">
                     <li<?=$class?>>
                         <figure><img src="<?=base_url("assets/images/fahrzeuge/".$fahrzeug->setcard_image)?>" /></figure>
                         <h1><?=$fahrzeug->name_lang?></h1>
