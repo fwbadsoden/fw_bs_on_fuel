@@ -66,17 +66,21 @@ class Missions_model extends Abstract_module_model {
 
         $fields = parent::form_fields($values, $related);
 
+        $fields["einsatzdaten"] = array('type' => 'fieldset',
+            'class' => 'tab',
+            'label' => 'Einsatzdaten',
+            'order' => 1);
         $fields["einsatz_nr"] = array('label' => lang('form_label_einsatz_nr'),
             'readonly' => true,
-            'order' => 1);
+            'order' => 2);
         if (!isset($value["einsatz_nr"])) {
             $fields["einsatz_nr"]["value"] = "wird automatisch vergeben";
         }
 
-        $fields["type_id"]['order'] = 2;
+        $fields["type_id"]['order'] = 3;
         $fields["type_id"]['label'] = lang('form_label_einsatz_type');
 
-        $fields["cue_id"]['order'] = 3;
+        $fields["cue_id"]['order'] = 4;
         $fields["cue_id"]['label'] = lang('form_label_einsatz_cue');
         $fields["cue_id"]["model"] = array('' => array('mission_cues' => 'get_mission_cue_list'));
 
@@ -84,7 +88,7 @@ class Missions_model extends Abstract_module_model {
         $fields["ueberoertlich"] = array('label' => lang('form_label_einsatz_ueberoertlich'),
             'type' => 'enum',
             'options' => $options,
-            'order' => 4);
+            'order' => 5);
 
         $fields["name"]['order'] = 10;
 
@@ -151,7 +155,17 @@ class Missions_model extends Abstract_module_model {
             'order' => 34);
 
         $fields["published"]["type"] = 'hidden';
-        $fields["mission_images"]["type"] = 'hidden';
+        
+        // http://forum.getfuelcms.com/discussion/comment/9329#Comment_9329
+        // unset statt hidden field für Relationen
+
+        $fields["relationen"] = array('type' => 'fieldset',
+            'class' => 'tab',
+            'label' => 'Bilder',
+            'order' => 900);
+        $fields["mission_images"]["order"] = 999;
+        $fields["mission_images"]["label"] = 'Einsatzbilder';
+        //unset($fields["mission_images"]);
 
         return $fields;
     }

@@ -54,6 +54,11 @@ class News_articles_model extends Abstract_module_model {
         
         $fields = parent::form_fields($values, $related); 
         
+
+        $fields["newsdaten"] = array('type' => 'fieldset',
+            'class' => 'tab',
+            'label' => 'News',
+            'order' => 1);
         $fields['title']            = array('label' => lang('form_label_news_title'),
                                             'order' => 2);
         
@@ -88,7 +93,17 @@ class News_articles_model extends Abstract_module_model {
                                             'order' => 8);
         
         $fields['published']['type'] = 'hidden';
-        $fields["news_images"]["type"] = 'hidden'; 
+        
+        // http://forum.getfuelcms.com/discussion/comment/9329#Comment_9329
+        // unset statt hidden field für Relationen
+        //$fields["news_images"]["type"] = 'hidden'; 
+
+        $fields["bilder"] = array('type' => 'fieldset',
+            'class' => 'tab',
+            'label' => 'Bilder',
+            'order' => 900);
+        $fields["news_images"]["label"] = 'Bilder';
+        $fields["news_images"]["order"] = 999;
         
         return $fields;
     }
