@@ -189,8 +189,20 @@ class Fahrzeuge_model extends Abstract_module_model {
 
         $fields["precedence"]["type"] = 'hidden';
         $fields["published"]["type"] = 'hidden';
-        $fields["fahrzeug_images"]["type"] = 'hidden';
-        $fields["missions"]["type"] = 'hidden';
+        
+        // http://forum.getfuelcms.com/discussion/comment/9329#Comment_9329
+        // unset statt hidden field für Relationen
+        //$fields["fahrzeug_images"]["type"] = 'hidden';
+        //$fields["missions"]["type"] = 'hidden';
+
+        $fields["bilder"] = array('type' => 'fieldset',
+            'class' => 'tab',
+            'label' => 'Bilder',
+            'order' => 900);
+        $fields["fahrzeug_images"]["label"] = "Bilder";
+        $fields["fahrzeug_images"]["order"] = 998;
+        $fields["missions"]["label"] = "Einsätze";
+        $fields["missions"]["order"] = 999;
 
         return $fields;
     }

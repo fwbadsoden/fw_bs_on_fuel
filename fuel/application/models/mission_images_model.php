@@ -43,15 +43,19 @@ class Mission_Images_model extends Abstract_module_model {
         
         $fields = parent::form_fields($values, $related);
                    
-        // Asset-Ordner                                        
+        // Asset-Ordner                     
+                
         $fields['image']['folder']              = 'images/einsaetze';
-        $fields['image']['create_thumb']        = FALSE;   
+        $fields['image']['create_thumb']        = FALSE;  
         $fields['image']['hide_options']        = TRUE;     
         
         //$fields["photographer"]['label']        = lang('form_label_photographer');      
         $fields["photographer"]          = array('type'  => 'photographer_input',
                                                  'comment' => lang('form_label_news_photographer_comment'),
-                                                 'photographers' => fuel_model('mannschaft_members_model', array('find' => 'photographers')));                                 
+                                                 'photographers' => fuel_model('mannschaft_members_model', array('find' => 'photographers')));   
+
+        $fields["mission"]["label"] = 'Einsatz';             
+        $fields["mission"]["order"] = 999;                           
 
         return $fields;
     }  
