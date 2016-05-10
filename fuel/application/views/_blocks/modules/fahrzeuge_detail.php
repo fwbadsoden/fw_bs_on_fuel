@@ -244,7 +244,7 @@ endif;
                 <li>
                     <a href="<?= base_url('aktuelles/einsatz/' . $mission->id) ?>">
                         <h2><?= get_ger_date($mission->datum_beginn) ?> </h2>
-                        <p><?= $mission->get_cue()["name"]." - ".$mission->lage ?></p>
+                        <p><?= $mission->lage ?></p>
                     </a>
                 </li>
                 <? endforeach; ?>                    
