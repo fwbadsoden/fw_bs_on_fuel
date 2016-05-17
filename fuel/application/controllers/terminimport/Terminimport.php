@@ -107,6 +107,19 @@ class Terminimport extends CI_Controller {
             echo "INSERT_OK";
         }
     }
+    
+    /**
+     * Terminimport::generate_pdf()
+     * generate pdf from db schedule entries
+     */
+    public function generate_pdf() {
+        
+        $this->load->helper('pdf_helper');
+        $rows = $this->m_appointment->get(TRUE, 'object');
+        foreach($rows->result() as $row) {
+            
+        }
+    }
 
 }
 
