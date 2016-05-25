@@ -155,7 +155,7 @@ class Missions_model extends Abstract_module_model {
             'order' => 34);
 
         $fields["published"]["type"] = 'hidden';
-        
+
         // http://forum.getfuelcms.com/discussion/comment/9329#Comment_9329
         // unset statt hidden field für Relationen
 
@@ -293,35 +293,47 @@ class Missions_model extends Abstract_module_model {
         $statistic["ueberoertlich"] = 0;
 
         if ($selected_type != NULL && $selected_type != "") {
+            $this->db->select_sum('anzahl_einsaetze');
             $this->db->where('type_id', $selected_type);
             if ($selected_year != NULL && $selected_year != "") {
                 $this->db->where('substring(datum_beginn,1,4)', $selected_year);
             }
-            $statistic[$selected_type] = $statistic["all"] = $this->db->count_all_results('missions');
+            $query = $this->db->get('missions');
+            $row = $query->row();
+            $statistic[$selected_type] = $statistic["all"] = $row->anzahl_einsaetze;
 
             // überörtlich
+            $this->db->select_sum('anzahl_einsaetze');
             $this->db->where('ueberoertlich', 'yes');
             $this->db->where('type_id', $selected_type);
             if ($selected_year != NULL && $selected_year != "") {
                 $this->db->where('substring(datum_beginn,1,4)', $selected_year);
             }
-            $statistic["ueberoertlich"] = $this->db->count_all_results('missions');
+            $query = $this->db->get('missions');
+            $row = $query->row();
+            $statistic["ueberoertlich"] = $row->anzahl_einsaetze;
         } else {
             foreach ($types as $type) {
+                $this->db->select_sum('anzahl_einsaetze');
                 $this->db->where('type_id', $type->id);
                 if ($selected_year != NULL && $selected_year != "") {
                     $this->db->where('substring(datum_beginn,1,4)', $selected_year);
                 }
-                $statistic[$type->id] = $this->db->count_all_results('missions');
+                $query = $this->db->get('missions');
+                $row = $query->row();
+                $statistic[$type->id] = $row->anzahl_einsaetze;
                 $statistic["all"] += $statistic[$type->id];
 
                 // überörtlich
+                $this->db->select_sum('anzahl_einsaetze');
                 $this->db->where('ueberoertlich', 'yes');
                 $this->db->where('type_id', $type->id);
                 if ($selected_year != NULL && $selected_year != "") {
                     $this->db->where('substring(datum_beginn,1,4)', $selected_year);
                 }
-                $statistic["ueberoertlich"] += $this->db->count_all_results('missions');
+                $query = $this->db->get('missions');
+                $row = $query->row();
+                $statistic["ueberoertlich"] += $row->anzahl_einsaetze;
             }
         }
 
