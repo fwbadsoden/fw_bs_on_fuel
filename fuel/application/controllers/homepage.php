@@ -21,7 +21,7 @@ class Homepage extends CI_Controller {
         
         $data["missions"]         = fuel_model("missions_model", array('find' => 'all', 'limit' => 10, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'datum_beginn desc, uhrzeit_beginn desc, einsatz_nr desc'));
         $data["news"]             = fuel_model("news_articles_model", array('find' => 'all', 'limit' => 2, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'datum desc, id desc'));
-        $data["appointments"] = fuel_model("appointments_model", array('find' => 'all', 'limit' => 3, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'datum asc, beginn asc'));
+        $data["appointments"]     = fuel_model("appointments_model", array('find' => 'all', 'limit' => 3, 'offset' => 0, 'where' => array('datum >=' => date('Y-m-d'), 'published' => 'yes'), 'order' => 'datum asc, beginn asc'));
         $data["weather"]          = $this->weather->get_weather();
         $data["mission_count"]    = $this->missions_model->get_mission_count(date('Y'));
         $data["vehicle_count"]    = $this->fahrzeuge_model->get_fahrzeug_anzahl();
