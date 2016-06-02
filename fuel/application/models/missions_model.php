@@ -353,16 +353,46 @@ class Missions_model extends Abstract_module_model {
         return $text;
     }
 
+    public function get_templates() {
+        $this->db->select('id, title, situation, type, vehicles');
+        $query = $this->db->get('mission_templates');
+        $templates = array();
+        foreach ($query->result() as $row) {
+            $template["id"] = $row->id;
+            $template["title"] = $row->title;
+            $template["situation"] = $row->situation;
+            $template["type"] = $row->type;
+            $template["vehicles"] = $row->vehicles;
+            $templates[$row->id] = $template;
+        }
+
+        return $templates;
+    }
+
+    public function get_template($id) {
+        $this->db->select('title, situation, type, vehicles');
+        $query = $this->db->get_where('mission_templates', array('mission_templates.id' => $id));
+        $row = $query->row();
+        $template["id"] = $id;
+        $template["title"] = $row->title;
+        $template["situation"] = $row->situation;
+        $template["type"] = $row->type;
+        $template["vehicles"] = $row->vehicles;
+
+        return $template;
+    }
+
 }
 
 class Mission_model extends Abstract_module_record {
 
     public function is_published() {
 
-        if ($this->published == 'yes')
+        if ($this->published == 'yes') {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
     public function get_cue() {
@@ -382,18 +412,20 @@ class Mission_model extends Abstract_module_record {
 
     public function is_ueberoertlich() {
 
-        if ($this->ueberoertlich == 'yes')
+        if ($this->ueberoertlich == 'yes') {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
     public function display_ort() {
 
-        if ($this->ort_zeigen == 'yes')
+        if ($this->ort_zeigen == 'yes') {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
     public function get_ort() {
