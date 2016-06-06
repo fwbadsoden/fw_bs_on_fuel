@@ -10,6 +10,7 @@ class Weather extends Fuel_base_library {
     private $url = "http://api.openweathermap.org/data/2.5/weather?";
     private $dwd_region = "Main-Taunus-Kreis";
     private $dwd_datetime_pattern = "d.m. H:i";
+    private $included_types = array(0, 1, 2, 3, 6, 8);
 
     public function get_weather_warning($load_prewarnings = FALSE) {
         $json_object = $this->get_dwd_json_as_object();
@@ -42,7 +43,7 @@ class Weather extends Fuel_base_library {
             $content = $warning[0];
             $content->regionName = $this->trans_toUmlaut($content->regionName);
 
-            if ($content->regionName == $this->dwd_region) {
+            if ($content->regionName == $this->dwd_region && in_array($content->type, $this->included_types)) {
                 $hasWarning = true;
                 $content->description = $this->trans_toUmlaut($content->description);
                 $content->headline = $this->trans_toUmlaut($content->headline);
@@ -61,7 +62,7 @@ class Weather extends Fuel_base_library {
                 $content = $prewarning[0];
                 $content->regionName = $this->trans_toUmlaut($content->regionName);
 
-                if ($content->regionName == $this->dwd_region) {
+            if ($content->regionName == $this->dwd_region && in_array($content->type, $this->included_types)) {
                     $content->description = $this->trans_toUmlaut($content->description);
                     $content->headline = $this->trans_toUmlaut($content->headline);
                     $content->event = $this->trans_toUmlaut($content->event);
