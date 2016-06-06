@@ -27,6 +27,11 @@ class Homepage extends CI_Controller {
         $data["vehicle_count"]    = $this->fahrzeuge_model->get_fahrzeug_anzahl();
         $data["member_count"]     = $this->mannschaft_members_model->get_mannschaft_members_anzahl_as_array();
       
+        $warning = $this->weather->get_weather_warning(TRUE);
+        if($warning != null)  {
+            $data["warning"] = $warning;
+        }
+        
         $this->fuel->pages->render("startseite", $data, array('render_mode' => 'cms'));
     }
 }
