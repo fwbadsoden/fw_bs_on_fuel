@@ -135,6 +135,11 @@ a.button_white:hover {
 	color: #FFF;
 }
 
+p.button a{font:normal 14px 'geomedium',Arial,Helvetica,sans-serif;color:#000;text-decoration:none;text-transform:uppercase;margin:0;padding:5px 20px;border:2px solid #000}
+p.button .red{color:#FFF;border-color:#FFF}
+p.button a:hover{color:#FFF;background-color:#000}
+p.button a.red:hover{color:#bf2228;background-color:#FFF}
+
 input.button_black {
 	height: 24px;
 	background-color: #121212;
@@ -901,6 +906,10 @@ input.button_black:hover {
 	top: 220px;
 	margin: 0 0 0 5%;
 }
+#stage .stageQuoteRight Jubi {
+}
+#stage .stageQuoteLeft Jubi {
+}
 #stage .stageContentListen {
 	text-align: left;
 	padding: 10px;
@@ -1300,6 +1309,68 @@ input.button_black:hover {
 		-o-border-radius: 8px;
 		border-radius: 8px;
 	}
+}
+
+/* ------------] MainContent - Unwetterwarnung [--------------- */
+
+#unwetterwarnung {
+    background-color:#9a0000;
+    width:100%;
+    padding:20px 0;
+    margin-bottom: 10px;
+}
+#unwetterwarnung div{
+    color:#FFF;
+    vertical-align:top;
+    padding:0 20px
+}
+#unwetterwarnung div .wettericon{
+    width:60px;
+    height:60px;
+    margin:0;
+    padding:0;
+    background-image:url(../icons/icon_unwetter.svg);
+    background-repeat:no-repeat;
+    background-size:60px 60px;
+    display:inline-block
+}
+#unwetterwarnung div .wettertext{
+    display:inline-block;
+    margin:8px 0 0 20px;
+    padding:0;
+    max-width:58%
+}
+#unwetterwarnung div .wettertext h1{
+    margin:0;
+    padding:0;
+    font-size:18px
+}
+#unwetterwarnung div .wettertext h2{
+    margin:0;
+    padding:0;
+    font-size:14px;
+    text-transform:none;
+    line-height:1.5
+}
+#unwetterwarnung div .wettertext h2 span{
+    margin-left:25px
+}
+#unwetterwarnung div .dwdlink{
+    float:right;
+    margin:20px 0 0 0
+}
+
+@media only screen and (max-width: 850px){
+    #unwetterwarnung div{ text-align:center}
+    #unwetterwarnung div .wettericon{display:block;margin:0 auto}
+    #unwetterwarnung div .wettertext{max-width:100%;margin-left:0}
+    #unwetterwarnung div .dwdlink{float:none}
+}
+@media only screen and (max-width: 450px){
+    #unwetterwarnung div{ text-align:center}
+    #unwetterwarnung div .wettericon{width:50px;height:50px;background-size:50px 50px}
+    #unwetterwarnung div .wettertext h2 span{margin:0;display:block}
+    #unwetterwarnung div .dwdlink{float:none}#unwetterwarnung div .dwdlink p{margin:40px 0 20px 0}
 }
 
 /* ------------] MainContent - Liste Einsätze [--------------- */
