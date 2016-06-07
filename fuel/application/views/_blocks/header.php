@@ -44,48 +44,10 @@
     
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     
-    <!-- socialshareprivacy -->
-   <!-- <script type="text/javascript" src="<?=js_path('socialshareprivacy/jquery.socialshareprivacy.min.js')?>"></script>
-    <script type="text/javascript" src="<?=js_path('socialshareprivacy/socialshareprivacy.min.de.js')?>"></script>
+    <!-- Countdown für Jubiläum START -->
+    <script type="text/javascript" src="<?=js_path('jquery.countdown.min.js')?>"></script>
+    <!-- Countdown für Jubiläum ENDE -->
     
-    <script type="text/javascript">
-    $(document).ready(function () {    
-        if($('#share').length > 0) {
-            $('#share').socialSharePrivacy({
-                
-                "path_prefix"       : "/assets/js/socialshareprivacy/",
-                "info_link_target"  : "_blank",
-                "uri"               : "https://www.facebook.com/feuerwehr.badsoden",
-                "services" : {
-                    "facebook"      : {
-                        "dummy_line_img"    : "images/de/dummy_facebook.png",
-                        "dummy_box_img"     : "images/de/dummy_box_facebook.png"
-                    },
-                    "buffer"        : {"status":false },
-                    "delicious"     : {"status":false },
-                    "disqus"        : {"status":false },
-                    "fbshare"       : {"status":false },
-                    "flattr"        : {"status":false },
-                    "gplus"         : {"status":false },
-                    "hackernews"    : {"status":false},
-                    "linkedin"      :{"status":false},
-                    "mail"          :{"status":false},
-                    "pinterest"     :{"status":false},
-                    "reddit"        :{"status":false},
-                    "stumbleupon"   :{"status":false},
-                    "tumblr"        :{"status":false},
-                    "twitter"       :{"status":false},
-                    "xing"          :{"status":false}
-                },
-                "css_path"  : "socialshareprivacy.css",
-                "language"  : "de"
-                
-            });
-        }
-    });    
-    </script>-->
-    <!-- socialshareprivacy END -->
-
     <!-- variables for javascript templates -->    
     <script type="text/javascript">
         var iconPath = "<?=assets_path("icons")?>/";
@@ -349,7 +311,10 @@
 
 <section id="stage">
 <?php $stage_images = $stage->get_stage_images_for_frontend(); ?>
-<?php foreach($stage_images as $key => $image) {   
+<?php if($stage->name == "Jubiläum") : ?> <!-- Jubiläum START -->
+    <?php echo "hier"; die(); ?>
+<?php else : ?> <!-- Jubiläum ELSE -->   
+<?php foreach($stage_images as $key => $image) :   
     
         if(strtolower($image->text_1) == "dummy") {
             if(isset($stage_text["name"]))          $text1 = $stage_text["name"];       else $text1 = "";
@@ -388,19 +353,19 @@
         </div>
     </div>
     
-<?php  } ?> 
-      
+<?php endforeach; ?> 
+<?php endif; ?> <!-- Jubiläum ENDE -->
 </section>
 
 <section id="content">
     <div class="<?=$stage->type->css_slidewrapper_class?>">
-<? if($stage->img_count > 1) : ?>
+<?php if($stage->img_count > 1) : ?>
         <div id="slider">
             <ul>
-<?  foreach($stage_images as $key => $item) :
+<?php  foreach($stage_images as $key => $item) :
         if($key == 0) $class = ' first'; else $class = ''; ?>             
                 <li><a href="#<?=$key?>" class="changeStage<?=$class?>" id="slide-link-<?=$key?>"><?=$key+1?></a></li>
-<?  endforeach; ?>                
+<?php  endforeach; ?>                
             </ul>
     	</div> 
-<?  endif; ?>
+<?php  endif; ?>
