@@ -45,6 +45,7 @@ echo doctype('html5');
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 
         <!-- Countdown für Jubiläum START -->
+        <!-- http://keith-wood.name/countdown.html -->
         <?php if ($stage->name == "Jubiläum") : ?>
         <link rel="stylesheet" href="<?= css_path("jquery.countdown.css") ?>" type="text/css" />
         <script type="text/javascript" src="<?= js_path('jquery.plugin.min.js') ?>"></script>
@@ -53,7 +54,7 @@ echo doctype('html5');
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#countdown').countdown( {
-                    until: new Date(2018, 8 - 1, 10), padZeroes: true
+                    until: new Date(2018, 8 - 1, 10), padZeroes: true, format: 'OWDHMS'
                 } );
             }); 
         </script>
