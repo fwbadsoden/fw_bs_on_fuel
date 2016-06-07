@@ -36,64 +36,7 @@
     </ul>
 </div>
 
-<!-- START: Countdown für Jubiläum -->
-<script type="text/javascript" src="<?= js_path('jquery.syotimer.js') ?>"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#simple_timer').syotimer({
-            year: 2018,
-            month: 8,
-            day: 10
-        });
-    });
-</script>
-<style type="text/css">
-    /* Customization Style of SyoTimer */
-    .timer{
-        text-align: center;
-
-        margin: 10px auto 0;
-        padding: 0 0 10px;
-
-    }
-    .timer .table-cell{
-        display: inline-block;
-        margin: 0 5px;
-
-        width: 30px;
-        background: url(<?= assets_path('timer.png', 'layout') ?>) no-repeat 0 0;
-    }
-    .timer .table-cell .tab-val{
-        font-size: 18px;
-        color: #80a3ca;
-
-        height: 54px;
-        line-height: 54px;
-
-        margin: 0 0 5px;
-    }
-    .timer .table-cell .tab-metr{
-        font-family: Arial;
-        font-size: 12px;
-        text-transform: uppercase;
-    }
-
-    #simple_timer.timer .table-cell.day, 
-    #periodic_timer_days.timer .table-cell.hour{
-        width: 80px;
-        background-image: url(<?= assets_path('timer_long.png', 'layout') ?>);
-    }
-</style>
-<!-- ENDE Countdown für Jubiläum -->
-
 <div id="SidebarContent">
-
-    <div class="statistic">
-        <h1 class="first">Countdown</h1>               
-        <hr class="clear" />
-        <div id="simple_timer"></div>
-    </div>
-    <hr class="clear" />
 
     <div class="statistic">
         <h1 class="first">Das sind wir in Zahlen</h1>               
