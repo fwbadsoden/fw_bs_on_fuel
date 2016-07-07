@@ -142,12 +142,12 @@ class Stage_model extends Abstract_module_record {
                 foreach($random_keys as $key) {
                     array_push($images_new, $images[$key]);
                 }
-                array_push($images_new, $stage_image_jubi);
+                if(count($stage_image_jubi) == 1) array_push($images_new, $stage_image_jubi);
                 shuffle($images_new);
             } else {
-                array_push($images_new, $stage_image_jubi);
+                if(count($stage_image_jubi) == 1) array_push($images_new, $stage_image_jubi);
                 array_push($images_new, $images[$random_keys]);
-                shuffle($images_new);
+                if(count($stage_image_jubi) == 1) shuffle($images_new);
             }
         } else {
             for($i = 0; $i < count($images); $i++) {
