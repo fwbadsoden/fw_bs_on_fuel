@@ -598,7 +598,7 @@ header nav {
     padding: 0;
     margin: 0 5%;
     list-style: none;	
-    text-align: left;
+    test-align: left;
 }
 #mobileNavigation .subnavi li a {
     width: 100%;
@@ -629,7 +629,7 @@ header nav {
     padding: 0;
     margin: 0 5%;
     list-style: none;	
-    text-align: left;
+    test-align: left;
 }
 #mobileNavigation .metanav ul li {
     text-align: left;
@@ -691,7 +691,7 @@ header nav {
 
     header { height: 65px; }
     header h1 { width: 165px; height: 40px;  }
-    header h1 a { width: 165px; height: 40px; background-size: contain; }
+    header h1 a { width: 165px; heigth: 40px; background-size: contain; }
     #mobileHeader { margin: 18px 15px 0 0; }
 
 }
@@ -742,7 +742,7 @@ header nav {
 .notruf_layer .box p {
     font-family: Arial, sans-serif;
     font-size: 14px;
-    text-transform: none;
+    text-transform: normal;
     color: #474747;
     margin: 0;
     text-align: center;
@@ -774,7 +774,7 @@ header nav {
 .notruf_layer .faq ul li {
     font-family: Arial, sans-serif;
     font-size: 14px;
-    text-transform: none;
+    text-transform: normal;
     color: #474747;
     margin: 0;
     padding: 0;
@@ -906,6 +906,18 @@ header nav {
     top: 220px;
     margin: 0 0 0 5%;
 }
+#stage .stageQuoteRightJubi {
+    background-image: url(../layout/quote_bg.png);
+    text-align: left;
+    width: 320px;
+    padding: 10px;
+    position: relative;
+    top: 220px;
+    right: 0px;
+    margin: 0 0 0 auto;
+}
+#stage .stageQuoteLeft Jubi {
+}
 #stage .stageContentListen {
     text-align: left;
     padding: 10px;
@@ -1009,7 +1021,7 @@ header nav {
 
 @media only screen and (min-width: 1290px) {
     #stage div.pictures {
-        //align: center;
+        align: center;
         width: 1250px;
         margin: 0 auto 0 auto;
     }
@@ -1036,7 +1048,7 @@ header nav {
 @media only screen and (max-width: 525px) {
 
     #stage div.pictures {
-        //align: center;
+        align: center;
         height: 300px;
         background-size: 525px;
     }
@@ -1684,14 +1696,14 @@ header nav {
 #content .terminListe .time .datum {
     font-family: Arial, sans-serif;
     font-weight: normal;
-    text-transform: none;
+    text-transform: normal;
     font-size: 12px;
     margin: 10px 0 0 60px;
 }
 #content .terminListe .time .clock {
     font-family: Arial, sans-serif;
     font-weight: normal;
-    text-transform: none;
+    text-transform: normal;
     font-size: 24px;
     margin: 5px 0 10px 60px;
     white-space:nowrap;
@@ -1711,7 +1723,7 @@ header nav {
 #content .terminListe .loction p {
     font-family: Arial, sans-serif;
     font-weight: normal;
-    text-transform: none;
+    text-transform: normal;
     font-size: 12px;
     margin: 10px 0 10px 60px;
 }
@@ -2196,7 +2208,7 @@ header nav {
 
 @media only screen and (max-width: 1000px) {
 
-    #content .factBox { width: auto; margin: 0 2% 0 2%; }
+    #content .factBox { witdh: auto; margin: 0 2% 0 2%; }
     #content .factSheet_einsatzListe .label { width: 140px; }
     #content .factSheet_einsatzListe .row {	margin: 0 0 0 5%; }
 
@@ -2204,7 +2216,7 @@ header nav {
 
 @media only screen and (max-width: 900px) {
 
-    #content .factBox { width: auto; margin: 0 2% 0 4%; }
+    #content .factBox { witdh: auto; margin: 0 2% 0 4%; }
     #content .factSheet_einsatzListe .label { width: 130px; }
     #content .factSheet_einsatzListe .row {	margin: 0 0 0 4%; }
 
@@ -2218,21 +2230,21 @@ header nav {
 
 @media only screen and (max-width: 750px) {
 
-    #content .factBox { width: auto; margin: 0 0 0 0; }
+    #content .factBox { witdh: auto; margin: 0 0 0 0; }
     #content .factSheet_einsatzListe .label { width: 180px; }
     #content .factSheet_einsatzListe .row {	margin: 0 3% 0 5%; }
 
 }
 @media only screen and (max-width: 670px) {
 
-    #content .factBox { width: auto; margin: 0 auto; }
+    #content .factBox { witdh: auto; margin: 0 auto; }
     #content .factSheet_einsatzListe .label { width: 140px; }
     #content .factSheet_einsatzListe .row {	margin: 0 0 0 7%; }
 
 }
 @media only screen and (max-width: 560px) {
 
-    #content .factBox { width: auto; margin: 0 0 0 0; }
+    #content .factBox { witdh: auto; margin: 0 0 0 0; }
     #content .factSheet_einsatzListe .label { width: 140px; }
     #content .factSheet_einsatzListe .row {	margin: 0 0 0 4%; }
 
@@ -2240,7 +2252,7 @@ header nav {
 
 @media only screen and (max-width: 520px) {
 
-    #content .factBox { width: auto; margin: 0 3% 0 3%; }
+    #content .factBox { witdh: auto; margin: 0 3% 0 3%; }
     #content .factSheet_einsatzListe .row {	margin: 0 4% 0 4%; width: 95%; clear:both; }
     #content .factSheet_einsatzListe .label { width: 100%; margin: 0 0 0 60px; }
     #content .factSheet_einsatzListe .icon { width: 36px; margin: 0 0 0 60px; }
@@ -2682,7 +2694,7 @@ header nav {
     font-weight: normal;
     font-size: 12px;
     text-decoration: none;
-    text-transform: none;
+    text-transform: normal;
     color: #000000;
     margin: 0 0 0 10px;
     padding: 0 0 0 20px;
@@ -3291,7 +3303,7 @@ header nav {
 #content #MainContent ul.news li:hover { background-color: #ebebeb; }
 #content #MainContent ul.news li h1 {
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 18px;
     color: #121212;
@@ -3299,7 +3311,7 @@ header nav {
 }
 #content #MainContent ul.news li h2 {
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 11px;
     color: #121212;
@@ -3311,7 +3323,7 @@ header nav {
 }
 #content #MainContent ul.news li p {
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 12px;
     color: #121212;
@@ -3343,7 +3355,7 @@ header nav {
 #content #SidebarContent .textTeaser p {
     text-align: center;
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 12px;
     color: #FFFFFF;
@@ -3352,7 +3364,7 @@ header nav {
 #content #SidebarContent .textTeaser h2 {
     text-align: center;
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: bold;
     font-size: 14px;
     color: #FFFFFF;
@@ -3360,7 +3372,7 @@ header nav {
 #content #SidebarContent .textTeaser a {
     text-align: center;
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 12px;
     color: #FFFFFF;
@@ -3378,7 +3390,7 @@ header nav {
     margin: 0 0 0 0;
     padding: 0 0 0 0;
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 12px;
     color: #b1b1b1;
@@ -3389,7 +3401,7 @@ header nav {
 }
 #content #SidebarContent .textTeaser ul li h2 {
     font-family: 'Cabin', Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 16px;
     margin: 15px 0 5px 0;
@@ -3404,7 +3416,7 @@ header nav {
 
 #content #SidebarContent .address p {
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 12px;
     color: #FFFFFF;
@@ -3415,7 +3427,7 @@ header nav {
     margin: 0 30px;
     padding: 0;
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 12px;
     color: #FFFFFF;
@@ -3434,7 +3446,7 @@ header nav {
 #content #SidebarContent .address h2 {
     text-align: center;
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: bold;
     font-size: 14px;
     color: #FFFFFF;
@@ -3443,7 +3455,7 @@ header nav {
 #content #SidebarContent .address a {
     text-align: center;
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 12px;
     color: #FFFFFF;
@@ -3465,7 +3477,7 @@ header nav {
     text-align: left;
     border-bottom: 1px #464646 solid;
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 12px;
     color: #FFFFFF;
@@ -3477,7 +3489,7 @@ header nav {
     text-align: right;
     border-bottom: 1px #464646 solid;
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 12px;
     color: #9a0000;
@@ -3503,7 +3515,7 @@ header nav {
 #content #SidebarContent .dates ul li h3 {
     text-align: center;
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 11px;
     color: #b1b1b1;
@@ -3515,7 +3527,7 @@ header nav {
 #content #SidebarContent .dates ul li h2 {
     text-align: center;
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 14px;
     color: #FFFFFF;
@@ -3553,7 +3565,7 @@ header nav {
 }
 #content .SBfahrzeugListe ul li h2 {
     font-family: 'Cabin', Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 20px;
     color: #FFFFFF;
@@ -3586,7 +3598,7 @@ header nav {
     width: 100%;
     border-bottom: 1px #464646 solid;	
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 12px;
     color: #FFFFFF;
@@ -3614,7 +3626,7 @@ header nav {
 #content #SidebarContent .weather div.text p.grad {
     text-align: center;
     font-family: 'Cabin', sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 48px;
     color: #FFFFFF;
@@ -3623,7 +3635,7 @@ header nav {
 #content #SidebarContent .weather div.text p.grad span.celsius {
     text-align: center;
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 18px;
     color: #FFFFFF;
@@ -3632,7 +3644,7 @@ header nav {
 #content #SidebarContent .weather div.text p.status {
     text-align: center;
     font-family: Arial, sans-serif;
-    text-transform: none;
+    text-transform: normal;
     font-weight: normal;
     font-size: 14px;
     color: #9a0000;
@@ -3792,7 +3804,7 @@ and (device-aspect-ratio: 2/3)
 }
 #endOfPage #shortlinks ul li a {
     height: 16px;
-    text-transform: none;
+    text-transform: normal;
     text-decoration: none;
     color: #9a0000;
     padding: 0 10px 0 10px;
@@ -3834,7 +3846,7 @@ and (device-aspect-ratio: 2/3)
     margin: 30px 0 20px 0;
 }
 #endOfPage #sitemap ul li a {
-    text-transform: none;
+    text-transform: normal;
     text-decoration: none;
     color: #FFFFFF;
     padding: 0 10px 0 10px;
