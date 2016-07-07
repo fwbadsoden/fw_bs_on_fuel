@@ -54,6 +54,7 @@
 </div>
 
 <div id="SidebarContent">
+
     <div class="statistic">
         <h1 class="first">Das sind wir in Zahlen</h1>               
         <hr class="clear" />
