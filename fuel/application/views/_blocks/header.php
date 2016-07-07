@@ -373,9 +373,9 @@ endforeach;
                                         switch ($image->stage_image_type_id) {
                                             case 1: $css_inner_class = "stageContentHeadlineTop half_blackBG smallstage";
                                                 break;
-                                            case 2: $css_inner_class = "stageQuoteLeft Jubi";
+                                            case 2: $css_inner_class = "stageQuoteLeftJubi";
                                                 break;
-                                            case 3: $css_inner_class = "stageQuoteRight Jubi";
+                                            case 3: $css_inner_class = "stageQuoteRightJubi";
                                                 break;
                                             case 4: $css_inner_class = "stageContentCar";
                                                 break;
@@ -386,7 +386,8 @@ endforeach;
 
                                         <div class="<?= $stage->type->css_outer_class ?>" id="pictures_<?= $key ?>" style="background-image: url(<?= img_path("bildbuehnen/" . $image->image) ?>); display: none;">
                                             <div id="stagewrapper">    
-                                                <div class="<?= $css_inner_class ?>">            
+                                                <div class="<?= $css_inner_class ?>">     
+                                                    <h1<?= $image->get_css_text_class_1() ?> style="text-align: center;">Countdown</h1>
                                                     <div id="countdown"></div>
                                                 </div>
                                             </div>
