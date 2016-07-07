@@ -46,7 +46,6 @@ echo doctype('html5');
 
         <!-- Countdown für Jubiläum START -->
         <!-- http://keith-wood.name/countdown.html -->
-        <?php if ($stage->name == "Jubiläum") : ?>
         <link rel="stylesheet" href="<?= css_path("jquery.countdown.css") ?>" type="text/css" />
         <script type="text/javascript" src="<?= js_path('jquery.plugin.min.js') ?>"></script>
         <script type="text/javascript" src="<?= js_path('jquery.countdown.min.js') ?>"></script>
@@ -58,7 +57,6 @@ echo doctype('html5');
                 } );
             }); 
         </script>
-        <?php endif; ?>
         <!-- Countdown für Jubiläum ENDE -->
 
         <!-- variables for javascript templates -->    
@@ -366,11 +364,11 @@ endforeach;
 
                             <section id="stage">
                                 <?php $stage_images = $stage->get_stage_images_for_frontend(); ?>
-                                <?php if ($stage->name == "Jubiläum") : ?> <!-- Jubiläum START -->
-                                    <?php
-                                    foreach ($stage_images as $key => $image) :
+                                                <?php
+                                                foreach ($stage_images as $key => $image) :
 
-                                        switch ($image->stage_image_type_id) {
+                                                    if ($image->name == "Startseite Jubiläum") {
+                                                        switch ($image->stage_image_type_id) {
                                             case 1: $css_inner_class = "stageContentHeadlineTop half_blackBG smallstage";
                                                 break;
                                             case 2: $css_inner_class = "stageQuoteLeftJubi";
@@ -392,12 +390,8 @@ endforeach;
                                                 </div>
                                             </div>
                                         </div>
-
-                                    <?php endforeach; ?> 
-                                            <?php else : ?> <!-- Jubiläum ELSE -->   
-                                                <?php
-                                                foreach ($stage_images as $key => $image) :
-
+                                            <?php
+                                                    } else {
                                                     if (strtolower($image->text_1) == "dummy") {
                                                         if (isset($stage_text["name"]))
                                                             $text1 = $stage_text["name"];
@@ -451,9 +445,8 @@ endforeach;
                                                 </div>
                                             </div>
                                         </div>
-
+                                            <? } ?>
                                     <?php endforeach; ?> 
-                                <?php endif; ?> <!-- Jubiläum ENDE -->
                             </section>
 
                             <section id="content">
