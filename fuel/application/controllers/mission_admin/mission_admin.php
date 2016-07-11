@@ -21,7 +21,7 @@ class Mission_Admin extends CI_Controller {
     public function json_get_einsatz_template($id) {
         
         $template = fuel_model('mission_templates', array('find' => 'one', 'where' => array('id' => $id)));
-        
+      //  internal_debug($template);
         //build the JSON array for return
         $vehicles = "";
         foreach($template->fahrzeuge as $fahrzeug) {

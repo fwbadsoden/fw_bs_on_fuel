@@ -68,4 +68,8 @@ class Mission_Templates_model extends Abstract_module_model {
 
 }
 
+class Mission_Template_model extends Base_module_record {
+ 
+}
+
 ?>
