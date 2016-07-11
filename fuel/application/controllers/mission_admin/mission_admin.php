@@ -20,14 +20,22 @@ class Mission_Admin extends CI_Controller {
      */
     public function json_get_einsatz_template($id) {
         
-        $this->load->model('missions_model');
-        $template = $this->missions_model->get_template($id);
+        $template = fuel_model('mission_templates', array('find' => 'one', 'where' => array('id' => $id)));
         
         //build the JSON array for return
-        $json = array(array('field' => 'title',     'value' => $template['title']),
-                      array('field' => 'situation', 'value' => $template['situation']),
-                      array('field' => 'type',      'value' => $template['type']),
-                      array('field' => 'vehicles',  'value' => $template['vehicles'])
+        $vehicles = "";
+        foreach($template->fahrzeuge as $fahrzeug) {
+            if($vehicles == "") {
+                $vehicles = $fahrzeug->id;
+            } else {
+                $vehicles.="|".$fahrzeug->id;
+            }
+        }       
+        
+        $json = array(array('field' => 'title',     'value' => $template->title),
+                      array('field' => 'situation', 'value' => $template->situation),
+                      array('field' => 'type',      'value' => $template->type_id),
+                      array('field' => 'vehicles',  'value' => $vehicles)
         );
         echo json_encode($json);
     }

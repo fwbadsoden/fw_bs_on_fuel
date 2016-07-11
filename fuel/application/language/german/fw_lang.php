@@ -17,6 +17,7 @@ $lang["stage_images_instructions"]                      = "Hier können Sie die 
 $lang["stage_types_instructions"]                       = "Hier können Sie die Bildbühnen-Typen verwalten.";
 $lang["appointments_instructions"]                      = "Hier können Sie die Termine verwalten.";
 $lang["einsatz_cues_instructions"]                      = "Hier können Sie die Einsatzstichwörter verwalten.";
+$lang["einsatz_templates_instructions"]                      = "Hier können Sie die Einsatzvorlagen verwalten.";
 $lang["einsatz_instructions"]                           = "Hier können Sie die Einsätze verwalten.";
 $lang["einsatz_images_instructions"]                    = "Hier können Sie die Einsatzbilder verwalten.";
 $lang["einsatz_types_instructions"]                     = "Hier können Sie die Einsatzarten verwalten.";

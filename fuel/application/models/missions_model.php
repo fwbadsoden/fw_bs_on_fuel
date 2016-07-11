@@ -63,9 +63,33 @@ class Missions_model extends Abstract_module_model {
      * @return	array An array to be used with the Form_builder class
      */
     public function form_fields($values = array(), $related = array()) {
+        $javascript = "
+<script type=\"text/javascript\">
+if (jQuery){ (function ($) {
+    $('#mission_template').bind('change', function (e) {
+        $.getJSON('".base_url('mission_admin/mission_admin/json_get_einsatz_template')."/' + $('#mission_template').val(),
+            function (data) {
+                $.each(data, function (i, item) {
+                    if (item.field == 'title') {
+                        $('#name').val(item.value);
+                    } else if (item.field == 'situation') {
+                        $('#lage').val(item.value);
+                    } else if (item.field == 'type') {
+                        $('#type_id').val(item.value);
+                    } else if (item.field == 'vehicles') {
+                        var fahrzeuge = item.value.split('|');
+                        $.each(fahrzeuge, function (index, value) {
+                            $('#fahrzeuge' + value).attr('checked', true);
+                        });
+                    }
+                });
+            }
+        );
+    });
+})(jQuery);};
+</script>";
 
         $fields = parent::form_fields($values, $related);
-
         $fields["einsatzdaten"] = array('type' => 'fieldset',
             'class' => 'tab',
             'label' => 'Einsatzdaten',
@@ -77,10 +101,20 @@ class Missions_model extends Abstract_module_model {
             $fields["einsatz_nr"]["value"] = "wird automatisch vergeben";
         }
 
-        $fields["type_id"]['order'] = 3;
+        $fields["mission_template"] = array(
+            'name' => 'mission_template',
+            'type' => 'select',
+            'label' => 'Einsatzvorlage',
+            'default' => 0,
+            'order' => 3,
+            'js' => $javascript,
+            'model' => 'mission_templates'
+        );
+
+        $fields["type_id"]['order'] = 4;
         $fields["type_id"]['label'] = lang('form_label_einsatz_type');
 
-        $fields["cue_id"]['order'] = 4;
+        $fields["cue_id"]['order'] = 5;
         $fields["cue_id"]['label'] = lang('form_label_einsatz_cue');
         $fields["cue_id"]["model"] = array('' => array('mission_cues' => 'get_mission_cue_list'));
 
@@ -88,11 +122,12 @@ class Missions_model extends Abstract_module_model {
         $fields["ueberoertlich"] = array('label' => lang('form_label_einsatz_ueberoertlich'),
             'type' => 'enum',
             'options' => $options,
-            'order' => 5);
+            'order' => 6);
 
         $fields["name"]['order'] = 10;
 
         $fields['datum_beginn']['order'] = 11;
+        $fields['datum_beginn']['default'] = date('d.m.Y');
         $fields['datum_beginn']['label'] = lang('form_label_einsatz_datum_beginn');
 
         $fields["uhrzeit_beginn"]['order'] = 12;
@@ -101,6 +136,7 @@ class Missions_model extends Abstract_module_model {
         $fields['uhrzeit_beginn']['after_html'] = 'Uhr';
 
         $fields['datum_ende']['order'] = 13;
+        $fields['datum_ende']['default'] = date('d.m.Y');
         $fields['datum_ende']['label'] = lang('form_label_einsatz_datum_ende');
 
         $fields['uhrzeit_ende']['order'] = 14;
@@ -122,6 +158,7 @@ class Missions_model extends Abstract_module_model {
             'order' => 17);
 
         $fields["anzahl_einsaetze"]['order'] = 18;
+        $fields['anzahl_einsaetze']['default'] = 1;
         $fields["anzahl_einsaetze"]['label'] = lang('form_label_einsatz_anzahl_einsaetze');
         $fields["anzahl_einsaetze"]['comment'] = lang('form_label_einsatz_anzahl_einsaetze_comment');
 
@@ -353,35 +390,6 @@ class Missions_model extends Abstract_module_model {
         return $text;
     }
 
-    public function get_templates() {
-        $this->db->select('id, title, situation, type, vehicles');
-        $query = $this->db->get('mission_templates');
-        $templates = array();
-        foreach ($query->result() as $row) {
-            $template["id"] = $row->id;
-            $template["title"] = $row->title;
-            $template["situation"] = $row->situation;
-            $template["type"] = $row->type;
-            $template["vehicles"] = $row->vehicles;
-            $templates[$row->id] = $template;
-        }
-
-        return $templates;
-    }
-
-    public function get_template($id) {
-        $this->db->select('title, situation, type, vehicles');
-        $query = $this->db->get_where('mission_templates', array('mission_templates.id' => $id));
-        $row = $query->row();
-        $template["id"] = $id;
-        $template["title"] = $row->title;
-        $template["situation"] = $row->situation;
-        $template["type"] = $row->type;
-        $template["vehicles"] = $row->vehicles;
-
-        return $template;
-    }
-
 }
 
 class Mission_model extends Abstract_module_record {
@@ -447,5 +455,4 @@ class Mission_model extends Abstract_module_record {
     }
 
 }
-
 ?>

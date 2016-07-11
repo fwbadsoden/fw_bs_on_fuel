@@ -73,6 +73,13 @@ $config['modules']['mission_cues'] = array(
 	'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
+$config['modules']['mission_templates'] = array(
+    'module_name' => 'Einsatzvorlagen',
+    'instructions' => lang("einsatz_templates_instructions"),
+    'permission' => 'mission_templates',
+	'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
+);
+
 $config['modules']['fahrzeuge'] = array(
     'module_name' => 'Fahrzeuge',
     'instructions' => lang("fahrzeuge_instructions"),
