@@ -8,7 +8,7 @@ require_once('abstract_module_model.php');
 class Mission_Templates_model extends Abstract_module_model {
 
     public $unique = array('name');
-    public $required = array('name', 'description', 'lage', 'type_id');
+    public $required = array('name', 'einsatz_name', 'lage', 'type_id', 'cue_id');
     public $foreign_keys = array('cue_id' => 'mission_cues_model', 'type_id' => 'mission_types_model');
     public $has_many = array('fahrzeuge' => 'fahrzeuge_model');
     protected $clear_related_on_save = TRUE;
@@ -20,7 +20,7 @@ class Mission_Templates_model extends Abstract_module_model {
     public function list_items($limit = NULL, $offset = 0, $col = 'id', $order = 'asc', $just_count = FALSE) {
         $this->db->order_by('mission_templates.name asc');
         $this->db->join('mission_types', 'mission_types.id = mission_templates.type_id');
-        $this->db->select('mission_templates.id, mission_templates.name, mission_templates.description, lage, mission_types.name as einsatzart');
+        $this->db->select('mission_templates.id, mission_templates.name, mission_templates.einsatz_name, lage, mission_types.name as einsatzart');
         $data = parent::list_items($limit, $offset, $col, $order, $just_count);
 
         return $data;
@@ -45,16 +45,20 @@ class Mission_Templates_model extends Abstract_module_model {
         $fields["cue_id"]["label"] = lang('form_label_einsatz_cue');
         
         $fields["name"]["order"] = 3;
+        $fields["name"]["label"] = "Name der Vorlage";
         
-        $fields["ort"]["order"] = 4;
+        $fields["einsatz_name"]["order"] = 4;
+        $fields["einsatz_name"]["label"] = "Name des Einsatz";
         
-        $fields["lage"]["order"] = 5;
+        $fields["ort"]["order"] = 5;
+        
+        $fields["lage"]["order"] = 6;
         $fields["lage"]["class"] = "no_editor";
         
-        $fields["bericht"]["order"] = 6;
+        $fields["bericht"]["order"] = 7;
         $fields["bericht"]["class"] = "no_editor";
 
-        $fields["fahrzeuge"]["order"] = 7;
+        $fields["fahrzeuge"]["order"] = 8;
         $fields["fahrzeuge"]["mode"] = "checkbox";
         $fields["fahrzeuge"]["model"] = array('' => array('fahrzeuge' => 'get_mission_vehicle_list'));
         // forum.getfuelcms.com/discussion/comment/9315 
