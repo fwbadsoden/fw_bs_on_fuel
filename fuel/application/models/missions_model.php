@@ -70,11 +70,19 @@ if (jQuery){ (function ($) {
         $.getJSON('".base_url('mission_admin/mission_admin/json_get_einsatz_template')."/' + $('#mission_template').val(),
             function (data) {
                 $.each(data, function (i, item) {
-                    if (item.field == 'title') {
+                    if (item.field == 'name') {
                         $('#name').val(item.value);
-                    } else if (item.field == 'situation') {
+                    } else if (item.field == 'ort') {
+                        $('#ort').val(item.value);
+                    } else if (item.field == 'bericht') {
+                        $('#bericht').val(item.value);
+                    } else if (item.field == 'weitere_kraefte') {
+                        $('#weitere_kraefte').val(item.value);
+                    } else if (item.field == 'lage') {
                         $('#lage').val(item.value);
-                    } else if (item.field == 'type') {
+                    } else if (item.field == 'cue_id') {
+                        $('#cue_id').val(item.value);
+                    } else if (item.field == 'type_id') {
                         $('#type_id').val(item.value);
                     } else if (item.field == 'vehicles') {
                         var fahrzeuge = item.value.split('|');

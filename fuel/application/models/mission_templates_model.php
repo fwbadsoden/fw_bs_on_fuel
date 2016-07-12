@@ -7,9 +7,9 @@ require_once('abstract_module_model.php');
 
 class Mission_Templates_model extends Abstract_module_model {
 
-    public $unique = array('title');
-    public $required = array('title', 'description', 'situation', 'type_id');
-    public $foreign_keys = array('type_id' => 'mission_types_model');
+    public $unique = array('name');
+    public $required = array('name', 'description', 'lage', 'type_id');
+    public $foreign_keys = array('cue_id' => 'mission_cues_model', 'type_id' => 'mission_types_model');
     public $has_many = array('fahrzeuge' => 'fahrzeuge_model');
     protected $clear_related_on_save = TRUE;
 
@@ -18,9 +18,9 @@ class Mission_Templates_model extends Abstract_module_model {
     }
 
     public function list_items($limit = NULL, $offset = 0, $col = 'id', $order = 'asc', $just_count = FALSE) {
-        $this->db->order_by('title asc');
+        $this->db->order_by('mission_templates.name asc');
         $this->db->join('mission_types', 'mission_types.id = mission_templates.type_id');
-        $this->db->select('mission_templates.id, mission_templates.title as vorlage, mission_templates.description, mission_templates.situation as lage, mission_types.name as einsatzart');
+        $this->db->select('mission_templates.id, mission_templates.name, mission_templates.description, lage, mission_types.name as einsatzart');
         $data = parent::list_items($limit, $offset, $col, $order, $just_count);
 
         return $data;
@@ -38,11 +38,23 @@ class Mission_Templates_model extends Abstract_module_model {
 
         $fields = parent::form_fields($values, $related);
 
-        $fields["situation"]["class"] = "no_editor";
+        $fields["type_id"]["order"] = 1;
+        $fields["type_id"]["label"] = lang('form_label_einsatz_type');
 
-        $fields["type_id"]["label"] = "Einsatzart";
+        $fields["cue_id"]["order"] = 2;
+        $fields["cue_id"]["label"] = lang('form_label_einsatz_cue');
+        
+        $fields["name"]["order"] = 3;
+        
+        $fields["ort"]["order"] = 4;
+        
+        $fields["lage"]["order"] = 5;
+        $fields["lage"]["class"] = "no_editor";
+        
+        $fields["bericht"]["order"] = 6;
+        $fields["bericht"]["class"] = "no_editor";
 
-        $fields["fahrzeuge"]["order"] = 30;
+        $fields["fahrzeuge"]["order"] = 7;
         $fields["fahrzeuge"]["mode"] = "checkbox";
         $fields["fahrzeuge"]["model"] = array('' => array('fahrzeuge' => 'get_mission_vehicle_list'));
         // forum.getfuelcms.com/discussion/comment/9315 
@@ -50,18 +62,26 @@ class Mission_Templates_model extends Abstract_module_model {
         // in the POST so FUEL doesn't know whether it should process it. So the solution is to setup a hidden field with 
         // the name of 'exists_{field_name}' (so an "exists_" prefix) with a value of 1.
         $fields["exists_fahrzeuge"] = array('type' => 'hidden', 'value' => 1);
+        
+        $fields["weitere_kraefte"] = array('label' => lang("form_label_einsatz_weiterekraefte"),
+            'type' => 'tagsinput',
+            'class' => 'no_editor',
+            'preview' => false,
+            'comment' => lang('form_label_einsatz_weiterekraefte_comment'),
+            'autosuggests' => fuel_model('autosuggests_model', array('find' => 'all', 'where' => array('keyword' => 'einsatz_weitere_kraefte'))),
+            'order' => 34);
 
         return $fields;
     }
 
     public function options_list($key = 'id', $val = 'name', $where = array(), $order = TRUE, $group = TRUE) {
-        $this->db->order_by('title asc');
-        $this->db->select('id, title');
+        $this->db->order_by('name asc');
+        $this->db->select('id, name');
         $query = $this->db->get('mission_templates');
         
         $data[0] = "...";
         foreach ($query->result() as $row) {
-            $data[$row->id] = $row->title;
+            $data[$row->id] = $row->name;
         }
         return $data;
     }

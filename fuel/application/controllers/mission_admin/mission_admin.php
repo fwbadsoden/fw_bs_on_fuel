@@ -32,9 +32,13 @@ class Mission_Admin extends CI_Controller {
             }
         }       
         
-        $json = array(array('field' => 'title',     'value' => $template->title),
-                      array('field' => 'situation', 'value' => $template->situation),
-                      array('field' => 'type',      'value' => $template->type_id),
+        $json = array(array('field' => 'name',     'value' => $template->name),
+                      array('field' => 'lage', 'value' => $template->lage),
+                      array('field' => 'bericht', 'value' => $template->bericht),
+                      array('field' => 'ort', 'value' => $template->ort),
+                      array('field' => 'weitere_kraefte', 'value' => $template->weitere_kraefte),
+                      array('field' => 'type_id',      'value' => $template->type_id),
+                      array('field' => 'cue_id',      'value' => $template->cue_id),
                       array('field' => 'vehicles',  'value' => $vehicles)
         );
         echo json_encode($json);
