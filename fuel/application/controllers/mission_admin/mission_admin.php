@@ -32,7 +32,7 @@ class Mission_Admin extends CI_Controller {
             }
         }       
         
-        $json = array(array('field' => 'name',     'value' => $template->name),
+        $json = array(array('field' => 'name',     'value' => $template->einsatz_name),
                       array('field' => 'lage', 'value' => $template->lage),
                       array('field' => 'bericht', 'value' => $template->bericht),
                       array('field' => 'ort', 'value' => $template->ort),
