@@ -65,7 +65,13 @@ class Missions_model extends Abstract_module_model {
     public function form_fields($values = array(), $related = array()) {
         $javascript = "
 <script type=\"text/javascript\">
+function resetForm(\$form) {
+    \$form.find('input:text, input:password, input:file, select, textarea').val('');
+    \$form.find('input:radio, input:checkbox')
+         .removeAttr('checked').removeAttr('selected');
+}
 if (jQuery){ (function ($) {
+resetForm($('#form'));
     $('#mission_template').bind('change', function (e) {
         $.getJSON('".base_url('mission_admin/mission_admin/json_get_einsatz_template')."/' + $('#mission_template').val(),
             function (data) {
