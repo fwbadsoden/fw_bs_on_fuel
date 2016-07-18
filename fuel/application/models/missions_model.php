@@ -69,9 +69,9 @@ function resetForm(\$form) {
     \$form.find('input:text, input:password, input:file, select, textarea').val('');
     \$form.find('input:radio, input:checkbox')
          .removeAttr('checked').removeAttr('selected');
+         console.log('muh');
 }
 if (jQuery){ (function ($) {
-resetForm($('#form'));
     $('#mission_template').bind('change', function (e) {
         $.getJSON('".base_url('mission_admin/mission_admin/json_get_einsatz_template')."/' + $('#mission_template').val(),
             function (data) {
