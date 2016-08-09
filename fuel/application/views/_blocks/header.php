@@ -368,6 +368,8 @@ endforeach;
                                                 foreach ($stage_images as $key => $image) :
 
                                                     if ($image->name == "Startseite Jubiläum") {
+                                                        if(new DateTime() >= new DateTime('2016-08-10 00:00:00')) $headline = "Jubiläum";
+                                                        else $headline = "Countdown";
                                                         switch ($image->stage_image_type_id) {
                                             case 1: $css_inner_class = "stageContentHeadlineTop half_blackBG smallstage";
                                                 break;
@@ -385,7 +387,7 @@ endforeach;
                                         <div class="<?= $stage->type->css_outer_class ?>" id="pictures_<?= $key ?>" style="background-image: url(<?= img_path("bildbuehnen/" . $image->image) ?>); display: none;">
                                             <div id="stagewrapper">    
                                                 <div class="<?= $css_inner_class ?>">     
-                                                    <h1<?= $image->get_css_text_class_1() ?> style="text-align: center;">Countdown</h1>
+                                                    <h1<?= $image->get_css_text_class_1() ?> style="text-align: center;"><?=$headline?></h1>
                                                     <div id="countdown"></div>
                                                 </div>
                                             </div>
