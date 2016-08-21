@@ -66,13 +66,13 @@ class Missions_model extends Abstract_module_model {
         $javascript = "
 <script type=\"text/javascript\">
 function resetForm(\$form) {
-    \$form.find('input:text, input:password, input:file, select, textarea').val('');
-    \$form.find('input:radio, input:checkbox')
-         .removeAttr('checked').removeAttr('selected');
+    \$(form).find('input:text, input:password, input:file, select, textarea').val('');
+    \$(form).find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
          console.log('muh');
 }
 if (jQuery){ (function ($) {
     $('#mission_template').bind('change', function (e) {
+    	$(form).find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
         $.getJSON('".base_url('mission_admin/mission_admin/json_get_einsatz_template')."/' + $('#mission_template').val(),
             function (data) {
                 $.each(data, function (i, item) {
@@ -92,8 +92,8 @@ if (jQuery){ (function ($) {
                         $('#type_id').val(item.value);
                     } else if (item.field == 'vehicles') {
                         var fahrzeuge = item.value.split('|');
-                        $.each(fahrzeuge, function (index, value) {
-                            $('#fahrzeuge' + value).attr('checked', true);
+                        $.each(fahrzeuge, function (index, val) {
+	                    $(\"input[name='fahrzeuge[]'][value=\"+val+\"]\").attr('checked', true);
                         });
                     }
                 });
