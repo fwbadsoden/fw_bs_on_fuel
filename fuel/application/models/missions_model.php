@@ -91,10 +91,15 @@ if (jQuery){ (function ($) {
                     } else if (item.field == 'type_id') {
                         $('#type_id').val(item.value);
                     } else if (item.field == 'vehicles') {
-                        var fahrzeuge = item.value.split('|');
-                        $.each(fahrzeuge, function (index, val) {
-	                    $(\"input[name='fahrzeuge[]'][value=\"+val+\"]\").attr('checked', true);
-                        });
+                        var value = String(item.value);
+                        if(value.includes('|')) { 
+                            var fahrzeuge = item.value.split('|');
+                            $.each(fahrzeuge, function (index, val) {
+                                $(\"input[name='fahrzeuge[]'][value=\"+val+\"]\").attr('checked', true);
+                            });
+                        } else if(value != '') { 
+                            $(\"input[name='fahrzeuge[]'][value=\"+item.value+\"]\").attr('checked', true);
+                        }
                     }
                 });
             }
