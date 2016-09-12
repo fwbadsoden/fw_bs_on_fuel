@@ -113,7 +113,15 @@ class Fahrzeuge_model extends Abstract_module_model {
         $fields["ausserdienststellung"]['label'] = lang("form_label_fahrzeug_ausserdienststellung");
         $fields["ausserdienststellung"]['comment'] = lang("form_comment_fahrzeug_ausserdienststellung");
 
-        $options = array('1/8', '1/7', '1/5', '1/4', '1/3', '1/2', '1/1', '16' => '16 (RH Hänger)');
+        $options = array('1:8' => '1:8', 
+                         '1:7' => '1:7', 
+                         '1:5' => '1:5', 
+                         '1:4' => '1:4', 
+                         '1:3' => '1:3', 
+                         '1:2' => '1:2', 
+                         '1:1' => '1:1', 
+                         '16' => '16 (RH Hänger)', 
+                         '0' => 'Abrollbehälter');
         $fields['besatzung'] = array('options' => $options,
             'type' => 'select',
             'order' => 16);
