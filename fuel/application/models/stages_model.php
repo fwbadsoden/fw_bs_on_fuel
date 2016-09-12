@@ -15,32 +15,35 @@ class Stages_model extends Abstract_module_model {
         parent::__construct('fw_stages');
     }
     
-    public function get_stage_for_frontend($stage_id) {
+    public function get_stage_for_frontend($stage_id, $handle_images) {
         
         $stage = fuel_model('stages', array('find' => 'one', 'where' => array('id' => $stage_id)));
-        $img_count = $stage->img_count;
-        $randomize = $stage->randomize;
         
-        $images = $stage->stage_images;
-        $images_new = array();
-                
-        if($randomize == true) {
-            $random_keys = array_rand($images, $img_count);
-            if(is_array($random_keys)) {
-            foreach($random_keys as $key) {
-                array_push($images_new, $images[$key]);
-                shuffle($images_new);
-            }
+        if($handle_images) {
+            $img_count = $stage->img_count;
+            $randomize = $stage->randomize;
+
+            $images = $stage->stage_images;
+            $images_new = array();
+
+            if($randomize == true) {
+                $random_keys = array_rand($images, $img_count);
+                if(is_array($random_keys)) {
+                foreach($random_keys as $key) {
+                    array_push($images_new, $images[$key]);
+                    shuffle($images_new);
+                }
+                } else {
+                    array_push($images_new, $images[$random_keys]);
+                }
             } else {
-                array_push($images_new, $images[$random_keys]);
+                for($i = 0; i < count($images); $i++) {
+                    array_push($images_new, $images[$i]);
+                }
             }
-        } else {
-            for($i = 0; i < count($images); $i++) {
-                array_push($images_new, $images[$i]);
-            }
+
+            $stage->stage_images = $images_new;
         }
-        
-        $stage->stage_images = $images_new;
         
         return $stage;
     }

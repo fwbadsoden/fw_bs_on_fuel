@@ -35,7 +35,7 @@ class Module_layout extends Base_layout {
                 }
 
                 if (is_numeric(uri_segment($vars["segment"]))) {
-                    $vars["stage_text"] = $CI->fahrzeuge_model->get_stage_text(uri_segment($vars["segment"]));
+                    $vars["stage_info"] = $CI->fahrzeuge_model->get_stage_info(uri_segment($vars["segment"]));
                 }
 
                 $vars["model"] = "fahrzeuge_model";
@@ -132,10 +132,14 @@ class Module_layout extends Base_layout {
         // wenn es sich um die Detailseite des Moduls handelt, die Stage überschreiben
         if (is_numeric(uri_segment($vars["segment"]))) {
 
+            // bei Fahrzeugdetailseite handle_images auf false setzen
+            if($vars["my_module"] == "fahrzeug") $handle_images = false;
+            else $handle_images = true;
+            
             $CI = & get_instance();
             $CI->load->model('stages_model');
             $stage_id = $this->fuel->page->properties('stage_id_detail');
-            $vars['stage'] = $CI->stages_model->get_stage_for_frontend($stage_id);
+            $vars['stage'] = $CI->stages_model->get_stage_for_frontend($stage_id, $handle_images);
         }
 
         return $vars;
