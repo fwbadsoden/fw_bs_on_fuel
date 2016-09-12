@@ -25,7 +25,7 @@
 
                 <a href="<?=base_url('technik/fahrzeuge/'.$link_ext.$fahrzeug->id)?>">
                     <li<?=$class?>>
-                        <figure><img src="<?=base_url("assets/images/fahrzeuge/".$fahrzeug->setcard_image)?>" /></figure>
+                        <figure><img src="<?=base_url("assets/images/fahrzeuge/setcards/".$fahrzeug->setcard_image)?>" /></figure>
                         <h1><?=$fahrzeug->name_lang?></h1>
                         <h2><?=$fahrzeug->name?></h2>
                     </li>

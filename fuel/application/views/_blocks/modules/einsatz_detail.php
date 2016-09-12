@@ -145,7 +145,7 @@
 <?  if($f->is_published()) : ?>                    
                     <a href="<?=base_url('technik/fahrzeuge/'.$f->id)?>">
 <?  endif; ?>
-                        <figure><img src="<?=img_path('fahrzeuge/'.$f->setcard_image)?>" width="100" height="50" /></figure>
+                        <figure><img src="<?=img_path('fahrzeuge/setcards/'.$f->setcard_image)?>" width="100" height="50" /></figure>
                         <div class="info">
                             <h2><?=$f->name?></h2>
 <?  if($f->name_lang != '') : 
