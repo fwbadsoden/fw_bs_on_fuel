@@ -31,7 +31,7 @@ class Fahrzeug_special_functions_model extends Abstract_module_model {
                                  'hide_options' => true);
         
         $fields["text"] = array('type' => 'textarea',
-            'max_length' => 10,
+            'max_length' => 700,
             'class' => 'no_editor');
         
         return $fields;
