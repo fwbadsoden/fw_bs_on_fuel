@@ -165,21 +165,21 @@ echo doctype('html5');
                                     if (strlen($p->name) > 32)
                                     $p->name = substr($p->name, 0, 32) . '...';
                                     ?>  
-<?php if ($p->online_article == '') : ?>                      
+                                    <?php if ($p->online_article == '') : ?>                      
                                     <li><a href="<?= assets_path($p->asset, 'pressarticles') ?>" class="fancybox-gallery" rel="gallery_presse_menue"><span class="subline"><?= get_ger_date($p->datum) ?> / <?= $p->source->name ?></span><br /><?= $p->name ?></a></li>
-                        <?php else : ?>
+                                    <?php else : ?>
                                     <li><a href="<?= $p->online_article ?>" target="_blank"><span class="subline"><?= get_ger_date($p->datum) ?> / <?= $p->source->name ?></span><br /><?= $p->name ?></a></li>
-                        <?php endif; ?>        
-<?php endforeach; ?>                   
+                                    <?php endif; ?>        
+                                    <?php endforeach; ?>                   
                                 </ul>  
                             </div>  
                         </li>  
 
-<?php
-if (strpos(current_url(), base_url('menschen')) !== false) : $class = ' class="active"';
-else : $class = '';
-endif;
-?>  
+                        <?php
+                        if (strpos(current_url(), base_url('menschen')) !== false) : $class = ' class="active"';
+                        else : $class = '';
+                        endif;
+                        ?>  
                         <li><a href="<?= base_url('menschen') ?>"<?= $class ?>>Menschen</a>  
                             <div class="dropdown">  
                                 <ul>            
@@ -205,11 +205,11 @@ endif;
                                            </div>  
                                            </li>  
 
-                                                <?php
-                                                if (strpos(current_url(), base_url('technik')) !== false) : $class = ' class="active"';
-                                                else : $class = '';
-                                                endif;
-                                                ?>                    
+                                           <?php
+                                           if (strpos(current_url(), base_url('technik')) !== false) : $class = ' class="active"';
+                                           else : $class = '';
+                                           endif;
+                                           ?>                    
                                            <li><a href="<?= base_url('technik') ?>"<?= $class ?>>Technik</a> 
                                         <div class="dropdown">  
                                             <ul>                         
@@ -232,19 +232,19 @@ endif;
                                             </ul>
                                             <ul>                                  
                                                 <li class="headline"><a href="<?= base_url('technik/fahrzeuge') ?>">&nbsp;</a></li>       
-<?php endif; ?>               
+                                                <?php endif; ?>               
                                                 <li><a href="<?= base_url('technik/fahrzeuge/' . $f->id) ?>">
-                                                <?php
-                                                if ($f->name_lang != '') : echo $f->name . ' - ' . $f->name_lang;
-                                                else : echo $f->name;
-                                                endif;
-                                                ?>
-                                                    </a></li>  
                                                         <?php
-                                                        $counter++;
+                                                        if ($f->name_lang != '') : echo $f->name . ' - ' . $f->name_lang;
+                                                        else : echo $f->name;
                                                         endif;
-                                                        endforeach;
-                                                        ?>   
+                                                        ?>
+                                                    </a></li>  
+                                                <?php
+                                                $counter++;
+                                                endif;
+                                                endforeach;
+                                                ?>   
                                             </ul>  
                                             <ul>
                                                 <li class="headline"><a href="<?= base_url('technik/fahrzeuge/ausserdienst') ?>">Fahrzeuge a.D.</a></li>
@@ -254,17 +254,17 @@ endif;
                                                 if ($f->retired == 'yes') :
                                                 ?>                        
                                                 <li><a href="<?= base_url('technik/fahrzeuge/ausserdienst/' . $f->id) ?>">
-<?php
-if ($f->name_lang != '') : echo $f->name . ' - ' . $f->name_lang;
-else : echo $f->name;
-endif;
-?>
+                                                        <?php
+                                                        if ($f->name_lang != '') : echo $f->name . ' - ' . $f->name_lang;
+                                                        else : echo $f->name;
+                                                        endif;
+                                                        ?>
                                                     </a></li>  
-                                    <?php
-                                    endif;
-                                    endforeach;
-                                    endif;
-                                    ?>           
+                                                <?php
+                                                endif;
+                                                endforeach;
+                                                endif;
+                                                ?>           
                                             </ul>  
                                             <ul>                     
                                                 <li class="headline"><a>Spezialeinheiten</a></li>
@@ -274,11 +274,11 @@ endif;
                                         </div>  
                                     </li>  
 
-<?php
-if (current_url() == base_url('informationen')) : $class = ' class="active"';
-else : $class = '';
-endif;
-?> 
+                                    <?php
+                                    if (current_url() == base_url('informationen')) : $class = ' class="active"';
+                                    else : $class = '';
+                                    endif;
+                                    ?> 
                                     <li><a href="<?= base_url('informationen') ?>"<?= $class ?>>Infos</a>  
                                         <div class="dropdown">  
                                             <ul>
@@ -306,11 +306,11 @@ endif;
                                             </ul>
                                         </div>  
                                     </li>
-<?php
-if (current_url() == base_url('verein')) : $class = ' class="active"';
-else : $class = '';
-endif;
-?> 
+                                    <?php
+                                    if (current_url() == base_url('verein')) : $class = ' class="active"';
+                                    else : $class = '';
+                                    endif;
+                                    ?> 
                                     <li><a href="<?= base_url('verein') ?>"<?= $class ?>>Verein</a>  
                                     </li> 
                                     <!--       <li><a href="#" class="desktopsearch">&nbsp;</a>
@@ -377,7 +377,7 @@ endif;
                                         </ul>
                                     </li>
                                     <li class="metanav">
-                                <?= $metanavigation_mobile ?>
+                                        <?= $metanavigation_mobile ?>
                                     </li>
                                 </ul>
                             </div>
@@ -395,34 +395,34 @@ endif;
                             <div id="substage">
                                 <div class="slidewrapper">
                                     <div>
-                                        <h1><?=$stage_info["name"]?></h1>
-                                        <h2><?=$stage_info["name_lang"]?></h2>
-                                        <p><?=$stage_info["text_stage"]?></p>
+                                        <h1><?= $stage_info["name"] ?></h1>
+                                        <h2><?= $stage_info["name_lang"] ?></h2>
+                                        <p><?= $stage_info["text_stage"] ?></p>
                                     </div>
                                 </div>
                             </div>
-                                <?php else : ?>
-                                    <?php $stage_images = $stage->get_stage_images_for_frontend(); ?>
-                                    <?php
-                                    foreach ($stage_images as $key => $image) :
-                                        if ($image->name == "Startseite Jubiläum") {
-                                            if(new DateTime() >= new DateTime('2016-08-10 00:00:00')) $headline = "Jubiläum";
-                                            else $headline = "Countdown";
-                                            switch ($image->stage_image_type_id) {
-                                            case 1: $css_inner_class = "stageContentHeadlineTop half_blackBG smallstage";
-                                            break;
-                                            case 2: $css_inner_class = "stageQuoteLeftJubi";
-                                            break;
-                                            case 3: $css_inner_class = "stageQuoteRightJubi";
-                                            break;
-                                            case 4: $css_inner_class = "stageContentCar";
-                                            break;
-                                            case 5: $css_inner_class = "stageContentHeadline blackBG";
-                                            break;
-                                        }
-                                    ?>
-
+                            <?php else : ?>
                             <section id="stage">
+                                <?php $stage_images = $stage->get_stage_images_for_frontend(); ?>
+                                <?php
+                                foreach ($stage_images as $key => $image) :
+                                if ($image->name == "Startseite Jubiläum") {
+                                if(new DateTime() >= new DateTime('2016-08-10 00:00:00')) $headline = "Jubiläum";
+                                else $headline = "Countdown";
+                                switch ($image->stage_image_type_id) {
+                                case 1: $css_inner_class = "stageContentHeadlineTop half_blackBG smallstage";
+                                break;
+                                case 2: $css_inner_class = "stageQuoteLeftJubi";
+                                break;
+                                case 3: $css_inner_class = "stageQuoteRightJubi";
+                                break;
+                                case 4: $css_inner_class = "stageContentCar";
+                                break;
+                                case 5: $css_inner_class = "stageContentHeadline blackBG";
+                                break;
+                                }
+                                ?>
+
                                 <div class="<?= $stage->type->css_outer_class ?>" id="pictures_<?= $key ?>" style="background-image: url(<?= img_path("bildbuehnen/" . $image->image) ?>); display: none;">
                                     <div id="stagewrapper">    
                                         <div class="<?= $css_inner_class ?>">     
@@ -474,7 +474,7 @@ endif;
                                 <div class="<?= $stage->type->css_outer_class ?>" id="pictures_<?= $key ?>" style="background-image: url(<?= img_path("bildbuehnen/" . $image->image) ?>); display: none;">
                                     <div id="stagewrapper">    
                                         <div class="<?= $css_inner_class ?>">            
-<?php if ($stage_type == 'default') : ?>   
+                                            <?php if ($stage_type == 'default') : ?>   
                                             <?php if($text1 != "") : ?> <h1<?= $image->get_css_text_class_1() ?>><?= $text1 ?></h1> <?php endif; ?>
                                             <?php if($text2 != "") : ?> <h2<?= $image->get_css_text_class_2() ?>><?= $text2 ?></h2> <?php endif; ?>  
                                             <?php if($text3 != "") : ?> <p><?= $text3 ?></p> <? endif; ?>       
@@ -482,31 +482,31 @@ endif;
                                             <figure><img src="<?= assets_path('icons/'.$stage_text["class"].'.png') ?>" /></figure>
                                             <h1><?= $text1 ?></h1>
                                             <h2><?= $text2 ?></h2>  
-                                                <?php endif; ?>      
+                                            <?php endif; ?>      
                                         </div>
                                     </div>
                                 </div>
                                 <? } ?>
-                                    <?php endforeach; ?> 
+                                <?php endforeach; ?> 
                             </section>
-<?php endif; ?>
+                            <?php endif; ?>
 
                             <section id="content">
                                 <?php if ($module != "fahrzeug") : ?>
                                 <div class="<?= $stage->type->css_slidewrapper_class ?>">
-<?php if ($stage->img_count > 1) : ?>
+                                    <?php if ($stage->img_count > 1) : ?>
                                     <div id="slider">
                                         <ul>
-<?php
-foreach ($stage_images as $key => $item) :
-if ($key == 0)
-$class = ' first';
-else
-$class = '';
-?>             
+                                            <?php
+                                            foreach ($stage_images as $key => $item) :
+                                            if ($key == 0)
+                                            $class = ' first';
+                                            else
+                                            $class = '';
+                                            ?>             
                                             <li><a href="#<?= $key ?>" class="changeStage<?= $class ?>" id="slide-link-<?= $key ?>"><?= $key + 1 ?></a></li>
-<?php endforeach; ?>                
+                                                <?php endforeach; ?>                
                                         </ul>
                                     </div> 
                                     <?php endif; ?>
-<?php endif; ?>
+                                    <?php endif; ?>

@@ -11,8 +11,7 @@ class MY_pages_model extends fuel_pages_model {
         parent::__construct( );
     }
     
-    public function form_fields($values = array(), $related = array()) {
-        
+    public function form_fields($values = array(), $related = array()) {        
         $fields = parent::form_fields($values = array(), $related = array());
        
         $fields["stage_id"]["label"] = "Bildbühne (Hauptseite)";
