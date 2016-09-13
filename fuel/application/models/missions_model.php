@@ -414,7 +414,6 @@ if (jQuery){ (function ($) {
 class Mission_model extends Abstract_module_record {
 
     public function is_published() {
-
         if ($this->published == 'yes') {
             return true;
         } else {
@@ -438,7 +437,6 @@ class Mission_model extends Abstract_module_record {
     }
 
     public function is_ueberoertlich() {
-
         if ($this->ueberoertlich == 'yes') {
             return true;
         } else {
@@ -447,7 +445,6 @@ class Mission_model extends Abstract_module_record {
     }
 
     public function display_ort() {
-
         if ($this->ort_zeigen == 'yes') {
             return true;
         } else {
@@ -456,7 +453,6 @@ class Mission_model extends Abstract_module_record {
     }
 
     public function get_ort() {
-
         if ($this->display_ort()) {
             return parent::get_ort();
         } else {
@@ -465,7 +461,6 @@ class Mission_model extends Abstract_module_record {
     }
 
     public function get_vehicle_count() {
-
         if (count($this->fahrzeuge) > 0) {
             return count($this->fahrzeuge);
         } else {

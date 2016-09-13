@@ -8,11 +8,10 @@ require_once('abstract_module_model.php');
 class Fahrzeuge_model extends Abstract_module_model {
 
     public $required = array('name', 'name_lang', 'prefix_rufname', 'rufname', 'text', 'besatzung', 'hersteller', 'setcard_image', 'stage_image');
-    public $has_many = array('fahrzeug_images' => 'fahrzeug_images_model', 
-                             'fahrzeug_loadings' => 'fahrzeug_loadings_model', 
-                             'fahrzeug_special_functions' => 'fahrzeug_special_functions_model', 
-                             'fahrzeug_fittings' => 'fahrzeug_fittings_model');
-    //public $belongs_to = array('missions' => 'missions_model');   
+    public $has_many = array('fahrzeug_images' => 'fahrzeug_images_model',
+        'fahrzeug_loadings' => 'fahrzeug_loadings_model',
+        'fahrzeug_special_functions' => 'fahrzeug_special_functions_model',
+        'fahrzeug_fittings' => 'fahrzeug_fittings_model');
     public $boolean_fields = array('retired', 'ausser_dienst');
     protected $clear_related_on_save = TRUE;
 
@@ -36,7 +35,7 @@ class Fahrzeuge_model extends Abstract_module_model {
         $this->db->order_by('precedence', 'ascending');
         $this->db->select('id, name, rufname, retired as ausser_dienst, published');
         $data = parent::list_items($limit, $offset, $col, $order, $just_count);
-  
+
         return $data;
     }
 
@@ -115,35 +114,18 @@ class Fahrzeuge_model extends Abstract_module_model {
 
         $fields["aufbau"]['order'] = 16;
 
-        $options = array('1:8' => '1:8', 
-                         '1:7' => '1:7', 
-                         '1:5' => '1:5', 
-                         '1:4' => '1:4', 
-                         '1:3' => '1:3', 
-                         '1:2' => '1:2', 
-                         '1:1' => '1:1', 
-                         '16' => '16 (RH Hänger)', 
-                         '0' => 'Abrollbehälter');
+        $options = array('1:8' => '1:8',
+            '1:7' => '1:7',
+            '1:5' => '1:5',
+            '1:4' => '1:4',
+            '1:3' => '1:3',
+            '1:2' => '1:2',
+            '1:1' => '1:1',
+            '16' => '16 (RH Hänger)',
+            '0' => 'Abrollbehälter');
         $fields['besatzung'] = array('options' => $options,
             'type' => 'select',
             'order' => 17);
-
-        $fields["wlf"] = array('type' => 'fieldset',
-            'class' => 'tab',
-            'label' => 'Steuerdaten WLF',
-            'order' => 30);
-
-        $options = array('no' => 'nein', 'yes' => 'ja');
-        $fields['abrollbehaelter_tauglich'] = array('label' => lang('form_label_fahrzeug_abrollbehaelter_tauglich'),
-            'type' => 'enum',
-            'options' => $options,
-            'order' => 34);
-
-        $options = array('no' => 'nein', 'yes' => 'ja');
-        $fields['ist_abrollbehaelter'] = array('label' => lang('form_label_fahrzeug_abrollbehaelter'),
-            'type' => 'enum',
-            'options' => $options,
-            'order' => 35);
 
         $fields["fahrzeugwerte"] = array('type' => 'fieldset',
             'class' => 'tab',
@@ -168,14 +150,18 @@ class Fahrzeuge_model extends Abstract_module_model {
 
         $fields["gesamtmasse"]['after_html'] = 't';
         $fields["gesamtmasse"]['order'] = 56;
-
-        $fields["precedence"]["type"] = 'hidden';
-        $fields["published"]["type"] = 'hidden';
         
-        // http://forum.getfuelcms.com/discussion/comment/9329#Comment_9329
-        // unset statt hidden field für Relationen
-        //$fields["fahrzeug_images"]["type"] = 'hidden';
-        //$fields["missions"]["type"] = 'hidden';
+        $fields["leermasse"]['after_html'] = 't';
+        $fields["leermasse"]['order'] = 57;
+        $fields["leermasse"]["disabled"] = TRUE;
+        $fields["baujahr"]['order'] = 58;
+        $fields["baujahr"]['comment'] = lang("form_comment_fahrzeug_baujahr");
+        $fields["baujahr"]['type'] = $fields["ausserdienststellung"]['order'] = 15;
+        $fields["baujahr"]["disabled"] = TRUE;
+        $fields["ausserdienststellung"]['order'] = 59;
+        $fields["ausserdienststellung"]['label'] = lang("form_label_fahrzeug_ausserdienststellung");
+        $fields["ausserdienststellung"]['comment'] = lang("form_comment_fahrzeug_ausserdienststellung");
+        $fields["ausserdienststellung"]["disabled"] = TRUE;
 
         $fields["images"] = array('type' => 'fieldset',
             'class' => 'tab',
@@ -205,61 +191,38 @@ class Fahrzeuge_model extends Abstract_module_model {
         $fields["fahrzeug_fittings"]["label"] = "Anbauten";
         $fields["fahrzeug_fittings"]["order"] = 401;
 
-        $fields["deprecated"] = array('type' => 'fieldset',
+        $fields["customizing"] = array('type' => 'fieldset',
             'class' => 'tab',
-            'label' => 'Nicht pflegbar',
-            'order' => 900);
-        
-        $fields["missions"]["label"] = "Einsätze";
-        $fields["missions"]["order"] = 901;
+            'label' => 'Steuerfelder',
+            'order' => 800);
 
-// HPL 12.09.2016 disabled, da Felder im neuen Layout entfallen
-        $fields["baujahr"]['order'] = 902;
-        $fields["baujahr"]['comment'] = lang("form_comment_fahrzeug_baujahr");
-        $fields["baujahr"]['type'] = $fields["ausserdienststellung"]['order'] = 15;
-        $fields["baujahr"]["disabled"] = TRUE;
-        $fields["ausserdienststellung"]['order'] = 903;
-        $fields["ausserdienststellung"]['label'] = lang("form_label_fahrzeug_ausserdienststellung");
-        $fields["ausserdienststellung"]['comment'] = lang("form_comment_fahrzeug_ausserdienststellung");
-        $fields["ausserdienststellung"]["disabled"] = TRUE;
+        $options = array('no' => 'nein', 'yes' => 'ja');
+        $fields['abrollbehaelter_tauglich'] = array('label' => lang('form_label_fahrzeug_abrollbehaelter_tauglich'),
+            'type' => 'enum',
+            'options' => $options,
+            'order' => 801);
 
-// HPL 12.09.2016 disabled, da Felder im neuen Layout entfallen
-        $fields["pumpe"] = array('type' => 'textarea',
-            'label' => lang('form_label_fahrzeug_pumpe'),
-            'comment' => lang('form_comment_fahrzeug_zusatz'),
-            'class' => 'no_editor',
-            'rows' => 3,
-            'order' => 904,
-            'disabled' => TRUE);
+        $options = array('no' => 'nein', 'yes' => 'ja');
+        $fields['ist_abrollbehaelter'] = array('label' => lang('form_label_fahrzeug_abrollbehaelter'),
+            'type' => 'enum',
+            'options' => $options,
+            'order' => 802);
 
-// HPL 12.09.2016 disabled, da Felder im neuen Layout entfallen
-        $fields["loeschmittel"] = array('type' => 'textarea',
-            'label' => lang('form_label_fahrzeug_loeschmittel'),
-            'comment' => lang('form_comment_fahrzeug_zusatz'),
-            'class' => 'no_editor',
-            'rows' => 5,
-            'order' => 905,
-            'disabled' => TRUE);
+        $options = array('yes' => 'ja', 'no' => 'nein');
+        $fields['show_loadings_header'] = array('label' => lang('form_label_fahrzeug_show_loadings_header'),
+            'type' => 'enum',
+            'options' => $options,
+            'order' => 803);
 
-// HPL 12.09.2016 disabled, da Felder im neuen Layout entfallen
-        $fields["besonderheit"] = array('type' => 'textarea',
-            'label' => lang('form_label_fahrzeug_besonderheiten'),
-            'comment' => lang('form_comment_fahrzeug_zusatz'),
-            'class' => 'no_editor',
-            'rows' => 5,
-            'order' => 906,
-            'disabled' => TRUE);
+        $options = array('yes' => 'ja', 'no' => 'nein');
+        $fields['show_specialfunctions_header'] = array('label' => lang('form_label_fahrzeug_show_specialfunctions_header'),
+            'type' => 'enum',
+            'options' => $options,
+            'order' => 804);
 
-// HPL 12.09.2016 disabled, da Felder im neuen Layout entfallen
-        $fields["leermasse"]['after_html'] = 't';
-        $fields["leermasse"]['order'] = 907;
-        $fields["leermasse"]["disabled"] = TRUE;
-
-// HPL 12.09.2016 disabled, da Felder im neuen Layout entfallen
-        $fields["ps"]['label'] = lang("form_label_fahrzeug_ps");
-        $fields["ps"]['after_html'] = 'PW';
-        $fields["ps"]['order'] = 908;
-        $fields["ps"]["disabled"] = TRUE;
+        $fields["precedence"]["type"] = 'hidden';
+        $fields["published"]["type"] = 'hidden';
+        $fields["module_order"]["type"] = 'hidden';
 
         return $fields;
     }
@@ -294,7 +257,7 @@ class Fahrzeuge_model extends Abstract_module_model {
     public function get_mission_vehicle_list() {
 
         $this->db->order_by('precedence asc');
-        $this->db->select("id, CONCAT((name), (' ('), (rufname), (')')) as name");      
+        $this->db->select("id, CONCAT((name), (' ('), (rufname), (')')) as name");
         $this->db->where(array('published' => 'yes', 'retired' => 'no', "ist_abrollbehaelter" => "no"));
         $query = $this->db->get('fahrzeuge');
         return $query->result_assoc_array('id');
@@ -331,29 +294,10 @@ class Fahrzeuge_model extends Abstract_module_model {
         $this->db->where('ist_abrollbehaelter', 'no');
         return $this->db->count_all_results("fahrzeuge");
     }
-
-// HPL 12.09.2016 auskommentiert, da Felder im neuen Layout entfallen
-//    public function on_before_save($values) {
-//        
-//        $values = parent::on_before_save($values);
-//        
-//        // Validierungen
-//        if($values["retired"] == 'no' && ( $values["baujahr"] == 0 || $values["baujahr"] == "")) {
-//            $this->add_error("Baujahr darf nicht leer oder 0 sein");
-//        }
-//        if($values["retired"] == 'yes' && ( $values["ausserdienststellung"] == 0 || $values["ausserdienststellung"] == "")) {
-//            $this->add_error("Außer Dienst seit darf nicht leer oder 0 sein");
-//        }
-//        
-//        return $values;
-//    }
-
 }
 
 class Fahrzeug_model extends Abstract_module_record {
-
     public function get_missions() {
-
         CI()->db->select('relationships.candidate_key');
         CI()->db->distinct();
         CI()->db->join('missions', 'missions.id = relationships.candidate_key');
@@ -372,7 +316,6 @@ class Fahrzeug_model extends Abstract_module_record {
     }
 
     public function is_retired() {
-
         if ($this->retired == 'yes')
             return true;
         else
@@ -380,7 +323,6 @@ class Fahrzeug_model extends Abstract_module_record {
     }
 
     public function is_published() {
-
         if ($this->published == 'yes')
             return true;
         else
@@ -388,7 +330,6 @@ class Fahrzeug_model extends Abstract_module_record {
     }
 
     public function is_wlf() {
-
         if ($this->abrollbehaelter_tauglich == 'yes')
             return true;
         else
@@ -396,60 +337,29 @@ class Fahrzeug_model extends Abstract_module_record {
     }
 
     public function is_abrollbehaelter() {
-
         if ($this->ist_abrollbehaelter == 'yes')
             return true;
         else
             return false;
     }
 
-    public function get_abrollbehaelter() {
-
-        return fuel_model('fahrzeuge_model', array('find' => 'all', 'order' => 'precedence asc', 'where' => array('ist_abrollbehaelter' => 'yes', 'published' => 'yes', 'retired' => 'no')));
+    public function show_loadings_header() {
+        if ($this->show_loadings_header == 'yes')
+            return true;
+        else
+            return false;
     }
 
-// HPL 12.09.2016 auskommentiert, da Felder im neuen Layout entfallen
-//    public function get_abrollbehaelter_besonderheit() {
-//        if (parent::get_besonderheit() != "")
-//            return $this->_prepare_fahrzeugbesonderheit(parent::get_besonderheit(), true);
-//        else
-//            return null;
-//    }
-//
-//    public function get_besonderheit() {
-//        if (parent::get_besonderheit() != "")
-//            return $this->_prepare_fahrzeugbesonderheit(parent::get_besonderheit());
-//        else
-//            return null;
-//    }
-//
-//    public function get_loeschmittel() {
-//        if (parent::get_arloeschmittel() != "")
-//            return $this->_prepare_fahrzeugbesonderheit(parent::get_arloeschmittel());
-//        else
-//            return null;
-//    }
-//
-//    public function get_pumpe() {
-//        if (parent::get_pumpe() != "")
-//            return $this->_prepare_fahrzeugbesonderheit(parent::get_pumpe());
-//        else
-//            return null;
-//    }
-//
-//    private function _prepare_fahrzeugbesonderheit($value, $list = false) {
-//        if ($list == false) {
-//            return str_replace("\n", "<br />", trim($value));
-//        } else {
-//            $array = split("\n", $value);
-//            $return = "";
-//            foreach ($array as $item) {
-//                $return.="<li>" . $item . "</li>";
-//            }
-//            return $return;
-//        }
-//    }
+    public function show_specialfunctions_header() {
+        if ($this->show_specialfunctions_header == 'yes')
+            return true;
+        else
+            return false;
+    }
 
+    public function get_abrollbehaelter() {
+        return fuel_model('fahrzeuge_model', array('find' => 'all', 'order' => 'precedence asc', 'where' => array('ist_abrollbehaelter' => 'yes', 'published' => 'yes', 'retired' => 'no')));
+    }
 }
 
 ?>

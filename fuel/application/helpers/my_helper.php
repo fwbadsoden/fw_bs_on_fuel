@@ -57,5 +57,15 @@ function internal_debug($var) {
     echo"</pre>";
     die();
 }
+
+function get_vehicle_module_order($order_string) {
+    $mapping = array('loadings' => 'fahrzeuge_detail_loadings.php', 'specialfunctions' => 'fahrzeuge_detail_specialfunctions.php', 'fittings' => 'fahrzeuge_detail_fittings.php', 'swapbodies' => 'fahrzeuge_detail_swapbodies.php', 'gallery' => 'fahrzeuge_detail_gallery.php');
+    $module_order = explode(",", $order_string);
+    $include_files = array();
+    foreach($module_order as $module) {
+        array_push($include_files, $mapping[$module]);
+    }
+    return $include_files;
+}
 /* End of file my_helper.php */
 /* Location: ./application/helpers/my_helper.php */
