@@ -67,5 +67,13 @@ function get_vehicle_module_order($order_string) {
     }
     return $include_files;
 }
+
+function get_css_for_environment($css) {
+    if(ENVIRONMENT == "production") {
+        return css_path($css.".min.css");
+    } else {
+        return css_path($css.".css");
+    }
+}
 /* End of file my_helper.php */
 /* Location: ./application/helpers/my_helper.php */
