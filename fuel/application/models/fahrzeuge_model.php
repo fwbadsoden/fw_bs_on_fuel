@@ -33,7 +33,7 @@ class Fahrzeuge_model extends Abstract_module_model {
     public function list_items($limit = NULL, $offset = 0, $col = 'id', $order = 'asc', $just_count = FALSE) {
         $this->db->order_by('published', 'descending');
         $this->db->order_by('precedence', 'ascending');
-        $this->db->select('id, name, rufname, retired as ausser_dienst, published');
+        $this->db->select('id, name, rufname, retired as ausser_dienst, published, precedence');
         $data = parent::list_items($limit, $offset, $col, $order, $just_count);
 
         return $data;
