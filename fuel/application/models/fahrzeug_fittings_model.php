@@ -14,7 +14,7 @@ class Fahrzeug_fittings_model extends Abstract_module_model {
     }
     
     public function list_items($limit = NULL, $offset = 0, $col = 'id', $order = 'asc', $just_count = FALSE) {
-        $this->db->order_by('published desc, precedence asc');
+        $this->db->order_by('published desc, vehicle asc, precedence asc');
         $this->db->select('id, name, vehicle as fahrzeug, published');
         $data = parent::list_items($limit, $offset, $col, $order, $just_count);        
         return $data;
