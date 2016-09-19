@@ -25,7 +25,7 @@ foreach ($facebook_infos as $info) {
 array_push($meta, array('name' => $info["property"], 'content' => $info["content"], 'type' => 'property'));
 }
 }
-echo doctype('html5');
+echo doctype('html5'); 
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de-de" lang="de-de">
@@ -382,7 +382,7 @@ echo doctype('html5');
                                 </ul>
                             </div>
 
-                            <?php if ($module == "fahrzeug") : ?>
+                            <?php if (isset($stage_info) && $stage_info["stage"] == "fahrzeug") : ?>
                             <section id="stage">
                                 <div class="<?= $stage->type->css_outer_class ?>">
                                     <div id="stagewrapper">
@@ -492,7 +492,7 @@ echo doctype('html5');
                             <?php endif; ?>
 
                             <section id="content">
-                                <?php if ($module != "fahrzeug") : ?>
+                                <?php if (!isset($stage_info) || $stage_info["stage"] != "fahrzeug") : ?>
                                 <div class="<?= $stage->type->css_slidewrapper_class ?>">
                                     <?php if ($stage->img_count > 1) : ?>
                                     <div id="slider">
