@@ -36,6 +36,7 @@ class Module_layout extends Base_layout {
 
                 if (is_numeric(uri_segment($vars["segment"]))) {
                     $vars["stage_info"] = $CI->fahrzeuge_model->get_stage_info(uri_segment($vars["segment"]));
+                    $vars["stage_info"]["stage"] = "fahrzeug";
                 }
 
                 $vars["model"] = "fahrzeuge_model";
