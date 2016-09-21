@@ -1,5 +1,4 @@
 @charset "utf-8";
-/* CSS Document */
 
 body {
     top: 0;
@@ -214,15 +213,6 @@ input.button_black:hover {
     font-size: 14px;
     cursor: pointer;
 }
-/*
-.selectBoxOptions li.selected {
-        background-color: #f2b600;
-}
-.selectBoxOptions li:hover {
-        background-color: #f2b600;
-}
-*/
-/* ------- ------- ------- ------- ------- -------- */
 
 #searchBox {
     width: 235px;
@@ -653,28 +643,8 @@ header nav {
     color: #ffd200;
 }
 
-@media only screen and (max-width: 350px) {
-    header { height: 65px; }
-    header h1 { width: 165px; height: 40px;  }
-    header h1 a { width: 165px; height: 40px; background-size: contain; }
-    #mobileHeader { margin: 18px 15px 0 0; }
-}
-@media only screen and (max-width: 690px) {
-    #mobileHeader { display: block; }
-    nav { display: none; }
-}
-@media only screen and (max-width: 790px) {
-    #menu li { padding: 5px 6px 4px 6px; }
-    #menu li a { font-size: 16px; }
-    #menu .dropdown ul { width: 190px; }
-    #menu .dropdown li { width: 190px; }
-    #menu .dropdown .search { width: 72%; }
-}
-@media only screen and (max-width: 900px) {
-    #menu .dropdown ul.special { clear: both; width: 95%; border: 0; }
-    #menu .dropdown ul.special li { width: auto; float: left; padding: 0 15px; }
-    #menu .dropdown ul.special li.headline a { width: auto; font-size: 14px; }
-    #menu .dropdown .search { width: 76%; }
+@media only screen and (max-width: 1000px) {
+    .dropdown {  width: 960px; }
 }
 @media only screen and (max-width: 970px) {
     .dropdown { max-width: 100%; text-align: center; }
@@ -683,8 +653,28 @@ header nav {
     #menu .dropdown ul.special li.headline a { width: 150px; font-size: 14px; }
     #menu .dropdown .search { width: 80%; }
 }
-@media only screen and (max-width: 1000px) {
-    .dropdown {  width: 960px; }
+@media only screen and (max-width: 900px) {
+    #menu .dropdown ul.special { clear: both; width: 95%; border: 0; }
+    #menu .dropdown ul.special li { width: auto; float: left; padding: 0 15px; }
+    #menu .dropdown ul.special li.headline a { width: auto; font-size: 14px; }
+    #menu .dropdown .search { width: 76%; }
+}
+@media only screen and (max-width: 790px) {
+    #menu li { padding: 5px 6px 4px 6px; }
+    #menu li a { font-size: 16px; }
+    #menu .dropdown ul { width: 190px; }
+    #menu .dropdown li { width: 190px; }
+    #menu .dropdown .search { width: 72%; }
+}
+@media only screen and (max-width: 690px) {
+    #mobileHeader { display: block; }
+    nav { display: none; }
+}
+@media only screen and (max-width: 350px) {
+    header { height: 65px; }
+    header h1 { width: 165px; height: 40px;  }
+    header h1 a { width: 165px; height: 40px; background-size: contain; }
+    #mobileHeader { margin: 18px 15px 0 0; }
 }
 
 /* ------- ------- ------ ------- ------- ------- ------- ------ */
@@ -796,24 +786,9 @@ header nav {
     display: inline-block;
 }
 
-@media only screen and (max-width: 300px) {
-    .notruf_layer .greybox p.button { float: left; clear: both; }
-    .notruf_layer { top: 0; }
-}
-@media only screen and (max-width: 350px) {
-    .notruf_layer h3 { font-size: 14px; }
-    .notruf_layer .faq ul li { font-size: 12px; margin: 0 0 0 0; }
-    .notruf_layer .faq ul { margin: 5px 10px; }
-    .notruf_layer .box { margin-top: 5px; }
-    .notruf_layer .box p { font-size: 11px; }
-    .notruf_layer .box p.linked_number a { font-size: 36px; }
-    .notruf_layer .box { width: 47%; }
-    .notruf_layer .greybox p.button { padding: 0 10px; }
-    .notruf_layer .greybox .button_red { font-size: 12px; }
-}
-@media only screen and (max-width: 420px) {
-    .notruf_layer .box p.number { display: none; }
-    .notruf_layer .box p.linked_number { display: block; }
+@media only screen and (max-width: 800px) {
+    .notruf_layer .box { width: 120px; }
+    .notruf_layer .box p.number { font-size: 60px; }
 }
 @media only screen and (max-width: 690px) {
     .notruf_layer .faq { clear: both; margin: 0; min-width: 100%; }
@@ -826,9 +801,24 @@ header nav {
     .notruf_layer { top: 0; }
     .notruf_layer .greybox p.button span.zusatz { display: none; }
 }
-@media only screen and (max-width: 800px) {
-    .notruf_layer .box { width: 120px; }
-    .notruf_layer .box p.number { font-size: 60px; }
+@media only screen and (max-width: 420px) {
+    .notruf_layer .box p.number { display: none; }
+    .notruf_layer .box p.linked_number { display: block; }
+}
+@media only screen and (max-width: 350px) {
+    .notruf_layer h3 { font-size: 14px; }
+    .notruf_layer .faq ul li { font-size: 12px; margin: 0 0 0 0; }
+    .notruf_layer .faq ul { margin: 5px 10px; }
+    .notruf_layer .box { margin-top: 5px; }
+    .notruf_layer .box p { font-size: 11px; }
+    .notruf_layer .box p.linked_number a { font-size: 36px; }
+    .notruf_layer .box { width: 47%; }
+    .notruf_layer .greybox p.button { padding: 0 10px; }
+    .notruf_layer .greybox .button_red { font-size: 12px; }
+}
+@media only screen and (max-width: 300px) {
+    .notruf_layer .greybox p.button { float: left; clear: both; }
+    .notruf_layer { top: 0; }
 }
 
 /* ------- ------- ------ ------- ------- ------- ------- ------ */
@@ -984,13 +974,30 @@ header nav {
 #stage .stageContentHeadline h1 {	margin: 0 10px 0 77px; }
 #stage .stageContentHeadline h2 {	margin: 0 10px 0 77px; }
 
-@media only screen and (max-width: 275px) {
-    #stage .stageContentCar { width: auto; margin: 0 2%; top: 220px; }
-    #stage h1 { font-size: 18px; }
-    #stage h2 { font-size: 12px; }
-    #stage p { display: none; }
-    #stage .stageQuoteRight { width: auto; margin: 0 auto; }
-    #stage .stageQuoteLeft { width: auto; margin: 0 auto; }
+@media only screen and (min-width: 1290px) {
+    #stage div.pictures {
+        width: 1250px;
+        margin: 0 auto 0 auto;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    #stage #stagewrapper { margin: 0 1%; }
+}
+@media only screen and (max-width: 750px) {
+    #stage #stagewrapper { margin: 0 2%; }
+    #stage .stageContentHeadline { top: 380px; }
+    #stage .stageContentHeadline figure { width: 48px; margin-right: 10px; }	
+    #stage h1 { font-size: 26px; padding: 5px 0 0 0; }	
+    #stage h2 { font-size: 16px; }	
+    #stage .stageContentListen h1 {	font-size: 40px; }
+    #stage .stageContentListen h2 {	font-size: 18px; }
+    #stage .stageContentHeadline h1 {	margin: 0 10px 0 62px; }
+    #stage .stageContentHeadline h2 {	margin: 0 10px 0 62px; }
+}
+@media only screen and (max-width: 700px) {
+    #stage .stageQuoteRight {
+        margin: 0 40px 0 auto;
+    }
 }
 @media only screen and (max-width: 525px) {
     #stage div.pictures {
@@ -1034,30 +1041,13 @@ header nav {
     #stage .smallstage { top: 180px; }
     #stage .half_blackBG { width: 92%; margin: 0; }
 }
-@media only screen and (max-width: 700px) {
-    #stage .stageQuoteRight {
-        margin: 0 40px 0 auto;
-    }
-}
-@media only screen and (max-width: 750px) {
-    #stage #stagewrapper { margin: 0 2%; }
-    #stage .stageContentHeadline { top: 380px; }
-    #stage .stageContentHeadline figure { width: 48px; margin-right: 10px; }	
-    #stage h1 { font-size: 26px; padding: 5px 0 0 0; }	
-    #stage h2 { font-size: 16px; }	
-    #stage .stageContentListen h1 {	font-size: 40px; }
-    #stage .stageContentListen h2 {	font-size: 18px; }
-    #stage .stageContentHeadline h1 {	margin: 0 10px 0 62px; }
-    #stage .stageContentHeadline h2 {	margin: 0 10px 0 62px; }
-}
-@media only screen and (max-width: 1000px) {
-    #stage #stagewrapper { margin: 0 1%; }
-}
-@media only screen and (min-width: 1290px) {
-    #stage div.pictures {
-        width: 1250px;
-        margin: 0 auto 0 auto;
-    }
+@media only screen and (max-width: 275px) {
+    #stage .stageContentCar { width: auto; margin: 0 2%; top: 220px; }
+    #stage h1 { font-size: 18px; }
+    #stage h2 { font-size: 12px; }
+    #stage p { display: none; }
+    #stage .stageQuoteRight { width: auto; margin: 0 auto; }
+    #stage .stageQuoteLeft { width: auto; margin: 0 auto; }
 }
 
 /* Stage "Fahrzeugstage" */
@@ -1105,19 +1095,19 @@ header nav {
 	font-size: 14px;
 }
 
-@media only screen and (max-width: 315px) {
-	#substage h2 { font-size: 16px; }
+@media only screen and (max-width: 850px) {
+	#stage .carstage { background-size: cover; }
+	#substage { background-size: cover; }
+}
+@media only screen and (max-width: 700px) {
+	#stage .carstage { height: auto; }
 }
 @media only screen and (max-width: 525px) {	
 	#substage h1 { font-size: 36px; }
 	#substage h2 { font-size: 20px; }
 }
-@media only screen and (max-width: 700px) {
-	#stage .carstage { height: auto; }
-}
-@media only screen and (max-width: 850px) {
-	#stage .carstage { background-size: cover; }
-	#substage { background-size: cover; }
+@media only screen and (max-width: 315px) {
+	#substage h2 { font-size: 16px; }
 }
 
 /* ------- ------- ------ ------- ------- ------- ------- ------ */
@@ -1167,44 +1157,6 @@ header nav {
 
 #content #map_canvas img { max-width: none; }
 
-@media only screen and (max-width: 525px) { #content div.smallstage { margin: 10px 0 0 0; } }
-@media only screen and (max-width: 560px) {
-    #content #MainContent {
-        width: 96%;
-        margin-left: 2%;
-        clear: both;
-    }
-    #content #SidebarContent {
-        width: 96%;
-        margin-left: 2%;
-        clear: both;
-    }
-}
-@media only screen and (max-width: 750px) {
-    #content .oneColumnBox {
-        width: 96%;
-        margin-left: 2%;
-    }
-    #content .BigBox {
-        width: 96%;
-        margin-left: 2%;
-    }
-    #content .SmallBox {
-        clear: both;
-        width: 96%;
-        margin-left: 2%;
-    }
-    #content #MainContent {
-        width: 60%;
-        margin: 0 3% 0 2%;
-        float: left;	
-    }
-    #content #SidebarContent {
-        width: 33%;
-        float: left;	
-        margin: 0 2% 0 0;
-    }
-}
 @media only screen and (max-width: 1000px) {
     #content .oneColumnBox {
         width: 98%;
@@ -1232,6 +1184,44 @@ header nav {
         margin: 0 1% 0 0;
     }
 }
+@media only screen and (max-width: 750px) {
+    #content .oneColumnBox {
+        width: 96%;
+        margin-left: 2%;
+    }
+    #content .BigBox {
+        width: 96%;
+        margin-left: 2%;
+    }
+    #content .SmallBox {
+        clear: both;
+        width: 96%;
+        margin-left: 2%;
+    }
+    #content #MainContent {
+        width: 60%;
+        margin: 0 3% 0 2%;
+        float: left;	
+    }
+    #content #SidebarContent {
+        width: 33%;
+        float: left;	
+        margin: 0 2% 0 0;
+    }
+}
+@media only screen and (max-width: 560px) {
+    #content #MainContent {
+        width: 96%;
+        margin-left: 2%;
+        clear: both;
+    }
+    #content #SidebarContent {
+        width: 96%;
+        margin-left: 2%;
+        clear: both;
+    }
+}
+@media only screen and (max-width: 525px) { #content div.smallstage { margin: 10px 0 0 0; } }
 
 /* ------------] Übergeordnete Styles [--------------- */
 #content h1.module {
@@ -1355,17 +1345,17 @@ header nav {
     margin:20px 0 0 0
 }
 
-@media only screen and (max-width: 450px){
-    #unwetterwarnung div{ text-align:center}
-    #unwetterwarnung div .wettericon{width:50px;height:50px;background-size:50px 50px}
-    #unwetterwarnung div .wettertext h2 span{margin:0;display:block}
-    #unwetterwarnung div .dwdlink{float:none}#unwetterwarnung div .dwdlink p{margin:40px 0 20px 0}
-}
 @media only screen and (max-width: 850px){
     #unwetterwarnung div{ text-align:center}
     #unwetterwarnung div .wettericon{display:block;margin:0 auto}
     #unwetterwarnung div .wettertext{max-width:100%;margin-left:0}
     #unwetterwarnung div .dwdlink{float:none}
+}
+@media only screen and (max-width: 450px){
+    #unwetterwarnung div{ text-align:center}
+    #unwetterwarnung div .wettericon{width:50px;height:50px;background-size:50px 50px}
+    #unwetterwarnung div .wettertext h2 span{margin:0;display:block}
+    #unwetterwarnung div .dwdlink{float:none}#unwetterwarnung div .dwdlink p{margin:40px 0 20px 0}
 }
 
 /* ------------] MainContent - Liste Einsätze [--------------- */
@@ -1533,6 +1523,15 @@ header nav {
 #content .listContent .inline_time { white-space:nowrap; }
 #content .listContent .inline_slash { display: inline; }
 
+@media only screen and (max-width: 750px) {
+    #content .listContent .number a { font-size: 12px; margin: 0; }
+    #content .listContent .date a { font-size: 12px; }
+    #content .listContent .date { width: 80px; white-space: normal; padding: 0 10px 10px 10px; }
+    #content .listContent .inline_slash { display: none; }
+    #content .listContent .icon a { background-position: center; }
+    #content .listContent .moreButton_mobile {	display: inline; }
+    #content .listContent .moreButton {	display: none; }
+}
 @media only screen and (max-width: 400px) {
     #content .listContent .number a {  }
     #content .listContent .inline_slash { display: none; }
@@ -1549,15 +1548,6 @@ header nav {
     #content .listContent .moreButton_arrow { display: block; border: 0; float: right; margin-top: -50px; }
     #content .listContent .moreButton_mobile { display: block; border: 0; float: right; margin-top: -50px; }
     #content .listContent .trenner { background-image: none; }
-}
-@media only screen and (max-width: 750px) {
-    #content .listContent .number a { font-size: 12px; margin: 0; }
-    #content .listContent .date a { font-size: 12px; }
-    #content .listContent .date { width: 80px; white-space: normal; padding: 0 10px 10px 10px; }
-    #content .listContent .inline_slash { display: none; }
-    #content .listContent .icon a { background-position: center; }
-    #content .listContent .moreButton_mobile {	display: inline; }
-    #content .listContent .moreButton {	display: none; }
 }
 
 /* ------------] MainContent - ListContent - Termine [--------------- */
@@ -1771,13 +1761,13 @@ header nav {
     margin: 15px 0 0 15px;
 }
 
-@media only screen and (max-width: 400px) {
-    #content .filter .thirdnavi_button { margin: 12px 0; clear: both; width: 100%; text-align: center; }
-}
 @media only screen and (max-width: 525px) {
     #content .filter { box-shadow: 1px 1px 2px #d9d9d9; }
     #content .filter .backToTop { display: none; }	
     #content .filter .thirdnavi_button { margin: 15px 0 15px 15px;	}
+}
+@media only screen and (max-width: 400px) {
+    #content .filter .thirdnavi_button { margin: 12px 0; clear: both; width: 100%; text-align: center; }
 }
 
 /* ---- NEW! CARPAGE "Content" */
@@ -2048,13 +2038,79 @@ header nav {
 	width: 646px;
 	margin: 60px auto 0 auto;
 }
+@media only screen and (min-width: 1290px) {
 
-@media only screen and (max-width: 315px) {
+	#content .car_darkspecial .specialwrapper {
+		width: 1290px;
+		margin: 0 auto;
+	}
+
+}
+@media only screen and (max-width: 850px) {
+	#content #car_techdetails .row_a {
+		width: 90%;
+		display: block;
+		margin: 0 auto 30px auto;
+	}
 	#content #car_techdetails .row_b,
 	#content #car_techdetails .row_c {
-		display: block;
+		width: 45%;
+	}
+
+	#content .car_darkspecial .image {
+		float: none;
+		width: 100%;
+	}
+	#content .car_darkspecial .image img {
+		width: 100%;
+	}
+	#content .car_darkspecial .text {
+		float: none;
 		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#content .car_darkspecial .text {
+		padding-bottom: 60px;
+	}
+	#content .car_darkspecial .text .number,
+	#content .car_darkspecial .textleft .number {
+		margin: 0 0 0 0;
+	}
+
+	#content .car_freespecial {
+		width: 100%;
+	}
+	#content .car_freespecial .text {
+		width: 40%;
+		margin: 140px 0 0 20px;
+	}
+}
+@media only screen and (max-width: 700px) {
+	#content .car_tools .imageleft,
+	#content .car_tools .textleft,
+	#content .car_tools .imageright,
+	#content .car_tools .textright {
+		width: 90%;
+		float: none;
 		margin: 0 auto;
+	}
+        
+	#content .car_tools .text {
+		margin: 20px auto 30px auto;
+	}
+        
+	#content .car_tools .text .head {
+		width: 70%;
+	}
+        
+	#content .car_freespecial .text h2 {
+		font-size: 28px;
+	}
+
+	#content .car_slideshowbox {
+		width: 90%;
+		margin: 60px auto 0 auto;
 	}
 }
 @media only screen and (max-width: 525px) {
@@ -2102,84 +2158,16 @@ header nav {
 	}
 
 }
-@media only screen and (max-width: 700px) {
-	#content .car_tools .imageleft,
-	#content .car_tools .textleft,
-	#content .car_tools .imageright,
-	#content .car_tools .textright {
-		width: 90%;
-		float: none;
-		margin: 0 auto;
-	}
-        
-	#content .car_tools .text {
-		margin: 20px auto 30px auto;
-	}
-        
-	#content .car_tools .text .head {
-		width: 70%;
-	}
-        
-	#content .car_freespecial .text h2 {
-		font-size: 28px;
-	}
-
-	#content .car_slideshowbox {
-		width: 90%;
-		margin: 60px auto 0 auto;
-	}
-}
-@media only screen and (max-width: 850px) {
-	#content #car_techdetails .row_a {
-		width: 90%;
-		display: block;
-		margin: 0 auto 30px auto;
-	}
+@media only screen and (max-width: 315px) {
 	#content #car_techdetails .row_b,
 	#content #car_techdetails .row_c {
-		width: 45%;
-	}
-
-	#content .car_darkspecial .image {
-		float: none;
-		width: 100%;
-	}
-	#content .car_darkspecial .image img {
-		width: 100%;
-	}
-	#content .car_darkspecial .text {
-		float: none;
+		display: block;
 		width: 90%;
-		margin-left: auto;
-		margin-right: auto;
-	}
-	#content .car_darkspecial .text {
-		padding-bottom: 60px;
-	}
-	#content .car_darkspecial .text .number,
-	#content .car_darkspecial .textleft .number {
-		margin: 0 0 0 0;
-	}
-
-	#content .car_freespecial {
-		width: 100%;
-	}
-	#content .car_freespecial .text {
-		width: 40%;
-		margin: 140px 0 0 20px;
-	}
-}
-@media only screen and (min-width: 1290px) {
-
-	#content .car_darkspecial .specialwrapper {
-		width: 1290px;
 		margin: 0 auto;
 	}
-
 }
 
 /* ------------] MainContent - FactSheet [--------------- */
-
 #content .factSheet {
     width: 100%;
     background-color:#FFF;
@@ -2261,36 +2249,25 @@ header nav {
     float: right;
 }
 
-@media only screen and (max-width: 265px) { 
-
-    #content .factSheet .data { margin: 5px 0 10px 6%; width: 40%; }
-    #content .factSheet .data .icon { width: 30px; margin: 0 0 0 0; }
-    #content .factSheet .data h2 { font-size: 14px; width: 60%; }
-}
-@media only screen and (max-width: 315px) { 
-
-    #content .factSheet .data { margin: 5px 0 10px 6%; }
-    #content .factSheet .table { width: 88%; } 
-    #content .factSheet .table .row { padding: 5px 0 20px 0; }
-    #content .factSheet .table .red { width: auto; clear: both; }
-}
-@media only screen and (max-width: 400px) { #content .factSheet .table { width: 90%; } #content .factSheet .data { margin: 5px 0 10px 10%; } }
-@media only screen and (max-width: 525px) { #content .factSheet { box-shadow: 1px 1px 2px #d9d9d9; margin-top: 10px; } }
-@media only screen and (max-width: 580px) { #content .factSheet .table { width: 94%; } #content .factSheet .data { margin: 5px 0 10px 4%; } }
-@media only screen and (max-width: 640px) { #content .factSheet .data { margin: 5px 0 10px 2%; } }
-@media only screen and (max-width: 720px) { #content .factSheet .data { margin: 5px 0 10px 5%; } }
-@media only screen and (max-width: 760px) {
-
-    #content .factSheet .data { margin: 10px 0 10px 2%; }
-    #content .factSheet .data h1 { display: none; }
-
-}
-@media only screen and (max-width: 840px) {
+@media only screen and (max-width: 1000px) {
 
     #content .factSheet .data {
-        margin: 5px 1% 10px 2%;
+        width: 11%;
     }
-
+    #content .factSheet .data h1 {
+        margin: 5px 5px 0 5px;
+    }
+    #content .factSheet .data h2 {
+        margin: 5px 5px 0 5px;
+        font-size: 20px;
+    }
+    #content .factSheet .data .icon {
+        margin: 5px 5px 0 5px;
+        width: 80%;
+    }
+    #content .factSheet .data .icon img {
+        float: left;
+    }
 }
 @media only screen and (max-width: 960px) {
 
@@ -2336,25 +2313,35 @@ header nav {
     }
 
 }
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 840px) {
 
     #content .factSheet .data {
-        width: 11%;
+        margin: 5px 1% 10px 2%;
     }
-    #content .factSheet .data h1 {
-        margin: 5px 5px 0 5px;
-    }
-    #content .factSheet .data h2 {
-        margin: 5px 5px 0 5px;
-        font-size: 20px;
-    }
-    #content .factSheet .data .icon {
-        margin: 5px 5px 0 5px;
-        width: 80%;
-    }
-    #content .factSheet .data .icon img {
-        float: left;
-    }
+}
+@media only screen and (max-width: 760px) {
+
+    #content .factSheet .data { margin: 10px 0 10px 2%; }
+    #content .factSheet .data h1 { display: none; }
+
+}
+@media only screen and (max-width: 720px) { #content .factSheet .data { margin: 5px 0 10px 5%; } }
+@media only screen and (max-width: 640px) { #content .factSheet .data { margin: 5px 0 10px 2%; } }
+@media only screen and (max-width: 580px) { #content .factSheet .table { width: 94%; } #content .factSheet .data { margin: 5px 0 10px 4%; } }
+@media only screen and (max-width: 525px) { #content .factSheet { box-shadow: 1px 1px 2px #d9d9d9; margin-top: 10px; } }
+@media only screen and (max-width: 400px) { #content .factSheet .table { width: 90%; } #content .factSheet .data { margin: 5px 0 10px 10%; } }
+@media only screen and (max-width: 315px) { 
+
+    #content .factSheet .data { margin: 5px 0 10px 6%; }
+    #content .factSheet .table { width: 88%; } 
+    #content .factSheet .table .row { padding: 5px 0 20px 0; }
+    #content .factSheet .table .red { width: auto; clear: both; }
+}
+@media only screen and (max-width: 265px) { 
+
+    #content .factSheet .data { margin: 5px 0 10px 6%; width: 40%; }
+    #content .factSheet .data .icon { width: 30px; margin: 0 0 0 0; }
+    #content .factSheet .data h2 { font-size: 14px; width: 60%; }
 }
 
 /* ------------] MainContent - FactSheet EINSATZ [--------------- */
@@ -2462,18 +2449,16 @@ header nav {
 }
 #content .factSheet_einsatz .showIcon { display: inline; }
 
-@media only screen and (max-width: 230px) {
-    #content .factSheet_einsatz .table .black { font-size: 11px; }
-    #content .factSheet_einsatz .data .icon { display: none;  }
-    #content .factSheet_einsatz .data h1  { width: 75px; font-size: 11px; }
-
+@media only screen and (max-width: 1000px) {
+    #content .factSheet_einsatz .table { width: 33%; }
+    #content .factSheet_einsatz .data { width: 12%; }
+    #content .factSheet_einsatz .data .info { width: 50%; }
+    #content .factSheet_einsatz .showIcon { display: none; }
+    #content .factSheet_einsatz .data .showInfo { margin: 10px 0 0 10px; }
 }
-@media only screen and (max-width: 300px) {
-    #content .factSheet_einsatz .table { width: 90%; }
-    #content .factSheet_einsatz .data { width: 90%; }
-    #content .factSheet_einsatz .data .info { width: 40%; margin: 0;  }
-    #content .factSheet_einsatz .data h1 { width: 85px; }
-    #content .factSheet_einsatz .data .info h2, #content .factSheet_einsatz .data .info h3, #content .factSheet_einsatz .data .info h4 { clear: both; padding: 0; margin: 0 0 0 10px; }
+@media only screen and (max-width: 800px) {
+    #content .factSheet_einsatz .table { width: 95%; clear: both; }
+    #content .factSheet_einsatz .data { width: 19%; }
 }
 @media only screen and (max-width: 525px) {
     #content .factSheet_einsatz .table { width: 93%; clear: both; }
@@ -2486,16 +2471,18 @@ header nav {
     #content .factSheet_einsatz .data .info h3 { float: left; padding: 10px 0 0 0; margin: 0 0 0 5px; }
     #content .factSheet_einsatz .data .info h4 { float: left; padding: 10px 0 0 0; margin: 0 0 0 10px; }
 }
-@media only screen and (max-width: 800px) {
-    #content .factSheet_einsatz .table { width: 95%; clear: both; }
-    #content .factSheet_einsatz .data { width: 19%; }
+@media only screen and (max-width: 300px) {
+    #content .factSheet_einsatz .table { width: 90%; }
+    #content .factSheet_einsatz .data { width: 90%; }
+    #content .factSheet_einsatz .data .info { width: 40%; margin: 0;  }
+    #content .factSheet_einsatz .data h1 { width: 85px; }
+    #content .factSheet_einsatz .data .info h2, #content .factSheet_einsatz .data .info h3, #content .factSheet_einsatz .data .info h4 { clear: both; padding: 0; margin: 0 0 0 10px; }
 }
-@media only screen and (max-width: 1000px) {
-    #content .factSheet_einsatz .table { width: 33%; }
-    #content .factSheet_einsatz .data { width: 12%; }
-    #content .factSheet_einsatz .data .info { width: 50%; }
-    #content .factSheet_einsatz .showIcon { display: none; }
-    #content .factSheet_einsatz .data .showInfo { margin: 10px 0 0 10px; }
+@media only screen and (max-width: 230px) {
+    #content .factSheet_einsatz .table .black { font-size: 11px; }
+    #content .factSheet_einsatz .data .icon { display: none;  }
+    #content .factSheet_einsatz .data h1  { width: 75px; font-size: 11px; }
+
 }
 /* ------------] MainContent - FactSheet EINSATZLISTE [--------------- */
 
@@ -2561,40 +2548,40 @@ header nav {
     border-bottom: 0;
 }
 
-@media only screen and (max-width: 520px) {
-    #content .factBox { width: auto; margin: 0 3% 0 3%; }
-    #content .factSheet_einsatzListe .row {	margin: 0 4% 0 4%; width: 95%; clear:both; }
-    #content .factSheet_einsatzListe .label { width: 100%; margin: 0 0 0 60px; }
-    #content .factSheet_einsatzListe .icon { width: 36px; margin: 0 0 0 60px; }
-}
-@media only screen and (max-width: 560px) {
-    #content .factBox { width: auto; margin: 0 0 0 0; }
+@media only screen and (max-width: 1000px) {
+    #content .factBox { width: auto; margin: 0 2% 0 2%; }
     #content .factSheet_einsatzListe .label { width: 140px; }
-    #content .factSheet_einsatzListe .row {	margin: 0 0 0 4%; }
-}
-@media only screen and (max-width: 670px) {
-    #content .factBox { width: auto; margin: 0 auto; }
-    #content .factSheet_einsatzListe .label { width: 140px; }
-    #content .factSheet_einsatzListe .row {	margin: 0 0 0 7%; }
-}
-@media only screen and (max-width: 750px) {
-    #content .factBox { width: auto; margin: 0 0 0 0; }
-    #content .factSheet_einsatzListe .label { width: 180px; }
-    #content .factSheet_einsatzListe .row {	margin: 0 3% 0 5%; }
-}
-@media only screen and (max-width: 790px) {
-    #content .factSheet_einsatzListe .row {	margin: 0 0 0 4%; }
-    #content .factSheet_einsatzListe .label { width: 220px; }
+    #content .factSheet_einsatzListe .row {	margin: 0 0 0 5%; }
 }
 @media only screen and (max-width: 900px) {
     #content .factBox { width: auto; margin: 0 2% 0 4%; }
     #content .factSheet_einsatzListe .label { width: 130px; }
     #content .factSheet_einsatzListe .row {	margin: 0 0 0 4%; }
 }
-@media only screen and (max-width: 1000px) {
-    #content .factBox { width: auto; margin: 0 2% 0 2%; }
+@media only screen and (max-width: 790px) {
+    #content .factSheet_einsatzListe .row {	margin: 0 0 0 4%; }
+    #content .factSheet_einsatzListe .label { width: 220px; }
+}
+@media only screen and (max-width: 750px) {
+    #content .factBox { width: auto; margin: 0 0 0 0; }
+    #content .factSheet_einsatzListe .label { width: 180px; }
+    #content .factSheet_einsatzListe .row {	margin: 0 3% 0 5%; }
+}
+@media only screen and (max-width: 670px) {
+    #content .factBox { width: auto; margin: 0 auto; }
     #content .factSheet_einsatzListe .label { width: 140px; }
-    #content .factSheet_einsatzListe .row {	margin: 0 0 0 5%; }
+    #content .factSheet_einsatzListe .row {	margin: 0 0 0 7%; }
+}
+@media only screen and (max-width: 560px) {
+    #content .factBox { width: auto; margin: 0 0 0 0; }
+    #content .factSheet_einsatzListe .label { width: 140px; }
+    #content .factSheet_einsatzListe .row {	margin: 0 0 0 4%; }
+}
+@media only screen and (max-width: 520px) {
+    #content .factBox { width: auto; margin: 0 3% 0 3%; }
+    #content .factSheet_einsatzListe .row {	margin: 0 4% 0 4%; width: 95%; clear:both; }
+    #content .factSheet_einsatzListe .label { width: 100%; margin: 0 0 0 60px; }
+    #content .factSheet_einsatzListe .icon { width: 36px; margin: 0 0 0 60px; }
 }
 
 /* ------------] MainContent - Googlemaps [--------------- */
@@ -2755,18 +2742,18 @@ header nav {
     color: #ffd200;
 }
 
-@media only screen and (max-width: 400px) {
-    #content .article div.links { clear:both; }
-}
-@media only screen and (max-width: 570px) {
-    #content .article div.links { float:left; clear:none; }
+@media only screen and (max-width: 1000px) {
+    #content .article ul.linktable_first { clear:both; width: 100%; }
+    #content .article ul.linktable_second { clear:both; width: 100%; }
 }
 @media only screen and (max-width: 650px) {
     #content .article div.links { clear:left; }
 }
-@media only screen and (max-width: 1000px) {
-    #content .article ul.linktable_first { clear:both; width: 100%; }
-    #content .article ul.linktable_second { clear:both; width: 100%; }
+@media only screen and (max-width: 570px) {
+    #content .article div.links { float:left; clear:none; }
+}
+@media only screen and (max-width: 400px) {
+    #content .article div.links { clear:both; }
 }
 
 /* ------------] MainContent - MenueBox [--------------- */
@@ -2820,16 +2807,16 @@ header nav {
     color: #ffd200;
 }
 
-@media only screen and (max-width: 350px) {
-    #content .TabBox li {
-        display: block;
-        margin: 0 0 1px 0;
+@media only screen and (max-width: 1000px) {
+    #content .menueBox {
+        padding: 1%;
+        min-width: 230px;
     }
-    #content .menueBox h1.subnavi_opener_mobile {
-        font-size: 14px;
+    #content .menueBox ul {
+        height: auto;
     }
-    #content .TabBox .tabNav_details { display: none; }
-    #content .TabBox .TabBoxContent h1.reiter { display: block; }
+    #content .menueBox .subnavi_opener_mobile { display: none; }
+    #content .menueBox .subnavi_content_mobile { display: none; }
 }
 @media only screen and (max-width: 750px) {
     #content .menueBox h1 { display: none; }
@@ -2850,16 +2837,16 @@ header nav {
         overflow: hidden;
     }
 }
-@media only screen and (max-width: 1000px) {
-    #content .menueBox {
-        padding: 1%;
-        min-width: 230px;
+@media only screen and (max-width: 350px) {
+    #content .TabBox li {
+        display: block;
+        margin: 0 0 1px 0;
     }
-    #content .menueBox ul {
-        height: auto;
+    #content .menueBox h1.subnavi_opener_mobile {
+        font-size: 14px;
     }
-    #content .menueBox .subnavi_opener_mobile { display: none; }
-    #content .menueBox .subnavi_content_mobile { display: none; }
+    #content .TabBox .tabNav_details { display: none; }
+    #content .TabBox .TabBoxContent h1.reiter { display: block; }
 }
 
 /* ------------] MainContent - backtooverview [--------------- */
@@ -3018,6 +3005,22 @@ header nav {
     text-indent: -9999em;
 }
 
+@media only screen and (max-width: 1000px) {
+    #content .detailShow .text {
+        width: 25%;
+        padding: 15px 10px 0 10px; 
+        margin: 0 0 0 0;
+    }
+    #content .detailShow figure {
+        height: auto;
+        width: 71%;
+    }
+    #content .detailShow .tableofcontent {
+        text-align: center;
+        width: 97%; 
+        margin: 0 0 0 30px;
+    }
+}
 @media only screen and (max-width: 525px) {
     #content .detailShow figure {
         height: auto;
@@ -3034,22 +3037,6 @@ header nav {
     }
     #content .detailShow .next a {
         clear: both;
-    }
-}
-@media only screen and (max-width: 1000px) {
-    #content .detailShow .text {
-        width: 25%;
-        padding: 15px 10px 0 10px; 
-        margin: 0 0 0 0;
-    }
-    #content .detailShow figure {
-        height: auto;
-        width: 71%;
-    }
-    #content .detailShow .tableofcontent {
-        text-align: center;
-        width: 97%; 
-        margin: 0 0 0 30px;
     }
 }
 
@@ -3275,8 +3262,6 @@ header nav {
     color: #ffd200;
 }
 
-@media only screen and (max-width: 350px) {}
-@media only screen and (max-width: 750px) {}
 @media only screen and (max-width: 1000px) {
     #content .dateBox {
         padding: 1%;
@@ -3286,6 +3271,8 @@ header nav {
         height: auto;
     }
 }
+@media only screen and (max-width: 750px) {}
+@media only screen and (max-width: 350px) {}
 
 /* ------------] MainContent - TeaserListe [--------------- */
 
@@ -3354,11 +3341,13 @@ header nav {
     left: 0;
 }
 
-@media only screen and (max-width: 440px) {
-    #content .TeaserListe li .abzeichen { width: 50px; margin: -43px 0 0 5px; }
-    #content .TeaserListe li { width: 100%; margin: 0 0 20px 0; }
-    #content .TeaserListe li.text { height: auto; }
-    #content .TeaserListe li h1 { font-size: 18px; }
+@media only screen and (max-width: 1000px) {
+    #content .TeaserListe li { width: 32%; margin: 0 2% 20px 0; }
+    #content .TeaserListe li.text { height: 240px; }
+}
+@media only screen and (max-width: 800px) {
+    #content .TeaserListe li { width: 48%; margin: 0 2% 20px 0; }
+    #content .TeaserListe li.third { margin: 0 2% 20px 0; }
 }
 @media only screen and (max-width: 525px) {
     #content .TeaserListe {	margin-top: 30px; }
@@ -3368,13 +3357,11 @@ header nav {
     #content .TeaserListe li .abzeichen { width: 40px; margin: -33px 0 0 5px; }
     #content .TeaserListe li .abzeichen { top: 100%; left: 1%; }
 }
-@media only screen and (max-width: 800px) {
-    #content .TeaserListe li { width: 48%; margin: 0 2% 20px 0; }
-    #content .TeaserListe li.third { margin: 0 2% 20px 0; }
-}
-@media only screen and (max-width: 1000px) {
-    #content .TeaserListe li { width: 32%; margin: 0 2% 20px 0; }
-    #content .TeaserListe li.text { height: 240px; }
+@media only screen and (max-width: 440px) {
+    #content .TeaserListe li .abzeichen { width: 50px; margin: -43px 0 0 5px; }
+    #content .TeaserListe li { width: 100%; margin: 0 0 20px 0; }
+    #content .TeaserListe li.text { height: auto; }
+    #content .TeaserListe li h1 { font-size: 18px; }
 }
 
 /* ------------] MainContent - News Teaser [--------------- */
@@ -3820,28 +3807,6 @@ header nav {
 
 /* ---------------- */
 
-@media only screen and (max-width: 525px) {
-    #content {
-        width: 100%;	
-        margin: 0 0 0 0;
-        padding: 0 0 0 0;
-        position: static;
-    }
-    #content #slider li a  {
-        background-color: #b1b1b1;	
-    }
-}
-@media only screen and (max-width: 730px) {
-    #content .SBfahrzeugListe ul { text-align: center; }
-    #content .SBfahrzeugListe ul li .info { width: 100%; }
-    #content .SBfahrzeugListe figure { width: 100%; }
-    #content .SBfahrzeugListe ul li h2 { margin: 5px 0 0 0; }
-}
-@media only screen and (max-width: 810px) {
-    #content .SBfahrzeugListe figure { width: 30%; }
-    #content .SBfahrzeugListe ul li h2 { font-size: 18px; margin: 15px 0 0 0; }
-    #content .SBfahrzeugListe ul li h3 { font-size: 11px; margin: 0 0 5px 0;}
-}
 @media only screen and (max-width: 1000px) {
     #content #MainContent h1.module {
         margin: 40px 3% 20px 3%;
@@ -3876,25 +3841,47 @@ header nav {
     #content .SBfahrzeugListe figure { width: 36%; }
     #content .SBfahrzeugListe ul li h2 { margin: 20px 0 0 0; }
 }
-
-/* Iphone 4/4s Landscape Facebook Plugin */
-@media only screen 
-and (min-device-width: 320px)  
-and (max-device-width: 480px) 
-and (-webkit-device-pixel-ratio: 2) 
-and (device-aspect-ratio: 2/3) 
-{
-    #content #SidebarContent .facebook .wrapper {
-        width: 180px;
-        margin: 10px auto auto 4%;
+@media only screen and (max-width: 810px) {
+    #content .SBfahrzeugListe figure { width: 30%; }
+    #content .SBfahrzeugListe ul li h2 { font-size: 18px; margin: 15px 0 0 0; }
+    #content .SBfahrzeugListe ul li h3 { font-size: 11px; margin: 0 0 5px 0;}
+}
+@media only screen and (max-width: 730px) {
+    #content .SBfahrzeugListe ul { text-align: center; }
+    #content .SBfahrzeugListe ul li .info { width: 100%; }
+    #content .SBfahrzeugListe figure { width: 100%; }
+    #content .SBfahrzeugListe ul li h2 { margin: 5px 0 0 0; }
+}
+@media only screen and (max-width: 525px) {
+    #content {
+        width: 100%;	
+        margin: 0 0 0 0;
+        padding: 0 0 0 0;
+        position: static;
+    }
+    #content #slider li a  {
+        background-color: #b1b1b1;	
     }
 }
+
 /* Iphone 5/5s Landscape Facebook Plugin */
 @media only screen 
 and (min-device-width: 320px) 
 and (max-device-width: 568px)
 and (-webkit-device-pixel-ratio: 2) 
 and (device-aspect-ratio: 40/71)
+{
+    #content #SidebarContent .facebook .wrapper {
+        width: 180px;
+        margin: 10px auto auto 4%;
+    }
+}
+/* Iphone 4/4s Landscape Facebook Plugin */
+@media only screen 
+and (min-device-width: 320px)  
+and (max-device-width: 480px) 
+and (-webkit-device-pixel-ratio: 2) 
+and (device-aspect-ratio: 2/3) 
 {
     #content #SidebarContent .facebook .wrapper {
         width: 180px;
@@ -4021,24 +4008,6 @@ and (device-aspect-ratio: 40/71)
     margin: 0;
 }
 
-@media only screen and (max-width: 525px) {
-    #endOfPage #shortlinks ul {
-        width: 100%;
-        height: auto;
-    }
-    #endOfPage #shortlinks ul li {
-        width: 100%;
-        border: 0;
-        text-align: center;
-        margin: 0 auto 5px auto;
-        clear: left;
-    }
-}
-@media only screen and (max-width: 600px) {
-    #endOfPage #shortlinks h1 {
-        font-size: 18px;
-    }
-}
 @media only screen and (max-width: 1000px) {
     #endOfPage #sitemap .completeSitemap {
         display: none;
@@ -4060,6 +4029,24 @@ and (device-aspect-ratio: 40/71)
     }
     #endOfPage #sitemap .smallSitemap a:hover {
         color: #ffd200;
+    }
+}
+@media only screen and (max-width: 600px) {
+    #endOfPage #shortlinks h1 {
+        font-size: 18px;
+    }
+}
+@media only screen and (max-width: 525px) {
+    #endOfPage #shortlinks ul {
+        width: 100%;
+        height: auto;
+    }
+    #endOfPage #shortlinks ul li {
+        width: 100%;
+        border: 0;
+        text-align: center;
+        margin: 0 auto 5px auto;
+        clear: left;
     }
 }
 /* Settings/Info end */
