@@ -96,7 +96,7 @@
         </div>
     </div>
 
-    <?php if($weather != false) : ?>
+    <?php if($weather != null && $weather != false) : ?>
     <div class="weather">
         <h1>Wetter Aussichten</h1>
         <div class="wrapper">    
