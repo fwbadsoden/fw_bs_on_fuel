@@ -124,12 +124,12 @@
 		<ul>
             <li class="tel">+49 6196 24074</li>
             <li class="fax">+49 6196 62596</li></li>
-            <li class="mail"><?=safe_mailto('stadtbrandinspektor@feuerwehr-bs.de', 'Stadtbrandinspektor')?></li>
-            <li class="mail"><?=safe_mailto('wehrfuehrung@feuerwehr-bs.de', 'Wehrführung')?></li>
-            <li class="mail"><?=safe_mailto('pressestelle@feuerwehr-bs.de', 'Pressestelle')?></li>
-            <li class="mail"><?=safe_mailto('jugendfeuerwehr@feuerwehr-bs.de', 'Jugendfeuerwehr')?></li>
-            <li class="mail"><?=safe_mailto('minifeuerwehr@feuerwehr-bs.de', 'Minifeuerwehr')?></li>
-            <li class="mail"><?=safe_mailto('verein@feuerwehr-bs.de', 'Verein')?></li>
+            <li class="mail"><?=safe_mailto_notitleencoding('stadtbrandinspektor@feuerwehr-bs.de', 'Stadtbrandinspektor')?></li>
+            <li class="mail"><?=safe_mailto_notitleencoding('wehrfuehrung@feuerwehr-bs.de', 'Wehrführung')?></li>
+            <li class="mail"><?=safe_mailto_notitleencoding('pressestelle@feuerwehr-bs.de', 'Pressestelle')?></li>
+            <li class="mail"><?=safe_mailto_notitleencoding('jugendfeuerwehr@feuerwehr-bs.de', 'Jugendfeuerwehr')?></li>
+            <li class="mail"><?=safe_mailto_notitleencoding('minifeuerwehr@feuerwehr-bs.de', 'Minifeuerwehr')?></li>
+            <li class="mail"><?=safe_mailto_notitleencoding('verein@feuerwehr-bs.de', 'Verein')?></li>
         </ul>
         <br />
     </div>    
