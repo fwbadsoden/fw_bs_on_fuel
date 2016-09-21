@@ -73,6 +73,7 @@ endif;
 
 
 <?php
+    $picture_orientation = "right";
     $modules = get_vehicle_module_order($data->module_order);
     foreach($modules as $module) {
         include($module);

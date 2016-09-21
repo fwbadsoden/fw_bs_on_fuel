@@ -1,7 +1,8 @@
 <?php
 if (count($data->fahrzeug_loadings) > 0) :
-    $counter = 1;
-    ?> 
+    if($picture_orientation == "right") $counter = 1;
+    else $counter = 0;
+?> 
 
     <?php if ($data->show_loadings_header()) : ?>
         <div class="slidewrapper">
@@ -19,9 +20,11 @@ if (count($data->fahrzeug_loadings) > 0) :
                 if ($counter % 2 == 0) {
                     $css_image = "image imageright";
                     $css_text = "text textright";
+                    $picture_orientation = "right";
                 } else {
                     $css_image = "image imageleft";
                     $css_text = "text textleft";
+                    $picture_orientation = "left";
                 }
                 ?>
                 <div class="toolbox">

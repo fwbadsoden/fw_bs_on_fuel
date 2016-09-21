@@ -5,8 +5,18 @@ include_once($_ENV["DOC_ROOT"] . "/fuel/modules/fuel/controllers/page_router.php
 class My_page_router extends Page_router {
 
     public function _remap($method) {
-        if (!array_key_exists(uri_path(TRUE), $this->fuel->pages->cms()) && uri_path(TRUE) != "offline") {
-            $this->location = "404notfound";
+        if (!in_array(uri_path(TRUE), $this->fuel->pages->cms()) && uri_path(TRUE) != "offline") {
+            $uri_path = uri_path(TRUE);
+            if (substr($uri_path, -1) == "/") {
+                $uri_path = rtrim($uri_path, "/");
+            } elseif (is_numeric(substr($uri_path, strrpos($uri_path, "/") + 1))) {
+                $uri_path = rtrim($uri_path, substr($uri_path, strrpos($uri_path, "/")));
+            }
+            if (!in_array($uri_path, $this->fuel->pages->cms())) {
+                $this->location = "404notfound";
+            } else {
+                $this->location = uri_path(TRUE);
+            }
         } else {
             $this->location = uri_path(TRUE);
         }
@@ -51,7 +61,7 @@ class My_page_router extends Page_router {
                         }
                     }
                 }
-                
+
                 $page = $this->fuel->pages->create($config);
 
                 if ((!$page->has_cms_data() AND $config['render_mode'] == 'auto') OR $config['render_mode'] == 'views') {

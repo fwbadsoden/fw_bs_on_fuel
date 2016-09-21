@@ -1,6 +1,7 @@
 <?php
 if (count($data->fahrzeug_special_functions) > 0) :
-    $counter = 1;
+    if($picture_orientation == "right") $counter = 1;
+    else $counter = 0;
     $character = "A";
     ?> 
     <div class="car_darkspecial">  
@@ -15,9 +16,11 @@ if (count($data->fahrzeug_special_functions) > 0) :
                 if ($counter % 2 == 0) {
                     $css_image = "image imageleft";
                     $css_text = "text textleft";
+                    $picture_orientation = "right";
                 } else {
                     $css_image = "image";
                     $css_text = "text";
+                    $picture_orientation = "left";
                 }
                 ?>
                 <div>
