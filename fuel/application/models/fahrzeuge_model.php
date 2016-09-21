@@ -235,25 +235,6 @@ class Fahrzeuge_model extends Abstract_module_model {
         return $data;
     }
 
-    public function get_fahrzeugliste($ad) {
-
-        if ($ad) {
-            $this->db->where(array("retired" => "yes", "published" => "yes", "ist_abrollbehaelter" => "no"));
-        } else {
-            $this->db->where(array("retired" => "no", "published" => "yes", "ist_abrollbehaelter" => "no"));
-        }
-        $this->db->order_by('precedence', 'ascending');
-        $this->db->select("name, name_lang, id");
-        $query = $this->db->get("fahrzeuge");
-        $fahrzeuge = array();
-
-        foreach ($query->result() as $row) {
-            array_push($fahrzeuge, $row);
-        }
-
-        return $fahrzeuge;
-    }
-
     public function get_mission_vehicle_list() {
 
         $this->db->order_by('precedence asc');
