@@ -1,4 +1,7 @@
-<?php $counter = 1; ?>
+<?php
+    if($picture_orientation == "right") $counter = 1;
+    else $counter = 0;
+?>
 <div class="slidewrapper">
     <div class="car_content">
         <h2>Abrollbehälter</h2>
@@ -12,9 +15,11 @@
             if ($counter % 2 == 0) {
                 $css_image = "image imageright";
                 $css_text = "text textright";
+                $picture_orientation = "left";
             } else {
                 $css_image = "image imageleft";
                 $css_text = "text textleft";
+                $picture_orientation = "right";
             }
             ?>
             <div class="toolbox">
