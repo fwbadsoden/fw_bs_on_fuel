@@ -32,9 +32,11 @@ class Module_layout extends Base_layout {
                     $vars["order"] = "precedence asc";
                 }
 
-                if (is_numeric(uri_segment($vars["segment"]))) {
+                if (is_numeric(uri_segment($vars["segment"])) && $CI->fahrzeuge_model->record_exists(array("id" => uri_segment($vars["segment"])))) {
                     $vars["stage_info"] = $CI->fahrzeuge_model->get_stage_info(uri_segment($vars["segment"]));
                     $vars["stage_info"]["stage"] = "fahrzeug";
+                } else {
+                    $vars["is404"] = true;
                 }
 
                 $vars["model"] = "fahrzeuge_model";
@@ -44,7 +46,11 @@ class Module_layout extends Base_layout {
             case "einsatz": $CI->load->model("missions_model");
 
                 if (is_numeric(uri_segment($vars["segment"]))) {
-                    $vars["stage_text"] = $CI->missions_model->get_stage_text(uri_segment($vars["segment"]));
+                    if ($CI->missions_model->record_exists(array("id" => uri_segment($vars["segment"])))) {
+                        $vars["stage_text"] = $CI->missions_model->get_stage_text(uri_segment($vars["segment"]));
+                    } else {
+                        $vars["is404"] = true;
+                    }
                 } else {
                     if ($CI->input->post('mission_year'))
                         $mission_year = $CI->input->post('mission_year');
@@ -76,9 +82,13 @@ class Module_layout extends Base_layout {
                 $CI->load->library('weather');
 
                 if (is_numeric(uri_segment($vars["segment"]))) {
-                    $vars["stage_text"] = $CI->news_articles_model->get_stage_text(uri_segment($vars["segment"]));
-                    $vars["latest_news"] = fuel_model("news_articles_model", array('find' => 'all', 'limit' => 10, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'datum desc, id desc'));
-                    $vars["facebook_infos"][0] = $CI->news_articles_model->get_og_image(uri_segment($vars["segment"]));
+                    if ($CI->news_articles_model->record_exists(array("id" => uri_segment($vars["segment"])))) {
+                        $vars["stage_text"] = $CI->news_articles_model->get_stage_text(uri_segment($vars["segment"]));
+                        $vars["latest_news"] = fuel_model("news_articles_model", array('find' => 'all', 'limit' => 10, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'datum desc, id desc'));
+                        $vars["facebook_infos"][0] = $CI->news_articles_model->get_og_image(uri_segment($vars["segment"]));
+                    } else {
+                        $vars["is404"] = true;
+                    }
                 } else {
                     $vars["weather"] = $CI->weather->get_weather();
                     $vars["termine"] = fuel_model("appointments_model", array('find' => 'all', 'limit' => 3, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'datum asc, beginn asc'));
@@ -129,12 +139,14 @@ class Module_layout extends Base_layout {
         }
 
         // wenn es sich um die Detailseite des Moduls handelt, die Stage überschreiben
-        if (is_numeric(uri_segment($vars["segment"]))) {
+        if (is_numeric(uri_segment($vars["segment"])) && !$vars["is404"]) {
 
             // bei Fahrzeugdetailseite handle_images auf false setzen
-            if($vars["my_module"] == "fahrzeug") $handle_images = false;
-            else $handle_images = true;
-            
+            if ($vars["my_module"] == "fahrzeug")
+                $handle_images = false;
+            else
+                $handle_images = true;
+
             $CI = & get_instance();
             $CI->load->model('stages_model');
             $stage_id = $this->fuel->page->properties('stage_id_detail');

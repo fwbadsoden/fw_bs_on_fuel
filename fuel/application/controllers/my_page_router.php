@@ -13,7 +13,7 @@ class My_page_router extends Page_router {
                 $uri_path = rtrim($uri_path, substr($uri_path, strrpos($uri_path, "/")));
             }
             if (!in_array($uri_path, $this->fuel->pages->cms())) {
-                $this->location = "404notfound";
+                $this->location = "404_error";
             } else {
                 $this->location = uri_path(TRUE);
             }

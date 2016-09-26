@@ -18,6 +18,9 @@ class Base_layout extends Fuel_layout {
         $CI =& get_instance();
         $CI->load->model('stages_model');
         
+        // 404
+        $vars["is404"] = false;
+        
         // Stage für Inhaltsseite laden   
         $stage_id = $this->fuel->page->properties('stage_id');
         $stage = fuel_model('stages', array('find' => 'one', 'where' => array('id' => $stage_id)));//$CI->stages_model->get_stage_for_frontend($stage_id, true);
