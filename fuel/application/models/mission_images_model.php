@@ -7,7 +7,7 @@ require_once('abstract_module_model.php');
 
 class Mission_Images_model extends Abstract_module_model {
 
-    public $required = array('description', 'mission');
+    public $required = array('date', 'description', 'mission');
     public $belongs_to = array('mission' => 'missions_model');
 
     function __construct() {
@@ -26,8 +26,8 @@ class Mission_Images_model extends Abstract_module_model {
      * @return	mixed If $just_count is true it will return an integer value. Otherwise it will return an array of data (optional)
      */
     public function list_items($limit = NULL, $offset = 0, $col = 'id', $order = 'asc', $just_count = FALSE) {
-        $this->db->order_by('id desc');
-        $this->db->select('id, description, description, image');
+        $this->db->order_by('date desc, id desc');
+        $this->db->select('id, date, description, image, photographer');
         $data = parent::list_items($limit, $offset, $col, $order, $just_count);
 
         return $data;
@@ -56,12 +56,27 @@ class Mission_Images_model extends Abstract_module_model {
             'comment' => lang('form_label_news_photographer_comment'),
             'photographers' => fuel_model('mannschaft_members_model', array('find' => 'photographers')));
 
+        $fields["date"]["label"] = 'Datum';
+        $fields["date"]["max_date"] = date('d.m.Y');
+        $fields["date"]["default"] = date('d.m.Y');
+        
         $fields["mission"]["label"] = 'Einsatz';
         $fields["mission"]["order"] = 999;
 
         return $fields;
     }
 
+    public function options_list($key = 'id', $val = 'name', $where = array(), $order = TRUE, $group = TRUE) {
+        $this->db->order_by('date desc, id desc');
+        $this->db->select('id, description, date');
+        $query = $this->db->get('mission_images');
+
+        foreach ($query->result() as $row) {
+            $data[$row->id] = get_ger_date($row->date) . ' - ' . $row->description;
+        }
+
+        return $data;
+    }
 }
 
 class Mission_Image_model extends Abstract_module_record {

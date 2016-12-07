@@ -26,8 +26,8 @@ class News_Images_model extends Abstract_module_model {
      * @return	mixed If $just_count is true it will return an integer value. Otherwise it will return an array of data (optional)
      */
     public function list_items($limit = NULL, $offset = 0, $col = 'id', $order = 'asc', $just_count = FALSE) {
-        $this->db->order_by('description', 'asc');
-        $this->db->select('id, description, image, photographer');
+        $this->db->order_by('date', 'description', 'asc');
+        $this->db->select('id, date, description, image, photographer');
         $data = parent::list_items($limit, $offset, $col, $order, $just_count);
 
         return $data;
@@ -47,13 +47,31 @@ class News_Images_model extends Abstract_module_model {
 
         // Asset-Ordner                                        
         $fields['image'] = array('folder' => 'images/news',
-            'create_thumb' => FALSE);
+            'create_thumb' => FALSE,
+            'hide_options' => TRUE);
         $fields["photographer"] = array('type' => 'photographer_input',
             'comment' => lang('form_label_news_photographer_comment'),
             'photographers' => fuel_model('mannschaft_members_model', array('find' => 'photographers')));
 
+        $fields["date"]["label"] = 'Datum';
+        $fields["date"]["max_date"] = date('d.m.Y');
+        $fields["date"]["default"] = date('d.m.Y');
+        
+        $fields["news"]["order"] = 999;
 
         return $fields;
+    }
+
+    public function options_list($key = 'id', $val = 'name', $where = array(), $order = TRUE, $group = TRUE) {
+        $this->db->order_by('date desc, id desc');
+        $this->db->select('id, description, date');
+        $query = $this->db->get('news_images');
+
+        foreach ($query->result() as $row) {
+            $data[$row->id] = get_ger_date($row->date) . ' - ' . $row->description;
+        }
+
+        return $data;
     }
 
 }
