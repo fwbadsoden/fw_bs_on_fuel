@@ -228,10 +228,16 @@ class Fahrzeuge_model extends Abstract_module_model {
     }
 
     public function options_list($key = 'id', $val = 'name', $where = array(), $order = TRUE, $group = TRUE) {
-        if (empty($val)) {
-            $val = 'name';
+        $this->db->order_by('rufname asc, name asc, retired asc');
+        $this->db->select('id, name, rufname, retired');
+        $query = $this->db->get('fahrzeuge');
+
+        foreach ($query->result() as $row) {
+			$name = $row->rufname . ' ' . $row->name;
+			if($row->retired == 'yes') $name .= ' a.D.';
+            $data[$row->id] = $name;
         }
-        $data = parent::options_list($key, $val, $where, $order);
+
         return $data;
     }
 
