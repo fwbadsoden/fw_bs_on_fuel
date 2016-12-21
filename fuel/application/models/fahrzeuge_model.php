@@ -233,7 +233,7 @@ class Fahrzeuge_model extends Abstract_module_model {
         $query = $this->db->get('fahrzeuge');
 
         foreach ($query->result() as $row) {
-			$name = $row->rufname . ' ' . $row->name;
+			$name = $row->rufname . ' - ' . $row->name;
 			if($row->retired == 'yes') $name .= ' a.D.';
             $data[$row->id] = $name;
         }
