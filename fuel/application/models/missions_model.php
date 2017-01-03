@@ -92,7 +92,7 @@ if (jQuery){ (function ($) {
                         $('#type_id').val(item.value);
                     } else if (item.field == 'vehicles') {
                         var value = String(item.value);
-                        if(value.includes('|')) { 
+                        if(value.indexOf('|') > -1) { 
                             var fahrzeuge = item.value.split('|');
                             $.each(fahrzeuge, function (index, val) {
                                 $(\"input[name='fahrzeuge[]'][value=\"+val+\"]\").attr('checked', true);
