@@ -73,7 +73,7 @@
         <ul> 
             <?php foreach($appointments as $a) : ?>
             <li>    
-                <h3><span class="date"><?= get_ger_date($a->datum).' - '.$a->beginn ?></span> / <?= $a->ort_short ?></h3>
+                <h3><span class="date"><?= get_ger_date($a->datum).' - '.$a->beginn ?></span><? if($a->ort_short != "") { ?> / <?= $a->ort_short ?> <? } ?></h3>
                 <h2><?= $a->name ?></h2>
             </li>
             <?php endforeach; ?>

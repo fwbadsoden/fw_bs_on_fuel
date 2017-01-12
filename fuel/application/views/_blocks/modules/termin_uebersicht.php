@@ -62,11 +62,13 @@
                                     	<span style="white-space:nowrap;"><?=$termin->ende?> <span class="word">Uhr</span></span>
                                     </p>
                                 </div>
+                                <? if($ort != "") { ?>
                                 <div class="loction">
                                     <p>
                                         <?=$ort?>
                                     </p>
                                 </div>
+                                <? } ?>
                             </div>
                             <div class="linkleiste">
                                 <p class="link_open active" id="js_linkopen_<?=$i?>">Mehr lesen</p>
