@@ -50,6 +50,10 @@ class Mission_Images_model extends Abstract_module_model {
         $fields['image']['folder'] = 'images/einsaetze';
         $fields['image']['create_thumb'] = FALSE;
         $fields['image']['hide_options'] = TRUE;
+        $fields['image']['maintain_ratio'] = TRUE;
+        $fields['image']['width'] = 1280;
+        $fields['image']['height'] = 1024;
+        $fields['image']['master_dim'] = 'auto';
 
         //$fields["photographer"]['label']        = lang('form_label_photographer');      
         $fields["photographer"] = array('type' => 'photographer_input',
