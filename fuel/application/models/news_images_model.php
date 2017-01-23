@@ -48,7 +48,11 @@ class News_Images_model extends Abstract_module_model {
         // Asset-Ordner                                        
         $fields['image'] = array('folder' => 'images/news',
             'create_thumb' => FALSE,
-            'hide_options' => TRUE);
+            'hide_options' => TRUE,
+            'maintain_ratio' => TRUE,
+            'width' => 1280,
+            'height' => 1024,
+            'master_dim' => 'auto');
         $fields["photographer"] = array('type' => 'photographer_input',
             'comment' => lang('form_label_news_photographer_comment'),
             'photographers' => fuel_model('mannschaft_members_model', array('find' => 'photographers')));

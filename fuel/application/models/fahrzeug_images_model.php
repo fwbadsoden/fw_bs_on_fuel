@@ -46,7 +46,7 @@ class Fahrzeug_Images_model extends Abstract_module_model {
         // Asset-Ordner                                        
         $fields['image'] = array('folder' => 'images/fahrzeuge',
                                  'create_thumb' => FALSE,
-                                 'hide_options' => TRUE);                                          
+                                 'hide_options' => FALSE);                                          
 
         return $fields;
     }   
