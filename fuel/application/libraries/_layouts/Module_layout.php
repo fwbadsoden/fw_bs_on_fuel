@@ -32,11 +32,13 @@ class Module_layout extends Base_layout {
                     $vars["order"] = "precedence asc";
                 }
 
-                if (is_numeric(uri_segment($vars["segment"])) && $CI->fahrzeuge_model->record_exists(array("id" => uri_segment($vars["segment"])))) {
-                    $vars["stage_info"] = $CI->fahrzeuge_model->get_stage_info(uri_segment($vars["segment"]));
-                    $vars["stage_info"]["stage"] = "fahrzeug";
-                } else {
-                    $vars["is404"] = true;
+                if (is_numeric(uri_segment($vars["segment"]))) {
+                    if ($CI->fahrzeuge_model->record_exists(array("id" => uri_segment($vars["segment"])))) {
+                        $vars["stage_info"] = $CI->fahrzeuge_model->get_stage_info(uri_segment($vars["segment"]));
+                        $vars["stage_info"]["stage"] = "fahrzeug";
+                    } else {
+                        $vars["is404"] = true;
+                    }
                 }
 
                 $vars["model"] = "fahrzeuge_model";
