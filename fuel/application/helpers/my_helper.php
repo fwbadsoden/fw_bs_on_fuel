@@ -30,7 +30,7 @@ function main_navigation() {
         $nav["appointments"] = fuel_model("appointments_model", array('find' => 'all', 'limit' => 5, 'where' => array('published' => 'yes'), 'order' => ('datum asc, beginn asc')));
         $nav["missions"]                = fuel_model("missions_model", array('find' => 'all', 'limit' => 5, 'where' => array('published' => 'yes'), 'order' => ('datum_beginn desc, uhrzeit_beginn desc')));
         $nav["news"]                    = fuel_model("news_articles_model", array('find' => 'all', 'limit' => 5, 'where' => array('published' => 'yes'), 'order' => ('datum desc, id desc')));
-        $nav["fahrzeuge"]               = $CI->fahrzeuge->find_all(NULL, 'precedence asc');
+        $nav["fahrzeuge"]               = $CI->fahrzeuge->find_all(array('ist_abrollbehaelter' => 'no'), 'precedence asc');
         $nav["fahrzeuge_hasretired"]    = $CI->fahrzeuge->has_retired();
         
         return $nav;

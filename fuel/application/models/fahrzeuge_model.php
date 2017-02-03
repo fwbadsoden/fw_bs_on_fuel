@@ -7,7 +7,7 @@ require_once('abstract_module_model.php');
 
 class Fahrzeuge_model extends Abstract_module_model {
 
-    public $required = array('name', 'name_lang', 'prefix_rufname', 'rufname', 'text', 'besatzung', 'hersteller', 'setcard_image', 'stage_image');
+    public $required = array('name', 'name_lang', 'prefix_rufname', 'rufname', 'text_stage', 'besatzung', 'hersteller', 'setcard_image', 'stage_image');
     public $has_many = array('fahrzeug_images' => 'fahrzeug_images_model',
         'fahrzeug_loadings' => 'fahrzeug_loadings_model',
         'fahrzeug_special_functions' => 'fahrzeug_special_functions_model',
