@@ -54,6 +54,7 @@ class Mission_Images_model extends Abstract_module_model {
         $fields['image']['width'] = 1280;
         $fields['image']['height'] = 1024;
         $fields['image']['master_dim'] = 'auto';
+        $fields['image']['overwrite'] = FALSE;
 
         //$fields["photographer"]['label']        = lang('form_label_photographer');      
         $fields["photographer"] = array('type' => 'photographer_input',
