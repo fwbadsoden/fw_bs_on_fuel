@@ -67,6 +67,8 @@ class Mission_Images_model extends Abstract_module_model {
         
         $fields["mission"]["label"] = 'Einsatz';
         $fields["mission"]["order"] = 999;
+        
+        $fields["creation"]["type"] = 'hidden';
 
         return $fields;
     }
@@ -81,6 +83,19 @@ class Mission_Images_model extends Abstract_module_model {
         }
 
         return $data;
+    }
+
+    /**
+     * Hook - right before saving of data
+     *
+     * @access	public
+     * @param	array	values to be saved
+     * @return	array
+     */
+    public function on_before_save($values) {
+        $values = parent::on_before_save($values);
+        if($values["creation"] == "1970-01-01 01:00:00") $values["creation"] = date('Y-m-d G:i:s');
+        return $values;
     }
 }
 

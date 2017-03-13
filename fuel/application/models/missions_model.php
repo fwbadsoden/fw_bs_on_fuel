@@ -322,6 +322,9 @@ if (jQuery){ (function ($) {
         foreach ($query->result() as $row) {
             $years[] = $row->datum;
         }
+        
+        if(!in_array(date("Y"), $years)) $years[] = date("Y");
+        
         rsort($years);
         return $years;
     }
@@ -413,6 +416,23 @@ if (jQuery){ (function ($) {
 
 class Mission_model extends Abstract_module_record {
 
+    public function get_mission_images() {
+        CI()->db->select('relationships.foreign_key');
+        CI()->db->distinct();
+        CI()->db->join('mission_images', 'mission_images.id = relationships.foreign_key');
+        CI()->db->where(array('relationships.candidate_table' => 'fw_missions', 'relationships.foreign_table' => 'fw_mission_images', 'relationships.candidate_key' => $this->id));
+        CI()->db->order_by('creation asc');
+        $query = CI()->db->get('relationships');
+        //internal_debug(CI()->db->last_query());
+        $i = 0;
+        $mission_images = array();
+        foreach ($query->result() as $row) {
+            $mission_images[$i] = fuel_model('mission_images_model', array('find' => 'one', 'where' => array('id' => $row->foreign_key)));
+            $i++;
+        }
+        return $mission_images;
+    }
+    
     public function is_published() {
         if ($this->published == 'yes') {
             return true;
