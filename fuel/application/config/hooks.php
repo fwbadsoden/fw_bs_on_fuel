@@ -19,6 +19,18 @@ $hook['before_create_projects'] = array(
 								'params'   => array(),
 								'module' => 'app');
 */
+$hook['form_ticketshop_pre_process'] = array('class' => 'TicketshopHooks',
+                                   'function' => 'pre_process_forms',
+                                   'filename' => 'TicketshopHooks.php',
+                                   'filepath' => 'hooks',
+                                   'params' => array(),
+                                   'module' => 'forms');
+$hook['form_ticketshop_post_process'] = array('class' => 'TicketshopHooks',
+                                   'function' => 'post_process_forms',
+                                   'filename' => 'TicketshopHooks.php',
+                                   'filepath' => 'hooks',
+                                   'params' => array(),
+                                   'module' => 'forms');
 // include hooks specific to FUEL
 include(FUEL_PATH.'config/fuel_hooks.php');
 
