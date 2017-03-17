@@ -30,9 +30,9 @@
         <h1><?= $n->title ?></h1>
         <p><?= $n->teaser ?></p>
         <?php if($n->text != '') : ?>
-        <p class="more"><a href="<?= base_url('/aktuelles/news/'.$n->id) ?>" class="button_black">Mehr lesen</a></p>
+        <p class="more"><a href="<?= base_url('/aktuelles/news/'.$n->id) ?>" class="button_black"><?=$n->text_detail_button?></a></p>
         <?php elseif($n->link != '') : ?>
-        <p class="more"><a href="<?= base_url($n->link) ?>" class="button_black">Mehr lesen</a></p>
+        <p class="more"><a href="<?= base_url($n->link) ?>" class="button_black"><?=$n->text_detail_button?></a></p>
         <?php endif; ?>        
     </div>          
     <?php endforeach; ?>

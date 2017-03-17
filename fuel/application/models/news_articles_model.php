@@ -93,6 +93,10 @@ class News_articles_model extends Abstract_module_model {
             'img_folder' => 'news',
             'order' => 8);
 
+        $fields['text_detail_button']['label'] = 'Text für Detailbutton';
+        $fields['text_detail_button']['default'] = 'Mehr lesen';
+        $fields['text_detail_button']['order'] = 9;
+
         $fields['published']['type'] = 'hidden';
 
         // http://forum.getfuelcms.com/discussion/comment/9329#Comment_9329

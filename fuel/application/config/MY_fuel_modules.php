@@ -202,6 +202,13 @@ $config['modules']['autosuggests'] = array(
     'permission' => 'autosuggests',
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
+$config['modules']['tickets'] = array(
+    'module_name' => 'Ticketshop',
+    'instructions' => 'Ticketbestellungen verwalten',
+    'permission' => 'ticketshop',
+    'limit_options' => array('1000' => '1000'),
+    'item_actions' => array('save', 'view', 'publish', 'activate', 'delete')
+);
 
 /* * ********************* OVERWRITES *********************************** */
 

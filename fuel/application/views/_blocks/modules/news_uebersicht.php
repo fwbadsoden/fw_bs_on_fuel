@@ -2,7 +2,11 @@
     <ul class="news onlyList">
         <?php foreach ($data as $item) : ?>
             <li>
-                <a href="<?= base_url('aktuelles/news/' . $item->id) ?>">
+                <?php if($item->text != '') : ?>
+                    <a href="<?= base_url('aktuelles/news/' . $item->id) ?>">
+                <?php elseif($item->link != '') : ?>
+                    <a href="<?= base_url($item->link) ?>">
+                <?php endif; ?> 
                     <h2><span class="date"><?= get_ger_date($item->datum) ?></span></h2>
                     <h1><?= $item->title ?></h1>
                     <p><?= $item->teaser ?></p>
