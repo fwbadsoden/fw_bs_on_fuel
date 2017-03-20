@@ -35,14 +35,14 @@ echo doctype('html5');
 
         <link rel="shortcut icon" href="<?= assets_path("favicon.ico", "icons") ?>" type="image/x-icon" />
 
-        <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css' />        
-        <link rel="stylesheet" href="<?= get_css_for_environment("styles") ?>" type="text/css" />
+        <link href='https://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="<?= css_path("styles.css") ?>" type="text/css" />
         <!--[if lt IE 9]>
               <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
               <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
         <!-- Countdown für Jubiläum START -->
         <!-- http://keith-wood.name/countdown.html -->
