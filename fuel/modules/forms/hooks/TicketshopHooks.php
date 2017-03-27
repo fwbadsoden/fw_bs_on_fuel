@@ -2,7 +2,7 @@
 
 class TicketshopHooks {
 
-    private $price = "10", $due_days = 5;
+    private $price = "10";
 
     public function pre_process_forms() {
         $CI = & get_instance();
@@ -18,29 +18,48 @@ class TicketshopHooks {
         $ticket["last_name"] = $CI->input->post('last_name');
         $ticket["first_name"] = $CI->input->post('first_name');
         $ticket["email"] = $CI->input->post('email');
+        $ticket["title"] = $CI->input->post('title');
+        $ticket["street"] = $CI->input->post('street');
+        $ticket["postal_code"] = $CI->input->post('postal_code');
+        $ticket["city"] = $CI->input->post('city');
         $ticket["quantity"] = $CI->input->post('quantity');
         $ticket["invoice_number"] = $CI->input->post('invoice_number');
 
         $CI->tickets_model->save($ticket);
-        $sum_price = $this->price * $ticket["quantity"];
-
-        $message = "Sehr geehrte(r) Frau/Herr " . $ticket["last_name"] . ",\n"
-                . "\n"
-                . "vielen Dank für Ihre Bestellung von " . $ticket["quantity"] . " Tickets für die Veranstaltung\n"
-                . "Tanz in den Mai am 30.04.2017 um 20 Uhr im Bürgerhaus Neuenhain, Hauptstraße 45, 65812 Bad Soden am Taunus - Neuenhain.\n"
-                . "\n"
-                . "Wir haben Ihre Bestellung unter der Bestellnummer " . $ticket["invoice_number"] . " aufgenommen.\n"
-                . "\n"
-                . "Bitte bezahlen Sie den Betrag von " . $sum_price . "€ innerhalb von " . $this->due_days . " Tagen unter Angabe der Bestellnummer auf folgendes Konto:\n"
-                . "IBAN: DE52 5019 0000 0000 0441 05\nBIC: FFVBDEFF\n"
-                . "Sollte Ihre Zahlung nicht innerhalb von " . $this->due_days . " Tagen erfolgen, verfällt die Reservierung der Karten.\n"
-                . "Nach Eingang der Zahlung auf unserem Konto erhalten Sie eine Bestätigungsmail mit weiteren Infos.\n\n"
-                . "Liebe Grüße\nIhre Feuerwehr Bad Soden am Taunus";
+        $price = number_format($ticket["quantity"] * $this->price, 2, ",", ".");
+        if ($ticket["title"] == "Frau") {
+            $message = "Liebe) Frau " . $ticket["last_name"] . "!\n\n";
+        } else {
+            $message = "Lieber Herr " . $ticket["last_name"] . "!\n\n";
+        }
+        $message .= "Vielen Dank für Ihre Kartenbestellung bei dem Verein der Feuerwehr Bad Soden.\n"
+                . "Nachfolgend haben wir zur Kontrolle die von Ihnen aufgegebene Bestellung aufgelistet.\n\n"
+                . "Mit freundlichen Grüßen!\n"
+                . "Ihr Freiwillige Feuerwehr Bad Soden am Taunus e.V.\n\n"
+                . "Ihre bei uns gespeicherte Anschrift lautet:\n"
+                . $ticket["title"] . "\n"
+                . $ticket["first_name"] . " " . $ticket["last_name"] . "\n"
+                . $ticket["street"] . "\n"
+                . $ticket["postal_code"] . " " . $ticket["city"] . "\n\n"
+                . "Wir haben Ihre Bestellung wie folgt aufgenommen:\n"
+                . "Anzahl\t\tArtikelname\t\t\tPreis (EUR)\n"
+                . $ticket["quantity"] . "\t\tKarte(n) Tanz in den Mai\t\t\t" . $price . "\n\n"
+                . "Warenwert in EUR\t" . $price . "\n"
+                . "Alle Preise inkl. MwSt.\n\n"
+                . "Wir bitten Sie den oben genannten Betrag innerhalb von 7 Tagen auf das unten angegebene Konto zu überweisen.\n"
+                . "Sollte der Betrag nach 7 Tagen nicht eingegangen sein, wird die Bestellung automatisch storniert.\n"
+                . "Kontodaten:\n"
+                . "Freiwillige Feuerwehr Bad Soden am Taunus e.V.\n"
+                . "IBAN: DE52 5019 0000 0000 0442 05\n"
+                . "BIC: FFVBDEFF\n\n"
+                . "Bitte verwenden Sie folgenden Verwendungszweck – " . $ticket["invoice_number"] . " –\n\n"
+                . "Vielen Dank für Ihre Bestellung wir freuen uns auf Sie.\n\n"
+                . "Ihre freiwillige Feuerwehr Bad Soden am Taunus e.V.";
 
         $params["to"] = $ticket["email"];
         $params["from"] = "noreply@feuerwehr-bs.de";
         $params["from_name"] = "Feuerwehr Bad Soden am Taunus e.V.";
-        $params["subject"] = "Ihre Ticketbestellung für die Veranstaltung 'Tanz in den Mai'";
+        $params["subject"] = "Vielen Dank für Ihren Bestellung!";
         $params["message"] = $message;
 
         $CI->fuel->notification->send($params);

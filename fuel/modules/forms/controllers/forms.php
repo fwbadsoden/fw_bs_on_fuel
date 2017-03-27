@@ -11,10 +11,9 @@ class Forms extends CI_Controller {
 	public function process($slug)
 	{ 
 		$form = $this->fuel->forms->get($slug);
-		
-		$return_url = ($this->input->get_post('return_url')) ? $this->input->get_post('return_url') : $form->get_return_url();
+		$return_url = ($this->input->get_post('return_url')) ? $this->input->get_post('return_url') : $form->return_url;
 		$form_url = $this->input->get_post('form_url');
-
+              
 		if ($form AND $form->process())
 		{ 
 			if (is_ajax())
