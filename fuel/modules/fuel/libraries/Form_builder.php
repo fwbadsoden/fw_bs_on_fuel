@@ -2681,7 +2681,7 @@ class Form_builder {
 	public function create_number($params)
 	{
 		$defaults = array(
-			'min' => '0', // sets the minimum number that can be entered
+			'min' => NULL, // sets the minimum number that can be entered
 			'max' => NULL, // sets the maximum number that can be entered
 			'step' => NULL, // specifies the increment that gets applied when pressing the up/down increment arrows
 			'decimal' => 0, // determines whether to allow for decimal numbers
@@ -2696,8 +2696,8 @@ class Form_builder {
 			'readonly' => $params['readonly'], 
 			'disabled' => $params['disabled'],
 			'required' => (!empty($params['required']) ? TRUE : NULL),
-			'min' => (isset($params['min']) ? $params['min'] : '0'),
-			'max' => (isset($params['max']) ? $params['max'] : '10000'),
+			'min' => (isset($params['min']) ? $params['min'] : NULL),
+			'max' => (isset($params['max']) ? $params['max'] : NULL),
 			'step' => (isset($params['step']) ? $params['step'] : NULL),
 			'data' => $params['data'],
 			'style' => $params['style'],

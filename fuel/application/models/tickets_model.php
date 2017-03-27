@@ -19,7 +19,7 @@ class Tickets_model extends Abstract_module_model {
         $this->db->order_by('order_datetime', 'desc');
         $this->db->order_by('last_name', 'desc');
         $this->db->order_by('first_name', 'desc');
-        $this->db->select('id, invoice_number as rechnungsnummer, order_datetime as bestelldatum, last_name as nachname, first_name as vorname, email, quantity as anzahl, payed as bezahlt');
+        $this->db->select('id, invoice_number as rechnungsnummer, order_datetime as bestelldatum, last_name as nachname, first_name as vorname, title as anrede, email, quantity as anzahl, payed as bezahlt');
         $data = parent::list_items($limit, $offset, $col, $order, $just_count);
         return $data;
     }
@@ -37,25 +37,41 @@ class Tickets_model extends Abstract_module_model {
         $fields["order_datetime"]['ampm'] = FALSE;
         $fields["order_datetime"]['order'] = 2;
 
+        $fields["title"]['label'] = "Anrede";
+        $fields["title"]['readonly'] = TRUE;
+        $fields["title"]['order'] = 3;
+
         $fields["last_name"]['label'] = "Nachname";
         $fields["last_name"]['readonly'] = TRUE;
-        $fields["last_name"]['order'] = 3;
+        $fields["last_name"]['order'] = 4;
 
         $fields["first_name"]['label'] = "Vorname";
         $fields["first_name"]['readonly'] = TRUE;
-        $fields["first_name"]['order'] = 4;
+        $fields["first_name"]['order'] = 5;
 
         $fields["email"]['label'] = "Emailadresse";
         $fields["email"]['readonly'] = TRUE;
-        $fields["email"]['order'] = 5;
+        $fields["email"]['order'] = 6;
+
+        $fields["street"]['label'] = "Straße/Hausnummer";
+        $fields["street"]['readonly'] = TRUE;
+        $fields["street"]['order'] = 7;
+
+        $fields["postal_code"]['label'] = "PLZ";
+        $fields["postal_code"]['readonly'] = TRUE;
+        $fields["postal_code"]['order'] = 8;
+
+        $fields["city"]['label'] = "Ort";
+        $fields["city"]['readonly'] = TRUE;
+        $fields["city"]['order'] = 9;
 
         $fields["quantity"]['label'] = "Anzahl";
         $fields["quantity"]['readonly'] = TRUE;
-        $fields["quantity"]['order'] = 6;
+        $fields["quantity"]['order'] = 20;
 
         $fields["payed"]['label'] = "Bezahlt";
         $fields["payed"]['options'] = array('yes' => 'ja', 'no' => 'nein');
-        $fields["payed"]['order'] = 7;
+        $fields["payed"]['order'] = 21;
 
         $fields["notified"]["type"] = "hidden";
 
