@@ -72,6 +72,10 @@ class Tickets_model extends Abstract_module_model {
         $fields["payed"]['label'] = "Bezahlt";
         $fields["payed"]['options'] = array('yes' => 'ja', 'no' => 'nein');
         $fields["payed"]['order'] = 21;
+        
+        $fields["pay_date"]["label"] = "Bezahlt am";
+        $fields["pay_date"]['readonly'] = TRUE;
+        $fields["pay_date"]['order'] = 22;
 
         $fields["notified"]["type"] = "hidden";
 
@@ -104,11 +108,18 @@ class Tickets_model extends Abstract_module_model {
 
     public function on_after_update($values) {
         if ($values["payed"] == "yes" && $values["notified"] == "no") {
-            $message = "Sehr geehrte(r) Frau/Herr " . $values["last_name"] . ",\n"
-                    . "\n"
-                    . "vielen Dank, wir haben Ihre Bezahlung für die Bestellung unter der Bestellnummer ".$values["invoice_number"]." erhalten.\n" 
-                    . "Ihre ". $values["quantity"] ." Tickets erhalten Sie unter Angabe der Bestellnummer an der Abendkasse. \nBitte halten Sie auch Ihren Personalausweis zur Verifikation bereit.\n\n"
-                    . "Liebe Grüße\nIhre Feuerwehr Bad Soden am Taunus";
+            $data["pay_date"] = date("Y-m-d");
+            $data["notified"] = "yes";
+            
+            if ($values["title"] == "Frau") {
+                $message = "Liebe) Frau " . $values["last_name"] . "!\n\n";
+            } else {
+                $message = "Lieber Herr " . $values["last_name"] . "!\n\n";
+            }
+            $message .= "\n"
+                     . "Wir bedanken uns für Ihre Bestellung und möchten Sie davon in Kenntnis setzen, dass Ihre Bezahlung am ". date_formatter($data["pay_date"]) ." bei uns eingegangen ist. \n"
+                     . "Ihre " . $values["quantity"] . " Tickets erhalten Sie unter Angabe der Bestellnummer ". $values["invoice_number"]." an der Abendkasse. \nBitte halten Sie auch Ihren Personalausweis zur Verifikation bereit.\n\n"
+                     . "Liebe Grüße\nIhre Feuerwehr Bad Soden am Taunus";
 
             $params["to"] = $values["email"];
             $params["from"] = "noreply@feuerwehr-bs.de";
@@ -117,10 +128,8 @@ class Tickets_model extends Abstract_module_model {
             $params["message"] = $message;
 
             $this->fuel->notification->send($params);
-            
-            $data["notified"] = "yes";
             $this->db->where('id', $values["id"]);
-            $this->db->update('tickets', $values);
+            $this->db->update('tickets', $data);
         }
     }
 

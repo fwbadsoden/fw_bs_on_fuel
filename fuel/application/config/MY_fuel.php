@@ -67,7 +67,7 @@ $config['default_home_view'] = '';
 // text editor settings  (options are markitup or ckeditor)
 // markitup: allows you to visualize the code in its raw format - not wysiwyg (http://markitup.jaysalvat.com/)
 // ckeditor: suitable for clients; shows what the output will look like in the page (http://ckeditor.com/)
-$config['text_editor'] = 'ckeditor';
+$config['text_editor'] = 'markitup';
 
 // The parsing engine to use for FUEL. Options are dwoo, ci and now 'twig'!
 $config['parser_engine'] = 'dwoo';
