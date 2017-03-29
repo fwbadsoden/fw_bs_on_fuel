@@ -1,3 +1,5 @@
+@import url("styles.css");
+
 /* #login */
 div#login { padding: 15% 0 0 0; border: none; background-color: #9a0000; margin: 0 auto; height: 100% }
 div#login h3, div#login p { color: #fff; text-align: center; }

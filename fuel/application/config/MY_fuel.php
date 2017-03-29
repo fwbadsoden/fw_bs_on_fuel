@@ -25,6 +25,8 @@ $config['fuel_mode'] = 'auto';
 
 $config['xtra_css'] = 'my_fuel.css';
 
+$config['max_number_archived'] = 10;
+
 // specifies which modules are allowed to be used in the fuel admin
 $config['modules_allowed'] = array(
 	'forms',
@@ -65,7 +67,7 @@ $config['default_home_view'] = '';
 // text editor settings  (options are markitup or ckeditor)
 // markitup: allows you to visualize the code in its raw format - not wysiwyg (http://markitup.jaysalvat.com/)
 // ckeditor: suitable for clients; shows what the output will look like in the page (http://ckeditor.com/)
-$config['text_editor'] = 'markitup';
+$config['text_editor'] = 'ckeditor';
 
 // The parsing engine to use for FUEL. Options are dwoo, ci and now 'twig'!
 $config['parser_engine'] = 'dwoo';
