@@ -39,14 +39,14 @@ $config['markitup']['markdown'] = array();
 // Because of this, the protectedSource is automatically added by default.
 $config['ckeditor']['default'] = array(
 	'toolbar' => array(
-		array('Bold', 'Italic', 'Strike'),
+		array('Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'),
+		array('Bold', 'Italic'),
 		array('Format'),
-		array('FUELImage', 'HorizontalRule'),
+		array('FUELImage', 'SpecialChar'),
 		array('NumberedList', 'BulletedList'),
 		array('FUELLink', 'FUELUnlink'),
-		array('Undo', 'Redo', 'RemoveFormat'),
-		array('PasteFromWord', 'PasteText'),
 		array('Maximize'),
+                array('Source'),
 	),
 	'contentsCss' => WEB_PATH.'assets/css/main.css',
 	'htmlEncodeOutput' => FALSE,
@@ -54,8 +54,8 @@ $config['ckeditor']['default'] = array(
 	'bodyClass' => 'ckeditor',
 	/*'protectedSource' => array('/\{fuel_\w+\(.+\)\}/g', '/<\?[\s\S]*?\?>/g'),  */
 	'toolbarCanCollapse' => FALSE,
-	'extraPlugins' => 'fuellink,fuelimage',
-	'removePlugins' => 'link,image',
+	'extraPlugins' => 'fuellink,fuelimage,sourcedialog',
+	'removePlugins' => 'link,image,sourcearea',
 	'allowedContent' => TRUE,
         //'previewParserPath' => fuel_url('preview'),
 
