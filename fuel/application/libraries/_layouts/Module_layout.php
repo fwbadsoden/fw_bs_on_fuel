@@ -86,7 +86,7 @@ class Module_layout extends Base_layout {
                 if (is_numeric(uri_segment($vars["segment"]))) {
                     if ($CI->news_articles_model->record_exists(array("id" => uri_segment($vars["segment"])))) {
                         $vars["stage_text"] = $CI->news_articles_model->get_stage_text(uri_segment($vars["segment"]));
-                        $vars["latest_news"] = fuel_model("news_articles_model", array('find' => 'all', 'limit' => 10, 'offset' => 0, 'where' => array('published' => 'yes'), 'order' => 'datum desc, id desc'));
+                        $vars["latest_news"] = fuel_model("news_articles_model", array('find' => 'all', 'limit' => 10, 'offset' => 0, 'where' => array('published' => 'yes', 'datum <=' => date('Y-m-d')), 'order' => 'datum desc, id desc'));
                         $vars["facebook_infos"][0] = $CI->news_articles_model->get_og_image(uri_segment($vars["segment"]));
                     } else {
                         $vars["is404"] = true;
@@ -97,7 +97,7 @@ class Module_layout extends Base_layout {
                 }
 
                 $vars["order"] = "datum desc, id desc";
-                $vars["list_where"] = array("published" => "yes");
+                $vars["list_where"] = array('published' => 'yes', 'datum <=' => date('Y-m-d'));
                 $vars["model"] = "news_articles_model";
                 $vars["list_block"] = "modules/news_uebersicht";
                 $vars["item_block"] = "modules/news_detail";

@@ -4,8 +4,11 @@ class Presse extends CI_Controller {
      
     public function index() {
         
+        $this->load->helper('session');
+        
         $data = array();
         $data["form_name"] = "presse";
+        $data["success"] = session_flashdata("success");
         
         $this->fuel->pages->render("aktuelles/presse", $data, array('render_mode' => 'cms'));
         
