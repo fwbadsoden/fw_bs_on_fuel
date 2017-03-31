@@ -10,8 +10,12 @@
                     Redaktionen an, Sie in unseren Presse e-Mail Verteiler aufzunehmen.</p>
                 <div class="kontaktformularOpener"><p class="link_open active" id="js_openKontakt"><a href="#" rel="js_contact">Kontaktformular öffnen</a></p></div>
                 <div class="kontaktformularOpener"><p class="link_close" id="js_closeKontakt"><a href="#" rel="js_contact">Kontaktformular schlie&szlig;en</a></p></div>
-                <div class="kontaktformular">
-                    <?=form('presse_cfg')?>
+<?php if($success) : ?>
+            <div class="kontaktformular" style="display:block">
+<?php else : ?>
+        <div class="kontaktformular">
+           <?php endif; ?>
+            {form('kontakt')}
                 </div>
             </div>
             
