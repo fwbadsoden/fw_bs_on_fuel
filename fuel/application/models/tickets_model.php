@@ -112,7 +112,7 @@ class Tickets_model extends Abstract_module_model {
             $data["notified"] = "yes";
             
             if ($values["title"] == "Frau") {
-                $message = "Liebe) Frau " . $values["last_name"] . "!\n\n";
+                $message = "Liebe Frau " . $values["last_name"] . "!\n\n";
             } else {
                 $message = "Lieber Herr " . $values["last_name"] . "!\n\n";
             }
