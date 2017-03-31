@@ -28,7 +28,7 @@ $config['case_sensitive'] = TRUE;
 
 // The paths to force SSL with the key being the environment it belongs to
 //$config['ssl'] = array('development' => array()); 
-$config['ssl'] = array('production' => array('forms$|forms/:any','fuel$|fuel/:any'));
+$config['ssl'] = array('production' => array('forms/:any','forms/process/:any','fuel$|fuel/([a-zA-Z0-9\/]+)'));
 
 // The paths to force NON SSL with the key being the environment it belongs to
 $config['non_ssl'] = array('development' => array()); 
