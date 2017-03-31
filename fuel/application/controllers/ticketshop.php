@@ -22,6 +22,7 @@ class Ticketshop extends CI_Controller {
         $data["form_name"] = "ticketshop";
         $data["tickets_sold"] = $this->tickets_model->get_tickets_sold();
         $data["max_tickets"] = $this->max_tickets;
+        $data["success"] = session_flashdata("success");
         $this->fuel->pages->render("ticketshop", $data, array('render_mode' => 'cms'));
     }
 }
