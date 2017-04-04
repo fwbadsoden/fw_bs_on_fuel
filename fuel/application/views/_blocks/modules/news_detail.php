@@ -54,7 +54,11 @@
         <h1 class="first">Die 10 letzten News</h1>
         <ul>
 <? foreach($latest_news as $news) : 
-    $url = $url_back.'/'.$news->id;
+        if($news->text != '') : 
+            $url = $url_back.'/'.$news->id;
+        elseif($news->link != '') :
+            $url = base_url($news->link);
+        endif;
     if($url == current_url()) $class = ' class="active"'; else $class = '';
 ?>                
             <li><a href="<?=$url?>"<?=$class?>><?=$news->title?></a></li>
