@@ -12,6 +12,10 @@
     <div class="car_tools">
         <?php
         foreach ($abrollbehaelter as $behaelter) :
+            foreach($behaelter->fahrzeug_images as $image) {
+                $img = $image;
+                break;
+            }
             if ($counter % 2 == 0) {
                 $css_image = "image imageright";
                 $css_text = "text textright";
@@ -24,7 +28,7 @@
             ?>
             <div class="toolbox">
                 <div class="<?= $css_image ?>">
-                    <img src="<?= img_path('fahrzeuge/' . $data->fahrzeug_images[0]->image) ?>" alt="<?= $behaelter->name ?>" />
+                    <img src="<?= img_path('fahrzeuge/' . $img->image) ?>" alt="<?= $img->description ?>" />
                 </div>
                 <div class="<?= $css_text ?>">
                     <div class="head">
