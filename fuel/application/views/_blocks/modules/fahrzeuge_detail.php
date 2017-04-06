@@ -2,8 +2,9 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-if ($data->is_wlf())
-    $abrollbehaelter = $data->get_abrollbehaelter();
+if ($data->is_wlf()) {
+    $abrollbehaelter = $data->get_abrollbehaelter();    
+}
 
 if ($data->rufname == 'n/a') : $ruf_name = 'n/a';
 else : $ruf_name = $data->prefix_rufname . ' ' . $data->rufname;
