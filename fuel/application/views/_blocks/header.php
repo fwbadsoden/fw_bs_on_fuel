@@ -408,8 +408,7 @@ echo doctype('html5');
                                 <?php
                                 foreach ($stage_images as $key => $image) :
                                 if ($image->name == "Startseite Jubiläum") {
-                                if(new DateTime() >= new DateTime('2016-08-10 00:00:00')) $headline = "Jubiläum";
-                                else $headline = "Countdown";
+                                $headline = "150 jähriges Jubiläum";
                                 switch ($image->stage_image_type_id) {
                                 case 1: $css_inner_class = "stageContentHeadlineTop half_blackBG smallstage";
                                 break;
