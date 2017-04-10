@@ -11,7 +11,7 @@ class Ticketshop extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper('ajax');
-        $this->load->library('session');
+        $this->load->helper('session');
         $this->load->model('tickets_model');
     }
 
