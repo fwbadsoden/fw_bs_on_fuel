@@ -167,6 +167,7 @@ class Fahrzeuge_model extends Abstract_module_model {
             'class' => 'tab',
             'label' => 'Bilder',
             'order' => 100);
+        $fields["fahrzeug_images"]["sorting"] = TRUE;
         $fields["fahrzeug_images"]["label"] = "Bilder";
         $fields["fahrzeug_images"]["order"] = 101;
 
@@ -284,6 +285,70 @@ class Fahrzeuge_model extends Abstract_module_model {
 }
 
 class Fahrzeug_model extends Abstract_module_record {
+
+    public function get_fahrzeug_images() {
+        CI()->db->select('relationships.foreign_key');
+        CI()->db->distinct();
+        CI()->db->where(array('relationships.candidate_table' => 'fw_fahrzeuge', 'relationships.foreign_table' => 'fw_fahrzeug_images', 'relationships.candidate_key' => $this->id));
+        CI()->db->order_by('relationships.id asc');
+        $query = CI()->db->get('relationships');
+        $i = 0;
+        $fahrzeug_images = array();
+        foreach ($query->result() as $row) {
+            $fahrzeug_images[$i] = fuel_model('fahrzeug_images_model', array('find' => 'one', 'where' => array('id' => $row->foreign_key)));
+            $i++;
+        }
+        return $fahrzeug_images;
+    }
+
+    public function get_fahrzeug_loadings() {
+        CI()->db->select('relationships.foreign_key');
+        CI()->db->distinct();
+        CI()->db->join('fahrzeug_loadings', 'fahrzeug_loadings.id = relationships.foreign_key');
+        CI()->db->where(array('relationships.candidate_table' => 'fw_fahrzeuge', 'relationships.foreign_table' => 'fw_fahrzeug_loadings', 'relationships.candidate_key' => $this->id, 'fahrzeug_loadings.published' => 'yes'));
+        CI()->db->order_by('fahrzeug_loadings.precedence asc');
+        $query = CI()->db->get('relationships');
+        $i = 0;
+        $fahrzeug_loadings = array();
+        foreach ($query->result() as $row) {
+            $fahrzeug_loadings[$i] = fuel_model('fahrzeug_loadings_model', array('find' => 'one', 'where' => array('id' => $row->foreign_key)));
+            $i++;
+        }
+        return $fahrzeug_loadings;
+    }
+
+    public function get_fahrzeug_special_functions() {
+        CI()->db->select('relationships.foreign_key');
+        CI()->db->distinct();
+        CI()->db->join('fahrzeug_special_functions', 'fahrzeug_special_functions.id = relationships.foreign_key');
+        CI()->db->where(array('relationships.candidate_table' => 'fw_fahrzeuge', 'relationships.foreign_table' => 'fw_fahrzeug_special_functions', 'relationships.candidate_key' => $this->id, 'fahrzeug_special_functions.published' => 'yes'));
+        CI()->db->order_by('fahrzeug_special_functions.precedence asc');
+        $query = CI()->db->get('relationships');
+        $i = 0;
+        $fahrzeug_special_functions = array();
+        foreach ($query->result() as $row) {
+            $fahrzeug_special_functions[$i] = fuel_model('fahrzeug_special_functions_model', array('find' => 'one', 'where' => array('id' => $row->foreign_key)));
+            $i++;
+        }
+        return $fahrzeug_special_functions;
+    }
+
+    public function get_fahrzeug_fittings() {
+        CI()->db->select('relationships.foreign_key');
+        CI()->db->distinct();
+        CI()->db->join('fahrzeug_fittings', 'fahrzeug_fittings.id = relationships.foreign_key');
+        CI()->db->where(array('relationships.candidate_table' => 'fw_fahrzeuge', 'relationships.foreign_table' => 'fw_fahrzeug_fittings', 'relationships.candidate_key' => $this->id, 'fahrzeug_fittings.published' => 'yes'));
+        CI()->db->order_by('fahrzeug_fittings.precedence asc');
+        $query = CI()->db->get('relationships');
+        $i = 0;
+        $fahrzeug_fittings = array();
+        foreach ($query->result() as $row) {
+            $fahrzeug_fittings[$i] = fuel_model('fahrzeug_fittings_model', array('find' => 'one', 'where' => array('id' => $row->foreign_key)));
+            $i++;
+        }
+        return $fahrzeug_fittings;
+    }
+    
     public function get_missions() {
         CI()->db->select('relationships.candidate_key');
         CI()->db->distinct();

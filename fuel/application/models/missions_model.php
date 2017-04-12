@@ -219,6 +219,7 @@ if (jQuery){ (function ($) {
             'class' => 'tab',
             'label' => 'Bilder',
             'order' => 900);
+        $fields["mission_images"]["sorting"] = TRUE;
         $fields["mission_images"]["order"] = 999;
         $fields["mission_images"]["label"] = 'Einsatzbilder';
         //unset($fields["mission_images"]);
@@ -419,11 +420,9 @@ class Mission_model extends Abstract_module_record {
     public function get_mission_images() {
         CI()->db->select('relationships.foreign_key');
         CI()->db->distinct();
-        CI()->db->join('mission_images', 'mission_images.id = relationships.foreign_key');
         CI()->db->where(array('relationships.candidate_table' => 'fw_missions', 'relationships.foreign_table' => 'fw_mission_images', 'relationships.candidate_key' => $this->id));
-        CI()->db->order_by('creation asc');
+        CI()->db->order_by('relationships.id asc');
         $query = CI()->db->get('relationships');
-        //internal_debug(CI()->db->last_query());
         $i = 0;
         $mission_images = array();
         foreach ($query->result() as $row) {

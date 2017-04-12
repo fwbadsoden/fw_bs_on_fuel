@@ -107,6 +107,7 @@ class News_articles_model extends Abstract_module_model {
             'class' => 'tab',
             'label' => 'Bilder',
             'order' => 900);
+        $fields["news_images"]["sorting"] = TRUE;
         $fields["news_images"]["label"] = 'Bilder';
         $fields["news_images"]["order"] = 999;
 
@@ -165,6 +166,21 @@ class News_articles_model extends Abstract_module_model {
 }
 
 class News_article_model extends Abstract_module_record {
+
+    public function get_news_images() {
+        CI()->db->select('relationships.foreign_key');
+        CI()->db->distinct();
+        CI()->db->where(array('relationships.candidate_table' => 'fw_news_articles', 'relationships.foreign_table' => 'fw_news_images', 'relationships.candidate_key' => $this->id));
+        CI()->db->order_by('relationships.id asc');
+        $query = CI()->db->get('relationships');
+        $i = 0;
+        $news_images = array();
+        foreach ($query->result() as $row) {
+            $news_images[$i] = fuel_model('news_images_model', array('find' => 'one', 'where' => array('id' => $row->foreign_key)));
+            $i++;
+        }
+        return $news_images;
+    }
     
 }
 
