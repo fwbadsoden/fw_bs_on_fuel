@@ -1,10 +1,12 @@
-<?php
+<?php 
 if (count($data->fahrzeug_special_functions) > 0) :
     if($picture_orientation == "right") $counter = 1;
     else $counter = 0;
     $character = "A";
+    if($displayed == false) : $class = "car_darkspecial first"; else : $class = "car_darkspecial"; endif;
+    $displayed = true; 
     ?> 
-    <div class="car_darkspecial">  
+    <div class="<?=$class?>">  
 
         <?php if ($data->show_specialfunctions_header()) : ?>
             <h2>Besonderheiten</h2>
@@ -47,4 +49,7 @@ if (count($data->fahrzeug_special_functions) > 0) :
             ?>
         </div>
     </div>
-<?php endif; ?>
+<?php 
+else :     
+    $displayed = false; 
+endif; ?>

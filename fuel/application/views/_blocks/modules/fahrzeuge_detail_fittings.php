@@ -1,5 +1,6 @@
 <?php
 if (count($data->fahrzeug_fittings) > 0) :
+    $displayed = true; 
     if($picture_orientation == "right") $counter = 1;
     else $counter = 0;
     ?> 
@@ -24,4 +25,8 @@ if (count($data->fahrzeug_fittings) > 0) :
         </div>
         <hr class="clear" />
     </div>
-<?php endforeach; endif;?>
+<?php 
+    endforeach; 
+else : 
+    $displayed = false; 
+endif;?>
