@@ -1927,7 +1927,7 @@ header nav {
 	margin: 60px 0 0 0;
 	padding: 0 0 0 0;
 }
-#content .car_darkspecial .first {
+#content .car_darkspecial.first {
 	margin: 0 0 0 0;
 }
 #content .car_darkspecial .specialwrapper {
