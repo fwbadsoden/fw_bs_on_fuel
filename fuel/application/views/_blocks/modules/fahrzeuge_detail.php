@@ -1,29 +1,27 @@
 <?php
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+if (!defined('BASEPATH')) : exit('No direct script access allowed'); endif;
 
-if ($data->is_wlf()) {
-    $abrollbehaelter = $data->get_abrollbehaelter();    
-}
-
-if ($data->rufname == 'n/a') : $ruf_name = 'n/a';
-else : $ruf_name = $data->prefix_rufname . ' ' . $data->rufname;
-endif;
+if ($data->is_wlf()) : $abrollbehaelter = $data->get_abrollbehaelter(); endif;
+if ($data->rufname == 'n/a') : $ruf_name = 'n/a'; else : $ruf_name = $data->prefix_rufname . ' ' . $data->rufname; endif;
+if ($data->baujahr != "") : $baujahr = $data->baujahr; else : $baujahr = "n/a"; endif; 
 ?>
 
 <div id="car_techdetails" class="fahrzeuge">
     <div class="slidewrapper techdetails">
         <div class="row_a">
             <div class="cell_non_bg">
+                <? if($data->aufbau != "" && $data->aufbau != "n/a") : ?>
+                <p class="valuea"><?= $data->hersteller ?> / <?= $data->aufbau ?></p>
+                <p class="label">Hersteller / Aufbau</p>
+                <? else : ?>
                 <p class="valuea"><?= $data->hersteller ?></p>
                 <p class="label">Hersteller</p>
+                <? endif; ?>
             </div>
-            <?php if ($data->aufbau != "") : ?>
-                <div class="cell_non_bg">
-                    <p class="valuea"><?= $data->aufbau ?></p>
-                    <p class="label">Aufbau</p>
-                </div>
-            <?php endif; ?>
+            <div class="cell_non_bg">
+                <p class="valuea"><?= $baujahr ?></p>
+                <p class="label">Baujahr</p>
+            </div>
             <div class="cell_non_bg">
                 <p class="valuea"><?= $ruf_name ?></p>
                 <p class="label">Funkrufname</p>
@@ -71,12 +69,8 @@ endif;
         </div>
     </div> 
 </div>
-
-
 <?php
     $picture_orientation = "right";
     $modules = get_vehicle_module_order($data->module_order);
-    foreach($modules as $module) {
-        include($module);
-    }
+    foreach($modules as $module) : include($module); endforeach;
 ?>
