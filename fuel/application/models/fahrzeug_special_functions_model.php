@@ -38,8 +38,8 @@ class Fahrzeug_special_functions_model extends Abstract_module_model {
     }
 
     public function options_list($key = 'id', $val = 'name', $where = array(), $order = TRUE, $group = TRUE) {
-        $this->db->order_by('vehicle asc, name asc');
-        $this->db->select('id, vehicle, name');
+        $this->db->order_by('fahrzeug_special_functions.vehicle asc, fahrzeug_special_functions.name asc');
+        $this->db->select('fahrzeug_special_functions.id, fahrzeug_special_functions.vehicle, fahrzeug_special_functions.name');
         $query = $this->db->get('fahrzeug_special_functions');
         foreach ($query->result() as $row) {
             $data[$row->id] = $row->vehicle . " - " . $row->name;

@@ -72,5 +72,8 @@ if ($data->baujahr != "") : $baujahr = $data->baujahr; else : $baujahr = "n/a"; 
 <?php
     $picture_orientation = "right";
     $modules = get_vehicle_module_order($data->module_order);
-    foreach($modules as $module) : include($module); endforeach;
+    $displayed = false; 
+    foreach($modules as $module) :
+        include($module); 
+    endforeach;
 ?>

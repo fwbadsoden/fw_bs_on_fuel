@@ -1,5 +1,6 @@
 <?php
 if (count($data->fahrzeug_loadings) > 0) :
+    $displayed = true; 
     if($picture_orientation == "right") : $counter = 1; else : $counter = 0; endif;
 ?> 
 
@@ -52,4 +53,7 @@ if (count($data->fahrzeug_loadings) > 0) :
             ?>
         </div>
     </div>
-<?php endif; ?>
+<?php 
+else :    
+    $displayed = false; 
+endif; ?>

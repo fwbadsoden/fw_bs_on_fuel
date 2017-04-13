@@ -1,7 +1,7 @@
+<?php if(count($data->fahrzeug_images) == 0) : $displayed = true; else : $displayed = false; endif; ?>
 <div class="slidewrapper">
     <div class="car_slideshowbox">  
-        <div class="slideshow">
-
+        <div class="slideshow">            
             <?php if (count($data->fahrzeug_images) > 1) : ?>
                 <div class="prevPic"><a href="#slideshow_car" id="slideshow_prev"><img src="<?= assets_path('button_detailShow_previous.png', 'layout') ?>" /></a></div>
                 <div class="nextPic"><a href="#slideshow_car" id="slideshow_next"><img src="<?= assets_path('button_detailShow_next.png', 'layout') ?>" /></a></div>
