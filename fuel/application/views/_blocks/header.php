@@ -269,7 +269,6 @@ echo doctype('html5');
                                             <ul>                     
                                                 <li class="headline"><a>Spezialeinheiten</a></li>
                                                 <li><a href="<?= base_url('technik/rettungshunde') ?>">Rettungshunde-Ortungstechnik</a></li>
-                                            <!--<li><a href="<?= base_url('technik/gabc') ?>">Gefahrstoffzug</a></li>-->
                                             </ul>  
                                         </div>  
                                     </li>  
@@ -314,16 +313,6 @@ echo doctype('html5');
                                     ?> 
                                     <li><a href="<?= base_url('verein') ?>"<?= $class ?>>Verein</a>  
                                     </li> 
-                                    <!--       <li><a href="#" class="desktopsearch">&nbsp;</a>
-                                               <div class="dropdown">
-                                                   <form action="<?= base_url('search') ?>" method="post" accept-charset="utf8" id="search" name="search"><div style="display:none">
-                           <input type="hidden" name="csrf_f5g5h7z5b4f3f6g4_t" value="3cd435411c7fcf811b18f80f98a4e2a4" />
-                           </div>                        <div class="search">	
-                                                       <input type="text" name="search_query" value="" id="search_query" class="searchtext"  />                        </div>
-                                                   <input type="submit" value="Suchen &raquo;" class="searchbutton" />
-                                                   </form>
-                                               </div>
-                                           </li>-->
                                 </ul>
                                 </nav>
 
@@ -358,8 +347,8 @@ echo doctype('html5');
                                     <li class="subnavi">    
                                         <ul>  
                                             <li><a href="<?= base_url('technik/fahrzeuge') ?>" class="first">Fahrzeuge</a></li>
+                                            <li><a href="<?= base_url('technik/fahrzeuge/ausserdienst') ?>">Fahrzeuge a.D.</a></li>
                                             <li><a href="<?= base_url('technik/rettungshunde') ?>">Rettungshunde-Ortungstechnik</a></li>
-                                            <!--<li><a href="<?= base_url('technik/gabc') ?>">Gefahrstoffzug</a></li>-->
                                         </ul>
                                     </li>
                                     <li><a href="<?= base_url('informationen/buergerinformationen') ?>">Infos</a></li>
