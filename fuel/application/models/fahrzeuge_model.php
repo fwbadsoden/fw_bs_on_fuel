@@ -154,10 +154,10 @@ class Fahrzeuge_model extends Abstract_module_model {
         $fields["leermasse"]['after_html'] = 't';
         $fields["leermasse"]['order'] = 57;
         $fields["leermasse"]["disabled"] = TRUE;
+        
         $fields["baujahr"]['order'] = 58;
         $fields["baujahr"]['comment'] = lang("form_comment_fahrzeug_baujahr");
-        $fields["baujahr"]['type'] = $fields["ausserdienststellung"]['order'] = 15;
-        $fields["baujahr"]["disabled"] = TRUE;
+        
         $fields["ausserdienststellung"]['order'] = 59;
         $fields["ausserdienststellung"]['label'] = lang("form_label_fahrzeug_ausserdienststellung");
         $fields["ausserdienststellung"]['comment'] = lang("form_comment_fahrzeug_ausserdienststellung");
@@ -265,11 +265,12 @@ class Fahrzeuge_model extends Abstract_module_model {
     public function get_stage_info($id) {
 
         $this->db->where("id", $id);
-        $this->db->select("name, name_lang, text_stage, stage_image");
+        $this->db->select("name, name_lang, text_stage, stage_image, retired");
         $query = $this->db->get('fahrzeuge');
         $row = $query->row();
         $text['name'] = $row->name;
         $text['name_lang'] = $row->name_lang;
+        if($row->retired == "yes") $text["name_lang"] .= " (a. D.)";
         $text['text_stage'] = $row->text_stage;
         $text['stage_image'] = $row->stage_image;
 

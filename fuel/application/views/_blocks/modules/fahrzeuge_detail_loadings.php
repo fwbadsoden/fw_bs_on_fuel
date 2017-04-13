@@ -1,7 +1,6 @@
 <?php
 if (count($data->fahrzeug_loadings) > 0) :
-    if($picture_orientation == "right") $counter = 1;
-    else $counter = 0;
+    if($picture_orientation == "right") : $counter = 1; else : $counter = 0; endif;
 ?> 
 
     <?php if ($data->show_loadings_header()) : ?>
