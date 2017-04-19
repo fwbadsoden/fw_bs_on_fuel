@@ -36,7 +36,6 @@ $config['modules_allowed'] = array(
     'backup',
     'cronjobs',
     'google_keywords',
-    'google_analytics',
     'validate'
 );
 

@@ -26,6 +26,7 @@ if (count($data->fahrzeug_fittings) > 0) :
         <hr class="clear" />
     </div>
 <?php 
+        $counter++;
     endforeach; 
 else : 
     $displayed = false; 

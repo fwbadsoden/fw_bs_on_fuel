@@ -2018,6 +2018,12 @@ header nav {
 	margin: 0 0 0 5%;
 	padding: 0 0 0 0;
 }
+#content .car_freespecial .textleft {
+	float: right;
+}
+#content .car_freespecial .imageleft {
+	float: left;
+}
 #content .car_freespecial .text h2 {
 	font-family: 'Cabin', Arial, sans-serif;
 	text-transform: uppercase;
