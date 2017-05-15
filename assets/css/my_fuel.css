@@ -5,7 +5,7 @@ div#login { padding: 15% 0 0 0; border: none; background-color: #9a0000; margin:
 div#login h3, div#login p { color: #fff; text-align: center; }
 div#login form { width: 270px; margin: 0 auto; }
 div#login input { background-color: #474747; color: #fff; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; border: 2px solid #191919; height: 40px;  width: 270px; padding: 0 1em; }
-.login_logo { background: transparent url(../layout/logo.png) no-repeat; background-size: 100%; width: 215px; height: 53px; overflow: hidden; margin: 0 auto 1.5em auto; }
+.login_logo { background: transparent url(../layout/logo_2.png) no-repeat; background-size: 100%; width: 180px; height: 53px; overflow: hidden; margin: 0 auto 1.5em auto; }
 div#login ::-webkit-input-placeholder {color: #191919; }
 div#login :-moz-placeholder { color: #191919; }
 div#login :-ms-input-placeholder { color:  #191919; }
