@@ -67,35 +67,36 @@ class News_articles_model extends Abstract_module_model {
             'order' => 3);
 
         $fields['link']['comment'] = lang('form_label_news_link');
+        $fields['link']["order"] = 4;
 
         $fields['datum']["label"] = lang('form_label_news_datum');
-        $fields['datum']["order"] = 4;
+        $fields['datum']["order"] = 6;
 
         $fields['teaser_image'] = array('label' => lang('form_label_news_teaser_image'),
             'comment' => lang('form_comment_news_teaser_image'),
             'folder' => 'images/news',
             'hide_options' => true,
-            'order' => 5);
+            'order' => 7);
 
         $fields['og_image'] = array('label' => lang('form_label_news_og_image'),
             'comment' => lang('form_comment_news_og_image'),
             'folder' => 'images/news',
             'hide_options' => true,
-            'order' => 6);
+            'order' => 8);
 
         $fields['teaser'] = array('type' => 'textarea',
             'preview' => false,
             'class' => 'no_editor',
-            'order' => 7);
+            'order' => 9);
 
         $fields['text'] = array('type' => 'textarea',
             'preview' => false,
             'img_folder' => 'news',
-            'order' => 8);
+            'order' => 10);
 
         $fields['text_detail_button']['label'] = 'Text für Detailbutton';
         $fields['text_detail_button']['default'] = 'Mehr lesen';
-        $fields['text_detail_button']['order'] = 9;
+        $fields['text_detail_button']['order'] = 11;
 
         $fields['published']['type'] = 'hidden';
 
