@@ -25,6 +25,7 @@ class Homepage extends CI_Controller {
         $data["weather"]          = $this->weather->get_weather();
         $data["mission_count"]    = $this->missions_model->get_mission_count(date('Y'));
         $data["vehicle_count"]    = $this->fahrzeuge_model->get_fahrzeug_anzahl();
+        $data["swapbody_count"]    = $this->fahrzeuge_model->get_abroller_anzahl();
         $data["member_count"]     = $this->mannschaft_members_model->get_mannschaft_members_anzahl_as_array();
       
         $warning = $this->weather->get_weather_warning(FALSE);

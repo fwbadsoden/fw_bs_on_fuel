@@ -64,6 +64,7 @@
             <tr><td>Frauen</td><td class="value"><?= $member_count["anzahl_w"] ?></td></tr>
             <tr><td>M&auml;nner</td><td class="value"><?= $member_count["anzahl_m"] ?></td></tr>
             <tr><td>Fahrzeuge</td><td class="value"><?= $vehicle_count ?></td></tr>
+            <tr><td>Abrollbehälter</td><td class="value"><?= $swapbody_count ?></td></tr>
         </table>          
     </div>
     <hr class="clear" />
