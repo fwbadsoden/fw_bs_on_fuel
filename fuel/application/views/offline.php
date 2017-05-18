@@ -78,7 +78,7 @@
 <header>
 	<div class="site" id="top">
         <h1>
-        	<a href="http://dev.feuerwehr-bs.de/" title="Home">Freiwillige Feuerwehr Bad Soden am Taunus</a>
+        	<a href="<?= base_url() ?>" title="Home"><?= fuel_var('pagetitle'); ?></a>
         </h1>
         <nav>    
           <div id="metanavigation">                 
