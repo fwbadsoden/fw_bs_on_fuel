@@ -16,7 +16,7 @@
                         <?php endif; ?>
                         <figure>
                             <img src="<?= img_path('fahrzeuge/' . $img->image) ?>" alt="<?= $img->description ?>" />
-                            <div class="zoom"><a href="<?= img_path('fahrzeuge/' . $img->image) ?>" title="<?= $img->description ?>" class="fancybox-gallery" rel="gallery1"><img src="<?= assets_path('button_zoom.png', 'layout') ?>" /></a></div>
+                            <div class="zoom"><a href="<?= img_path('fahrzeuge/' . $img->image) ?>" title="" class="fancybox-gallery" rel="gallery1"><img src="<?= assets_path('button_zoom.png', 'layout') ?>" /></a></div>
                         </figure>
                     </li>
                 <?php endforeach; ?> 

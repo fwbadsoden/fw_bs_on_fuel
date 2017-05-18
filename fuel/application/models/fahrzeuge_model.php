@@ -106,6 +106,7 @@ class Fahrzeuge_model extends Abstract_module_model {
             'order' => 13);
 
         $fields["text"] = array('class' => 'no_editor',
+            'label' => lang("form_label_fahrzeug_text_abroller"),
             'type' => 'textarea',
             'preview' => false,
             'order' => 14);

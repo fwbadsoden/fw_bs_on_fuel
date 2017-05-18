@@ -20,11 +20,11 @@ class Stage_Types_model extends Abstract_module_model {
         
         $fields = parent::form_fields($values, $related);         
         
-        $options = array('pictures', 'pictures small', 'carstage');
+        $options = array(array('pictures' => 'pictures'), array('pictures small' => 'pictures small'), array('carstage' => 'carstage'));
         $fields['css_outer_class'] = array('label' => lang('form_label_stagetype_css_outer_class'),
                                            'type'  => 'select', 'options' => $options);
         
-        $options = array('slidewrapper', 'slidewrapper smallstage', 'slidewrapper techdetails');
+        $options = array(array('slidewrapper' => 'slidewrapper'), array('slidewrapper smallstage' => 'slidewrapper smallstage'), array('slidewrapper techdetails' => 'slidewrapper techdetails'));
         $fields['css_slidewrapper_class'] = array('label' => lang('form_label_stagetype_css_slidewrapper_class'),
                                                  'type'  => 'select', 'options' => $options);
         
