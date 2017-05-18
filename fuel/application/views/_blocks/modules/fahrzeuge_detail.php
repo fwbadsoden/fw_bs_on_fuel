@@ -3,7 +3,8 @@ if (!defined('BASEPATH')) : exit('No direct script access allowed'); endif;
 
 if ($data->is_wlf()) : $abrollbehaelter = $data->get_abrollbehaelter(); endif;
 if ($data->rufname == 'n/a') : $ruf_name = 'n/a'; else : $ruf_name = $data->prefix_rufname . ' ' . $data->rufname; endif;
-if ($data->baujahr != "") : $baujahr = $data->baujahr; else : $baujahr = "n/a"; endif; 
+if ($data->ausserdienststellung != 0 && $data->is_retired()) : $baujahr = $data->ausserdienststellung; elseif ($data->baujahr != 0) : $baujahr = $data->baujahr; else : $baujahr = "n/a"; endif; 
+if ($data->ausserdienststellung != 0 && $data->is_retired()) : $text_baujahr = "außer Dienst seit"; else : $text_baujahr = "Baujahr"; endif; 
 ?>
 
 <div id="car_techdetails" class="fahrzeuge">
@@ -20,7 +21,7 @@ if ($data->baujahr != "") : $baujahr = $data->baujahr; else : $baujahr = "n/a"; 
             </div>
             <div class="cell_non_bg">
                 <p class="valuea"><?= $baujahr ?></p>
-                <p class="label">Baujahr</p>
+                <p class="label"><?= $text_baujahr ?></p>
             </div>
             <div class="cell_non_bg">
                 <p class="valuea"><?= $ruf_name ?></p>

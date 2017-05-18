@@ -151,17 +151,12 @@ class Fahrzeuge_model extends Abstract_module_model {
         $fields["gesamtmasse"]['after_html'] = 't';
         $fields["gesamtmasse"]['order'] = 56;
         
-        $fields["leermasse"]['after_html'] = 't';
-        $fields["leermasse"]['order'] = 57;
-        $fields["leermasse"]["disabled"] = TRUE;
-        
         $fields["baujahr"]['order'] = 58;
         $fields["baujahr"]['comment'] = lang("form_comment_fahrzeug_baujahr");
         
         $fields["ausserdienststellung"]['order'] = 59;
         $fields["ausserdienststellung"]['label'] = lang("form_label_fahrzeug_ausserdienststellung");
         $fields["ausserdienststellung"]['comment'] = lang("form_comment_fahrzeug_ausserdienststellung");
-        $fields["ausserdienststellung"]["disabled"] = TRUE;
 
         $fields["images"] = array('type' => 'fieldset',
             'class' => 'tab',
@@ -224,6 +219,7 @@ class Fahrzeuge_model extends Abstract_module_model {
         $fields["precedence"]["type"] = 'hidden';
         $fields["published"]["type"] = 'hidden';
         $fields["module_order"]["type"] = 'hidden';
+        $fields["leermasse"]["type"] = 'hidden';
 
         return $fields;
     }
@@ -281,6 +277,13 @@ class Fahrzeuge_model extends Abstract_module_model {
         $this->db->where('published', 'yes');
         $this->db->where('retired', 'no');
         $this->db->where('ist_abrollbehaelter', 'no');
+        return $this->db->count_all_results("fahrzeuge");
+    }
+
+    public function get_abroller_anzahl() {
+        $this->db->where('published', 'yes');
+        $this->db->where('retired', 'no');
+        $this->db->where('ist_abrollbehaelter', 'yes');
         return $this->db->count_all_results("fahrzeuge");
     }
 }
