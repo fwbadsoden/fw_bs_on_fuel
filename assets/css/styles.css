@@ -2765,6 +2765,140 @@ header nav {
     #content .article div.links { clear:both; }
 }
 
+/* ------------] MainContent - TAB-Box [--------------- */
+
+#content .TabBox {
+	width: auto;	
+}
+
+#content .TabBox .TabBoxMenue {
+	height: 45px;
+}
+#content .TabBox ul {
+	z-index: 15;
+	margin: 0;
+	padding: 0;
+}
+#content .TabBox li {
+	list-style-type: none;
+	display: inline-block;
+	margin: 0 0 0 0;
+}
+#content .TabBox li a {
+	display: block;
+	padding: 12px;
+	margin: 0 0 0 0;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: none;
+	color: #000000;
+	background-color: #b1b1b1;
+}
+#content .TabBox li a.active {
+	background-color: #9a0000;
+	color: #FFFFFF;
+}
+#content .TabBox li a:hover {
+	background-color: #9a0000;
+	color: #ffd200;
+}
+
+
+#content .TabBox .TabBoxContent {
+	margin: 0 0 20px 0;
+	width: auto;
+	background-color:#FFF;
+	padding: 10px;
+	box-shadow: 1px 1px 2px #d9d9d9;
+	clear: left;	
+}
+#content .TabBox .TabBoxContent h1 {
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	font-size: 18px;
+	color: #121212;
+	margin: 10px 0 0 0;
+}
+#content .TabBox .TabBoxContent p {
+	font-family: Arial, sans-serif;
+	font-weight: normal;
+	font-size: 12px;
+	color: #121212;
+	margin: 15px 0 15px 0;
+}
+#content .TabBox .TabBoxContent ul {
+	list-style: square;
+}
+#content .TabBox .TabBoxContent ul li {
+	font-family: Arial, sans-serif;
+	font-weight: normal;
+	font-size: 12px;
+	color: #121212;
+	margin: 0 0 10px 0;
+}
+#content .TabBox .TabBoxContent .facttable {
+	clear: both;
+	margin: 0 0 15px 0;
+}
+#content .TabBox .TabBoxContent .facttable .left {
+	width: 45%;
+	float: left;
+}
+#content .TabBox .TabBoxContent .facttable .right {
+	width: 45%;
+	float: right;
+}
+
+#content .TabBox .TabBoxContent .facttable h1 {
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+	color: #121212;
+	margin: 20px 0 0 0;
+	padding: 0 0 5px 0;
+	border-bottom: 1px solid #000000;
+}
+#content .TabBox .TabBoxContent .facttable ul {
+	font-family: Arial, sans-serif;
+	font-weight: normal;
+	margin: 10px 0 0 0;
+}
+#content .TabBox .TabBoxContent .facttable ul li {
+	font-family: Arial, sans-serif;
+	font-weight: normal;
+	font-size: 12px;
+	color: #9a0000;
+	margin: 0 0 5px 0;
+	clear: left;
+}
+
+#content .TabBox .TabBoxContent h1.reiter {
+	display: block;
+	position: relative;
+	margin: 0 0 0 0;
+	display: none;
+	border-bottom: 1px #FFF solid;
+}
+
+#content .TabBoxContent h1.reiter a {
+	display: block;
+	padding: 12px;
+	margin: 0 0 0 0;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: none;
+	color: #000000;
+	background-color: #b1b1b1;
+}
+#content .TabBoxContent h1.reiter a.active {
+	background-color: #9a0000;
+	color: #FFFFFF;
+}
+
 /* ------------] MainContent - MenueBox [--------------- */
 
 #content .menueBox {
