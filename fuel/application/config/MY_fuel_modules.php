@@ -22,14 +22,14 @@
 
  * ********************** /EXAMPLE ********************************** */
 
-$config['modules']['stages'] = array(
+$config['modules']['Stages'] = array(
     'module_name' => 'Bildbühnen',
     'instructions' => lang("stage_instructions"),
     'permission' => 'stages',
     'item_actions' => array('save', 'delete', 'create')
 );
 
-$config['modules']['stage_images'] = array(
+$config['modules']['Stage_images'] = array(
     'module_name' => 'Bildbühnenbilder',
     'instructions' => lang("stage_images_instructions"),
     'permission' => 'stages',
@@ -38,28 +38,28 @@ $config['modules']['stage_images'] = array(
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
-$config['modules']['stage_types'] = array(
+$config['modules']['Stage_types'] = array(
     'module_name' => 'Bildbühnentypen',
     'instructions' => lang("stage_types_instructions"),
     'permission' => 'stage_types',
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
-$config['modules']['missions'] = array(
+$config['modules']['Missions'] = array(
     'module_name' => 'Einsätze',
     'instructions' => lang("einsatz_instructions"),
     'permission' => 'missions',
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
-$config['modules']['mission_types'] = array(
+$config['modules']['Mission_types'] = array(
     'module_name' => 'Einsatzarten',
     'instructions' => lang("einsatz_types_instructions"),
     'permission' => 'mission_types',
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
-$config['modules']['mission_images'] = array(
+$config['modules']['Mission_images'] = array(
     'module_name' => 'Einsatzbilder',
     'display_field' => 'image',
     'instructions' => lang("einsatz_images_instructions"),
@@ -67,21 +67,21 @@ $config['modules']['mission_images'] = array(
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
-$config['modules']['mission_cues'] = array(
+$config['modules']['Mission_cues'] = array(
     'module_name' => 'Einsatzstichwörter',
     'instructions' => lang("einsatz_cues_instructions"),
     'permission' => 'mission_cues',
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
-$config['modules']['mission_templates'] = array(
+$config['modules']['Mission_templates'] = array(
     'module_name' => 'Einsatzvorlagen',
     'instructions' => lang("einsatz_templates_instructions"),
     'permission' => 'mission_templates',
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
-$config['modules']['fahrzeuge'] = array(
+$config['modules']['Fahrzeuge'] = array(
     'module_name' => 'Fahrzeuge',
     'instructions' => lang("fahrzeuge_instructions"),
     'permission' => 'vehicles',
@@ -89,7 +89,7 @@ $config['modules']['fahrzeuge'] = array(
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
-$config['modules']['fahrzeug_images'] = array(
+$config['modules']['Fahrzeug_images'] = array(
     'module_name' => 'Fahrzeugbilder',
     'instructions' => lang("fahrzeuge_images_instructions"),
     'display_field' => 'image',
@@ -97,7 +97,7 @@ $config['modules']['fahrzeug_images'] = array(
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
-$config['modules']['fahrzeug_fittings'] = array(
+$config['modules']['Fahrzeug_fittings'] = array(
     'module_name' => 'Fahrzeuganbauten',
     'instructions' => lang("fahrzeuge_fittings_instructions"),
     'display_field' => 'name',
@@ -105,7 +105,7 @@ $config['modules']['fahrzeug_fittings'] = array(
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
-$config['modules']['fahrzeug_loadings'] = array(
+$config['modules']['Fahrzeug_loadings'] = array(
     'module_name' => 'Fahrzeugbeladung',
     'instructions' => lang("fahrzeug_loadings_instructions"),
     'display_field' => 'name',
@@ -113,7 +113,7 @@ $config['modules']['fahrzeug_loadings'] = array(
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
-$config['modules']['fahrzeug_special_functions'] = array(
+$config['modules']['Fahrzeug_special_functions'] = array(
     'module_name' => 'Fahrzeugbesonderheiten',
     'instructions' => lang("fahrzeug_special_functions_instructions"),
     'display_field' => 'name',
@@ -121,7 +121,7 @@ $config['modules']['fahrzeug_special_functions'] = array(
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
-$config['modules']['mannschaft_members'] = array(
+$config['modules']['Mannschaft_members'] = array(
     'module_name' => 'Mannschaft',
     'instructions' => lang("mannschaft_members_instructions"),
     'permission' => 'mannschaft_members',
@@ -129,7 +129,7 @@ $config['modules']['mannschaft_members'] = array(
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
-$config['modules']['mannschaft_sections'] = array(
+$config['modules']['Mannschaft_sections'] = array(
     'module_name' => 'Mannschaft Abteilungen',
     'default_col' => 'precedence',
     'instructions' => lang("mannschaft_sections_instructions"),
@@ -137,7 +137,7 @@ $config['modules']['mannschaft_sections'] = array(
     'hidden' => true,
 );
 
-$config['modules']['mannschaft_grades'] = array(
+$config['modules']['Mannschaft_grades'] = array(
     'module_name' => 'Mannschaft Dienstgrade',
     'default_col' => 'precedence',
     'instructions' => lang("mannschaft_grades_instructions"),
@@ -145,7 +145,7 @@ $config['modules']['mannschaft_grades'] = array(
     'hidden' => true,
 );
 
-$config['modules']['mannschaft_executives'] = array(
+$config['modules']['Mannschaft_executives'] = array(
     'module_name' => 'Mannschaft Führungsfunktionen',
     'default_col' => 'precedence',
     'instructions' => lang("mannschaft_executives_instructions"),
@@ -153,21 +153,21 @@ $config['modules']['mannschaft_executives'] = array(
     'hidden' => true,
 );
 
-$config['modules']['mannschaft_teams'] = array(
+$config['modules']['Mannschaft_teams'] = array(
     'module_name' => 'Mannschaft Teams',
     'instructions' => lang("mannschaft_teams_instructions"),
     'permission' => 'mannschaft_teams',
     'hidden' => true,
 );
 
-$config['modules']['news_articles'] = array(
+$config['modules']['News_articles'] = array(
     'module_name' => 'Newsartikel',
     'instructions' => lang("news_article_instructions"),
     'permission' => 'news',
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
-$config['modules']['news_images'] = array(
+$config['modules']['News_images'] = array(
     'module_name' => 'Newsbilder',
     'display_field' => 'image',
     'instructions' => lang("news_images_instructions"),
@@ -175,14 +175,14 @@ $config['modules']['news_images'] = array(
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
-$config['modules']['pressarticles'] = array(
+$config['modules']['Pressarticles'] = array(
     'module_name' => 'Presseartikel',
     'instructions' => lang("presse_instructions"),
     'permission' => 'pressarticles',
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
-$config['modules']['pressarticle_sources'] = array(
+$config['modules']['Pressarticle_sources'] = array(
     'module_name' => 'Presseartikel - Quellen',
     'display_field' => 'name',
     'instructions' => lang("presse_sources_instructions"),
@@ -190,19 +190,19 @@ $config['modules']['pressarticle_sources'] = array(
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
 
-$config['modules']['appointments'] = array(
+$config['modules']['Appointments'] = array(
     'module_name' => 'Termine',
     'instructions' => lang("appointments_instructions"),
     'permission' => 'appointments',
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
-$config['modules']['autosuggests'] = array(
+$config['modules']['Autosuggests'] = array(
     'module_name' => 'Vorschlagswerte',
     'instructions' => lang("autosuggests_instructions"),
     'permission' => 'autosuggests',
     'item_actions' => array('save', 'view', 'publish', 'activate', 'delete', 'duplicate', 'create')
 );
-$config['modules']['tickets'] = array(
+$config['modules']['Tickets'] = array(
     'module_name' => 'Ticketshop',
     'instructions' => 'Ticketbestellungen verwalten',
     'permission' => 'ticketshop',

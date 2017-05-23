@@ -152,7 +152,7 @@ class News_articles_model extends Abstract_module_model {
     }
 
     public function get_og_image($id) {
-        $this->load->library('opengraph');
+        $this->load->library('Opengraph', 'opengraph');
         $this->db->where('id', $id);
         $this->db->select('og_image');
         $query = $this->db->get('news_articles');

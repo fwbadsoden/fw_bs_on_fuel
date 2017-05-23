@@ -57,8 +57,7 @@ $config['ckeditor']['default'] = array(
 	'extraPlugins' => 'fuellink,fuelimage,sourcedialog',
 	'removePlugins' => 'link,image,sourcearea',
 	'allowedContent' => TRUE,
-        //'previewParserPath' => fuel_url('preview'),
-
+	// 'previewParserPath' => fuel_url('preview'),
 );
 
 // An example of the above as simply a JSON string

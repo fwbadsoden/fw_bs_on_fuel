@@ -1,10 +1,10 @@
 <?php
 
-include_once($_ENV["DOC_ROOT"] . "/fuel/modules/fuel/controllers/page_router.php");
+include_once($_ENV["DOC_ROOT"] . "/fuel/modules/fuel/controllers/Page_router.php");
 
 class My_page_router extends Page_router {
 
-    public function _remap($method) {
+    public function _remap($method = NULL) {
         if (!in_array(uri_path(TRUE), $this->fuel->pages->cms()) && uri_path(TRUE) != "offline") {
             $uri_path = uri_path(TRUE);
             if (substr($uri_path, -1) == "/") {

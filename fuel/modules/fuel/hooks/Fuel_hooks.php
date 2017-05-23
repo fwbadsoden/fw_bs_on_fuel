@@ -9,7 +9,7 @@
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2015, Run for Daylight LLC.
+ * @copyright	Copyright (c) 2017, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  * @filesource
@@ -34,25 +34,6 @@ class Fuel_hooks
 	{
 	}
 		
-	// this hook allows us to route the the fuel controller if the method 
-	// on a controller doesn't exist... not just the controller itself'
-	public function pre_controller()
-	{
-		// if called from same Wordpress, the the global scope will not work
-		global $method, $class, $RTR;
-		$class_methods = get_class_methods($class);
-		// for pages without methods defined
-		if ((isset($class_methods) AND !in_array($method, $class_methods) AND !in_array('_remap', $class_methods))  AND !empty($RTR->default_controller))
-		{
-			$fuel_path = explode('/', $RTR->routes['404_override']);
-			if (!empty($fuel_path[1]))
-			{
-				require_once(FUEL_PATH.'/controllers/'.$fuel_path[1].'.php');
-				$class = $fuel_path[1];
-			}
-		}
-	}
-
 	// this hook performs redirects before trying to find the page (vs. passive redirects which will only happen if no page is found by FUEL)
 	public function redirects()
 	{
@@ -73,14 +54,14 @@ class Fuel_hooks
 		if (!USE_FUEL_ROUTES)
 		{
 			$CI =& get_instance();
-                        
-                        $CI->load->helper('convert');
- 
- 			// Offline maintenance page not required password
- 			if( preg_match('#^offline(/?)$#', uri_path(FALSE)) ){
- 				return;
- 			}
- 
+
+			$CI->load->helper('convert');
+
+			// Offline maintenance page not required password
+			if( preg_match('#^offline(/?)$#', uri_path(FALSE)) ){
+				return;
+			}
+
 			if ($CI->fuel->config('dev_password') AND !$CI->fuel->auth->is_logged_in() AND (!preg_match('#^'.fuel_uri('login').'#', uri_path(FALSE))))
 			{
 				if (isset($_POST['fuel_dev_password']) AND $_POST['fuel_dev_password'] == md5($CI->fuel->config('dev_password')))
@@ -104,36 +85,37 @@ class Fuel_hooks
 		if (!USE_FUEL_ROUTES)
 		{
 			$CI =& get_instance();
- 
-                        // Already in offline page
- 			if( preg_match('#^offline(/?)$#', uri_path(FALSE)) ){
- 				return;
- 			}
- 
+
+			// Already in offline page
+			if( preg_match('#^offline(/?)$#', uri_path(FALSE)) ){
+				return;
+			}
+
 			if ($CI->fuel->config('offline') AND !$CI->fuel->auth->is_logged_in() AND (!preg_match('#^'.fuel_uri('login').'#', uri_path(FALSE))))
 			{
+
 				// By pass offline page if password inputed.
- 				$CI->load->library('session');
- 				if ($CI->session->userdata('dev_password'))
- 				{
- 					return;
- 				}
- 
- 				// Display allowed page
- 				$allowed_uri = $CI->fuel->config('offline_allowed_uri');
- 				if( !empty( $allowed_uri ) ) {
- 					foreach( $allowed_uri as $uri_item ) {
- 						if( preg_match('#^'.$uri_item.'(/?)$#', uri_path(FALSE)) ){
- 							return;
- 						}
- 					}
- 				}
- 
- 				// Instead of using render, changed to redirect
- 				redirect('offline');
- 
- 				//echo $CI->fuel->pages->render('offline', array(), array(), TRUE);
- 				//exit();
+				$CI->load->library('session');
+				if ($CI->session->userdata('dev_password'))
+				{
+					return;
+				}
+
+				// Display allowed page
+				$allowed_uri = $CI->fuel->config('offline_allowed_uri');
+				if( !empty( $allowed_uri ) ) {
+					foreach( $allowed_uri as $uri_item ) {
+						if( preg_match('#^'.$uri_item.'(/?)$#', uri_path(FALSE)) ){
+							return;
+						}
+					}
+				}
+
+				// Instead of using render, changed to redirect
+				redirect('offline');
+
+				//echo $CI->fuel->pages->render('offline', array(), array(), TRUE);
+				//exit();
 			}
 		}
 	}
@@ -143,7 +125,7 @@ class Fuel_hooks
 	{
 		$CI =& get_instance();
 		$enable = $CI->config->item('enable_profiler') || $CI->fuel->config('enable_profiler');
-                $CI->output->enable_profiler($enable);
+		$CI->output->enable_profiler($enable);
 	}
 }
 

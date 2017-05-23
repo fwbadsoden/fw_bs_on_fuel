@@ -10,11 +10,11 @@ class Homepage extends CI_Controller {
 	public function __construct()
 	{ 
         parent::__construct();
-        $this->load->library('weather');
+        $this->load->library('Weather', 'weather');
         //$this->load->model('stages_model');
-        $this->load->model('missions_model');
-        $this->load->model('fahrzeuge_model');
-        $this->load->model('mannschaft_members_model');
+        $this->load->model('Missions_model', 'missions_model');
+        $this->load->model('Fahrzeuge_model', 'fahrzeuge_model');
+        $this->load->model('Mannschaft_members_model', 'mannschaft_members_model');
     }
      
     public function index() {        

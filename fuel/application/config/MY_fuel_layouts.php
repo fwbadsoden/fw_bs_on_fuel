@@ -36,6 +36,7 @@ $config['layouts']['module'] = array(
         'my_module' => array('type' => 'select', 'label' => 'Modul', 'options' => $module_options))
 );
 
+
 /* End of file MY_fuel_layouts.php */
 /* Location: ./application/config/MY_fuel_layouts.php */
 
