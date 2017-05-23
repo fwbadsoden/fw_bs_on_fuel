@@ -23,7 +23,7 @@ class Terminimport extends CI_Controller {
      */
     public function __construct() {
         parent::__construct();
-        $this->load->model('appointments_model', 'm_appointment');
+        $this->load->model('Appointments_model', 'm_appointment');
     }
 
     /**

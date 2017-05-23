@@ -1,7 +1,4 @@
-<?php
-
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * FUEL CMS
  * http://www.getfuelcms.com
@@ -11,11 +8,12 @@ if (!defined('BASEPATH'))
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2015, Run for Daylight LLC.
+ * @copyright	Copyright (c) 2017, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  * @filesource
  */
+
 // ------------------------------------------------------------------------
 
 /**
@@ -27,58 +25,64 @@ if (!defined('BASEPATH'))
  * @author		David McReynolds @ Daylight Studio
  * @link		http://docs.getfuelcms.com/libraries/fuel_categories
  */
+
 // --------------------------------------------------------------------
+
+require_once('Fuel_modules.php');
+
 class Fuel_categories extends Fuel_module {
+	
+	protected $module = 'categories';
+	
+	// --------------------------------------------------------------------
+	
+	/**
+	 * Returns a single category record object based on a slug value
+	 *
+	 * @access	public
+	 * @param	string	the slug value to query on
+	 * @return	array
+	 */	
+	public function find_by_slug($slug)
+	{
+		$model = $this->model();
+		$where['slug'] = $slug;
+		$data = $model->find_one($where);
+		return $data;
+	}
 
-    protected $module = 'categories';
+	// --------------------------------------------------------------------
+	
+	/**
+	 * Returns an array of categories record objects based on a context value
+	 *
+	 * @access	public
+	 * @param	string	the context to query on
+	 * @return	array
+	 */	
+	public function find_by_context($context)
+	{
+		$model = $this->model();
+		$where = 'FIND_IN_SET("'.$context.'", '.$model->table_name().'.context)';
+		$data = $model->find_all($where);
+		return $data;
+	}
 
-    // --------------------------------------------------------------------
-
-    /**
-     * Returns a single category record object based on a slug value
-     *
-     * @access	public
-     * @param	string	the slug value to query on
-     * @return	array
-     */
-    public function find_by_slug($slug) {
-        $model = $this->model();
-        $where['slug'] = $slug;
-        $data = $model->find_one($where);
-        return $data;
-    }
-
-    // --------------------------------------------------------------------
-
-    /**
-     * Returns an array of categories record objects based on a context value
-     *
-     * @access	public
-     * @param	string	the context to query on
-     * @return	array
-     */
-    public function find_by_context($context) {
-        $model = $this->model();
-        $where = 'FIND_IN_SET("' . $context . '", ' . $model->table_name() . '.context)';
-        $data = $model->find_all($where);
-        return $data;
-    }
-
-    // --------------------------------------------------------------------
-
-    /**
-     * Returns an associative array with the keys being the categories slug value and the values (label), being the name of the category
-     *
-     * @access	public
-     * @param	string	key for option
-     * @param	string	value for option
-     * @return	array
-     */
-    public function options_list($key = 'slug', $val = 'name') {
-        $model = & $this->model();
-        return $model->options_list($key, $val);
-    }
-
+	// --------------------------------------------------------------------
+	
+	/**
+	 * Returns an associative array with the keys being the categories slug value and the values (label), being the name of the category
+	 *
+	 * @access	public
+	 * @param	string	key for option
+	 * @param	string	value for option
+	 * @return	array
+	 */	
+	public function options_list($key = 'slug', $val = 'name')
+	{
+		$model =& $this->model();
+		return $model->options_list($key, $val);
+	}	
 }
 
 /* End of file Fuel_categories.php */

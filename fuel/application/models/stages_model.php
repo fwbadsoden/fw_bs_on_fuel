@@ -20,7 +20,7 @@ class Stages_model extends Abstract_module_model {
 
     public function get_stage_for_frontend($stage_id, $handle_images) {
 
-        $stage = fuel_model('stages', array('find' => 'one', 'where' => array('id' => $stage_id)));
+        $stage = fuel_model('Stages', array('find' => 'one', 'where' => array('id' => $stage_id)));
 
         if ($handle_images) {
             $img_count = $stage->img_count;
@@ -140,7 +140,7 @@ class Stage_model extends Abstract_module_record {
         $images = parent::get_stage_images();
         $images_new = array();
 
-        $stage_image_jubi = fuel_model('stage_images', array('find' => 'one', 'where' => array('name' => "Startseite Jubiläum")));
+        $stage_image_jubi = fuel_model('Stage_images', array('find' => 'one', 'where' => array('name' => "Startseite Jubiläum")));
 
         if ($this->is_randomize()) {
             $random_keys = array_rand($images, $img_count);

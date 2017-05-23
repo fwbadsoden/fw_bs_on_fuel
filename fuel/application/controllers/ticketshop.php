@@ -12,7 +12,7 @@ class Ticketshop extends CI_Controller {
         parent::__construct();
         $this->load->helper('ajax');
         $this->load->helper('session');
-        $this->load->model('tickets_model');
+        $this->load->model('Tickets_model', 'tickets_model');
     }
 
     public function index() {

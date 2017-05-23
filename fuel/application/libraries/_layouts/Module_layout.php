@@ -21,8 +21,9 @@ class Module_layout extends Base_layout {
         $vars["segment"] = 3;
 
         switch ($vars["my_module"]) {
-            case "fahrzeug": $CI->load->model('fahrzeuge_model');
-
+            case "fahrzeug": 
+                $CI->load->model('Fahrzeuge_model', 'fahrzeuge_model');
+                
                 if (strpos(uri_string(), "fahrzeuge/ausserdienst")) {
                     $vars["segment"] = 4;
                     $vars["list_where"] = array("retired" => "yes", "published" => "yes", "ist_abrollbehaelter" => "no");
@@ -45,7 +46,8 @@ class Module_layout extends Base_layout {
                 $vars["list_block"] = "modules/fahrzeuge_uebersicht";
                 $vars["item_block"] = "modules/fahrzeuge_detail";
                 break;
-            case "einsatz": $CI->load->model("missions_model");
+            case "einsatz": 
+                $CI->load->model('Missions_model', 'missions_model');
 
                 if (is_numeric(uri_segment($vars["segment"]))) {
                     if ($CI->missions_model->record_exists(array("id" => uri_segment($vars["segment"])))) {
@@ -80,8 +82,9 @@ class Module_layout extends Base_layout {
                 $vars["list_block"] = "modules/einsatz_uebersicht";
                 $vars["item_block"] = "modules/einsatz_detail";
                 break;
-            case "news": $CI->load->model('news_articles_model');
-                $CI->load->library('weather');
+            case "news": 
+                $CI->load->model('News_articles_model', 'news_articles_model');
+                $CI->load->library('Weather', 'weather');
 
                 if (is_numeric(uri_segment($vars["segment"]))) {
                     if ($CI->news_articles_model->record_exists(array("id" => uri_segment($vars["segment"])))) {
@@ -109,7 +112,8 @@ class Module_layout extends Base_layout {
                 $vars["list_block"] = "modules/presse_uebersicht";
                 $vars["item_block"] = NULL;
                 break;
-            case "mannschaft": $CI->load->model("mannschaft_members_model");
+            case "mannschaft": 
+                $CI->load->model('Mannschaft_members_model', 'mannschaft_members_model');
                 $vars["team"] = $CI->mannschaft_members_model->find_team();
                 $vars["fuehrung"] = $CI->mannschaft_members_model->find_fuehrung();
                 $vars["external_data"] = true;
@@ -117,7 +121,8 @@ class Module_layout extends Base_layout {
                 $vars["list_block"] = "modules/mannschaft_uebersicht";
                 $vars["item_block"] = NULL;
                 break;
-            case "altersabteilung": $CI->load->model("mannschaft_members_model");
+            case "altersabteilung": 
+                $CI->load->model('Mannschaft_members_model', 'mannschaft_members_model');
                 $vars["alters"] = $CI->mannschaft_members_model->find_altersabteilung();
                 $vars["ehren"] = $CI->mannschaft_members_model->find_ehrenabteilung();
                 $vars["external_data"] = true;
@@ -125,7 +130,8 @@ class Module_layout extends Base_layout {
                 $vars["list_block"] = "modules/altersabteilung_uebersicht";
                 $vars["item_block"] = NULL;
                 break;
-            case "termin": $CI->load->model("appointments_model");
+            case "termin": 
+                $CI->load->model('Appointments_model', 'appointments_model');
                 $vars["termine"] = $CI->appointments_model->get_appointments();
                 $vars["monate"] = $CI->appointments_model->get_months_for_filter();
                 $vars["external_data"] = true;
@@ -150,7 +156,7 @@ class Module_layout extends Base_layout {
                 $handle_images = true;
 
             $CI = & get_instance();
-            $CI->load->model('stages_model');
+            $CI->load->model('Stages_model', 'stages_model');
             $stage_id = $this->fuel->page->properties('stage_id_detail');
             $vars['stage'] = $CI->stages_model->get_stage_for_frontend($stage_id, $handle_images);
         }

@@ -29,17 +29,17 @@ $config['max_number_archived'] = 10;
 
 // specifies which modules are allowed to be used in the fuel admin
 $config['modules_allowed'] = array(
-    'forms',
-    'search',
-    'page_analysis',
-    'tester',
-    'backup',
-    'cronjobs',
-    'google_keywords',
-    'validate'
+    'forms'
+    //'search',
+    //'page_analysis',
+    //'tester',
+    //'backup',
+    //'cronjobs',
+    //'google_keywords',
+    //'validate'
 );
 
-$config['dashboards'] = array('fuel', 'google_analytics');
+$config['dashboards'] = array('fuel');
 
 // used for system emails
 $config['domain'] = '';

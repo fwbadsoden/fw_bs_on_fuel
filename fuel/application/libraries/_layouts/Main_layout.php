@@ -39,7 +39,7 @@ class Main_layout extends Base_layout {
         $row = $query->row();
         $id = $row->id;
         
-        $articles = fuel_model('pressarticles', array('find' => 'all', 'order' => ('datum desc'), 'where' => array('category_id' => $id)));
+        $articles = fuel_model('Pressarticles', array('find' => 'all', 'order' => ('datum desc'), 'where' => array('category_id' => $id)));
         
         return $articles;
     }
@@ -53,7 +53,7 @@ class Main_layout extends Base_layout {
         $row = $query->row();
         $id = $row->id;
         
-        $articles = fuel_model('pressarticles', array('find' => 'all', 'order' => ('datum desc'), 'where' => array('category_id' => $id)));
+        $articles = fuel_model('Pressarticles', array('find' => 'all', 'order' => ('datum desc'), 'where' => array('category_id' => $id)));
         
         return $articles;
     }
