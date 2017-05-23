@@ -8,7 +8,7 @@ class Forms extends CI_Controller {
 		$this->load->library('session');
 	}
 
-	public function process($slug)
+	public function process($slug) 
 	{ 
 		$form = $this->fuel->forms->get($slug);
 		$return_url = ($this->input->get_post('return_url')) ? $this->input->get_post('return_url') : $form->return_url;
