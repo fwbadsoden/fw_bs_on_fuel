@@ -111,7 +111,7 @@ echo doctype('html5');
                         else : $class = '';
                         endif;
                         ?>                
-                        <li><a href="<?= base_url('aktuelles') ?>"<?= $class ?>>News</a>  
+                        <li><a href="<?= base_url('aktuelles/news') ?>"<?= $class ?>>News</a>  
                             <div class="dropdown">  
                                 <ul>                       
                                     <li class="headline"><a href="<?= base_url('aktuelles/news') ?>">News</a></li>
