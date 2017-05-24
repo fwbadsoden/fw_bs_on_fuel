@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
-require_once(FUEL_PATH.'models/Base_module_model.php');
+require_once(FUEL_PATH.'models/'.((FUEL_VERSION < 1.4) ? 'b' : 'B').'ase_module_model.php');
 
 class Search_model extends Base_module_model {
 	
@@ -31,10 +31,12 @@ class Search_model extends Base_module_model {
 		$this->db->select($this->_tables['search'].'.content');
 		$this->db->select($this->_tables['search'].'.language');
 		$this->db->select('IF(excerpt = "", SUBSTRING('.$this->_tables['search'].'.content, 1, '.$excerpt_limit.'), excerpt) AS excerpt', FALSE);
+		$limit = (int) $limit;
 		$this->db->limit($limit);
 		
 		if (!empty($offset))
 		{
+			$offset = (int) $offset;
 			$this->db->offset($offset);
 		}
 		$results = $this->find_all();

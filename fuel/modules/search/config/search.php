@@ -34,7 +34,7 @@ $config['search']['query_type'] = 'match boolean';
 
 // search page content delimiters. used for scraping page content. Can be an HTML node or xpath syntax (e.g. //div[@id="main"])
 $config['search']['delimiters'] = array(
-	'<section id="content">', 
+	'<div id="main">', 
 	'//meta[@name="keywords"]/@content',
 );
 
