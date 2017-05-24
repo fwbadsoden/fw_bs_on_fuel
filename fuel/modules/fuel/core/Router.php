@@ -241,12 +241,12 @@ class Fuel_Router extends MX_Router {
                     return array_slice($segments, 2);
                 }
             }
-        } else {
-            /* application controllers sub-directory exists? */
-            if (is_dir(APPPATH . 'controllers/' . $module . '/')) {
-                $this->directory = $module . '/';
-                return array_slice($segments, 1);
-            }
+//        } else {
+//            /* application controllers sub-directory exists? */
+//            if (is_dir(APPPATH . 'controllers/' . $module . '/')) {
+//                $this->directory = $module . '/';
+//                return array_slice($segments, 1);
+//            }
         }
 
         /* application controller exists? */
