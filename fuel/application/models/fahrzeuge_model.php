@@ -415,7 +415,7 @@ class Fahrzeug_model extends Abstract_module_record {
     }
 
     public function get_abrollbehaelter() {
-        return fuel_model('Fahrzeuge_model', array('find' => 'all', 'order' => 'precedence asc', 'where' => array('ist_abrollbehaelter' => 'yes', 'published' => 'yes', 'retired' => 'no')));
+        return fuel_model('fahrzeuge_model', array('find' => 'all', 'order' => 'precedence asc', 'where' => array('ist_abrollbehaelter' => 'yes', 'published' => 'yes', 'retired' => 'no')));
     }
 }
 
