@@ -27,7 +27,7 @@ function main_navigation() {
         $CI->load->model('fahrzeuge_model', 'fahrzeuge');
         
         $nav["pressarticles"]           = fuel_model("pressarticles_model", array('find' => 'all', 'limit' => 5, 'where' => array('published' => 'yes'), 'order' => ('datum desc')));
-        $nav["appointments"]            = fuel_model("appointments_model", array('find' => 'all', 'limit' => 5, 'where' => array('published' => 'yes', 'datum >=' => date('Y-m-d')), 'order' => ('datum desc, beginn desc')));
+        $nav["appointments"]            = fuel_model("appointments_model", array('find' => 'all', 'limit' => 5, 'where' => array('published' => 'yes', 'datum >=' => date('Y-m-d')), 'order' => ('datum asc, beginn asc')));
         $nav["missions"]                = fuel_model("missions_model", array('find' => 'all', 'limit' => 5, 'where' => array('published' => 'yes'), 'order' => ('datum_beginn desc, uhrzeit_beginn desc')));
         $nav["news"]                    = fuel_model("news_articles_model", array('find' => 'all', 'limit' => 5, 'where' => array('published' => 'yes', 'datum <=' => date('Y-m-d')), 'order' => ('datum desc, id desc')));
         $nav["fahrzeuge"]               = $CI->fahrzeuge->find_all(array('ist_abrollbehaelter' => 'no'), 'precedence asc');
