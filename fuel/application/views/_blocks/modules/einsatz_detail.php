@@ -1,10 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
     $beginn = $data->datum_beginn.' '.$data->uhrzeit_beginn; 
     $ende   = $data->datum_ende.' '.$data->uhrzeit_ende;
-    $dauer  = time_diff($ende, $beginn);
-    $dauer_minuten = $dauer['minuten'];
-    $dauer_stunden = $dauer['stunden']; 
-	$cue_data = $data->get_cue();
+    $differenz = time_diff($beginn, $ende);
+    $cue_data = $data->get_cue();
 ?>
 
 <div class="oneColumnBox">
@@ -60,8 +58,8 @@
                 <img src="<?=assets_path('icon_clock.png', 'icons')?>"/>
             </div>
             <div class="info"> 
-                <h3><?=$dauer_stunden?> h</h3>
-                <h4><?=$dauer_minuten?> Min</h4>
+                <h3><?=$differenz["total_hours_minutes"]?> h</h3>
+                <h4><?=$differenz["total_minutes"]?> Min</h4>
             </div>
             <hr class="clear" />
         </div>
