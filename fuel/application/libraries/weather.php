@@ -102,7 +102,7 @@ class Weather extends Fuel_base_library {
             
             curl_close($ch);
             
-            var_dump($debug); die();
+            //var_dump($debug); die();
         } else {
             $result = $this->get_dwd_testjson();
         }
