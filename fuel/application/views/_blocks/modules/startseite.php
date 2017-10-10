@@ -1,7 +1,7 @@
-<?php if(is_object($warning)) : ?>
+<?php if(isset($warning) && is_object($warning)) : ?>
 <div id="unwetterwarnung">
     <div class="container">
-        <div class="wettericon"></div>
+        <div class="wettericon"></div> 
         <div class="wettertext">
             <h1><?= $warning->headline ?></h1>
             <h2>G&uuml;ltig von: <?= $warning->start ?> Uhr<span>bis: <?= $warning->end ?> Uhr</span></h2>
