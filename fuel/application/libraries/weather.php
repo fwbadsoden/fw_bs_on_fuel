@@ -84,15 +84,25 @@ class Weather extends Fuel_base_library {
     private function get_dwd_json_as_object() {
 
         if (ENVIRONMENT == 'production') {
-
             $url = 'http://www.dwd.de/DWD/warnungen/warnapp/json/warnings.json';
 
+            ob_start();
+            $out = fopen('php://output', 'w');
+
             $ch = curl_init();
+            curl_setopt(ch, CURLOPT_VERBOSE, true); 
+            curl_setopt(ch, CURLOPT_STDERR, $out);  
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_URL, $url);
             $result = curl_exec($ch);
+            
+            fclose($out);
+            $debug = ob_get_clean();
+            
             curl_close($ch);
+            
+            var_dump($debug); die();
         } else {
             $result = $this->get_dwd_testjson();
         }
