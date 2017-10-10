@@ -15,6 +15,9 @@ class Weather extends Fuel_base_library {
 
     public function get_weather_warning($load_prewarnings = FALSE) {
         $json_object = $this->get_dwd_json_as_object();
+        if($json_object == NULL){
+            return NULL;
+        }
         $warnings = $json_object->warnings;
         $hasWarning = false;
         $prewarnings = $json_object->vorabInformation;

@@ -679,6 +679,51 @@ header nav {
 
 /* ------- ------- ------ ------- ------- ------- ------- ------ */
 /* LIGHT BOX METANAVI! */
+.mitmachen_layer {
+    max-width: 1000px;
+    margin: 0;
+    background-color: #FFF;
+    text-align: left;
+    display: none;
+}
+.mitmachen_layer h3 {
+    font-family: 'Cabin', sans-serif;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #000000;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+.mitmachen_layer .mitmachen {
+    float: left;
+    max-width: 880px;
+    margin: 15px 0;
+    padding: 0;
+}
+.mitmachen_layer .box {
+    display: inline-block;
+    vertical-align: top;
+    margin: 15px 0 10px 0;
+}
+.mitmachen_layer .boxtrenner {
+    border-right: 1px solid #b1b1b1;
+}
+.mitmachen_layer .box p {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-transform: none;
+    color: #474747;
+    margin: 0;
+    text-align: center;
+}
+.mitmachen_layer .box p.abteilung {
+    font-family: 'Cabin', sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #9a0000;
+    margin: 0;
+}
 
 .notruf_layer {
     max-width: 880px;
