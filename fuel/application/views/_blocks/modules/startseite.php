@@ -97,11 +97,12 @@
         </div>
     </div>
 
-    <?php if($weather != null && $weather != false) : ?>
+    <?php if($weather != null && $weather != false) :  ?>
+    <?php if($weather['image'] == '') : $image = ""; else : $image = '<img src="'.assets_path("icons/" . $weather["image"]).'" title="'.$weather['description'].'" alt="'.$weather['description'].'" />'; endif; ?>
     <div class="weather">
         <h1>Wetter Aussichten</h1>
         <div class="wrapper">    
-            <div class="icon"><!--<?= $weather['image'] ?>--></div>
+            <div class="icon"><?=$image?></div>
             <div class="text">                 
                 <p class="grad"><?= round($weather['temperature']) ?>&deg;<span class="celsius">Celsius</span></p>
                 <p class="status"><?= $weather['description'] ?></p>

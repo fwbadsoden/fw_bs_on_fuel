@@ -233,13 +233,12 @@ class Weather extends Fuel_base_library {
         if($weather_obj != NULL && $weather_obj->cod == "200") {
             $weather["temperature"] = $weather_obj->main->temp;
             $weather["description"] = $weather_obj->weather[0]->description;
-            $icon = get_icon_mapping($weather_obj->weather[0]->icon);
+            $icon = $this->get_icon_mapping($weather_obj->weather[0]->icon);
             if($icon != null) {
-                
+                $weather["image"] = $icon;                
             } else {
                 $weather["image"] = "";
             }
-            $weather["image"] = $icon;
             return $weather;
         } else return NULL;
     }
@@ -254,7 +253,7 @@ class Weather extends Fuel_base_library {
             case "10d": return "regen.svg";
             case "11d": return "gewitter.svg";
             case "13d": return "schnee.svg";
-            case "50d": return "sonne.svg";
+            case "50d": return "nebel.svg";
             case "01n": return "sonne.svg";
             case "02n": return "wolken_sonne.svg";
             case "03n": return "wolken.svg";
@@ -263,7 +262,7 @@ class Weather extends Fuel_base_library {
             case "10n": return "regen.svg";
             case "11n": return "gewitter.svg";
             case "13n": return "schnee.svg";
-            case "50n": return "sonne.svg"; 
+            case "50n": return "nebel.svg"; 
             default: return null;
         }
     }
