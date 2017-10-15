@@ -233,9 +233,39 @@ class Weather extends Fuel_base_library {
         if($weather_obj != NULL && $weather_obj->cod == "200") {
             $weather["temperature"] = $weather_obj->main->temp;
             $weather["description"] = $weather_obj->weather[0]->description;
-            $weather["image"] = "<img src='http://openweathermap.org/img/w/" . $weather_obj->weather[0]->icon . ".png'>";
+            $icon = get_icon_mapping($weather_obj->weather[0]->icon);
+            if($icon != null) {
+                
+            } else {
+                $weather["image"] = "";
+            }
+            $weather["image"] = $icon;
             return $weather;
         } else return NULL;
+    }
+    
+    private function get_icon_mapping($code) {
+        switch($code) {
+            case "01d": return "sonne.svg";
+            case "02d": return "wolken_sonne.svg";
+            case "03d": return "wolken.svg";
+            case "04d": return "wolken.svg";
+            case "09d": return "regen.svg";
+            case "10d": return "regen.svg";
+            case "11d": return "gewitter.svg";
+            case "13d": return "schnee.svg";
+            case "50d": return "sonne.svg";
+            case "01n": return "sonne.svg";
+            case "02n": return "wolken_sonne.svg";
+            case "03n": return "wolken.svg";
+            case "04n": return "wolken.svg";
+            case "09n": return "regen.svg";
+            case "10n": return "regen.svg";
+            case "11n": return "gewitter.svg";
+            case "13n": return "schnee.svg";
+            case "50n": return "sonne.svg"; 
+            default: return null;
+        }
     }
 
     private function get_dwd_testjson() {
