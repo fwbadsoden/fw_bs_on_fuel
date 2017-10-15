@@ -3944,6 +3944,7 @@ header nav {
 }
 #content #SidebarContent .weather div.icon {
     margin: 0 0 0 25px;
+    width: 100px;
     float: left;
 }
 #content #SidebarContent .weather div.text {
