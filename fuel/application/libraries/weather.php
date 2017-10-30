@@ -233,6 +233,7 @@ class Weather extends Fuel_base_library {
         if($weather_obj != NULL && $weather_obj->cod == "200") {
             $weather["temperature"] = $weather_obj->main->temp;
             $weather["description"] = $weather_obj->weather[0]->description;
+            $weather["description"] = str_replace(" ", "<br/>", $weather["description"]);
             $icon = $this->get_icon_mapping($weather_obj->weather[0]->icon);
             if($icon != null) {
                 $weather["image"] = $icon;                

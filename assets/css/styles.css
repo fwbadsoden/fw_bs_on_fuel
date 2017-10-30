@@ -3958,7 +3958,7 @@ header nav {
     font-weight: normal;
     font-size: 48px;
     color: #FFFFFF;
-    margin: 5px 0 10px 0;
+    margin: 10px;
 }
 #content #SidebarContent .weather div.text p.grad span.celsius {
     text-align: center;
@@ -3976,7 +3976,7 @@ header nav {
     font-weight: normal;
     font-size: 14px;
     color: #9a0000;
-    margin: 5px 0 10px 0;
+    margin: 0;
 }
 #content #SidebarContent .weather .more {
     text-align: center;
@@ -4051,6 +4051,12 @@ header nav {
     #content #slider li a  {
         background-color: #b1b1b1;	
     }
+	#content #SidebarContent .weather div.icon, #content #SidebarContent .weather div.text  {
+		clear: both;
+		width: 100%;
+		text-align: center;
+		margin-left: 0;
+	}
 }
 
 /* Iphone 5/5s Landscape Facebook Plugin */
