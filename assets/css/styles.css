@@ -2783,7 +2783,7 @@ header nav {
 }
 #content .article a {
     font-family: Arial, sans-serif;
-    font-size: 12px;
+    /*font-size: 12px;*/
     font-weight: normal;
     font-style: normal;
     text-decoration: underline;
