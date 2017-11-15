@@ -103,7 +103,14 @@ echo doctype('html5');
                 </h1>
                 <nav>    
                     <div id="metanavigation"> 
-                        <?= $metanavigation ?>
+                        <ul>
+                            <li class="first mitmachen"><a href="http://dev.feuerwehr-bs.de/mitmachen">Mitmachen</a></li>
+                            <li><a href="http://dev.feuerwehr-bs.de/fuel" target="_blank">Login</a></li>
+                            <li><a href="https://portal-fwbs.de/" target="_blank">Infoportal</a></li>
+                            <li><a href="http://dev.feuerwehr-bs.de/kontakt">Kontakt</a></li>
+                            <li><a href="http://dev.feuerwehr-bs.de/links">Links</a></li>
+                            <li><a href="#notruflayer_js" class="fancybox-metaLayer">Notfall</a></li>
+                        </ul>
                     </div>
                     <ul id="menu">  
                         <?php
@@ -324,6 +331,7 @@ echo doctype('html5');
 
                             <div id="mobileNavigation">    
                                 <ul class="mobileMainNavContainer">
+                                    <li><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>
                                     <li><a href="<?= base_url('aktuelles') ?>">News</a></li>
                                     <li class="subnavi">    
                                         <ul> 
@@ -367,7 +375,14 @@ echo doctype('html5');
                                         </ul>
                                     </li>
                                     <li class="metanav">
-                                        <?= $metanavigation_mobile ?>
+                                        <ul>
+                                            <li class="mitmachen"><a href="http://dev.feuerwehr-bs.de/mitmachen">Mitmachen</a></li>
+                                            <li><a href="http://dev.feuerwehr-bs.de/fuel" target="_blank">Login</a></li>
+                                            <li><a href="https://portal-fwbs.de/" target="_blank">Infoportal</a></li>
+                                            <li><a href="http://dev.feuerwehr-bs.de/kontakt">Kontakt</a></li>
+                                            <li><a href="http://dev.feuerwehr-bs.de/links">Links</a></li>
+                                            <li><a href="#notruflayer_js" class="fancybox-metaLayer">Notfall</a></li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </div>
