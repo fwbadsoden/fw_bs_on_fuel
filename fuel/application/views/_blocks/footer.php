@@ -27,53 +27,6 @@
 
 </footer>
 
-<div id="mitmachen_js" class="mitmachen_layer">
-    <div class="mitmachen">
-        <h3>Mitmachen</h3>
-        Lorem Ipsum dolor sit amet.<br/>Lorem Ipsum dolor sit amet.<br/>Lorem Ipsum dolor sit amet.
-    </div>
-    <hr class="clear" />
-    <div class="mitmachen">
-
-        <div class="box boxtrenner">
-            <p class="abteilung">Einsatzabteilung</p>
-            <p>Dienst: Donnerstags von 19:30 – 21:30 Uhr</p>
-            <p>Wehrführer: Sven Griese und Marc Bauer</p>
-        </div>
-        <div class="box">
-            <p class="abteilung">Verein</p>
-            <p>Vereinsvorsitzende: Sven Griese und Dirk Stehning</p>
-        </div>
-    </div>
-    <hr class="clear" />
-    <div class="mitmachen">                
-        <div class="box boxtrenner">
-            <p class="abteilung">Jugendfeuerwehr</p>
-            <p>Dienst: Montags von 18:00 – 20:00 Uhr</p>
-            <p>Jugendwarte: Alexander Haase und Florian Becker</p>
-        </div>
-        <div class="box">
-            <p class="abteilung">Minifeuerwehr</p>
-            <p>Dienst: Montags von 18:00 – 20:00 Uhr</p>
-            <p>Verantwortliche: Max Mustermann</p>
-        </div>
-    </div>
-    <hr class="clear" />
-    <div class="mitmachen">                
-        <div class="box boxtrenner">
-            <p class="abteilung">Rettungshundeeinheit</p>
-            <p>Dienst: Montags von 18:00 – 20:00 Uhr</p>
-            <p>Verantwortliche: Patrick Ritter</p>
-        </div>
-        <div class="box">
-            <p class="abteilung">Alters- und Ehrenabteilung</p>
-            <p>Vorsitzender: Max Mustermann</p>
-        </div>
-    </div>
-    <hr class="clear" />
-</div>
-</div>
-
 <div id="notruflayer_js" class="notruf_layer">
     <div class="tele">
         <h3>Notrufnummern</h3>
