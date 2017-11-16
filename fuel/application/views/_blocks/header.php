@@ -104,11 +104,11 @@ echo doctype('html5');
                 <nav>    
                     <div id="metanavigation"> 
                         <ul>
-                            <li class="first mitmachen"><a href="http://dev.feuerwehr-bs.de/mitmachen">Mitmachen</a></li>
-                            <li><a href="http://dev.feuerwehr-bs.de/fuel" target="_blank">Login</a></li>
+                            <li class="first mitmachen"><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>
+                            <li><a href="<?= base_url('fuel') ?>" target="_blank">Login</a></li>
                             <li><a href="https://portal-fwbs.de/" target="_blank">Infoportal</a></li>
-                            <li><a href="http://dev.feuerwehr-bs.de/kontakt">Kontakt</a></li>
-                            <li><a href="http://dev.feuerwehr-bs.de/links">Links</a></li>
+                            <li><a href="<?= base_url('kontakt') ?>">Kontakt</a></li>
+                            <li><a href="<?= base_url('links') ?>">Links</a></li>
                             <li><a href="#notruflayer_js" class="fancybox-metaLayer">Notfall</a></li>
                         </ul>
                     </div>
@@ -376,11 +376,11 @@ echo doctype('html5');
                                     </li>
                                     <li class="metanav">
                                         <ul>
-                                            <li class="mitmachen"><a href="http://dev.feuerwehr-bs.de/mitmachen">Mitmachen</a></li>
-                                            <li><a href="http://dev.feuerwehr-bs.de/fuel" target="_blank">Login</a></li>
+                                            <li class="mitmachen"><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>
+                                            <li><a href="<?= base_url('fuel') ?>" target="_blank">Login</a></li>
                                             <li><a href="https://portal-fwbs.de/" target="_blank">Infoportal</a></li>
-                                            <li><a href="http://dev.feuerwehr-bs.de/kontakt">Kontakt</a></li>
-                                            <li><a href="http://dev.feuerwehr-bs.de/links">Links</a></li>
+                                            <li><a href="<?= base_url('kontakt') ?>">Kontakt</a></li>
+                                            <li><a href="<?= base_url('links') ?>">Links</a></li>
                                             <li><a href="#notruflayer_js" class="fancybox-metaLayer">Notfall</a></li>
                                         </ul>
                                     </li>
