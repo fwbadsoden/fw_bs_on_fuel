@@ -60,6 +60,9 @@
         <hr class="clear" />
         <table>
        	    <tr><td>Eins&auml;tze <?= date('Y') ?></td><td class="value"><?= $mission_count ?></td></tr>
+            <? if(date('m') == '01' || date('m') == '02' || date('m') == '03' || date('m') == '04' || date('m') == '05' || date('m') == '06') : ?>
+       	    <tr><td>Eins&auml;tze <?= date('Y')-1 ?></td><td class="value"><?= $mission_count_last_year ?></td></tr>
+            <? endif; ?>
             <tr><td>Mannschaft</td><td class="value"><?= $member_count["anzahl"] ?></td></tr>
             <tr><td>Frauen</td><td class="value"><?= $member_count["anzahl_w"] ?></td></tr>
             <tr><td>M&auml;nner</td><td class="value"><?= $member_count["anzahl_m"] ?></td></tr>
