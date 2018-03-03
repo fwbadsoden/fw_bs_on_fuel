@@ -26,7 +26,7 @@ $config['modules']['Stages'] = array(
     'module_name' => 'Bildbühnen',
     'instructions' => lang("stage_instructions"),
     'permission' => 'stages',
-    'item_actions' => array('save', 'delete', 'create')
+    'item_actions' => array('save', 'delete', 'create', 'duplicate')
 );
 
 $config['modules']['Stage_images'] = array(
