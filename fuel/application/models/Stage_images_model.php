@@ -38,7 +38,8 @@ class Stage_Images_model extends Abstract_module_model {
                           2 => 'große Bildbühne, Textbox links, 1280*720px',
                           3 => 'große Bildbühne, Textbox rechts, 1280*720px',
                           4 => 'kleine Bildbühne, Fahrzeugdetailansicht, Textbox links, 1280*650px',
-                          5 => 'große Bildbühne, Einsatzdetailansicht, Textbox lang, 1280*720px');
+                          5 => 'große Bildbühne, Einsatzdetailansicht, Textbox lang, 1280*720px',
+                          6 => 'kleine Bildbühne, Jubiläum, Textbox links, 1280*650px');
         $fields['stage_image_type_id'] = array('label' => lang('form_label_stage_image_type'),
                                                'type' => 'select', 'options' => $options,
                                                'order' => 4);  
@@ -79,7 +80,7 @@ class Stage_Images_model extends Abstract_module_model {
 	{
         $values = parent::on_before_save($values);
         
-        if($values["stage_image_type_id"] == 4 || $values["stage_image_type_id"] == 5) {
+        if($values["stage_image_type_id"] == 4 || $values["stage_image_type_id"] == 5 || $values["stage_image_type_id"] == 6) {
             $values["text_1"] = "dummy";
             $values["text_2"] = "dummy";
         }
@@ -91,11 +92,11 @@ class Stage_Images_model extends Abstract_module_model {
 class Stage_Image_model extends Abstract_module_record {
     
     public function get_css_text_class_1() {
-        return " class=".parent::get_css_text_class_1();
+        return ' class="'.parent::get_css_text_class_1().'"';
     }
     
     public function get_css_text_class_2() {
-        return " class=".parent::get_css_text_class_2();        
+        return ' class="'.parent::get_css_text_class_2().'"';        
     }
 }
 

@@ -53,7 +53,7 @@ echo doctype('html5');
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#countdown').countdown({
-                    until: new Date(2018, 8 - 1, 10), padZeroes: true, format: 'OWDHMS'
+                    until: new Date(2018, 8 - 1, 10), padZeroes: true, format: 'OWD'
                 });
             });
         </script>
@@ -424,6 +424,8 @@ echo doctype('html5');
                                 break;
                                 case 5: $css_inner_class = "stageContentHeadline blackBG";
                                 break;
+                                case 6: $css_inner_class = "stageQuoteJubi";
+                                break;
                                 }
                                 ?>
 
@@ -471,6 +473,11 @@ echo doctype('html5');
                                 case 4: $css_inner_class = "stageContentCar";
                                 break;
                                 case 5: $css_inner_class = "stageContentHeadline blackBG";
+                                break;
+                                case 6: $css_inner_class = "stageQuoteJubi";
+                                        $text1 = "Jubiläum";
+                                        $text2 = "150 Jahre Feuerwehr Bad Soden";
+                                        $text3 = fuel_var("jubilaeum_stagetext");
                                 break;
                                 }
                                 ?>
