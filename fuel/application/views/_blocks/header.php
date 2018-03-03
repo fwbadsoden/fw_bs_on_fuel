@@ -114,7 +114,13 @@ echo doctype('html5');
                     </div>
                     <ul id="menu">  
                         <?php
-                        if (strpos(current_url(), base_url('aktuelles')) !== false) : $class = ' class="active"';
+                            if (strpos(current_url(), base_url('aktuelles/jubilaeum')) !== false) : $class = ' class="active"';
+                            else : $class = '';
+                            endif;
+                        ?> 
+                        <li><a href="<?= base_url('aktuelles/jubilaeum') ?>"<?= $class ?>>Jubiläum</a></li> 
+                        <?php
+                        if (strpos(current_url(), base_url('aktuelles')) !== false && strpos(current_url(), base_url('aktuelles/jubilaeum')) === false) : $class = ' class="active"';
                         else : $class = '';
                         endif;
                         ?>                
@@ -145,7 +151,7 @@ echo doctype('html5');
                                     <li><a href="<?= base_url('aktuelles/einsaetze/' . $m->id) ?>"><span class="subline"><?= get_ger_date($m->datum_beginn) ?> / <?= $m->type->name ?></span><br /><?= $m->name ?></a></li>
                                     <?php endforeach; ?>
                                 </ul>  
-                                <ul>                         
+                                <!--<ul>                         
                                     <?php
                                     if (current_url() == base_url('aktuelles/termine')) : $class = ' class="active"';
                                     else : $class = '';
@@ -159,7 +165,7 @@ echo doctype('html5');
                                     ?>   
                                     <li><a><span class="subline"><?= get_ger_date($a->datum) ?> / <?= $a->beginn ?> Uhr</span><br /><?= $a->name ?></a></li>
                                     <?php endforeach; ?>
-                                </ul>  
+                                </ul>  -->
                                 <ul>
                                     <?php
                                     if (current_url() == base_url('aktuelles/presse')) : $class = ' class="active"';
@@ -179,6 +185,15 @@ echo doctype('html5');
                                     <?php endif; ?>        
                                     <?php endforeach; ?>                   
                                 </ul>  
+                                <ul>
+                                    <?php
+                                    if (current_url() == base_url('aktuelles/jubilaeum')) : $class = ' class="active"';
+                                    else : $class = '';
+                                    endif;
+                                    ?>
+                                    <li class="headline"><a href="<?= base_url('aktuelles/jubilaeum') ?>"<?= $class ?>>Jubiläum</a></li>
+                                    <li><a href="<?= base_url('aktuelles/jubilaeum') ?>"<?= $class ?>><img src="<?=img_path('navTeaser_jubilaeum.png')?>" /></a></li>
+                                </ul>
                             </div>  
                         </li>  
 
@@ -285,7 +300,7 @@ echo doctype('html5');
                                     else : $class = '';
                                     endif;
                                     ?> 
-                                    <li><a href="<?= base_url('informationen') ?>"<?= $class ?>>Infos</a>  
+                                    <!--<li><a href="<?= base_url('informationen') ?>"<?= $class ?>>Infos</a>  
                                         <div class="dropdown">  
                                             <ul>
                                                 <li class="headline"><a href="<?= base_url('informationen/buergerinformationen') ?>">B&uuml;rgerinfos</a></li>
@@ -312,7 +327,7 @@ echo doctype('html5');
                                                 <li><a href="<?= base_url('informationen/aao#anker_uoertlich') ?>">Überörtlich</a></li>                        
                                             </ul>
                                         </div>  
-                                    </li>
+                                    </li>-->
                                     <?php
                                     if (current_url() == base_url('verein')) : $class = ' class="active"';
                                     else : $class = '';
@@ -331,6 +346,7 @@ echo doctype('html5');
 
                             <div id="mobileNavigation">    
                                 <ul class="mobileMainNavContainer">
+                                    <li><a href="<?= base_url('aktuelles/jubilaeum') ?>">Jubiläum</a></li>
                                     <li><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>
                                     <li><a href="<?= base_url('aktuelles') ?>">News</a></li>
                                     <li class="subnavi">    
