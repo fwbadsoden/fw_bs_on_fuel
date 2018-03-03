@@ -892,6 +892,16 @@ header nav {
     right: 0;
     margin: 0 0 0 auto;
 }
+#stage .stageQuoteJubi {
+    background-image: url(../layout/quote_bg.png);
+    text-align: left;
+    /*width: 320px;*/
+    padding: 10px;
+    position: relative;
+    top: 500px;
+    right: 0;
+    margin: 0 0 0 auto;
+}
 #stage .stageContentListen {
     text-align: left;
     padding: 10px;
@@ -1009,6 +1019,9 @@ header nav {
     #stage .stageQuoteRight {
         margin: 0 40px 0 auto;
     }
+    #stage .stageQuoteRightJubi {
+        margin: 0 40px 0 auto;
+    }
 }
 @media only screen and (max-width: 525px) {
     #stage div.pictures {
@@ -1024,10 +1037,22 @@ header nav {
         top: 160px;
         margin: 0 0 0 auto;
     }
+    #stage .stageQuoteRightJubi {
+        width: 200px;
+        padding: 10px;
+        top: 160px;
+        margin: 0 0 0 auto;
+    }
     #stage .stageQuoteLeft {
         width: 200px;
         padding: 10px;
         top: 160px;
+        margin: 0 0 0 5%;
+    }
+    #stage .stageQuoteJubi {
+        width: 300px;
+        padding: 10px;
+        top: 100px;
         margin: 0 0 0 5%;
     }
     #stage .quote {
@@ -1058,6 +1083,8 @@ header nav {
     #stage h2 { font-size: 12px; }
     #stage p { display: none; }
     #stage .stageQuoteRight { width: auto; margin: 0 auto; }
+    #stage .stageQuoteRightJubi { width: auto; margin: 0 auto; }
+    #stage .stageQuoteJubi { width: auto; margin: 0 auto; }
     #stage .stageQuoteLeft { width: auto; margin: 0 auto; }
 }
 
@@ -1152,6 +1179,13 @@ header nav {
     background-color: #121212;	
     float: right;
 }
+
+#content .oneColumnBoxJubi {
+    width: 980px;
+	margin-top: 250px;
+	padding: 40px 0;   
+    clear: both; 
+}
 #content .oneColumnBox {
     width: 980px;
     clear: both;
@@ -1170,6 +1204,10 @@ header nav {
 
 @media only screen and (max-width: 1000px) {
     #content .oneColumnBox {
+        width: 98%;
+        margin: 0 1% 0 1%;
+    }
+    #content .oneColumnBoxJubi {
         width: 98%;
         margin: 0 1% 0 1%;
     }
@@ -1197,6 +1235,10 @@ header nav {
 }
 @media only screen and (max-width: 750px) {
     #content .oneColumnBox {
+        width: 96%;
+        margin-left: 2%;
+    }
+    #content .oneColumnBoxJubi {
         width: 96%;
         margin-left: 2%;
     }
