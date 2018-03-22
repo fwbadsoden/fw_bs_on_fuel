@@ -491,9 +491,9 @@ echo doctype('html5');
                                 case 5: $css_inner_class = "stageContentHeadline blackBG";
                                 break;
                                 case 6: $css_inner_class = "stageQuoteJubi";
-                                        $text1 = "Jubiläum";
-                                        $text2 = "150 Jahre Feuerwehr Bad Soden";
-                                        $text3 = fuel_var("jubilaeum_stagetext");
+                                        $text1 = fuel_var("jubilaeum_stagetext1");
+                                        $text2 = fuel_var("jubilaeum_stagetext2");
+                                        $text3 = fuel_var("jubilaeum_stagetext3");
                                 break;
                                 }
                                 ?>
