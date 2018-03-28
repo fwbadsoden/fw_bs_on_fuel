@@ -19,6 +19,8 @@ array('name' => 'keywords', 'content' => fuel_var('metakeywords')),
  array('name' => 'imagetoolbar', 'content' => "no", 'type' => 'equiv')
 );
 
+$year_optout_cookie = date("Y") + 90;
+
 // Open Graph Tags
 if (isset($facebook_infos)) {
 foreach ($facebook_infos as $info) {
@@ -77,7 +79,19 @@ echo doctype('html5');
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>    
 
-        <?php if (ENVIRONMENT == 'production') : ?>
+        <script type="text/javascript">
+            var gaProperty = 'UA-44450948-1';
+            var disableStr = 'ga-disable-' + gaProperty;
+            if (document.cookie.indexOf(disableStr + '=true') > -1) {
+            window[disableStr] = true;
+            }
+            function gaOptout() {
+            document.cookie = disableStr + '=true; expires=Thu, 31 Dec <?=$year_optout_cookie?> 23:59:59 UTC;
+            path=/';
+            window[disableStr] = true;
+            }
+        </script>
+        
         <script>
             (function (i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r;
@@ -95,6 +109,8 @@ echo doctype('html5');
             ga('send', 'pageview');
 
         </script>
+        <?php if (ENVIRONMENT == 'production') : ?>
+        
         <?php endif; ?>
         <header>
             <div class="site" id="top">
