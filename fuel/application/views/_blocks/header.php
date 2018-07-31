@@ -507,9 +507,24 @@ echo doctype('html5');
                                 case 5: $css_inner_class = "stageContentHeadline blackBG";
                                 break;
                                 case 6: $css_inner_class = "stageQuoteJubi";
+                                    $now = new DateTime();
+                                    $jubitag1 = new DateTime("2018-08-10");
+                                    $jubitag2 = new DateTime("2018-08-11");
+                                    $jubitag3 = new DateTime("2018-08-12");
+                                    $jubiDanach = new DateTime("2018-08-11");
                                         $text1 = fuel_var("jubilaeum_stagetext1");
                                         $text2 = fuel_var("jubilaeum_stagetext2");
+                                    if($now < $jubitag1) {
                                         $text3 = fuel_var("jubilaeum_stagetext3");
+                                    } elseif($now == $jubitag1) {
+                                        $text3 = fuel_var("jubilaeum_stagetext3_tag1");
+                                    } elseif($now == $jubitag2) {
+                                        $text3 = fuel_var("jubilaeum_stagetext3_tag2");
+                                    } elseif($now == $jubitag3) {
+                                        $text3 = fuel_var("jubilaeum_stagetext3_tag3");
+                                    } else {
+                                        $text3 = fuel_var("jubilaeum_stagetext3_tag4");
+                                    }
                                 break;
                                 }
                                 ?>
