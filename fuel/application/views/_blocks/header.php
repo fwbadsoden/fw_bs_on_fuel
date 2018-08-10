@@ -443,34 +443,6 @@ echo doctype('html5');
                                 <?php $stage_images = $stage->get_stage_images_for_frontend(); ?>
                                 <?php
                                 foreach ($stage_images as $key => $image) :
-                                if ($image->name == "Startseite Jubiläum") {
-                                $headline = "150 jähriges Jubiläum";
-                                switch ($image->stage_image_type_id) {
-                                case 1: $css_inner_class = "stageContentHeadlineTop half_blackBG smallstage";
-                                break;
-                                case 2: $css_inner_class = "stageQuoteLeftJubi";
-                                break;
-                                case 3: $css_inner_class = "stageQuoteRightJubi";
-                                break;
-                                case 4: $css_inner_class = "stageContentCar";
-                                break;
-                                case 5: $css_inner_class = "stageContentHeadline blackBG";
-                                break;
-                                case 6: $css_inner_class = "stageQuoteJubi";
-                                break;
-                                }
-                                ?>
-
-                                <div class="<?= $stage->type->css_outer_class ?>" id="pictures_<?= $key ?>" style="background-image: url(<?= img_path("bildbuehnen/" . $image->image) ?>); display: none;">
-                                    <div id="stagewrapper">    
-                                        <div class="<?= $css_inner_class ?>">     
-                                            <h1<?= $image->get_css_text_class_1() ?> style="text-align: center;"><?= $headline ?></h1>
-                                            <div id="countdown"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php
-                                } else {
                                 if (strtolower($image->text_1) == "dummy") {
                                 if (isset($stage_text["name"]))
                                 $text1 = $stage_text["name"];
@@ -507,13 +479,13 @@ echo doctype('html5');
                                 case 5: $css_inner_class = "stageContentHeadline blackBG";
                                 break;
                                 case 6: $css_inner_class = "stageQuoteJubi";
-                                    $now = new DateTime();
+                                    $now = (new DateTime())->setTime(0, 0, 0);
                                     $jubitag1 = new DateTime("2018-08-10");
                                     $jubitag2 = new DateTime("2018-08-11");
                                     $jubitag3 = new DateTime("2018-08-12");
                                     $jubiDanach = new DateTime("2018-08-11");
-                                        $text1 = fuel_var("jubilaeum_stagetext1");
-                                        $text2 = fuel_var("jubilaeum_stagetext2");
+                                    $text1 = fuel_var("jubilaeum_stagetext1");
+                                    $text2 = fuel_var("jubilaeum_stagetext2");
                                     if($now < $jubitag1) {
                                         $text3 = fuel_var("jubilaeum_stagetext3");
                                     } elseif($now == $jubitag1) {
@@ -531,6 +503,7 @@ echo doctype('html5');
 
                                 <div class="<?= $stage->type->css_outer_class ?>" id="pictures_<?= $key ?>" style="background-image: url(<?= img_path("bildbuehnen/" . $image->image) ?>); display: none;">
                                     <div id="stagewrapper">    
+                                        <?php if ($image->name != "Startseite Jubiläum") : ?>
                                         <div class="<?= $css_inner_class ?>">            
                                             <?php if ($stage_type == 'default') : ?>   
                                             <?php if($text1 != "") : ?> <h1<?= $image->get_css_text_class_1() ?>><?= $text1 ?></h1> <?php endif; ?>
@@ -542,9 +515,9 @@ echo doctype('html5');
                                             <h2><?= $text2 ?></h2>  
                                             <?php endif; ?>      
                                         </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                                <? } ?>
                                 <?php endforeach; ?> 
                             </section>
                             <?php endif; ?>
