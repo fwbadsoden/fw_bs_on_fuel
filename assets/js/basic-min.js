@@ -270,7 +270,7 @@
     };
 
 	// Bild austauschen
-	$('#slideshow_next').click(function() {
+	$("[id^=slideshow_next]").click(function() {
 		
 		var slideShowName = $(this).attr('href').substr(1);
 		var elements = $('#'+slideShowName).children().length;
@@ -287,7 +287,7 @@
 		return false;
 	});
 	
-	$('#slideshow_prev').click(function() {
+	$("[id^=slideshow_prev]").click(function() {
 		
 		var slideShowName = $(this).attr('href').substr(1);
 		var elements = $('#'+slideShowName).children().length;
