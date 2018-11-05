@@ -265,24 +265,27 @@
 //  Slideshow
 
 	var slideShowVars = {
-        currentImage: 1,
-		speed: 400
-    };
+            imageCounter: [],
+            speed: 400
+        };
 
 	// Bild austauschen
 	$("[id^=slideshow_next]").click(function() {
 		
 		var slideShowName = $(this).attr('href').substr(1);
 		var elements = $('#'+slideShowName).children().length;
-		if(slideShowVars.currentImage<elements) {	
-			var target=slideShowVars.currentImage+1;
+                if(slideShowVars.imageCounter[slideShowName] === undefined) {
+                    slideShowVars.imageCounter[slideShowName] = 1;
+                }
+		if(slideShowVars.imageCounter[slideShowName]<elements) {	
+			var target=slideShowVars.imageCounter[slideShowName]+1;
 		} else {
 			var target=1;
 		}
 		
 		$('#'+slideShowName+'_'+target).css('display', 'inline');
-		$('#'+slideShowName+'_'+slideShowVars.currentImage).css('display', 'none');
-		slideShowVars.currentImage = target;
+		$('#'+slideShowName+'_'+slideShowVars.imageCounter[slideShowName]).css('display', 'none');
+                slideShowVars.imageCounter[slideShowName] = target;
 
 		return false;
 	});
@@ -291,15 +294,18 @@
 		
 		var slideShowName = $(this).attr('href').substr(1);
 		var elements = $('#'+slideShowName).children().length;
-		if(slideShowVars.currentImage!=1) {	
-			var target=slideShowVars.currentImage-1;
+                if(slideShowVars.imageCounter[slideShowName] === undefined) {
+                    slideShowVars.imageCounter[slideShowName] = 1;
+                }
+		if(slideShowVars.imageCounter[slideShowName] !== 1) {	
+			var target=slideShowVars.imageCounter[slideShowName]-1;
 		} else {
 			var target=elements;
 		}
 		
 		$('#'+slideShowName+'_'+target).css('display', 'inline');
-		$('#'+slideShowName+'_'+slideShowVars.currentImage).css('display', 'none');
-		slideShowVars.currentImage = target;
+		$('#'+slideShowName+'_'+slideShowVars.imageCounter[slideShowName]).css('display', 'none');
+		slideShowVars.imageCounter[slideShowName] = target;
 
 		return false;
 	});
