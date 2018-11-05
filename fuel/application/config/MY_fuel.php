@@ -58,13 +58,13 @@ $config['max_page_params'] = 1;
 $config['auto_search_views'] = FALSE;
 
 // max upload files size for assets
-$config['assets_upload_max_size']	= 6000;
+$config['assets_upload_max_size']	= 10000;
 
 // max width for asset images being uploaded
-$config['assets_upload_max_width']  = 4000;
+$config['assets_upload_max_width']  = 10000;
 
 // max height for asset images being uploaded
-$config['assets_upload_max_height']  = 2400;
+$config['assets_upload_max_height']  = 10000;
 
 // The default view for home
 $config['default_home_view'] = '';
