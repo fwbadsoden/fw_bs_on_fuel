@@ -21,26 +21,28 @@
             
             <h1 class="module" id="anker_mitteilungen">Pressemitteilungen</h1>
             <div class="listContent">
-<? foreach($data as $article) :  
+<?php foreach($data as $article) :  
     $date = get_date_as_array($article->datum);
 ?>
                 <div class="row">
-<? if($article->online_article == '') : ?>
+<?php if($article->online_article == '' && stringEndsWith($article->asset, "pdf", false)) : ?>
+                    <a href="<?=assets_path($article->asset, 'pressarticles')?>" target="_blank">
+<?php elseif($article->online_article == '') : ?>
                     <a href="<?=assets_path($article->asset, 'pressarticles')?>" class="fancybox-gallery" rel="gallery1">
-<? else : ?>
+<?php else : ?>
                     <a href="<?=$article->online_article?>" target="_blank">
-<? endif; ?>
+<?php endif; ?>
                 	<div class="date_small trenner"><span class="inline_date"><?=$date[2]?>. <?=get_month_short_name($date[1])?>. <?=$date[0]?></span></div>
-<? if($article->online_article == '') : ?>                    
+<?php if($article->online_article == '') : ?>                    
                  	<div class="size trenner"><p><?=strtoupper(substr($article->asset, -3))?></p><p class="bytes"><?=get_asset_size($article->asset, 'pressarticles')?></p></div>
-<? else : ?>
+<?php else : ?>
                     <div class="size trenner"><p>URL&nbsp;&nbsp;</p><p class="bytes"></p></div>
-<? endif; ?>                    
+<?php endif; ?>                    
 	               	<div class="headline smallBoxHead"><span class="medium"><?=$article->source->name?></span><br/><?=$article->name?></div>
                     <div class="moreButton_arrow"></div>
                		</a>
                 </div>
-<? endforeach; ?>
+<?php endforeach; ?>
 
             <hr class="clear" />
             </div>
