@@ -145,6 +145,7 @@
 <?  endif; ?>
                         <figure><img src="<?=img_path('fahrzeuge/setcards/'.$f->setcard_image)?>" width="100" height="50" /></figure>
                         <div class="info">
+<?  if(mb_strlen($f->name,'utf-8') > 13) : $f->name = mb_substr($f->name,0,10,'utf-8').'.'; endif; ?>                           
                             <h2><?=$f->name?></h2>
 <?  if($f->name_lang != '') : 
         if(mb_strlen($f->name_lang,'utf-8') > 20) : $f->name_lang = mb_substr($f->name_lang,0,17,'utf-8').'.'; endif;
