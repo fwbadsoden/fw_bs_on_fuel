@@ -253,7 +253,7 @@ if (jQuery){ (function ($) {
      */
     public function on_before_save($values) {
         $values = parent::on_before_save($values);
-
+        
         if ($values["einsatz_nr"] == 0) {
             $this->db->select_max('einsatz_nr');
             $query = $this->db->get_where('missions', array('substr(datum_beginn,1,4)' => substr($values['datum_beginn'], 0, 4)));

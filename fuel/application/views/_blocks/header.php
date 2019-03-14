@@ -130,7 +130,7 @@ echo doctype('html5');
                     </div>
                     <ul id="menu">  
                         <?php
-                        if (strpos(current_url(), base_url('aktuelles')) !== false && strpos(current_url(), base_url('aktuelles/jubilaeum')) === false) : $class = ' class="active"';
+                        if (strpos(current_url(), base_url('aktuelles')) !== false && strpos(current_url(), base_url('menschen/jugend/jubilaeum')) === false) : $class = ' class="active"';
                         else : $class = '';
                         endif;
                         ?>                
@@ -197,12 +197,12 @@ echo doctype('html5');
                                 </ul>  
                                 <ul>
                                     <?php
-                                    if (current_url() == base_url('aktuelles/jubilaeum')) : $class = ' class="active"';
+                                    if (current_url() == base_url('menschen/jugend/jubilaeum')) : $class = ' class="active"';
                                     else : $class = '';
                                     endif;
                                     ?>
-                                    <li class="headline"><a href="<?= base_url('aktuelles/jubilaeum') ?>"<?= $class ?>>Jubiläum</a></li>
-                                    <li><a href="<?= base_url('aktuelles/jubilaeum') ?>"<?= $class ?>><img src="<?=img_path('navTeaser_jubilaeum.png')?>" /></a></li>
+                                    <li class="headline"><a href="<?= base_url('menschen/jugend/jubilaeum') ?>"<?= $class ?>>Jubiläum</a></li>
+                                    <li><a href="<?= base_url('menschen/jugend/jubilaeum') ?>"<?= $class ?>><img src="<?=img_path('jubilaeum/jugend/navTeaser_jubilaeum_jugend.jpg')?>" /></a></li>
                                 </ul>
                             </div>  
                         </li>  
@@ -356,7 +356,7 @@ echo doctype('html5');
 
                             <div id="mobileNavigation">    
                                 <ul class="mobileMainNavContainer">
-                                    <li><a href="<?= base_url('aktuelles/jubilaeum') ?>">Jubiläum</a></li>
+                                    <li><a href="<?= base_url('menschen/jugend/jubilaeum') ?>">Jubiläum</a></li>
                                     <li><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>
                                     <li><a href="<?= base_url('aktuelles') ?>">News</a></li>
                                     <li class="subnavi">    

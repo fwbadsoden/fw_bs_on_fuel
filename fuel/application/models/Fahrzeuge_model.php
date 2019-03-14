@@ -241,9 +241,9 @@ class Fahrzeuge_model extends Abstract_module_model {
 
     public function get_mission_vehicle_list() {
 
-        $this->db->order_by('precedence asc');
+        $this->db->order_by('precedence asc, ist_abrollbehaelter asc');
         $this->db->select("id, CONCAT((name), (' ('), (rufname), (')')) as name");
-        $this->db->where(array('published' => 'yes', 'retired' => 'no', "ist_abrollbehaelter" => "no"));
+        $this->db->where(array('published' => 'yes', 'retired' => 'no'));
         $query = $this->db->get('fahrzeuge');
         return $query->result_assoc_array('id');
     }
