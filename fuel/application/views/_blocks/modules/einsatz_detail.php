@@ -140,7 +140,7 @@
             <ul>
 <?  foreach ($data->fahrzeuge as $f) : ?>
                 <li>
-<?  if($f->is_published()) : ?>                    
+<?  if($f->is_published() && !$f->is_abrollbehaelter()) : ?>                    
                     <a href="<?=base_url('technik/fahrzeuge/'.$f->id)?>">
 <?  endif; ?>
                         <figure><img src="<?=img_path('fahrzeuge/setcards/'.$f->setcard_image)?>" width="100" height="50" /></figure>
@@ -153,7 +153,7 @@
                             <h3><?=$f->name_lang?></h3>
 <?  endif; ?>
 						</div>
-<?  if($f->is_published()) : ?>  
+<?  if($f->is_published() && !$f->is_abrollbehaelter()) : ?>  
                     </a>
 <?  endif; ?>
                     <hr class="clear" />
