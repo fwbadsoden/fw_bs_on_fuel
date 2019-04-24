@@ -55,7 +55,7 @@ echo doctype('html5');
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#countdown').countdown({
-                    until: new Date(2018, 8 - 1, 10), padZeroes: true, format: 'OWD'
+                    until: new Date(2019, 6, 22), padZeroes: true, format: 'OWD'
                 });
             });
         </script>
@@ -120,9 +120,11 @@ echo doctype('html5');
                 <nav>    
                     <div id="metanavigation"> 
                         <ul>
-                            <li class="first mitmachen"><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>
+                            <li class="first mitmachen"><a href="<?= base_url('menschen/jugend/jubilaeum') ?>">Jubiläum</a></li>
+                            <!--<li class="first mitmachen"><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>-->
+                            <li><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>
                             <li><a href="<?= base_url('fuel') ?>" target="_blank">Login</a></li>
-                            <li><a href="https://portal-fwbs.de/" target="_blank">Infoportal</a></li>
+                           <!-- <li><a href="https://portal-fwbs.de/" target="_blank">Infoportal</a></li>-->
                             <li><a href="<?= base_url('kontakt') ?>">Kontakt</a></li>
                             <li><a href="<?= base_url('links') ?>">Links</a></li>
                             <li><a href="#notruflayer_js" class="fancybox-metaLayer">Notfall</a></li>
@@ -300,7 +302,8 @@ echo doctype('html5');
                                             </ul>  
                                             <ul>                     
                                                 <li class="headline"><a>Spezialeinheiten</a></li>
-                                                <li><a href="<?= base_url('technik/rettungshunde') ?>">Rettungshunde-Ortungstechnik</a></li>
+                                                <li><a href="<?= base_url('technik/rettungshunde') ?>">Rettungshundeeinheit</a></li>
+                                                <li><a href="<?= base_url('technik/gefahrstoffkomponente') ?>">Gefahrstoffeinheit</a></li>
                                             </ul>  
                                         </div>  
                                     </li>  
@@ -382,7 +385,8 @@ echo doctype('html5');
                                         <ul>  
                                             <li><a href="<?= base_url('technik/fahrzeuge') ?>" class="first">Fahrzeuge</a></li>
                                             <li><a href="<?= base_url('technik/fahrzeuge/ausserdienst') ?>">Fahrzeuge a.D.</a></li>
-                                            <li><a href="<?= base_url('technik/rettungshunde') ?>">Rettungshunde-Ortungstechnik</a></li>
+                                            <li><a href="<?= base_url('technik/rettungshunde') ?>">Rettungshundeeinheit</a></li>
+                                            <li><a href="<?= base_url('technik/gefahrstoffkomponente') ?>">Gefahrstoffeinheit</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="<?= base_url('informationen/buergerinformationen') ?>">Infos</a></li>
@@ -437,6 +441,33 @@ echo doctype('html5');
                                 <?php $stage_images = $stage->get_stage_images_for_frontend(); ?>
                                 <?php
                                 foreach ($stage_images as $key => $image) :
+                                if ($image->name == "Startseite Jubiläum Jugend") {	
+                                $headline = "50 jähriges Jubiläum";	
+                                switch ($image->stage_image_type_id) {	
+                                case 1: $css_inner_class = "stageContentHeadlineTop half_blackBG smallstage";	
+                                break;	
+                                case 2: $css_inner_class = "stageQuoteLeftJubi";	
+                                break;	
+                                case 3: $css_inner_class = "stageQuoteRightJubi";	
+                                break;	
+                                case 4: $css_inner_class = "stageContentCar";	
+                                break;	
+                                case 5: $css_inner_class = "stageContentHeadline blackBG";	
+                                break;	
+                                case 6: $css_inner_class = "stageQuoteJubi";	
+                                break;	
+                                }	
+                                ?>	
+                                 <div class="<?= $stage->type->css_outer_class ?>" id="pictures_<?= $key ?>" style="background-image: url(<?= img_path("bildbuehnen/" . $image->image) ?>); display: none;">	
+                                    <div id="stagewrapper">    	
+                                        <div class="<?= $css_inner_class ?>">     	
+                                            <h1<?= $image->get_css_text_class_1() ?> style="text-align: center;"><?= $headline ?></h1>	
+                                            <div id="countdown"></div>	
+                                        </div>	
+                                    </div>	
+                                </div>	
+                                <?php	
+                                } else {
                                 if (strtolower($image->text_1) == "dummy") {
                                 if (isset($stage_text["name"]))
                                 $text1 = $stage_text["name"];
@@ -497,7 +528,7 @@ echo doctype('html5');
 
                                 <div class="<?= $stage->type->css_outer_class ?>" id="pictures_<?= $key ?>" style="background-image: url(<?= img_path("bildbuehnen/" . $image->image) ?>); display: none;">
                                     <div id="stagewrapper">    
-                                        <?php if ($image->name != "Startseite Jubiläum") : ?>
+                                        <?php if ($image->name != "Startseite Jubiläum Jugend") : ?>
                                         <div class="<?= $css_inner_class ?>">            
                                             <?php if ($stage_type == 'default') : ?>   
                                             <?php if($text1 != "") : ?> <h1<?= $image->get_css_text_class_1() ?>><?= $text1 ?></h1> <?php endif; ?>
@@ -512,6 +543,7 @@ echo doctype('html5');
                                         <?php endif; ?>
                                     </div>
                                 </div>
+                                <? } ?>
                                 <?php endforeach; ?> 
                             </section>
                             <?php endif; ?>
