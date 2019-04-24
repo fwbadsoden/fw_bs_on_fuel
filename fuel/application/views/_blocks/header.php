@@ -55,7 +55,7 @@ echo doctype('html5');
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#countdown').countdown({
-                    until: new Date(2019, 6, 22), padZeroes: true, format: 'OWD'
+                    until: new Date(2019, 6 - 1, 22), padZeroes: true, format: 'OWD'
                 });
             });
         </script>
