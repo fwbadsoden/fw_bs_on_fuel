@@ -142,6 +142,8 @@
                 <li>
 <?  if($f->is_published() && !$f->is_abrollbehaelter()) : ?>                    
                     <a href="<?=base_url('technik/fahrzeuge/'.$f->id)?>">
+<?  elseif($f->is_abrollbehaelter()) : ?>                        
+                    <a href="<?=base_url('technik/fahrzeuge/'.$f->get_wlf_id())?>">
 <?  endif; ?>
                         <figure><img src="<?=img_path('fahrzeuge/setcards/'.$f->setcard_image)?>" width="100" height="50" /></figure>
                         <div class="info">
@@ -153,7 +155,7 @@
                             <h3><?=$f->name_lang?></h3>
 <?  endif; ?>
 						</div>
-<?  if($f->is_published() && !$f->is_abrollbehaelter()) : ?>  
+<?  if($f->is_published()) : ?>  
                     </a>
 <?  endif; ?>
                     <hr class="clear" />
