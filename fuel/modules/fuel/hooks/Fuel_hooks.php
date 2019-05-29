@@ -9,7 +9,7 @@
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2017, Daylight Studio LLC.
+ * @copyright	Copyright (c) 2018, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  * @filesource
@@ -94,7 +94,7 @@ class Fuel_hooks
 			if ($CI->fuel->config('offline') AND !$CI->fuel->auth->is_logged_in() AND (!preg_match('#^'.fuel_uri('login').'#', uri_path(FALSE))))
 			{
 
-				// By pass offline page if password inputed.
+				// By pass offline page if password inputted.
 				$CI->load->library('session');
 				if ($CI->session->userdata('dev_password'))
 				{

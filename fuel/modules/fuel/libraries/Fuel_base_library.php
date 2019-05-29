@@ -8,7 +8,7 @@
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2017, Daylight Studio LLC.
+ * @copyright	Copyright (c) 2018, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  * @filesource
@@ -50,7 +50,7 @@ class Fuel_base_library {
 	 * @param	array	config preferences
 	 * @return	void
 	 */	
-	public function __construct()
+	public function __construct($config = array())
 	{
 		$this->CI =& get_instance();
 		if (isset($this->CI->fuel))
@@ -220,7 +220,7 @@ class Fuel_base_library {
 	 * Checks if the logged in user is authenticated to use this item based on specified permission
 	 *
 	 * @access	protected
-	 * @return	void
+	 * @return	boolean
 	 */	
 	protected function _has_permission()
 	{

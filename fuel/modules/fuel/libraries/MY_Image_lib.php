@@ -8,7 +8,7 @@
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2017, Daylight Studio LLC.
+ * @copyright	Copyright (c) 2018, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  */
@@ -46,7 +46,7 @@ class MY_Image_lib extends CI_Image_lib {
 	 *
 	 * @access	public
 	 * @param	array	an associative array of key/values
-	 * @return	array
+	 * @return	void
 	 */	
 	public function initialize($props = array())
 	{
@@ -65,7 +65,7 @@ class MY_Image_lib extends CI_Image_lib {
 	 * Resize and crop an image
 	 *
 	 * @access	public
-	 * @return	array
+	 * @return	boolean
 	 */	
 	public function resize_and_crop()
 	{
@@ -183,7 +183,7 @@ class MY_Image_lib extends CI_Image_lib {
 	 * @access	public
 	 * @param	array	an associative array of key/values
 	 * @param	boolean	indicates whether to remove empty array values from uri
-	 * @return	array
+	 * @return	boolean
 	 */	
 	public function convert($type = 'jpg', $delete_orig = FALSE)
 	{

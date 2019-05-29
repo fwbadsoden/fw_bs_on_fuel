@@ -8,7 +8,7 @@
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2017, Daylight Studio LLC.
+ * @copyright	Copyright (c) 2018, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  * @filesource
@@ -70,7 +70,7 @@ class Fuel_language extends Fuel_base_library {
 	 * Accepts an associative array as input, containing object preferences.
 	 *
 	 * @access	public
-	 * @param	array	Array of initalization parameters  (optional)
+	 * @param	array	Array of initialization parameters  (optional)
 	 * @return	void
 	 */	
 	public function initialize($params = array())
@@ -700,7 +700,7 @@ class Fuel_language extends Fuel_base_library {
 			static $lang_seg;
 			static $no_lang;
 	
-			// set static $detct_lang to speed up subsequent calls
+			// set static $detect_lang to speed up subsequent calls
 			if ($use_detect_lang)
 			{
 				if (is_null($detect_lang))

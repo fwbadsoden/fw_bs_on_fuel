@@ -8,7 +8,7 @@
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2017, Daylight Studio LLC.
+ * @copyright	Copyright (c) 2018, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  * @filesource
@@ -96,7 +96,7 @@ $config['keyboard_shortcuts'] = array(
 $config['dashboards'] = array('fuel');
 
 // Dashboard rss
-$config['dashboard_rss'] = 'http://www.getfuelcms.com/blog/feed/rss';
+$config['dashboard_rss'] = 'https://www.getfuelcms.com/blog/feed/rss';
 
 // text editor settings  (options are markitup or ckeditor)
 // markitup: allows you to visualize the code in its raw format - not wysiwyg (http://markitup.jaysalvat.com/)
@@ -182,7 +182,7 @@ $config['assets_upload_max_height']  = '768';
 
 // Javascript files (mostly jquery plugins) to be included other then the controller js files
 $config['fuel_javascript'] = array(
-	/*
+	
 	'fuel' => array(
 	'jquery/plugins/jquery-ui-1.8.17.custom.min',
 	'jquery/plugins/jquery.easing',
@@ -215,8 +215,9 @@ $config['fuel_javascript'] = array(
 	'jquery/plugins/chrome_pushstack_fix.js',
 	'jqx/plugins/util.js',
 	'fuel/global')
-	*/
-	'fuel' => 'fuel/fuel.min'
+	
+	// This is actually slower it appears now???
+	//'fuel' => 'fuel/fuel.min'
 );
 
 // CSS other then the fuel.css file which automatically gets loaded
@@ -348,7 +349,7 @@ $config['page_cache_ttl'] = 0;
 // The name of the group the cache is associated with (so you can just remove the group)
 $config['page_cache_group'] = 'pages';
 
-// Maximum number of paramters that can be passed to the page. Used to cut down on queries to the db.
+// Maximum number of parameters that can be passed to the page. Used to cut down on queries to the db.
 // If it is an array, then it will loop through the array using the keys to match against a regular expression:
 // $config['max_page_params'] = array('about/news/' => 1);
 $config['max_page_params'] = 0;
