@@ -8,7 +8,7 @@
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2017, Daylight Studio LLC.
+ * @copyright	Copyright (c) 2018, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  * @filesource
@@ -145,8 +145,8 @@ class Fuel_auth extends Fuel_base_library {
 	 * Sets session data for the currently logged in user
 	 *
 	 * @access	public
-	 * @access	string	The array key to associate the session data
-	 * @access	mixed	The session data to save
+	 * @param	string	The array key to associate the session data
+	 * @param	mixed	The session data to save
 	 * @return	void
 	 */	
 	public function set_user_data($key, $value)

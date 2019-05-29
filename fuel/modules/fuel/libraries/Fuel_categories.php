@@ -8,7 +8,7 @@
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2017, Daylight Studio LLC.
+ * @copyright	Copyright (c) 2018, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  * @filesource
@@ -58,13 +58,15 @@ class Fuel_categories extends Fuel_module {
 	 *
 	 * @access	public
 	 * @param	string	the context to query on
+	 * @param	string	$order
+	 * @param	int	limit
 	 * @return	array
 	 */	
-	public function find_by_context($context)
+	public function find_by_context($context, $order = NULL, $limit = NULL)
 	{
 		$model = $this->model();
 		$where = 'FIND_IN_SET("'.$context.'", '.$model->table_name().'.context)';
-		$data = $model->find_all($where);
+		$data = $model->find_all($where, $order, $limit);
 		return $data;
 	}
 
@@ -80,7 +82,7 @@ class Fuel_categories extends Fuel_module {
 	 */	
 	public function options_list($key = 'slug', $val = 'name')
 	{
-		$model =& $this->model();
+		$model = $this->model();
 		return $model->options_list($key, $val);
 	}	
 }

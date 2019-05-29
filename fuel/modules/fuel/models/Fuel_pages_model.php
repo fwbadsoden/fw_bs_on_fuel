@@ -3,12 +3,12 @@
  * FUEL CMS
  * http://www.getfuelcms.com
  *
- * An open source Content Management System based on the
+ * An open source Content Management System based on the 
  * Codeigniter framework (http://codeigniter.com)
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2017, Daylight Studio LLC.
+ * @copyright	Copyright (c) 2018, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  */
@@ -19,7 +19,7 @@
  * Extends Base_module_model
  *
  * <strong>Fuel_pages_model</strong> is used for managing FUEL users in the CMS
- *
+ * 
  * @package		FUEL CMS
  * @subpackage	Models
  * @category	Models
@@ -39,27 +39,27 @@ class Fuel_pages_model extends Base_module_model {
 	public $limit_to_user_field = ''; // a user ID field in your model that can be used to limit records based on the logged in user
 
 	// --------------------------------------------------------------------
-
+	
 	/**
 	 * Constructor.
 	 *
 	 * @access	public
 	 * @return	void
-	 */
+	 */	
 	public function __construct()
 	{
 		parent::__construct('fuel_pages');
 	}
 
 	// --------------------------------------------------------------------
-
+	
 	/**
 	 * Displays related items on the right side
 	 *
 	 * @access	public
 	 * @param	array View variable data (optional)
 	 * @return	mixed Can be an array of items or a string value
-	 */
+	 */	
 	public function related_items($values = array())
 	{
 		$CI =& get_instance();
@@ -68,7 +68,7 @@ class Fuel_pages_model extends Base_module_model {
 		if ($CI->fuel->modules->get('navigation')->info('disabled') === TRUE) return '';
 
 		$CI->load->module_model(FUEL_FOLDER, 'fuel_navigation_model');
-
+		
 
 		$where['location'] = $values['location'];
 		$related_items = $CI->fuel_navigation_model->find_all_array_assoc('id', $where);
@@ -98,7 +98,7 @@ class Fuel_pages_model extends Base_module_model {
 			// determine parent based off of location
 			$location_arr = explode('/', $values['location']);
 			$parent_location = implode('/', array_slice($location_arr, 0, (count($location_arr) -1)));
-
+		
 			if (!empty($parent_location)) $parent = $this->fuel_navigation_model->find_by_location($parent_location);
 			if (!empty($parent))
 			{
@@ -116,22 +116,22 @@ class Fuel_pages_model extends Base_module_model {
 
 		return $view;
 	}
-
+	
 	// --------------------------------------------------------------------
-
+	
 	/**
 	 * Tree view that puts pages in a hierarchy based on their location value
 	 *
 	 * @access	public
 	 * @param	boolean Determines whether to return just published pages or not (optional... and ignored in the admin)
-	 * @return	array An array that can be used by the Menu class to create a hierachical structure
-	 */
+	 * @return	array An array that can be used by the Menu class to create a hierarchical structure
+	 */	
 	public function tree($just_published = FALSE)
 	{
 		$CI =& get_instance();
 		$CI->load->helper('array');
 		$return = array();
-
+		
 		$where = array();
 		if ($just_published) $sql['where'] = array('published' => 'yes');
 		$pages = $this->find_all_array_assoc('location', $where, 'location asc');
@@ -140,7 +140,7 @@ class Fuel_pages_model extends Base_module_model {
 			$parts = explode('/', $val['location']);
 			$label = array_pop($parts);
 			$parent = implode('/', $parts);
-
+			
 			if (!empty($pages[$parent]) || strrpos($val['location'], '/') === FALSE)
 			{
 				$return[$key]['label'] = $label;
@@ -165,16 +165,16 @@ class Fuel_pages_model extends Base_module_model {
 		//$return = array_sorter($return, 'label', 'asc');
 		return $return;
 	}
-
+	
 	// --------------------------------------------------------------------
-
+	
 	/**
 	 * Returns a key/value array list of the page locations
 	 *
 	 * @access	public
 	 * @param	boolean Determines whether to included unpublished or not (optional)
 	 * @return	array
-	 */
+	 */	
 	public function list_locations($include_unpublished = FALSE)
 	{
 		$where = (!$include_unpublished) ? array('published' => 'yes') : NULL;
@@ -182,7 +182,7 @@ class Fuel_pages_model extends Base_module_model {
 	}
 
 	// --------------------------------------------------------------------
-
+	
 	/**
 	 * Returns an array of page information based on the location
 	 *
@@ -190,15 +190,14 @@ class Fuel_pages_model extends Base_module_model {
 	 * @param	string The location of the page
 	 * @param	boolean Determines whether to included unpublished or not (optional)
 	 * @return	array
-	 */
+	 */	
 	public function find_by_location($location, $just_published = 'yes')
 	{
-
-		if (substr($location, 0, 4) == 'http')
+		if (strpos($location, 'http://') === 0 || strpos($location, 'https://') === 0)
 		{
 			$location = substr($location, strlen(site_url()));
 		}
-
+		
 		if (empty($location))
 		{
 			return NULL;
@@ -221,7 +220,6 @@ class Fuel_pages_model extends Base_module_model {
 			{
 				$where .= ' AND published = "yes"';
 			}
-
 		}
 		else
 		{
@@ -231,7 +229,7 @@ class Fuel_pages_model extends Base_module_model {
 		$data = $this->find_one_array($where, 'location desc');
 
 		// case sensitive check
-		if (empty($data) OR $data['location'] != $location)
+		if (empty($data) OR ($data['location'] != $location AND (!empty($wildcard_location) AND $data['location'] != $wildcard_location.'/:any')))
 		{
 			return array();
 		}
@@ -240,14 +238,14 @@ class Fuel_pages_model extends Base_module_model {
 	}
 
 	// --------------------------------------------------------------------
-
+	
 	/**
-	 * Returns all the children pages basd on the location URI
+	 * Returns all the children pages based on the location URI
 	 *
 	 * @access	public
 	 * @param  string URI path to start from (e.g. about would find about/history, about/contact, etc)
-	 * @return	void
-	 */
+	 * @return	array
+	 */	
 	function children($root)
 	{
 		$root = trim($root, '/').'/';
@@ -321,15 +319,15 @@ class Fuel_pages_model extends Base_module_model {
 		return $fields;
 	}
 
-	// --------------------------------------------------------------------
-
+		// --------------------------------------------------------------------
+	
 	/**
 	 * Model hook right before the data is cleaned
 	 *
 	 * @access	public
 	 * @param	array The values to be saved right the clean method is run
 	 * @return	array Returns the values to be cleaned
-	 */
+	 */	
 	public function on_before_clean($values)
 	{
 		if (!empty($values['location']))
@@ -338,27 +336,27 @@ class Fuel_pages_model extends Base_module_model {
 			{
 				$values['location'] = '';
 			}
-
+			
 			$values['location'] = str_replace(array('/', '.', ':any', ':num'), array('___', '_X_', '__ANY__', '__NUM__'), $values['location']);
 			$values['location'] = url_title($values['location']);
 			$values['location'] = str_replace(array('___', '_X_', '__ANY__', '__NUM__'), array('/', '.', ':any', ':num'), $values['location']);
-
+			
 			$segments = array_filter(explode('/', $values['location']));
 			$values['location'] = implode('/', $segments);
-
+			
 		}
 		return $values;
 	}
-
+	
 	// --------------------------------------------------------------------
-
+	
 	/**
 	 * Model hook executed right before validation is run
 	 *
 	 * @access	public
 	 * @param	array The values to be saved right before validation
 	 * @return	array Returns the values to be validated right before saving
-	 */
+	 */	
 	public function on_before_validate($values)
 	{
 		if (!empty($values['id']))
@@ -371,16 +369,16 @@ class Fuel_pages_model extends Base_module_model {
 		}
 		return $values;
 	}
-
+	
 	// --------------------------------------------------------------------
-
+	
 	/**
 	 * Model hook executed right before saving
 	 *
 	 * @access	public
 	 * @param	array The values to be saved right before saving
 	 * @return	array Returns the values to be saved
-	 */
+	 */	
 	public function on_before_save($values)
 	{
 		$CI = get_instance();
@@ -388,37 +386,37 @@ class Fuel_pages_model extends Base_module_model {
 		$values['last_modified_by'] = (!empty($this->limit_to_user_field) AND !empty($values['last_modified_by'])) ? $values['last_modified_by'] : $CI->fuel->auth->user_data('id');
 		return $values;
 	}
-
+	
 	// --------------------------------------------------------------------
-
+	
 	/**
 	 * Model hook executed right before deleting
 	 *
 	 * @access	public
 	 * @param	mixed The where condition to be applied to the delete (e.g. array('user_name' => 'darth'))
 	 * @return	void
-	 */
+	 */	
 	public function on_before_delete($where)
 	{
 		$this->_editable_by_user();
 	}
 
 	// --------------------------------------------------------------------
-
+	
 	/**
 	 * Model hook executed right after deleting
 	 *
 	 * @access	public
 	 * @param	mixed The where condition to be applied to the delete (e.g. array('user_name' => 'darth'))
 	 * @return	void
-	 */
+	 */	
 	public function on_after_delete($where)
 	{
 		$this->delete_related(array(FUEL_FOLDER => 'fuel_pagevariables_model'), 'page_id', $where);
 	}
-
+	
 	// --------------------------------------------------------------------
-
+	
 	/**
 	 * Overwrites parent method. Used to restore page data from the archive
 	 *
@@ -426,7 +424,7 @@ class Fuel_pages_model extends Base_module_model {
 	 * @param	int The record ID associated with the archive
 	 * @param	int The version of the archive to retrieve (optional)
 	 * @return	boolean
-	 */
+	 */	
 	public function restore($ref_id, $version = NULL)
 	{
 		$CI =& get_instance();
@@ -437,15 +435,15 @@ class Fuel_pages_model extends Base_module_model {
 			return TRUE;
 		}
 		$pages_saved = $this->save($archive, array('id' => $ref_id));
-
+		
 		// delete page variables before saving
 		$CI->fuel_pagevariables_model->delete(array('page_id' => $ref_id));
 		$page_variables_saved = $CI->fuel_pagevariables_model->save($archive['variables']);
 		return ($pages_saved AND $page_variables_saved);
 	}
-
+	
 	// --------------------------------------------------------------------
-
+	
 	/**
 	 * Overwrite parent method to replace variable data as well
 	 *
@@ -454,13 +452,13 @@ class Fuel_pages_model extends Base_module_model {
 	 * @param	int The new record id of data that will be used for the replacement
 	 * @param	boolean Determines whether to delete the old record (optional)
 	 * @return	boolean Whether it was saved properly or not
-	 */
+	 */	
 	// 
 	public function replace($replace_id, $id, $delete = TRUE)
 	{
 		$CI =& get_instance();
 		$CI->load->module_model(FUEL_FOLDER, 'fuel_pagevariables_model');
-
+		
 		// start a transaction in case there are any errors
 		$CI->fuel_pagevariables_model->db()->trans_begin();
 
@@ -478,32 +476,32 @@ class Fuel_pages_model extends Base_module_model {
 				$saved = FALSE;
 			}
 		}
-
+		
 		// check if there are any errors and if so we rollem back...
 		if ($CI->fuel_pagevariables_model->db()->trans_status() === FALSE)
 		{
 			$saved = FALSE;
-			$CI->fuel_pagevariables_model->db()->trans_rollback();
+		    $CI->fuel_pagevariables_model->db()->trans_rollback();
 		}
 		else
 		{
-			$CI->fuel_pagevariables_model->db()->trans_commit();
+		    $CI->fuel_pagevariables_model->db()->trans_commit();
 		}
-
+		
 		$saved = parent::replace($replace_id, $id, $delete);
-
+		
 		return $saved;
 	}
-
+	
 	// --------------------------------------------------------------------
-
+	
 	/**
 	 * Common query that joins user created/modified information to the page
 	 *
 	 * @access	public
 	 * @param mixed parameter to pass to common query (optional)
 	 * @return	void
-	 */
+	 */	
 	public function _common_query($params = NULL)
 	{
 		$this->db->join($this->_tables['fuel_users'], $this->_tables['fuel_users'].'.id = '.$this->_tables['fuel_pages'].'.last_modified_by', 'left');
@@ -514,7 +512,7 @@ class Fuel_pages_model extends Base_module_model {
 }
 
 class Fuel_page_model extends Base_module_record {
-
+	
 	function get_variables($language = NULL)
 	{
 		$params =array();
