@@ -8,7 +8,7 @@
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2017, Daylight Studio LLC.
+ * @copyright	Copyright (c) 2018, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  */
@@ -30,6 +30,8 @@
 class Fuel_notification extends Fuel_base_library {
 
 	public $to = ''; // the to address to send the notification
+	public $cc = ''; // the CC address to send the notification
+	public $reply_to = ''; // the reply to address to send the notification
 	public $from = ''; // the from address of the sender
 	public $from_name = ''; // the from name of the sender
 	public $subject = ''; // the subject line of the notification
@@ -112,7 +114,17 @@ class Fuel_notification extends Fuel_base_library {
 		{
 			$this->CI->email->to($this->to);
 		}
+
+		if ($this->cc)
+		{
+			$this->CI->email->cc($this->cc);
+		}
 		
+		if ($this->reply_to)
+		{
+			$this->CI->email->reply_to($this->reply_to);
+		}
+
 		if (!$this->CI->email->send())
 		{
 			$this->_errors[] = $this->CI->email->print_debugger();

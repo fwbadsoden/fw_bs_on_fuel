@@ -900,6 +900,7 @@ class Pages extends Module {
 		$filter = str_replace(':any', '.+', str_replace(':num', '[0-9]+', $filter));
 		$this->js_controller_params['method'] = 'select';
 
+
 		$this->load->helper('array');
 		$this->load->helper('form');
 		$this->load->library('form_builder');
@@ -921,7 +922,7 @@ class Pages extends Module {
 		// apply filter
 		if ( ! empty($filter))
 		{
-			$filter_callback = create_function('$a', 'return preg_match(\'#^'.$filter.'$#\', $a);');
+			$filter_callback = function($a) use ($filter) { return preg_match('#^'.addslashes($filter).'$#', $a); };
 			if (!empty($has_pdfs))
 			{
 				$options[lang('page_select_pages')] = array_filter($options[lang('page_select_pages')], $filter_callback);
@@ -929,7 +930,7 @@ class Pages extends Module {
 			}
 			else
 			{
-				$options = array_filter($options, $filter_callback);	
+				$options = array_filter($options, $filter_callback);
 			}
 		}
 
@@ -1038,7 +1039,7 @@ class Pages extends Module {
 
 			// Hackery to ensure that a proper php mimetype is set. 
 			// Would set in mimes.php config but that may be updated with the next version of CI which does not include the text/plain
-			$this->upload->mimes['php'] =  array(
+			/*$this->upload->mimes['php'] =  array(
 				'application/x-httpd-php', 
 				'application/php', 
 				'application/x-php', 
@@ -1047,15 +1048,12 @@ class Pages extends Module {
 				'text/x-php', 
 				'application/x-httpd-php-source', 
 				'text/plain'
-			);
+			);*/
 
 			if ($this->upload->do_upload('file'))
 			{
 				$upload_data = $this->upload->data();
 				$error = FALSE;
-
-				// read in the file so we can filter it
-				$file = read_file($upload_data['full_path']);
 
 				// sanitize the file before saving
 				$id = $this->input->post('id', TRUE);
@@ -1214,13 +1212,18 @@ class Pages extends Module {
 		}
 	}
 
-	protected function _process_upload_data($field_name, $uploaded_data, $posted)
+	protected function _process_upload_data($field_names, $uploaded_data, $posted)
 	{
-		$field_name_parts = explode('--', $field_name);
-		$field_name = end($field_name_parts);
-
 		foreach($uploaded_data as $key => $val)
 		{
+			if (!isset($field_names[$key]))
+			{
+				continue;
+			}
+			$field_name = $field_names[$key];
+			$field_name_parts = explode('--', $field_name);
+			$field_name = end($field_name_parts);
+
 			$file_tmp = current(explode('___', $key));
 
 			// get the file name field
@@ -1228,14 +1231,15 @@ class Pages extends Module {
 			// the model does not have an array key field AND there is a key field value posted
 			if (isset($field_name) AND ! is_array($this->model->key_field()) AND isset($posted['page_id']))
 			{
+				$save = FALSE;
 				$id = $posted['page_id'];
 				$where = array($this->fuel_pagevariables_model->table_name().'.page_id'=> $id, 'name' => $field_name);
 				$data = $this->fuel_pagevariables_model->find_one_array($where);
 
 				// if there is a field with the suffix of _upload, then we will overwrite that posted value with this value
-				if (substr($file_tmp, ($file_tmp - 7)) == '_upload')
+				if (substr($file_tmp, strlen($file_tmp) - 7) == '_upload')
 				{
-					$field_name = substr($file_tmp, 0, ($file_tmp - 7));
+					$field_name = substr($file_tmp, 0, strlen($file_tmp) - 7);
 				}
 
 				if (isset($posted[$field_name]))

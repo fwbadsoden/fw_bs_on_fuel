@@ -8,7 +8,7 @@
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2017, Daylight Studio LLC.
+ * @copyright	Copyright (c) 2018, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  * @filesource
@@ -176,7 +176,7 @@ class Fuel_navigation extends Fuel_module {
 			{
 				if ($this->CI->fuel->navigation->mode() != 'cms')
 				{
-					// load in navigation file as a starting poing
+					// load in navigation file as a starting point
 					if (file_exists(APPPATH.'views/_variables/'.$p['file'].'.php'))
 					{
 						$p['root_value'] = NULL;

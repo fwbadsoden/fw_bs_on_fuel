@@ -8,7 +8,7 @@
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2017, Daylight Studio LLC.
+ * @copyright	Copyright (c) 2018, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  */
@@ -329,7 +329,7 @@ class MY_DB_mysqli_driver extends CI_DB_mysqli_driver {
 	 * Clears the compiled query string
 	 *
 	 * @access	public
-	 * @return	string
+	 * @return	void
 	 */
 	public function clear_query_string()
 	{
@@ -365,7 +365,15 @@ class MY_DB_mysqli_driver extends CI_DB_mysqli_driver {
 		$sql = preg_replace('/^#(.+)$/U', '', $sql);
 
 		// load database config
-		include(APPPATH.'config/database.php');
+		if (file_exists(APPPATH.'config/'.ENVIRONMENT.'/database.php'))
+		{
+			include(APPPATH.'config/'.ENVIRONMENT.'/database.php');
+		}
+		else
+		{
+			include(APPPATH.'config/database.php');	
+		}
+		
 		$CI->load->database();
 
 		// select the database
@@ -418,7 +426,7 @@ class MY_DB_mysqli_driver extends CI_DB_mysqli_driver {
 	}
 
 	/**
-	 * Strictly used to have a consistent close function as the start_group_where. This essentially callse the close_bracket() function. 
+	 * Strictly used to have a consistent close function as the start_group_where. This essentially calls the close_bracket() function.
 	 */
 	public function close_group_where()
 	{

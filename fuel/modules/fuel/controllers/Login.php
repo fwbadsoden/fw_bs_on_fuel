@@ -28,7 +28,7 @@ class Login extends CI_Controller {
 
 		$this->load->module_model(FUEL_FOLDER, 'fuel_users_model');
 
-		// set configuration paths for assets in case they are differernt from front end
+		// set configuration paths for assets in case they are different from front end
 		$this->asset->assets_module ='fuel';
 		$this->asset->assets_folders = array(
 				'images' => 'images/',
@@ -96,7 +96,11 @@ class Login extends CI_Controller {
 						$forward = $this->input->post('forward');
 						$forward_uri = uri_safe_decode($forward);
 
-						if ($forward AND $forward_uri != $this->fuel->config('login_redirect'))
+						# Check URL for naughty forwarding
+						$parsed_url = parse_url($forward_uri); 
+						$host = array_key_exists('host', $parsed_url) ? $parsed_url['host'] : null;
+
+						if ($forward AND ($forward_uri != $this->fuel->config('login_redirect')) AND ($host === null))
 						{
 							redirect($forward_uri);
 						}

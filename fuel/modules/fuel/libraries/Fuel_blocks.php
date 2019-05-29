@@ -8,7 +8,7 @@
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2017, Daylight Studio LLC.
+ * @copyright	Copyright (c) 2018, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  * @filesource
@@ -241,12 +241,19 @@ class Fuel_blocks extends Fuel_module {
 						$p['parse'] = TRUE;
 					}
 
-					$view = $block->view;
+					// we'll get the raw view variable so we can parse it later
+					$block_vars = $block->values();
+					$view = $block_vars['view'];
+
+					// this can cause parsing error because it is automatically parsed
+					// https://github.com/daylightstudio/FUEL-CMS/issues/467
+					//$view = $block->view;
 
 					if ($p['editable'] === TRUE)
 					{
 						$view = fuel_edit($block->id, 'Edit Block: '.$block->name, 'blocks').$view;
 					}
+
 				}
 				else if (file_exists($view_file))
 				{
@@ -270,7 +277,7 @@ class Fuel_blocks extends Fuel_module {
 		}
 
 		// parse the view again to apply any variables from previous parse
-		$output = ($p['parse'] === TRUE) ? $this->CI->parser->parse_string($view, $vars, TRUE) : $view;
+		$output = ($p['parse'] === TRUE) ? $this->CI->fuel->parser->parse_string($view, $vars, TRUE) : $view;
 
 		if ($p['cache'] === TRUE)
 		{
