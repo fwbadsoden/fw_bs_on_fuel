@@ -8,7 +8,7 @@
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2017, Daylight Studio LLC.
+ * @copyright	Copyright (c) 2018, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  * @filesource
@@ -26,19 +26,18 @@
  * @link		http://docs.getfuelcms.com/helpers/browser_helper
  */
 
-
 // --------------------------------------------------------------------
 
-/**
- * Returns an array of browser information
- * Originally from: http://us3.php.net/function.get-browser
- * 
- * @access	public
- * @param	string	browser agant (optional)
- * @return	array
- */	
 if (!function_exists('browser_info'))
 {
+	/**
+	 * Returns an array of browser information
+	 * Originally from: http://us3.php.net/function.get-browser
+	 *
+	 * @access	public
+	 * @param	string	browser agent (optional)
+	 * @return	array
+	 */
 	function browser_info($agent = NULL)
 	{
 	 	// Declare known browsers to look for
@@ -60,5 +59,6 @@ if (!function_exists('browser_info'))
 		return array($matches['browser'][$i] => $matches['version'][$i]);
 	}
 }
+
 /* End of file browser_helper.php */
 /* Location: ./modules/fuel/helpers/browser_helper.php */

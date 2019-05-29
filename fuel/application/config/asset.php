@@ -33,7 +33,7 @@ $config['assets_folders'] = array(
 $config['assets_absolute_path'] = FALSE;
 
 // used for caching
-$config['assets_last_updated'] = '04/16/2018 08:26:00';
+$config['assets_last_updated'] = '05/29/2019 08:26:00';
 
 // appends timestamp of last updated after file name
 $config['asset_append_cache_timestamp'] = array('js', 'css');
@@ -53,7 +53,7 @@ You can still use this, but just turn of optimizing in the js function call that
 YOU MUST use the assets_last_updated to refresh the cache file
 
 options: 
-* FALSE - no optimation
+* FALSE - no optimization
 * TRUE - will combine files, strip whitespace, and gzip
 * "inline" - will render the files inline
 * "gzip" - will combine files (if multiple) and gzip without stripping whitespace

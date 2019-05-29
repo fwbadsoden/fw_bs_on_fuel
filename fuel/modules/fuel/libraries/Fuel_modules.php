@@ -8,7 +8,7 @@
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2017, Daylight Studio LLC.
+ * @copyright	Copyright (c) 2018, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  * @filesource
@@ -64,7 +64,7 @@ class Fuel_modules extends Fuel_base_library {
 	 * Accepts an associative array as input, containing module initialization preferences.
 	 *
 	 * @access	public
-	 * @param	array	Array of additional module initialiation parameters  (optional)
+	 * @param	array	Array of additional module initialization parameters  (optional)
 	 * @return	void
 	 */	
 	public function initialize($params = array(), $add = TRUE)
@@ -231,7 +231,7 @@ class Fuel_modules extends Fuel_base_library {
 	 *
 	 * @access	public
 	 * @param	string	Module name (optional)
-	 * @param	boolean	Whether to include advanced modules in the search. Defeault is TRUE. (optional)
+	 * @param	boolean	Whether to include advanced modules in the search. Default is TRUE. (optional)
 	 * @return	object	Fuel_module object
 	 */	
 	public function get($module = NULL, $include_advanced = TRUE)
@@ -583,7 +583,7 @@ class Fuel_module extends Fuel_base_library {
 	 */	
 	public function initialize($params = array(), $init = array())
 	{
-		// setup any intialized variables
+		// setup any initialized variables
 		if (is_array($params))
 		{
 			if (!empty($params['module']))
@@ -691,6 +691,7 @@ class Fuel_module extends Fuel_base_library {
 				'disable_heading_sort' => FALSE,
 				'description' => '',
 				'search_field' => '',
+				'single_item_navigate' => FALSE,
 				'pages' => array(),
 				);
 			$info = array();
@@ -753,18 +754,23 @@ class Fuel_module extends Fuel_base_library {
 			// must be done after the above 
 			if (empty($this->_info['display_field']))
 			{
-				$fields = $this->model()->fields();
-				
-				// loop through the fields and find the first column that doesn't have id or _id at the end of it
-				for ($i = 1; $i < count($fields); $i++)
+				$model = $this->model();
+
+				if ($model)
 				{
-					if (substr($fields[$i], -3) != '_id')
+					$fields = $model->fields();
+					
+					// loop through the fields and find the first column that doesn't have id or _id at the end of it
+					for ($i = 1; $i < count($fields); $i++)
 					{
-						$this->_info['display_field'] = $fields[$i];
-						break;
+						if (substr($fields[$i], -3) != '_id')
+						{
+							$this->_info['display_field'] = $fields[$i];
+							break;
+						}
 					}
+					if (empty($this->_info['display_field'])) $this->_info['display_field'] = $fields[1]; // usually the second field is the display_field... first is the id
 				}
-				if (empty($this->_info['display_field'])) $this->_info['display_field'] = $fields[1]; // usually the second field is the display_field... first is the id
 			}
 		}
 		if (empty($prop))
@@ -893,7 +899,7 @@ class Fuel_module extends Fuel_base_library {
 	 * Returns the url based on the preview_path configuration of the simple module
 	 *
 	 * @access	public
-	 * @param	array	data to be merged in with perview path URL
+	 * @param	array	data to be merged in with preview path URL
 	 * @return	string
 	 */	
 	public function url($data = array())
@@ -950,7 +956,7 @@ class Fuel_module extends Fuel_base_library {
 	 * @access	public
 	 * @return	string
 	 */	
-	public function &model()
+	public function model()
 	{
 		$model = $this->info('model_name');
 		$module = $this->info('model_location');
@@ -958,11 +964,15 @@ class Fuel_module extends Fuel_base_library {
 		{
 			$module = 'app';
 		}
-		if (!isset($this->CI->$model) AND !empty($module))
+		if ($model !== FALSE AND !isset($this->CI->$model) AND !empty($module))
 		{
 			$this->CI->load->module_model($module, $model);
 		}
-		return $this->CI->$model;
+
+		if ($model)
+		{
+			return $this->CI->$model;
+		}
 	}
 	
 	// --------------------------------------------------------------------
@@ -1023,7 +1033,7 @@ class Fuel_module extends Fuel_base_library {
 			}
 		}
 
-		 // to get around escapinng issues we need to add spaces after =
+		 // to get around escaping issues we need to add spaces after =
 		if (is_string($where))
 		{
 			$where = preg_replace('#([^>|<|!])=#', '$1 = ', $where);
@@ -1075,7 +1085,7 @@ class Fuel_module extends Fuel_base_library {
 	 * An alias to the modules model to save
 	 *
 	 * @access	public
-	 * @param	arrray	An array of values to save to the module's model
+	 * @param	array	An array of values to save to the module's model
 	 * @return	boolean
 	 */
 	public function save($values)
@@ -1089,7 +1099,7 @@ class Fuel_module extends Fuel_base_library {
 	 * An alias to the module's model t create a new record
 	 *
 	 * @access	public
-	 * @param	arrray	An array of values to save to the module's model (optional)
+	 * @param	array	An array of values to save to the module's model (optional)
 	 * @return	object	Record_class object
 	 */
 	public function create($values = array())

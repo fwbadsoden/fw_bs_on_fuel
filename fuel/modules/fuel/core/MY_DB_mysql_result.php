@@ -8,7 +8,7 @@
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2017, Daylight Studio LLC.
+ * @copyright	Copyright (c) 2018, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  */
@@ -39,7 +39,7 @@ class MY_DB_mysql_result extends CI_DB_mysql_result {
 	 *
 	 * @access	public
 	 * @param	string	field name to use as associative key
-	 * @return	void
+	 * @return	array
 	 */
 	public function result_assoc_array($key)
 	{
@@ -83,7 +83,7 @@ class MY_DB_mysql_result extends CI_DB_mysql_result {
 	 *
 	 * @access	public
 	 * @param	string	field name to use as associative key
-	 * @return	void
+	 * @return	array
 	 */
 	public function result_assoc($key)
 	{

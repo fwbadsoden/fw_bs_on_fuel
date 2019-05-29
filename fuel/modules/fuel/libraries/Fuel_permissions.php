@@ -8,7 +8,7 @@
  *
  * @package		FUEL CMS
  * @author		David McReynolds @ Daylight Studio
- * @copyright	Copyright (c) 2017, Daylight Studio LLC.
+ * @copyright	Copyright (c) 2018, Daylight Studio LLC.
  * @license		http://docs.getfuelcms.com/general/license
  * @link		http://www.getfuelcms.com
  * @filesource
@@ -60,14 +60,14 @@ class Fuel_permissions extends Fuel_module {
 	 * Accepts an associative array as input, containing object preferences.
 	 *
 	 * @access	public
-	 * @param	array	Array of initalization parameters  (optional)
+	 * @param	array	Array of initialization parameters  (optional)
 	 * @return	void
 	 */	
 	public function initialize($params = array(), $add = TRUE)
 	{
 		parent::initialize($params);
 		
-		// can't use because contstructor hasn't initialized
+		// can't use because constructor hasn't initialized
 		$this->_perms = $this->model()->find_all_array_assoc('name');
 	}
 
