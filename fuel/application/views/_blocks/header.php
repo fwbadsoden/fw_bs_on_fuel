@@ -120,11 +120,9 @@ echo doctype('html5');
                 <nav>    
                     <div id="metanavigation"> 
                         <ul>
-                            <li class="first mitmachen"><a href="<?= base_url('menschen/jugend/jubilaeum') ?>">Jubiläum</a></li>
-                            <!--<li class="first mitmachen"><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>-->
-                            <li><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>
+                            <li class="first mitmachen"><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>
                             <li><a href="<?= base_url('fuel') ?>" target="_blank">Login</a></li>
-                           <!-- <li><a href="https://portal-fwbs.de/" target="_blank">Infoportal</a></li>-->
+                            <li><a href="https://portal-fwbs.de/" target="_blank">Infoportal</a></li>
                             <li><a href="<?= base_url('kontakt') ?>">Kontakt</a></li>
                             <li><a href="<?= base_url('links') ?>">Links</a></li>
                             <li><a href="#notruflayer_js" class="fancybox-metaLayer">Notfall</a></li>
@@ -163,7 +161,7 @@ echo doctype('html5');
                                     <li><a href="<?= base_url('aktuelles/einsaetze/' . $m->id) ?>"><span class="subline"><?= get_ger_date($m->datum_beginn) ?> / <?= $m->type->name ?></span><br /><?= $m->name ?></a></li>
                                     <?php endforeach; ?>
                                 </ul>  
-                                <!--<ul>                         
+                                <ul>                         
                                     <?php
                                     if (current_url() == base_url('aktuelles/termine')) : $class = ' class="active"';
                                     else : $class = '';
@@ -177,7 +175,7 @@ echo doctype('html5');
                                     ?>   
                                     <li><a><span class="subline"><?= get_ger_date($a->datum) ?> / <?= $a->beginn ?> Uhr</span><br /><?= $a->name ?></a></li>
                                     <?php endforeach; ?>
-                                </ul>  -->
+                                </ul>  
                                 <ul>
                                     <?php
                                     if (current_url() == base_url('aktuelles/presse')) : $class = ' class="active"';
@@ -197,7 +195,7 @@ echo doctype('html5');
                                     <?php endif; ?>        
                                     <?php endforeach; ?>                   
                                 </ul>  
-                                <ul>
+                                <!--<ul>
                                     <?php
                                     if (current_url() == base_url('menschen/jugend/jubilaeum')) : $class = ' class="active"';
                                     else : $class = '';
@@ -205,7 +203,7 @@ echo doctype('html5');
                                     ?>
                                     <li class="headline"><a href="<?= base_url('menschen/jugend/jubilaeum') ?>"<?= $class ?>>Jubiläum</a></li>
                                     <li><a href="<?= base_url('menschen/jugend/jubilaeum') ?>"<?= $class ?>><img src="<?=img_path('jubilaeum/jugend/navTeaser_jubilaeum_jugend.jpg')?>" /></a></li>
-                                </ul>
+                                </ul>-->
                             </div>  
                         </li>  
 
@@ -359,7 +357,6 @@ echo doctype('html5');
 
                             <div id="mobileNavigation">    
                                 <ul class="mobileMainNavContainer">
-                                    <li><a href="<?= base_url('menschen/jugend/jubilaeum') ?>">Jubiläum</a></li>
                                     <li><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>
                                     <li><a href="<?= base_url('aktuelles') ?>">News</a></li>
                                     <li class="subnavi">    
