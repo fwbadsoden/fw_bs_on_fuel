@@ -140,7 +140,7 @@ class Stage_model extends Abstract_module_record {
         $images = parent::get_stage_images();
         $images_new = array();
 
-        $stage_image_jubi = fuel_model('Stage_images', array('find' => 'one', 'where' => array('name' => "Startseite Jubiläum Jugend")));
+        //$stage_image_jubi = fuel_model('Stage_images', array('find' => 'one', 'where' => array('name' => "Startseite Jubiläum Jugend")));
 
         if ($this->is_randomize()) {
             $random_keys = array_rand($images, $img_count);
@@ -149,15 +149,15 @@ class Stage_model extends Abstract_module_record {
                 foreach ($random_keys as $key) {
                     array_push($images_new, $images[$key]);
                 }
-                if (count($stage_image_jubi) == 1)
-                   array_push($images_new, $stage_image_jubi);
+                //      if (count($stage_image_jubi) == 1)
+                //       array_push($images_new, $stage_image_jubi);
                 shuffle($images_new);
             } else {
-                if (count($stage_image_jubi) == 1)
-                    array_push($images_new, $stage_image_jubi);
+                //  if (count($stage_image_jubi) == 1)
+                //    array_push($images_new, $stage_image_jubi);
                 array_push($images_new, $images[$random_keys]);
-                if (count($stage_image_jubi) == 1)
-                    shuffle($images_new);
+                //if (count($stage_image_jubi) == 1)
+                shuffle($images_new);
             }
         } else {
             for ($i = 0; $i < count($images); $i++) {
@@ -167,5 +167,7 @@ class Stage_model extends Abstract_module_record {
 
         return $images_new;
     }
+
 }
+
 ?>
