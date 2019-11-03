@@ -16,37 +16,38 @@
             <?=$data->text?>
         </p>
     </div>
-<? if(count($data->news_images) > 1) : ?>            
+<?php foreach($data->news_images as $key_gallery => $gallery) :    
+   if(count($gallery) > 1) : ?>            
 <div class="slideshow">
-    <div class="prevPic"><a href="#slideshow_news" id="slideshow_prev"><img src="<?=assets_path('button_detailShow_previous.png', 'layout')?>" /></a></div>
-    <div class="nextPic"><a href="#slideshow_news" id="slideshow_next"><img src="<?=assets_path('button_detailShow_next.png', 'layout')?>" /></a></div>
+    <div class="prevPic"><a href="#slideshow_news_<?=$key_gallery?>" id="slideshow_prev"><img src="<?=assets_path('button_detailShow_previous.png', 'layout')?>" /></a></div>
+    <div class="nextPic"><a href="#slideshow_news_<?=$key_gallery?>" id="slideshow_next"><img src="<?=assets_path('button_detailShow_next.png', 'layout')?>" /></a></div>
                 
-    <ul id="slideshow_news">
-<? foreach($data->news_images as $key => $image) : 
+    <ul id="slideshow_news_<?=$key_gallery?>">
+<?php foreach($gallery as $key => $image) : 
     if($key == 0) $class = ' class="active"';
     else          $class = ' class="noActive"';
 ?>                
-        <li id="slideshow_news_<?=$key+1?>"<?=$class?>>
+        <li id="slideshow_news_<?=$key_gallery?>_<?=$key+1?>"<?=$class?>>
             <figure>
               	<img src="<?=img_path('news/'.$image->get_image())?>" alt="<?=$image->title?>" />
                	<div class="zoom"><a href="<?=img_path('news/'.$image->get_image())?>" class="fancybox-gallery" rel="gallery1" title="<?=$image->title?>"><img src="<?=assets_path('button_zoom.png', 'layout')?>" /></a></div>
             </figure>
         </li>
-<? endforeach; ?>                    
+<?php endforeach; ?>                    
     </ul>
 </div>
-<? elseif(count($data->news_images) == 1) : ?> 
+<?php elseif(count($gallery) == 1) : ?> 
 <div class="slideshow">        
-    <ul id="slideshow_news">              
-        <li id="slideshow_news_1" class="active">
+    <ul id="slideshow_news_<?=$key_gallery?>">              
+        <li id="slideshow_news_<?=$key_gallery?>_1" class="active">
             <figure>
-                <img src="<?=img_path('news/'.$data->news_images[0]->get_image())?>" alt="<?=$data->news_images[0]->title?>" />
-           	    <div class="zoom"><a href="<?=img_path('news/'.$data->news_images[0]->get_image())?>" class="fancybox-gallery" rel="gallery1" title="<?=$data->news_images[0]->title?>"><img src="<?=assets_path('button_zoom.png', 'layout')?>" /></a></div>
+                <img src="<?=img_path('news/'.$gallery[0]->get_image())?>" alt="<?=$gallery[0]->title?>" />
+           	    <div class="zoom"><a href="<?=img_path('news/'.$gallery[0]->get_image())?>" class="fancybox-gallery" rel="gallery1" title="<?=$gallery[0]->title?>"><img src="<?=assets_path('button_zoom.png', 'layout')?>" /></a></div>
             </figure>
         </li>                 
     </ul>
 </div>
-<? endif; ?> 
+<?php endif; endforeach; ?> 
 </div>   
         
 <div id="SidebarContent">   

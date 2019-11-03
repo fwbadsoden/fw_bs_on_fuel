@@ -23,9 +23,13 @@ class Base_layout extends Fuel_layout {
         // 404
         $vars["is404"] = false;
 
-        // Stage für Inhaltsseite laden   
-        $stage_id = $this->fuel->page->properties('stage_id');
-        $stage = $CI->stages_model->get_stage_for_frontend($stage_id, true);
+        // Stage für Inhaltsseite laden         
+        if(substr($vars['body_class'], 0, strlen('offline')) === 'offline') {
+            $stage = $CI->stages_model->get_stage_for_frontend(10, true);                
+        } else {
+            $stage_id = $this->fuel->page->properties('stage_id');
+            $stage = $CI->stages_model->get_stage_for_frontend($stage_id, true);            
+        }
         $vars['stage'] = $stage;
 
         // Navigation
