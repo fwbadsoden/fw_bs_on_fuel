@@ -174,11 +174,16 @@ class News_article_model extends Abstract_module_record {
         CI()->db->where(array('relationships.candidate_table' => 'fw_news_articles', 'relationships.foreign_table' => 'fw_news_images', 'relationships.candidate_key' => $this->id));
         CI()->db->order_by('relationships.id asc');
         $query = CI()->db->get('relationships');
-        $i = 0;
+        $i = array();
         $news_images = array();
         foreach ($query->result() as $row) {
-            $news_images[$i] = fuel_model('news_images_model', array('find' => 'one', 'where' => array('id' => $row->foreign_key)));
-            $i++;
+            $news_image = fuel_model('news_images_model', array('find' => 'one', 'where' => array('id' => $row->foreign_key)));
+            if(!array_key_exists($news_image->gallery-1, $i)) {
+                $i[$news_image->gallery-1] = 0;
+            }            
+        //internal_debug($news_image);
+            $news_images[$news_image->gallery-1][$i[$news_image->gallery-1]] = $news_image;
+            $i[$news_image->gallery-1]++;
         }
         return $news_images;
     }

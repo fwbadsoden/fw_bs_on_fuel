@@ -1,0 +1,1 @@
+ALTER TABLE  `fw_news_images` ADD  `gallery` INT( 3 ) NOT NULL DEFAULT  '1';

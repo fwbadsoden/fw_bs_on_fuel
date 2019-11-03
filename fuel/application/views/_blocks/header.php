@@ -46,21 +46,6 @@ echo doctype('html5');
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-        <!-- Countdown für Jubiläum START -->
-        <!-- http://keith-wood.name/countdown.html -->
-        <link rel="stylesheet" href="<?= css_path("jquery.countdown.css") ?>" type="text/css" />
-        <script type="text/javascript" src="<?= js_path('jquery.plugin.min.js') ?>"></script>
-        <script type="text/javascript" src="<?= js_path('jquery.countdown.min.js') ?>"></script>
-        <script type="text/javascript" src="<?= js_path('jquery.countdown-de.js') ?>"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#countdown').countdown({
-                    until: new Date(2019, 6 - 1, 22), padZeroes: true, format: 'OWD'
-                });
-            });
-        </script>
-        <!-- Countdown für Jubiläum ENDE -->
-
         <!-- variables for javascript templates -->    
         <script type="text/javascript">
             var iconPath = "<?= assets_path("icons") ?>/";
@@ -120,11 +105,9 @@ echo doctype('html5');
                 <nav>    
                     <div id="metanavigation"> 
                         <ul>
-                            <li class="first mitmachen"><a href="<?= base_url('menschen/jugend/jubilaeum') ?>">Jubiläum</a></li>
-                            <!--<li class="first mitmachen"><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>-->
-                            <li><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>
+                            <li class="first mitmachen"><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>
                             <li><a href="<?= base_url('fuel') ?>" target="_blank">Login</a></li>
-                           <!-- <li><a href="https://portal-fwbs.de/" target="_blank">Infoportal</a></li>-->
+                            <li><a href="https://portal-fwbs.de/" target="_blank">Infoportal</a></li>
                             <li><a href="<?= base_url('kontakt') ?>">Kontakt</a></li>
                             <li><a href="<?= base_url('links') ?>">Links</a></li>
                             <li><a href="#notruflayer_js" class="fancybox-metaLayer">Notfall</a></li>
@@ -163,7 +146,7 @@ echo doctype('html5');
                                     <li><a href="<?= base_url('aktuelles/einsaetze/' . $m->id) ?>"><span class="subline"><?= get_ger_date($m->datum_beginn) ?> / <?= $m->type->name ?></span><br /><?= $m->name ?></a></li>
                                     <?php endforeach; ?>
                                 </ul>  
-                                <!--<ul>                         
+                                <ul>                         
                                     <?php
                                     if (current_url() == base_url('aktuelles/termine')) : $class = ' class="active"';
                                     else : $class = '';
@@ -177,7 +160,7 @@ echo doctype('html5');
                                     ?>   
                                     <li><a><span class="subline"><?= get_ger_date($a->datum) ?> / <?= $a->beginn ?> Uhr</span><br /><?= $a->name ?></a></li>
                                     <?php endforeach; ?>
-                                </ul>  -->
+                                </ul>  
                                 <ul>
                                     <?php
                                     if (current_url() == base_url('aktuelles/presse')) : $class = ' class="active"';
@@ -197,15 +180,6 @@ echo doctype('html5');
                                     <?php endif; ?>        
                                     <?php endforeach; ?>                   
                                 </ul>  
-                                <ul>
-                                    <?php
-                                    if (current_url() == base_url('menschen/jugend/jubilaeum')) : $class = ' class="active"';
-                                    else : $class = '';
-                                    endif;
-                                    ?>
-                                    <li class="headline"><a href="<?= base_url('menschen/jugend/jubilaeum') ?>"<?= $class ?>>Jubiläum</a></li>
-                                    <li><a href="<?= base_url('menschen/jugend/jubilaeum') ?>"<?= $class ?>><img src="<?=img_path('jubilaeum/jugend/navTeaser_jubilaeum_jugend.jpg')?>" /></a></li>
-                                </ul>
                             </div>  
                         </li>  
 
@@ -441,33 +415,6 @@ echo doctype('html5');
                                 <?php $stage_images = $stage->get_stage_images_for_frontend(); ?>
                                 <?php
                                 foreach ($stage_images as $key => $image) :
-                                if ($image->name == "Startseite Jubiläum Jugend") {	
-                                $headline = "50 jähriges Jubiläum";	
-                                switch ($image->stage_image_type_id) {	
-                                case 1: $css_inner_class = "stageContentHeadlineTop half_blackBG smallstage";	
-                                break;	
-                                case 2: $css_inner_class = "stageQuoteLeftJubi";	
-                                break;	
-                                case 3: $css_inner_class = "stageQuoteRightJubi";	
-                                break;	
-                                case 4: $css_inner_class = "stageContentCar";	
-                                break;	
-                                case 5: $css_inner_class = "stageContentHeadline blackBG";	
-                                break;	
-                                case 6: $css_inner_class = "stageQuoteJubi";	
-                                break;	
-                                }	
-                                ?>	
-                                 <div class="<?= $stage->type->css_outer_class ?>" id="pictures_<?= $key ?>" style="background-image: url(<?= img_path("bildbuehnen/" . $image->image) ?>); display: none;">	
-                                    <div id="stagewrapper">    	
-                                        <div class="<?= $css_inner_class ?>">     	
-                                            <h1<?= $image->get_css_text_class_1() ?> style="text-align: center;"><?= $headline ?></h1>	
-                                            <div id="countdown"></div>	
-                                        </div>	
-                                    </div>	
-                                </div>	
-                                <?php	
-                                } else {
                                 if (strtolower($image->text_1) == "dummy") {
                                 if (isset($stage_text["name"]))
                                 $text1 = $stage_text["name"];
@@ -490,7 +437,6 @@ echo doctype('html5');
                                 $text2 = $image->text_2;
                                 $text3 = "";
                                 $stage_type = 'default';
-                                }
 
                                 switch ($image->stage_image_type_id) {
                                 case 1: $css_inner_class = "stageContentHeadlineTop half_blackBG smallstage";
@@ -503,32 +449,11 @@ echo doctype('html5');
                                 break;
                                 case 5: $css_inner_class = "stageContentHeadline blackBG";
                                 break;
-                                case 6: $css_inner_class = "stageQuoteJubi";
-                                    $now = (new DateTime())->setTime(0, 0, 0);
-                                    $jubitag1 = new DateTime("2018-08-10");
-                                    $jubitag2 = new DateTime("2018-08-11");
-                                    $jubitag3 = new DateTime("2018-08-12");
-                                    $jubiDanach = new DateTime("2018-08-11");
-                                    $text1 = fuel_var("jubilaeum_stagetext1");
-                                    $text2 = fuel_var("jubilaeum_stagetext2");
-                                    if($now < $jubitag1) {
-                                        $text3 = fuel_var("jubilaeum_stagetext3");
-                                    } elseif($now == $jubitag1) {
-                                        $text3 = fuel_var("jubilaeum_stagetext3_tag1");
-                                    } elseif($now == $jubitag2) {
-                                        $text3 = fuel_var("jubilaeum_stagetext3_tag2");
-                                    } elseif($now == $jubitag3) {
-                                        $text3 = fuel_var("jubilaeum_stagetext3_tag3");
-                                    } else {
-                                        $text3 = fuel_var("jubilaeum_stagetext3_tag4");
-                                    }
-                                break;
                                 }
                                 ?>
 
                                 <div class="<?= $stage->type->css_outer_class ?>" id="pictures_<?= $key ?>" style="background-image: url(<?= img_path("bildbuehnen/" . $image->image) ?>); display: none;">
                                     <div id="stagewrapper">    
-                                        <?php if ($image->name != "Startseite Jubiläum Jugend") : ?>
                                         <div class="<?= $css_inner_class ?>">            
                                             <?php if ($stage_type == 'default') : ?>   
                                             <?php if($text1 != "") : ?> <h1<?= $image->get_css_text_class_1() ?>><?= $text1 ?></h1> <?php endif; ?>
@@ -540,7 +465,6 @@ echo doctype('html5');
                                             <h2><?= $text2 ?></h2>  
                                             <?php endif; ?>      
                                         </div>
-                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <? } ?>

@@ -61,6 +61,9 @@ class News_Images_model extends Abstract_module_model {
         $fields["date"]["max_date"] = date('d.m.Y');
         $fields["date"]["default"] = date('d.m.Y');
         
+        $fields["gallery"]["label"] = 'Galerie';
+        $fields["gallery"]["default"] = 1;
+        
         $fields["news"]["order"] = 999;
 
         return $fields;
@@ -76,6 +79,21 @@ class News_Images_model extends Abstract_module_model {
         }
 
         return $data;
+    }
+
+    /**
+     * Hook - right before saving of data
+     *
+     * @access	public
+     * @param	array	values to be saved
+     * @return	array
+     */
+    public function on_before_save($values) {
+        $values = parent::on_before_save($values);
+        if(!isset($values["gallery"]) || $values["gallery"] == 0) {
+            $values["gallery"] = 1;
+        } 
+        return $values;
     }
 
 }
