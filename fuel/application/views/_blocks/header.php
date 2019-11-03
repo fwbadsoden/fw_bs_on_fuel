@@ -27,7 +27,7 @@ foreach ($facebook_infos as $info) {
 array_push($meta, array('name' => $info["property"], 'content' => $info["content"], 'type' => 'property'));
 }
 }
-echo doctype('html5'); 
+echo doctype('html5');
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de-de" lang="de-de">
@@ -68,15 +68,15 @@ echo doctype('html5');
             var gaProperty = 'UA-44450948-1';
             var disableStr = 'ga-disable-' + gaProperty;
             if (document.cookie.indexOf(disableStr + '=true') > -1) {
-            window[disableStr] = true;
+                window[disableStr] = true;
             }
             function gaOptout() {
-            document.cookie = disableStr + '=true; expires=Thu, 31 Dec <?=$year_optout_cookie?> 23:59:59 UTC;
-            path=/';
-            window[disableStr] = true;
+                document.cookie = disableStr + '=true; expires=Thu, 31 Dec <?= $year_optout_cookie ?> 23:59:59 UTC;
+                        path = /';
+                window[disableStr] = true;
             }
         </script>
-        
+
         <script>
             (function (i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r;
@@ -95,7 +95,7 @@ echo doctype('html5');
 
         </script>
         <?php if (ENVIRONMENT == 'production') : ?>
-        
+
         <?php endif; ?>
         <header>
             <div class="site" id="top">
@@ -437,7 +437,7 @@ echo doctype('html5');
                                 $text2 = $image->text_2;
                                 $text3 = "";
                                 $stage_type = 'default';
-
+                                }
                                 switch ($image->stage_image_type_id) {
                                 case 1: $css_inner_class = "stageContentHeadlineTop half_blackBG smallstage";
                                 break;
@@ -451,7 +451,6 @@ echo doctype('html5');
                                 break;
                                 }
                                 ?>
-
                                 <div class="<?= $stage->type->css_outer_class ?>" id="pictures_<?= $key ?>" style="background-image: url(<?= img_path("bildbuehnen/" . $image->image) ?>); display: none;">
                                     <div id="stagewrapper">    
                                         <div class="<?= $css_inner_class ?>">            
@@ -467,7 +466,6 @@ echo doctype('html5');
                                         </div>
                                     </div>
                                 </div>
-                                <? } ?>
                                 <?php endforeach; ?> 
                             </section>
                             <?php endif; ?>
