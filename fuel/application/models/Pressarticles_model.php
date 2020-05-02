@@ -90,6 +90,19 @@ class PressArticles_model extends Abstract_module_model {
 
         return $data;
     }
+
+    public function get_years() {
+        $years = array();
+        $query = $this->db->query('SELECT DISTINCT substring( datum, 1, 4 ) as datum FROM ' . $this->db->dbprefix('pressarticles'));
+        foreach ($query->result() as $row) {
+            $years[] = $row->datum;
+        }
+        
+        if(!in_array(date("Y"), $years)) $years[] = date("Y");
+        
+        rsort($years);
+        return $years;
+    }
 }
 
 class PressArticle_model extends Abstract_module_record {

@@ -143,9 +143,9 @@ class Mannschaft_Members_model extends Abstract_module_model {
         if ($values["image"] == "" && $values["team_id"] != 4) {
             $values["image"] = "dummy.jpg";
         }
-        if ($values["team_id"] == 4) {
+      /*  if ($values["team_id"] == 4) {
             $values["show_image"] = "no";
-        }
+        } */
         if ($values["geburtstag"] == "0000-00-00") {
             $values["show_geburtstag"] = "no";
         }
@@ -330,6 +330,8 @@ class Mannschaft_Members_model extends Abstract_module_model {
         $this->db->order_by('name', 'ASC');
         $this->db->order_by('vorname', 'ASC');
         $this->db->select('mannschaft_members.id as id,
+                           mannschaft_members.image as image, 
+                           mannschaft_members.show_image as show_image,
                            mannschaft_members.name as name, 
                            mannschaft_members.vorname as vorname');
         $query = $this->db->get("mannschaft_members");
@@ -341,6 +343,11 @@ class Mannschaft_Members_model extends Abstract_module_model {
             $m["id"] = $row->id;
             $m["name"] = $row->name;
             $m["vorname"] = $row->vorname;
+            $m["image"] = $row->image;
+            $m["show_image"] = $row->show_image;
+
+            if ($m["show_image"] == 'no')
+                $m["image"] = "dummy_aue.jpg";
 
             array_push($mannschaft, $m);
         }

@@ -1,4 +1,20 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
+    $form = array(
+        'id'   => 'presseFilter',
+        'name' => 'presseFilter'
+    ); 
+	
+	$year_options = array();
+	if(isset($_POST['press_year'])) $year_selected = $_POST['press_year']; 
+	else 							 $year_selected = date('Y');
+	$year_attr = "class = 'input_dropdown' id = 'input_dropdown' onChange='this.form.submit()'";
+	foreach($years as $year)
+	{
+		$year_options[$year] = $year;	
+	}
+    
+    $count = 0;
+?>
 
         <div id="MainContent">  
             <div class="article">
@@ -20,9 +36,26 @@
             </div>
             
             <h1 class="module" id="anker_mitteilungen">Pressemitteilungen</h1>
+            <div class="oneColumnBox" id="submenue">
+                <div class="filter">
+                    <div class="filterBox" id="presseJahr">
+                        <?=form_open(current_url(), $form);?>
+                        <div class="styled-select">
+                            <?=form_dropdown('press_year', $year_options, $year_selected, $year_attr)?>
+                            </div>
+                        <div><a href="#top" class="backToTop" rel="nicescrolling"></a></div>
+                        <hr class="clear" />
+                    </div>
+                </div>      
+            </div>
+            <div class="jsplatzhalter"></div>
             <div class="listContent">
 <?php foreach($data as $article) :  
     $date = get_date_as_array($article->datum);
+    $count++;
+    if(!isset($_POST['press_year']) && $count > 25) {
+        break;
+    }
 ?>
                 <div class="row">
 <?php if($article->online_article == '' && stringEndsWith($article->asset, "pdf", false)) : ?>
