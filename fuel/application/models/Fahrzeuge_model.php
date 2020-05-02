@@ -217,9 +217,11 @@ class Fahrzeuge_model extends Abstract_module_model {
             'options' => $options,
             'order' => 804);
 
+        $fields["module_order"] = array('label' => 'Modulreihenfolge', 'order' => 805, 'comment' => 'Administratives Steuerfeld. Änderung nur durch Habib :-)');
+
         $fields["precedence"]["type"] = 'hidden';
         $fields["published"]["type"] = 'hidden';
-        $fields["module_order"]["type"] = 'hidden';
+        //$fields["module_order"]["type"] = 'hidden';
         $fields["leermasse"]["type"] = 'hidden';
 
         return $fields;
@@ -419,7 +421,7 @@ class Fahrzeug_model extends Abstract_module_record {
     }
     
     public function get_wlf_id() {
-        $wlf = fuel_model('fahrzeuge_model', array('find' => 'one', 'where' => array('abrollbehaelter_tauglich' => 'yes')));
+        $wlf = fuel_model('fahrzeuge_model', array('find' => 'one', 'where' => array('abrollbehaelter_tauglich' => 'yes', 'retired' => 'no')));
         return $wlf->id;
     }
 }

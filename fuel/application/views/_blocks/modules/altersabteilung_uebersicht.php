@@ -71,6 +71,9 @@
     $listcount++;
 ?>      
             <li<?=$class?>>
+                <figure>
+                    <img src="<?=img_path('mannschaft/'.$t["image"])?>" />
+                </figure>
                 <h1><?=$t["vorname"]?> <?=$t["name"]?></h1>
             </li>
 <? endforeach; ?>   
