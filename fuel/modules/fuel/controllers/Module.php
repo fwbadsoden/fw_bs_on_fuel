@@ -930,7 +930,7 @@ class Module extends Fuel_base_controller {
 
 			if (empty($id))
 			{
-				add_error(lang('error_invalid_id'));
+				add_error(lang('error_invalid_record'));
 				return FALSE;
 			}
 
@@ -1444,7 +1444,8 @@ class Module extends Fuel_base_controller {
 			{
 				$this->form_builder->displayonly = $this->displayonly;
 			}
-
+			
+			$this->_prep_csrf();
 			$form = $this->form_builder->render();
 		}
 
@@ -1463,7 +1464,14 @@ class Module extends Fuel_base_controller {
 	protected function _process()
 	{
 		$this->load->helper('security');
+		$this->load->library('form_builder');
 
+		// XSS key check
+		if (!$this->_is_valid_csrf())
+		{
+			add_error(lang('error_saving'));
+		}
+		
 		$this->_orig_post = $_POST;
 
 		// filter placeholder $_POST values 

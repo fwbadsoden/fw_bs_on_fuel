@@ -654,7 +654,27 @@ class Asset {
 	 */	
 	public function jquery($version = '1.7.1', $default = 'jquery')
 	{
-		$js = '<script src="//ajax.googleapis.com/ajax/libs/jquery/'.$version.'/jquery.min.js"></script>';
+		$CI =& get_instance();
+		$cache_id = 'jquery_'.$version;
+		$jquery_url = 'https://ajax.googleapis.com/ajax/libs/jquery/'.$version.'/jquery.min.js';
+
+		if (!$CI->fuel->cache->is_cached($cache_id)) 
+		{
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $jquery_url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$result = curl_exec($ch);
+			curl_close($ch);
+			$scriptHash = hash('sha256', $result, TRUE);
+			$base64 = base64_encode($scriptHash);
+			$CI->fuel->cache->save($cache_id, $base64);
+		}
+		else
+		{
+			$base64 = $CI->fuel->cache->get($cache_id);
+		}
+		
+		$js = '<script src="https://ajax.googleapis.com/ajax/libs/jquery/'.$version.'/jquery.min.js" integrity="sha256-'.$base64.'" crossorigin="anonymous"></script>';
 		$js .= '<script>window.jQuery || document.write(\'<script src="'.js_path($default).'"><\/script>\');</script>';
 		return $js;
 	}
@@ -1334,11 +1354,10 @@ class Asset {
 			
 			if (is_array($file))
 			{
-				$path_arr = each($file);
-				if (!is_numeric($path_arr['key']))
+				if (!is_numeric(key($file)))
 				{
-					$module = $path_arr['key'];
-					$file = $path_arr['value'];
+					$module = key($file);
+					$file = current($file);
 				}
 			}
 

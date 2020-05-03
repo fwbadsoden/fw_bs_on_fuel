@@ -90,7 +90,7 @@ class Fuel_base_controller extends CI_Controller {
 	/**
 	 * Validates that the currently logged in user has the proper permissions to view the current page
 	 *
-	 * @access	public
+	 * @access	protected
 	 * @param	string The name of the permission to check for the currently logged in user
 	 * @param	string The type of permission (e.g. publish, edit, delete) (optional)
 	 * @param	boolean Determines whether to show a 404 error or to just exit. Default is to show a 404 error(optional)
@@ -109,6 +109,110 @@ class Fuel_base_controller extends CI_Controller {
 				exit();
 			}
 		}
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Generates a CSRF token in case xss is not turned on in CI
+	 *
+	 * @access	protected
+	 * @return	void
+	 */	
+	protected function _generate_csrf_token()
+	{
+		return $this->security->xss_hash();
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Generates a CSRF token in case xss is not turned on in CI
+	 *
+	 * @access	protected
+	 * @return	void
+	 */	
+	protected function _get_csrf_token_name()
+	{
+		return $this->security->get_csrf_token_name().'_FUEL';
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Sets an XSS session variable to be able to check on posts
+	 *
+	 * @access	protected
+	 * @return	void
+	 */	
+	protected function _prep_csrf()
+	{
+		// The session CSRF is only created once otherwise we'll 
+		// have issues with inline module editing and elsewhere
+		if (!$this->_has_session_csrf())
+		{
+			$hash = $this->_generate_csrf_token();
+			$this->_set_session_csrf($hash);
+		}
+		else
+		{
+			$hash = $this->_session_csrf();
+		}
+
+		$this->form_builder->key_check_name = $this->_get_csrf_token_name();
+		$this->form_builder->key_check = $hash;
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Determines if the session CSRF exists
+	 *
+	 * @access	protected
+	 * @return	void
+	 */	
+	protected function _has_session_csrf()
+	{
+		return isset($_SESSION[$this->fuel->auth->get_session_namespace()][$this->_get_csrf_token_name()]);
+	}
+	
+	// --------------------------------------------------------------------
+
+	/**
+	 * Sets the session CSRF
+	 *
+	 * @access	protected
+	 * @return	void
+	 */	
+	protected function _set_session_csrf($hash)
+	{
+		$_SESSION[$this->fuel->auth->get_session_namespace()][$this->_get_csrf_token_name()] = $hash;
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Returns the session CSRF
+	 *
+	 * @access	protected
+	 * @return	void
+	 */	
+	protected function _session_csrf()
+	{
+		return !empty($_SESSION[$this->fuel->auth->get_session_namespace()][$this->_get_csrf_token_name()]) ? $_SESSION[$this->fuel->auth->get_session_namespace()][$this->_get_csrf_token_name()] : NULL;
+	}
+	
+	// --------------------------------------------------------------------
+
+	/**
+	 * Validates a submission based on the CSRF token
+	 *
+	 * @access	protected
+	 * @return	void
+	 */	
+	protected function _is_valid_csrf()
+	{
+		return $this->_session_csrf() AND $this->_session_csrf() === $this->input->post($this->_get_csrf_token_name());
 	}
 }
 
