@@ -10,7 +10,8 @@ class Pages extends Module {
 		parent::__construct(FALSE);
 
 		// allow the select URL page to show up regardless of permissions
-		$validate = (fuel_uri_segment(2) == 'select') ? FALSE : TRUE;
+		//$validate = (fuel_uri_segment(2) == 'select') ? FALSE : TRUE;
+		$validate = TRUE;
 		if ($validate)
 		{
 			$load_vars['user'] = $this->fuel->auth->user_data();
@@ -283,6 +284,8 @@ class Pages extends Module {
 		$this->form_builder->set_fields($fields);
 		$this->form_builder->set_field_values($field_values);
 
+		$this->_prep_csrf();
+
 		$vars['form'] = $this->form_builder->render();
 
 		// clear the values hear to prevent issues in subsequent calls
@@ -537,7 +540,7 @@ class Pages extends Module {
 		$vars = $layout->process_saved_values($vars);
 
 		// validate before deleting
-		if ( ! $layout->validate($vars))
+		if (!$this->_is_valid_csrf() OR ! $layout->validate($vars))
 		{
 			add_errors($layout->errors());
 			return FALSE;
@@ -894,7 +897,7 @@ class Pages extends Module {
 		$this->load->library('session');
 		
 		$value = $this->input->get_post('selected', TRUE);
-		$filter = rawurldecode($this->input->get_post('filter', TRUE));
+		$filter = str_replace(array('(', ')', '$', '{', '}', '.', '[', ']', "'", '+', '='), '', rawurldecode($this->input->get_post('filter', TRUE)));
 
 		// Convert wild-cards to RegEx
 		$filter = str_replace(':any', '.+', str_replace(':num', '[0-9]+', $filter));

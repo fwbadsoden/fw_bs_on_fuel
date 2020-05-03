@@ -64,7 +64,7 @@ class Fuel_Router extends MX_Router
 {
 	// --------------------------------------------------------------------
 
-	private $located;
+	//private $located;
 
 	/**
 	 * Parse Routes
@@ -280,11 +280,11 @@ class Fuel_Router extends MX_Router
 		}
 
 		/* application controllers sub-directory exists? */
-		//if (is_dir(APPPATH.'controllers/'.$module.'/'))
-		//{
-		//	$this->directory = $module.'/';
-		//	return array_slice($segments, 1);
-		//}
+		if (is_dir(APPPATH.'controllers/'.$module.'/'))
+		{
+			$this->directory = $module.'/';
+			return array_slice($segments, 1);
+		}
 
 		/* application controller exists? */
 		if (is_file(APPPATH.'controllers/'.ucfirst($module).$ext))
