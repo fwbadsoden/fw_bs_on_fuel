@@ -6,12 +6,14 @@
 	
 	$year_options = array();
 	if(isset($_POST['press_year'])) $year_selected = $_POST['press_year']; 
-	else 							 $year_selected = date('Y');
+	else 							 $year_selected = 0;
 	$year_attr = "class = 'input_dropdown' id = 'input_dropdown' onChange='this.form.submit()'";
-	foreach($years as $year)
-	{
-		$year_options[$year] = $year;	
-	}
+        if($years != null) {
+            $year_options[0] = "Die letzten Meldungen";
+            foreach($years as $year) {
+                    $year_options[$year] = $year;	
+            }
+        }
     
     $count = 0;
 ?>
@@ -36,6 +38,7 @@
             </div>
             
             <h1 class="module" id="anker_mitteilungen">Pressemitteilungen</h1>
+            <?php if($years != null) : ?>
             <div class="oneColumnBox" id="submenue">
                 <div class="filter">
                     <div class="filterBox" id="presseJahr">
@@ -49,6 +52,7 @@
                 </div>      
             </div>
             <div class="jsplatzhalter"></div>
+            <?php endif; ?>
             <div class="listContent">
 <?php foreach($data as $article) :  
     $date = get_date_as_array($article->datum);

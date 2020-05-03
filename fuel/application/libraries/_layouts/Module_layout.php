@@ -106,19 +106,21 @@ class Module_layout extends Base_layout {
                 $vars["item_block"] = "modules/news_detail";
                 break;
             case "presse":
+                $CI->load->model('Pressarticles_model', 'pressarticles_model');
+                
                 if ($CI->input->post('press_year'))
                     $press_year = $CI->input->post('press_year');
                 else
                     $press_year = "";
                 $vars["order"] = "datum desc";
-                if($press_year == "") {
+                if($press_year == "" || $press_year == 0) {
                     $vars["list_where"] = array("published" => "yes");
                     $vars["limit"] = 25;
                 } else {
                     $vars["list_where"] = array("published" => "yes", 'substring(datum,1,4)' => $press_year);
                 }
                 $vars["model"] = "pressarticles_model";
-                $vars["years"] = "";//$CI->pressarticles_model->get_years();
+                $vars["years"] = $CI->pressarticles_model->get_years();
                 $vars["list_block"] = "modules/presse_uebersicht";
                 $vars["item_block"] = NULL;
                 break;

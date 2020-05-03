@@ -98,8 +98,6 @@ class PressArticles_model extends Abstract_module_model {
             $years[] = $row->datum;
         }
         
-        if(!in_array(date("Y"), $years)) $years[] = date("Y");
-        
         rsort($years);
         return $years;
     }
