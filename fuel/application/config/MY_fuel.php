@@ -91,7 +91,7 @@ $config['parser_allowed_functions'] = array(
 	'quote', 'safe_mailto', 'safe_mailto_notitleencoding', // HTML/URL specific
 	'session_flashdata', 'session_userdata', // Session specific
 	'prep_url', 'site_url', 'show_404', 'redirect', 'uri_segment', 'auto_typography', 'current_url', 'base_url', // CI specific
-        'get_date_as_array', 'get_month_short_name', 'strtoupper', 'substr', 'form', 'form_open', 'get_asset_size', 'get_asset_date',
+        'get_date_as_array', 'get_month_short_name', 'strtoupper', 'substr', 'form', 'form_open', 'get_asset_size', 'get_asset_date'
 
 );
 /*

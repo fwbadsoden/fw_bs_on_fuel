@@ -40,8 +40,16 @@ class Main_layout extends Base_layout {
         $id = $row->id;
         
         $articles = fuel_model('Pressarticles', array('find' => 'all', 'order' => ('datum desc'), 'where' => array('category_id' => $id)));
-        
-        return $articles;
+        $articles_arr = array();
+        foreach($articles as $article) {
+            $article_arr["name"] = $article->name;
+            $article_arr["datum"] = $article->datum;
+            $article_arr["online_article"] = $article->online_article;
+            $article_arr["asset"] = $article->asset;
+            $article_arr["source_name"] = $article->source->name;
+            array_push($articles_arr, $article_arr);
+        }
+        return $articles_arr;
     }
     
     private function _get_mfw_pressarticles() {
@@ -53,9 +61,17 @@ class Main_layout extends Base_layout {
         $row = $query->row();
         $id = $row->id;
         
-        $articles = fuel_model('Pressarticles', array('find' => 'all', 'order' => ('datum desc'), 'where' => array('category_id' => $id)));
-        
-        return $articles;
+        $articles = fuel_model('Pressarticles', array('find' => 'all','order' => ('datum desc'), 'where' => array('category_id' => $id)));
+        $articles_arr = array();
+        foreach($articles as $article) {
+            $article_arr["name"] = $article->name;
+            $article_arr["datum"] = $article->datum;
+            $article_arr["online_article"] = $article->online_article;
+            $article_arr["asset"] = $article->asset;
+            $article_arr["source_name"] = $article->source->name;
+            array_push($articles_arr, $article_arr);
+        }
+        return $articles_arr;
     }
 }
 
