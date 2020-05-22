@@ -1251,7 +1251,6 @@ class Dwoo_Core
         unset($varstr);
 
         foreach($m[1] as $k => $sep) {
-        //while (list($k, $sep) = each($m[1])) {
             if ($sep === '.' || $sep === '[' || $sep === '') {
                 // strip enclosing quotes if present
                 $m[2][$k] = preg_replace('#^(["\']?)(.*?)\1$#', '$2', $m[2][$k]);
