@@ -31,7 +31,7 @@ if ($data->ausserdienststellung != 0 && $data->is_retired()) : $text_baujahr = "
         <div class="row_b">
             <div class="cell_with_bg">
                 <img src="<?= assets_path('car_motor.svg', 'icons') ?>" />
-                <p class="value"><?= $data->kw ?> KW</p>
+                <p class="value"><?= $data->kw ?> <?= $data->kw_unit ?></p>
                 <p class="label">Leistung</p>
                 <hr class="clear" />
             </div>

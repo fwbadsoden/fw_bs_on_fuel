@@ -122,8 +122,9 @@ class Fahrzeuge_model extends Abstract_module_model {
             '1:3' => '1:3',
             '1:2' => '1:2',
             '1:1' => '1:1',
-            '16' => '16 (RH HÃ¤nger)',
-            '0' => 'AbrollbehÃ¤lter');
+            '16' => '16 (RH Hänger)',
+            '0' => 'Abrollbehälter',
+            'n/a' => 'Keine Besatzung');
         $fields['besatzung'] = array('options' => $options,
             'type' => 'select',
             'order' => 17);
@@ -134,9 +135,14 @@ class Fahrzeuge_model extends Abstract_module_model {
             'order' => 50);
 
         $fields["kw"]['label'] = lang("form_label_fahrzeug_kw");
-        $fields["kw"]['after_html'] = 'KW';
         $fields["kw"]['order'] = 51;
 
+        $options_unit = array('KW' => 'KW', 'kVA' => 'kVA');
+        $fields["kw_unit"]['label'] = 'Einheit Leistung';
+        $fields["kw_unit"]['type'] = 'select';
+        $fields["kw_unit"]['options'] = $options_unit;
+        $fields["kw_unit"]['order'] = 52;
+        
         $fields["hoehe"]['label'] = lang("form_label_fahrzeug_hoehe");
         $fields["hoehe"]['after_html'] = 'm';
         $fields["hoehe"]['order'] = 53;
