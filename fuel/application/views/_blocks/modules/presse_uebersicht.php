@@ -100,11 +100,5 @@
     			<p>Damit sie ihn besser finden, trägt er eine grüne Weste mit der Aufschrift: </p>
     			<h2>"Feuerwehr Pressestelle"</h2>
     		</div>
-    		<div class="textTeaser">    
-    			<h1>Informationsblatt<br/>Bad Soden</h1>
-    			<p>In dem wöchtenlich erscheinenden "Bad Soden am Taunus kompakt" ist die Feuerwehr Bad Soden so oft als möglich mit aktuellen Einsatzberichten 
-                   und sonstigen Informationen Rund um die Feuerwehr vertreten.</p>
-    			<p><a href="http://www.bad-soden.de/de/aktuelles/mitteilungen/bad-soden-am-taunus-kompakt.aspx" target="_blank">Zur digitalen Ausgabe</a></p>
-    		</div>
         </div>
         <hr class="clear" />     
