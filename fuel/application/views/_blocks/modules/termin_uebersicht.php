@@ -24,7 +24,9 @@
 <? endif; ?>   
         <div class="oneColumnBox">               
             <ul class="terminListe">     
-<?          foreach($termine_pro_monat as $termin) : 
+<?          
+            $show_description = fuel_var('termin_beschreibung_zeigen');
+            foreach($termine_pro_monat as $termin) : 
                 $ort = "";
                 if(strpos($termin->ort, ",") != false) {
                     $ort_array = explode(",", $termin->ort);
@@ -49,11 +51,16 @@
                         </div>
                         <div class="termin_headline">
                             <h1><?=$termin->name?></h1>
+                            <? if($show_description == "true") { ?>
                             <h2><?=$termin->beginn?> Uhr / <?=substr($termin->description, 0, 60)?></h2>
                             <div class="termin_details" id="js_termin_<?=$i?>">
                                 <p>
                                 <?=$termin->description?>
                                 </p>
+                            <? } else { ?>
+                            <h2><?=$termin->beginn?> Uhr</h2>
+                            <div class="termin_details" id="js_termin_<?=$i?>">
+                            <? } ?>
                                 <div class="time">
                                     <p class="datum"><?=get_day_name($termin->datum)?>, den <?=get_ger_date($termin->datum)?></p>
                                     <p class="clock">
