@@ -36,6 +36,16 @@ $config['layouts']['module'] = array(
         'my_module' => array('type' => 'select', 'label' => 'Modul', 'options' => $module_options))
 );
 
+$config['layouts']['303_redirect'] = array(
+	'label' => '303 Redirect',
+	'fields' => array(
+		'copy' => array(
+			'type' => 'copy',
+			'label' => 'Dieses Layout führt einen 303 Redirect zu einer anderen Seite durch.'
+		),
+		'redirect_to' => array('label' => lang('layout_field_redirect_to'))
+	)
+);
 
 /* End of file MY_fuel_layouts.php */
 /* Location: ./application/config/MY_fuel_layouts.php */
