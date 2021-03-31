@@ -3011,12 +3011,12 @@ header nav {
     #content .menueBox ul {
         height: auto;
     }
-    #content .menueBox .subnavi_opener_mobile { display: none; }
-    #content .menueBox .subnavi_content_mobile { display: none; }
+    /*#content .menueBox .subnavi_opener_mobile { display: none; }*/
+    /*#content .menueBox .subnavi_content_mobile { display: none; }*/
 }
 @media only screen and (max-width: 750px) {
-    #content .menueBox h1 { display: none; }
-    #content .menueBox ul { display: none; }
+    /*#content .menueBox h1 { display: none; }
+    #content .menueBox ul { display: none; }*/
     #content .menueBox h1.subnavi_opener_mobile {
         display: block;
         text-align: left;

@@ -1,6 +1,6 @@
 <?php
 
-include_once($_ENV["DOC_ROOT"] . "/fuel/modules/fuel/controllers/Page_router.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/fuel/modules/fuel/controllers/Page_router.php");
 
 class My_page_router extends Page_router {
 

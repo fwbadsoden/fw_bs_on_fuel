@@ -4,7 +4,7 @@
 function get_asset_size($asset, $folder = NULL) {
     if($folder != NULL) $asset = $folder.'/'.$asset;
     $assetpath = assets_path($asset);
-    $file_info = get_file_info($_SERVER["DOCROOT"]."/".$assetpath, array('size'));
+    $file_info = get_file_info($_SERVER['DOCUMENT_ROOT']."/".$assetpath, array('size'));
     $filesize = $file_info["size"] / 1024;
     
     return number_format($filesize, 1)." KB";
@@ -13,7 +13,7 @@ function get_asset_size($asset, $folder = NULL) {
 function get_asset_date($asset, $folder = NULL) {
     if($folder != NULL) $asset = $folder.'/'.$asset;
     $assetpath = assets_path($asset);
-    $file_info = get_file_info($_SERVER["DOCROOT"]."/".$assetpath, array('date'));
+    $file_info = get_file_info($_SERVER['DOCUMENT_ROOT']."/".$assetpath, array('date'));
     $date = $file_info["date"];
     
     return date("d.m.Y", $date);

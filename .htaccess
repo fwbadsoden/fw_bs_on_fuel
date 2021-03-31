@@ -1,3 +1,4 @@
+Options -Indexes
 Options +SymLinksIfOwnerMatch
 
 <IfModule mod_rewrite.c>
@@ -27,4 +28,3 @@ Options +SymLinksIfOwnerMatch
 	RewriteRule "(^|/)\." - [F]
 	
 </IfModule>
-Options -Indexes
