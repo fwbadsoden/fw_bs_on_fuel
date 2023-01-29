@@ -310,7 +310,7 @@ echo doctype('html5');
                                             </ul>
                                             <ul>
                                                 <li class="headline"><a href="<?= base_url('informationen/aao') ?>">Alarm- und Ausrückeordnung</a></li>
-                                                <li class="headline"><a href="<?= base_url('informationen/feuerwache') ?>">Unsere Wache</a></li>            
+                                                <!-- <li class="headline"><a href="<?= base_url('informationen/feuerwache') ?>">Unsere Wache</a></li> -->
                                             </ul>
                                         </div>  
                                     </li>
