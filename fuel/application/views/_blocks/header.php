@@ -201,10 +201,10 @@ echo doctype('html5');
                                     <li><a href="<?= base_url('menschen/altersundehrenabteilung#anker_e') ?>">Ehrenabteilung</a></li>
                                 </ul> 
                                 <ul>
-                                    <li class="headline"><a href="<?= base_url('menschen/jugend') ?>">Nachwuchs</a></li>                             
-                                    <li><a href="<?= base_url('menschen/jugend') ?>">Jugendfeuerwehr</a></li>
-                                    <li><a href="<?= base_url('menschen/minifeuerwehr') ?>">Minifeuerwehr</a></li>
                                 </ul>   
+                                    <li class="headline"><a href="<?= base_url('menschen/nachwuchs') ?>">Nachwuchs</a></li>
+                                    <li><a href="<?= base_url('menschen/nachwuchs/jugendfeuerwehr') ?>">Jugendfeuerwehr</a></li>
+                                    <li><a href="<?= base_url('menschen/nachwuchs/minifeuerwehr') ?>">Minifeuerwehr</a></li>
                                 <ul>
                                     <li class="headline"><a href="<?= base_url('menschen/leistungsgruppe') ?>">Leistungsgruppe</a></li>
                                     <li><a href="<?= base_url('menschen/leistungsgruppe#anker_theorie') ?>">Theorie</a></li>
@@ -348,8 +348,8 @@ echo doctype('html5');
                                         <ul> 
                                             <li><a href="<?= base_url('menschen/mannschaft') ?>">Mannschaft</a></li>
                                             <li><a href="<?= base_url('menschen/altersundehrenabteilung') ?>">Alters- und Ehrenabteilung</a></li>
-                                            <li><a href="<?= base_url('menschen/jugend') ?>">Jugendfeuerwehr</a></li>
-                                            <li><a href="<?= base_url('menschen/minifeuerwehr') ?>">Minifeuerwehr</a></li>
+                                            <li><a href="<?= base_url('menschen/nachwuchs/jugendfeuerwehr') ?>">Jugendfeuerwehr</a></li>
+                                            <li><a href="<?= base_url('menschen/nachwuchs/minifeuerwehr') ?>">Minifeuerwehr</a></li>
                                             <li><a href="<?= base_url('menschen/leistungsgruppe') ?>">Leistungsgruppe</a></li>
                                         </ul>
                                     </li>
