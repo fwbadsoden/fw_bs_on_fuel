@@ -51,7 +51,7 @@
                         <div class="termin_headline">
                             <h1><?=$termin->name?></h1>
                             <? if($show_description == "true" and $termin->description != "") { ?>
-                            <h2><?=$termin->beginn?> Uhr / <?=substr($termin->description, 0, 60)?></h2>
+                            <h2><?=$termin->beginn?> Uhr</h2>
                             <div class="termin_details" id="js_termin_<?=$i?>">
                                 <p>
                                 <?=$termin->description?>
