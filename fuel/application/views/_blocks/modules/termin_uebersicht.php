@@ -16,7 +16,6 @@
         </div>
         <div class="jsplatzhalter"></div>
         <hr class="clear" />
-       
 <? foreach($termine as $monat => $termine_pro_monat) : ?>
         <a id="anker_<?=strtolower($monat)?>"></a>   
 <? if($j != 0) : ?>
@@ -24,8 +23,8 @@
 <? endif; ?>   
         <div class="oneColumnBox">               
             <ul class="terminListe">     
-<?          
-            $show_description = fuel_var('termin_beschreibung_zeigen');
+<?        
+            $show_description = "true"; //fuel_var('termin_beschreibung_zeigen');
             foreach($termine_pro_monat as $termin) : 
                 $ort = "";
                 if(strpos($termin->ort, ",") != false) {
@@ -51,7 +50,7 @@
                         </div>
                         <div class="termin_headline">
                             <h1><?=$termin->name?></h1>
-                            <? if($show_description == "true") { ?>
+                            <? if($show_description == "true" and $termin->description != "") { ?>
                             <h2><?=$termin->beginn?> Uhr / <?=substr($termin->description, 0, 60)?></h2>
                             <div class="termin_details" id="js_termin_<?=$i?>">
                                 <p>
