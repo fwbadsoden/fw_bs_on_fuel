@@ -47,16 +47,16 @@ class Mannschaft_Members_model extends Abstract_module_model {
      * @return	array An array to be used with the Form_builder class
      */
     public function form_fields($values = array(), $related = array()) {
-
+        
         $fields = parent::form_fields($values, $related);
-
+        
         $fields["section_id"]["label"] = lang("form_label_mannschaft_section");
         $fields["team_id"]["label"] = lang("form_label_mannschaft_team");
         $fields["grade_id"]["label"] = lang("form_label_mannschaft_grade");
         $fields["grade_id"]["after_html"] = lang("form_label_mannschaft_grade_afterhtml");
         $fields["executive_id"]["label"] = lang("form_label_mannschaft_executive");
         $fields["executive_id"]["after_html"] = lang("form_label_mannschaft_executive_afterhtml");
-
+        
 
         $fields['image'] = array('label' => lang('form_label_image'),
             'folder' => 'images/mannschaft',
@@ -236,7 +236,6 @@ class Mannschaft_Members_model extends Abstract_module_model {
     }
 
     public function find_team() {
-
         $this->db->join('mannschaft_grades', 'mannschaft_grades.id = mannschaft_members.grade_id');
         $this->db->where(array('published' => 'yes', 'team_id' => 2, 'section_id' => 1));
         $this->db->order_by('name', 'ASC');
@@ -283,7 +282,7 @@ class Mannschaft_Members_model extends Abstract_module_model {
             if ($m["show_image"] == 'no')
                 $m["image"] = "dummy.jpg";
 
-            array_push($mannschaft, $m);
+            array_push($mannschaft, $m); 
         }
 
         return $mannschaft;
@@ -385,6 +384,18 @@ class Mannschaft_Members_model extends Abstract_module_model {
         return $member_count;
     }
 
+    public function get_longest_jobtitle() {
+        $this->db->select('beruf');
+        $query = $this->db->get('mannschaft_members');
+
+        $maxLength = 0;
+        foreach($query->result() as $row) {
+            if(strlen($row->beruf) > $maxLength) {
+                $maxLength = strlen($row->beruf);
+            }
+        }
+        return $maxLength;
+    }
 }
 
 class Mannschaft_Member_model extends Abstract_module_record {
@@ -416,7 +427,6 @@ class Mannschaft_Member_model extends Abstract_module_record {
         else
             return false;
     }
-
 }
 
 ?>
