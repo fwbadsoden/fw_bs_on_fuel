@@ -59,17 +59,17 @@ $zugfuehrer = array("Zugführer");
                     <p>
                         <?php
                         if (isset($f["geburtstag"]) && $f["geburtstag"] != '0000-00-00' && $f["beruf"] != "") {
-                            echo get_alter($f["geburtstag"]) . " Jahre, " . $f["beruf"];
+                            echo get_alter($f["geburtstag"]) . " Jahre<br/> " . $f["beruf"];
                         } elseif (isset($f["geburtstag"]) && $f["geburtstag"] != '0000-00-00' && $f["beruf"] == "") {
-                            echo get_alter($f["geburtstag"]) . " Jahre";
+                            echo get_alter($f["geburtstag"]) . " Jahre<br/>&nbsp;";
                         } else {
                             if (isset($f["beruf"]) && $f["beruf"] != "") {
-                                echo $f["beruf"];
+                                echo "&nbsp;<br/>".$f["beruf"];
                             } else {
-                                echo '&nbsp; ';
+                                echo '&nbsp;<br/>&nbsp; ';
                             }
                         }
-                        ?>         
+                        ?>     
                     </p>
                 </li>
 
@@ -114,17 +114,17 @@ $zugfuehrer = array("Zugführer");
                     <p>
                         <?php
                         if (isset($f["geburtstag"]) && $f["geburtstag"] != '0000-00-00' && $f["beruf"] != "") {
-                            echo get_alter($f["geburtstag"]) . " Jahre, " . $f["beruf"];
+                            echo get_alter($f["geburtstag"]) . " Jahre<br/> " . $f["beruf"];
                         } elseif (isset($f["geburtstag"]) && $f["geburtstag"] != '0000-00-00' && $f["beruf"] == "") {
-                            echo get_alter($f["geburtstag"]) . " Jahre";
+                            echo get_alter($f["geburtstag"]) . " Jahre<br/>&nbsp;";
                         } else {
                             if (isset($f["beruf"]) && $f["beruf"] != "") {
-                                echo $f["beruf"];
+                                echo "&nbsp;<br/>".$f["beruf"];
                             } else {
-                                echo '&nbsp; ';
+                                echo '&nbsp;<br/>&nbsp; ';
                             }
                         }
-                        ?>         
+                        ?>      
                     </p>
                 </li>
 
@@ -169,17 +169,17 @@ $zugfuehrer = array("Zugführer");
                     <p>
                         <?php
                         if (isset($f["geburtstag"]) && $f["geburtstag"] != '0000-00-00' && $f["beruf"] != "") {
-                            echo get_alter($f["geburtstag"]) . " Jahre, " . $f["beruf"];
+                            echo get_alter($f["geburtstag"]) . " Jahre<br/> " . $f["beruf"];
                         } elseif (isset($f["geburtstag"]) && $f["geburtstag"] != '0000-00-00' && $f["beruf"] == "") {
-                            echo get_alter($f["geburtstag"]) . " Jahre";
+                            echo get_alter($f["geburtstag"]) . " Jahre<br/>&nbsp;";
                         } else {
                             if (isset($f["beruf"]) && $f["beruf"] != "") {
-                                echo $f["beruf"];
+                                echo "&nbsp;<br/>".$f["beruf"];
                             } else {
-                                echo '&nbsp; ';
+                                echo '&nbsp;<br/>&nbsp; ';
                             }
                         }
-                        ?>         
+                        ?>    
                     </p>
                 </li>
 
@@ -221,19 +221,19 @@ $zugfuehrer = array("Zugführer");
                 <h1><?= $f["vorname"] ?> <?= $f["name"] ?></h1>
                 <h2><?= $dienstgrad_name . ', ' . $f["executive_name"] ?></h2>
                 <p>
-                    <?php
-                    if (isset($f["geburtstag"]) && $f["geburtstag"] != '0000-00-00' && $f["beruf"] != "") {
-                        echo get_alter($f["geburtstag"]) . " Jahre, " . $f["beruf"];
-                    } elseif (isset($f["geburtstag"]) && $f["geburtstag"] != '0000-00-00' && $f["beruf"] == "") {
-                        echo get_alter($f["geburtstag"]) . " Jahre";
-                    } else {
-                        if (isset($f["beruf"]) && $f["beruf"] != "") {
-                            echo $f["beruf"];
+                        <?php
+                        if (isset($f["geburtstag"]) && $f["geburtstag"] != '0000-00-00' && $f["beruf"] != "") {
+                            echo get_alter($f["geburtstag"]) . " Jahre<br/> " . $f["beruf"];
+                        } elseif (isset($f["geburtstag"]) && $f["geburtstag"] != '0000-00-00' && $f["beruf"] == "") {
+                            echo get_alter($f["geburtstag"]) . " Jahre<br/>&nbsp;";
                         } else {
-                            echo '&nbsp; ';
+                            if (isset($f["beruf"]) && $f["beruf"] != "") {
+                                echo "&nbsp;<br/>".$f["beruf"];
+                            } else {
+                                echo '&nbsp;<br/>&nbsp; ';
+                            }
                         }
-                    }
-                    ?>         
+                        ?>       
                 </p>
             </li>
 
@@ -280,14 +280,14 @@ $zugfuehrer = array("Zugführer");
                     <p>
                         <?php
                         if (isset($t["geburtstag"]) && $t["geburtstag"] != '0000-00-00' && $t["beruf"] != "") {
-                            echo get_alter($t["geburtstag"]) . " Jahre, " . $t["beruf"];
+                            echo get_alter($t["geburtstag"]) . " Jahre<br/> " . $t["beruf"];
                         } elseif (isset($t["geburtstag"]) && $t["geburtstag"] != '0000-00-00' && $t["beruf"] == "") {
-                            echo get_alter($t["geburtstag"]) . " Jahre";
+                            echo get_alter($t["geburtstag"]) . " Jahre<br/>&nbsp;";
                         } else {
                             if (isset($t["beruf"]) && $t["beruf"] != "") {
-                                echo $t["beruf"];
+                                echo "&nbsp;<br/>".$t["beruf"];
                             } else {
-                                echo '&nbsp; ';
+                                echo '&nbsp;<br/>&nbsp; ';
                             }
                         }
                         ?>
@@ -296,7 +296,7 @@ $zugfuehrer = array("Zugführer");
             <?php endforeach; ?>                    
         </ul>
         <hr class="clear" />
-
+        
     </div>
     <hr class="clear" />
 </div>
