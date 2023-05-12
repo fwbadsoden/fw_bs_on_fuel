@@ -32,15 +32,6 @@ echo doctype('html5');
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de-de" lang="de-de">
     <head>
-     <!-- Google tag (gtag.js) -->
-     <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0XCK6TMZH"></script>
-     <script>
-       window.dataLayer = window.dataLayer || [];
-       function gtag(){dataLayer.push(arguments);}
-       gtag('js', new Date());
-
-       gtag('config', 'G-P0XCK6TMZH');
-     </script>
         <?= meta($meta) ?>
         <title><?= fuel_var('pagetitle'); ?></title>
 
@@ -73,39 +64,16 @@ echo doctype('html5');
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>    
 
-        <script type="text/javascript">
-            var gaProperty = 'UA-44450948-1';
-            var disableStr = 'ga-disable-' + gaProperty;
-            if (document.cookie.indexOf(disableStr + '=true') > -1) {
-                window[disableStr] = true;
-            }
-            function gaOptout() {
-                document.cookie = disableStr + '=true; expires=Thu, 31 Dec <?= $year_optout_cookie ?> 23:59:59 UTC;
-                        path = /';
-                window[disableStr] = true;
-            }
-        </script>
-
+       
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0XCK6TMZH"></script>
         <script>
-            (function (i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-                a = s.createElement(o),
-                        m = s.getElementsByTagName(o)[0];
-                a.async = 1;
-                a.src = g;
-                m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-            ga('create', 'UA-44450948-1', 'feuerwehr-bs.de');
-            ga('send', 'pageview');
-
+          gtag('config', 'G-P0XCK6TMZH');
         </script>
-        <?php if (ENVIRONMENT == 'production') : ?>
-
-        <?php endif; ?>
         <header>
             <div class="site" id="top">
                 <h1>
