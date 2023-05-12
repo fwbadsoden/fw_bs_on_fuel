@@ -46,10 +46,20 @@ echo doctype('html5');
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-        <!-- variables for javascript templates -->    
+        <!-- variables for javascript templates -->
         <script type="text/javascript">
             var iconPath = "<?= assets_path("icons") ?>/";
         </script>
+		
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-P0XCK6TMZH"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'G-P0XCK6TMZH');
+		</script>
     </head>
     <body>
 
@@ -62,25 +72,18 @@ echo doctype('html5');
                 js.id = id;
                 js.src = "//connect.facebook.net/de_DE/sdk.js#xfbml=1&version=v2.5&appId=1389865491270726";
                 fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));</script>    
+            }(document, 'script', 'facebook-jssdk'));</script>
 
-       
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0XCK6TMZH"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+        <?php if (ENVIRONMENT == 'production') : ?>
 
-          gtag('config', 'G-P0XCK6TMZH');
-        </script>
+        <?php endif; ?>
         <header>
             <div class="site" id="top">
                 <h1>
                     <a href="<?= base_url() ?>" title="Home"><?= fuel_var('pagetitle'); ?></a>
                 </h1>
-                <nav>    
-                    <div id="metanavigation"> 
+                <nav>
+                    <div id="metanavigation">
                         <ul>
                             <li class="first mitmachen"><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>
                             <li><a href="<?= base_url('fuel') ?>" target="_blank">Login</a></li>
@@ -90,114 +93,114 @@ echo doctype('html5');
                             <li><a href="#notruflayer_js" class="fancybox-metaLayer">Notfall</a></li>
                         </ul>
                     </div>
-                    <ul id="menu">  
+                    <ul id="menu">
                         <?php
                         if (strpos(current_url(), base_url('aktuelles')) !== false && strpos(current_url(), base_url('menschen/jugend/jubilaeum')) === false) : $class = ' class="active"';
                         else : $class = '';
                         endif;
-                        ?>                
-                        <li><a href="<?= base_url('aktuelles') ?>"<?= $class ?>>News</a>  
-                            <div class="dropdown">  
-                                <ul>                       
+                        ?>
+                        <li><a href="<?= base_url('aktuelles') ?>"<?= $class ?>>News</a>
+                            <div class="dropdown">
+                                <ul>
                                     <li class="headline"><a href="<?= base_url('aktuelles/news') ?>">News</a></li>
                                     <?php
                                     foreach ($main_navigation["news"] as $n) :
                                     if (strlen($n->title) > 32)
                                     $n->title = substr($n->title, 0, 32) . '...';
-                                    ?> 
+                                    ?>
                                     <li><a href="<?= base_url('aktuelles/news/' . $n->id) ?>"><span class="subline"><?= get_ger_date($n->datum) ?></span><br /><?= $n->title ?></a></li>
                                     <?php endforeach; ?>
-                                </ul>                    
-                                <ul>                   
+                                </ul>
+                                <ul>
                                     <?php
                                     if (current_url() == base_url('aktuelles/einsaetze')) : $class = ' class="active"';
                                     else : $class = '';
                                     endif;
-                                    ?>      
-                                    <li class="headline"><a href="<?= base_url('aktuelles/einsaetze') ?>"<?= $class ?>>Einsätze</a></li> 
+                                    ?>
+                                    <li class="headline"><a href="<?= base_url('aktuelles/einsaetze') ?>"<?= $class ?>>Einsätze</a></li>
                                     <?php
                                     foreach ($main_navigation["missions"] as $m) :
                                     if (strlen($m->name) > 32)
                                     $m->name = substr($m->name, 0, 32) . '...';
-                                    ?>   
+                                    ?>
                                     <li><a href="<?= base_url('aktuelles/einsaetze/' . $m->id) ?>"><span class="subline"><?= get_ger_date($m->datum_beginn) ?> / <?= $m->type->name ?></span><br /><?= $m->name ?></a></li>
                                     <?php endforeach; ?>
-                                </ul>  
-                                <ul>                         
+                                </ul>
+                                <ul>
                                     <?php
                                     if (current_url() == base_url('aktuelles/termine')) : $class = ' class="active"';
                                     else : $class = '';
                                     endif;
-                                    ?> 
-                                    <li class="headline"><a href="<?= base_url('aktuelles/termine') ?>"<?= $class ?>>Termine</a></li>  
+                                    ?>
+                                    <li class="headline"><a href="<?= base_url('aktuelles/termine') ?>"<?= $class ?>>Termine</a></li>
                                     <?php
                                     foreach ($main_navigation["appointments"] as $a) :
                                     if (strlen($a->name) > 32)
                                     $a->name = substr($a->name, 0, 32) . '...';
-                                    ?>   
+                                    ?>
                                     <li><a><span class="subline"><?= get_ger_date($a->datum) ?> / <?= $a->beginn ?> Uhr</span><br /><?= $a->name ?></a></li>
                                     <?php endforeach; ?>
-                                </ul>  
+                                </ul>
                                 <ul>
                                     <?php
                                     if (current_url() == base_url('aktuelles/presse')) : $class = ' class="active"';
                                     else : $class = '';
                                     endif;
-                                    ?>  
+                                    ?>
                                     <li class="headline"><a href="<?= base_url('aktuelles/presse') ?>">Presse</a></li>
                                     <?php
                                     foreach ($main_navigation["pressarticles"] as $p) :
                                     if (strlen($p->name) > 32)
                                     $p->name = substr($p->name, 0, 32) . '...';
-                                    ?>  
-                                    <?php if ($p->online_article == '') : ?>                      
+                                    ?>
+                                    <?php if ($p->online_article == '') : ?>
                                     <li><a href="<?= assets_path($p->asset, 'pressarticles') ?>" class="fancybox-gallery" rel="gallery_presse_menue"><span class="subline"><?= get_ger_date($p->datum) ?> / <?= $p->source->name ?></span><br /><?= $p->name ?></a></li>
                                     <?php else : ?>
                                     <li><a href="<?= $p->online_article ?>" target="_blank"><span class="subline"><?= get_ger_date($p->datum) ?> / <?= $p->source->name ?></span><br /><?= $p->name ?></a></li>
-                                    <?php endif; ?>        
-                                    <?php endforeach; ?>                   
-                                </ul>  
-                            </div>  
-                        </li>  
+                                    <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </li>
 
                         <?php
                         if (strpos(current_url(), base_url('menschen')) !== false) : $class = ' class="active"';
                         else : $class = '';
                         endif;
-                        ?>  
-                        <li><a href="<?= base_url('menschen') ?>"<?= $class ?>>Menschen</a>  
-                            <div class="dropdown">  
-                                <ul>            
+                        ?>
+                        <li><a href="<?= base_url('menschen') ?>"<?= $class ?>>Menschen</a>
+                            <div class="dropdown">
+                                <ul>
                                     <li class="headline"><a href="<?= base_url('menschen/mannschaft') ?>">Mannschaft</a></li>
                                     <li><a href="<?= base_url('menschen/mannschaft#anker_fuehrung') ?>">Führung</a></li>
                                     <li><a href="<?= base_url('menschen/mannschaft#anker_mannschaft') ?>">Mannschaft</a></li>
-                                </ul>  
-                                <ul>                      
-                                    <li class="headline"><a href="<?= base_url('menschen/altersundehrenabteilung') ?>">Alters &amp; Ehrenabt.</a></li>                        
-                                    <li><a href="<?= base_url('menschen/altersundehrenabteilung#anker_a') ?>">Altersabteilung</a></li>                      
-                                    <li><a href="<?= base_url('menschen/altersundehrenabteilung#anker_e') ?>">Ehrenabteilung</a></li>
-                                </ul> 
+                                </ul>
                                 <ul>
-                                </ul>   
+                                    <li class="headline"><a href="<?= base_url('menschen/altersundehrenabteilung') ?>">Alters &amp; Ehrenabt.</a></li>
+                                    <li><a href="<?= base_url('menschen/altersundehrenabteilung#anker_a') ?>">Altersabteilung</a></li>
+                                    <li><a href="<?= base_url('menschen/altersundehrenabteilung#anker_e') ?>">Ehrenabteilung</a></li>
+                                </ul>
+                                <ul>
                                     <li class="headline"><a href="<?= base_url('menschen/nachwuchs') ?>">Nachwuchs</a></li>
                                     <li><a href="<?= base_url('menschen/nachwuchs/jugendfeuerwehr') ?>">Jugendfeuerwehr</a></li>
                                     <li><a href="<?= base_url('menschen/nachwuchs/minifeuerwehr') ?>">Minifeuerwehr</a></li>
+                                </ul>
                                 <ul>
                                     <li class="headline"><a href="<?= base_url('menschen/leistungsgruppe') ?>">Leistungsgruppe</a></li>
                                     <li><a href="<?= base_url('menschen/leistungsgruppe#anker_theorie') ?>">Theorie</a></li>
                                     <li><a href="<?= base_url('menschen/leistungsgruppe#anker_praxis"') ?>>Praxis</a></li>
-                                           </ul>  
-                                           </div>  
-                                           </li>  
+                                           </ul>
+                                           </div>
+                                           </li>
 
                                            <?php
                                            if (strpos(current_url(), base_url('technik')) !== false) : $class = ' class="active"';
                                            else : $class = '';
                                            endif;
-                                           ?>                    
-                                           <li><a href="<?= base_url('technik') ?>"<?= $class ?>>Technik</a> 
-                                        <div class="dropdown">  
-                                            <ul>                         
+                                           ?>
+                                           <li><a href="<?= base_url('technik') ?>"<?= $class ?>>Technik</a>
+                                        <div class="dropdown">
+                                            <ul>
                                                 <li class="headline"><a href="<?= base_url('technik/fahrzeuge') ?>">Fahrzeuge</a></li>
                                                 <?php
                                                 $counter = 0;
@@ -213,59 +216,59 @@ echo doctype('html5');
                                                 if ($f->retired == 'no') :
                                                 if ($counter == $break) :
                                                 $counter = 0;
-                                                ?>     
+                                                ?>
                                             </ul>
-                                            <ul>                                  
-                                                <li class="headline"><a href="<?= base_url('technik/fahrzeuge') ?>">&nbsp;</a></li>       
-                                                <?php endif; ?>               
+                                            <ul>
+                                                <li class="headline"><a href="<?= base_url('technik/fahrzeuge') ?>">&nbsp;</a></li>
+                                                <?php endif; ?>
                                                 <li><a href="<?= base_url('technik/fahrzeuge/' . $f->id) ?>">
                                                         <?php
                                                         if ($f->name_lang != '') : echo $f->name . ' - ' . $f->name_lang;
                                                         else : echo $f->name;
                                                         endif;
                                                         ?>
-                                                    </a></li>  
+                                                    </a></li>
                                                 <?php
                                                 $counter++;
                                                 endif;
                                                 endforeach;
-                                                ?>   
-                                            </ul>  
+                                                ?>
+                                            </ul>
                                             <ul>
                                                 <li class="headline"><a href="<?= base_url('technik/fahrzeuge/ausserdienst') ?>">Fahrzeuge a.D.</a></li>
                                                 <?php
                                                 if ($main_navigation["fahrzeuge_hasretired"]) :
                                                 foreach ($main_navigation["fahrzeuge"] as $f) :
                                                 if ($f->retired == 'yes') :
-                                                ?>                        
+                                                ?>
                                                 <li><a href="<?= base_url('technik/fahrzeuge/ausserdienst/' . $f->id) ?>">
                                                         <?php
                                                         if ($f->name_lang != '') : echo $f->name . ' - ' . $f->name_lang;
                                                         else : echo $f->name;
                                                         endif;
                                                         ?>
-                                                    </a></li>  
+                                                    </a></li>
                                                 <?php
                                                 endif;
                                                 endforeach;
                                                 endif;
-                                                ?>           
-                                            </ul>  
-                                            <ul>                     
+                                                ?>
+                                            </ul>
+                                            <ul>
                                                 <li class="headline"><a>Spezialeinheiten</a></li>
                                                 <li><a href="<?= base_url('technik/rettungshunde') ?>">Rettungshundeeinheit</a></li>
                                                 <li><a href="<?= base_url('technik/gefahrstoffkomponente') ?>">Gefahrstoffeinheit</a></li>
-                                            </ul>  
-                                        </div>  
-                                    </li>  
+                                            </ul>
+                                        </div>
+                                    </li>
 
                                     <?php
                                     if (current_url() == base_url('informationen')) : $class = ' class="active"';
                                     else : $class = '';
                                     endif;
-                                    ?> 
-                                    <li><a href="<?= base_url('informationen') ?>"<?= $class ?>>Infos</a>  
-                                        <div class="dropdown">  
+                                    ?>
+                                    <li><a href="<?= base_url('informationen') ?>"<?= $class ?>>Infos</a>
+                                        <div class="dropdown">
                                             <ul>
                                                 <li class="headline"><a href="<?= base_url('informationen/buergerinformationen') ?>">B&uuml;rgerinfos</a></li>
                                                 <li><a href="<?= base_url('informationen/buergerinformationen/blaulicht') ?>">Blaulicht und Martinshorn</a></li>
@@ -274,7 +277,7 @@ echo doctype('html5');
                                                 <li><a href="<?= base_url('informationen/buergerinformationen/rauchmelder') ?>">Rauchwarnmelder</a></li>
                                                 <li><a href="<?= base_url('informationen/buergerinformationen/hausnummern') ?>">Sichtbare Hausnummern</a></li>
                                                 <li><a href="<?= base_url('informationen/buergerinformationen/sirenen') ?>">Sireneninformationen</a></li>
-                                            </ul>  
+                                            </ul>
                                             <ul>
                                                 <li class="headline"><a href="<?= base_url('informationen/einsatzgebiet') ?>">Einsatzgebiet</a></li>
                                                 <li><a href="<?= base_url('informationen/einsatzgebiet#anker_allgemein') ?>">Allgemein</a></li>
@@ -283,21 +286,21 @@ echo doctype('html5');
                                             <ul>
                                                 <li class="headline"><a href="<?= base_url('informationen/aufgaben') ?>">Aufgaben &amp; Gesetze</a></li>
                                                 <li><a href="<?= base_url('informationen/aufgaben#anker_aufgaben') ?>">Aufgaben</a></li>
-                                                <li><a href="<?= base_url('informationen/aufgaben#anker_gesetze') ?>">Gesetze</a></li>                            
+                                                <li><a href="<?= base_url('informationen/aufgaben#anker_gesetze') ?>">Gesetze</a></li>
                                             </ul>
                                             <ul>
                                                 <li class="headline"><a href="<?= base_url('informationen/aao') ?>">Alarm- und Ausrückeordnung</a></li>
                                                 <!-- <li class="headline"><a href="<?= base_url('informationen/feuerwache') ?>">Unsere Wache</a></li> -->
                                             </ul>
-                                        </div>  
+                                        </div>
                                     </li>
                                     <?php
                                     if (current_url() == base_url('verein')) : $class = ' class="active"';
                                     else : $class = '';
                                     endif;
-                                    ?> 
-                                    <li><a href="<?= base_url('verein') ?>"<?= $class ?>>Verein</a>  
-                                    </li> 
+                                    ?>
+                                    <li><a href="<?= base_url('verein') ?>"<?= $class ?>>Verein</a>
+                                    </li>
                                 </ul>
                                 </nav>
 
@@ -307,13 +310,13 @@ echo doctype('html5');
                             </div>
                             </header>
 
-                            <div id="mobileNavigation">    
+                            <div id="mobileNavigation">
                                 <ul class="mobileMainNavContainer">
                                     <li><a href="<?= base_url('menschen/jugend/jubilaeum') ?>">Jubiläum</a></li>
                                     <li><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>
                                     <li><a href="<?= base_url('aktuelles') ?>">News</a></li>
-                                    <li class="subnavi">    
-                                        <ul> 
+                                    <li class="subnavi">
+                                        <ul>
                                             <li><a href="<?= base_url('aktuelles/news') ?>">News</a></li>
                                             <li><a href="<?= base_url('aktuelles/einsaetze') ?>">Einsätze</a></li>
                                             <li><a href="<?= base_url('aktuelles/termine') ?>">Termine</a></li>
@@ -321,8 +324,8 @@ echo doctype('html5');
                                         </ul>
                                     </li>
                                     <li><a href="<?= base_url('menschen') ?>">Menschen</a></li>
-                                    <li class="subnavi">    
-                                        <ul> 
+                                    <li class="subnavi">
+                                        <ul>
                                             <li><a href="<?= base_url('menschen/mannschaft') ?>">Mannschaft</a></li>
                                             <li><a href="<?= base_url('menschen/altersundehrenabteilung') ?>">Alters- und Ehrenabteilung</a></li>
                                             <li><a href="<?= base_url('menschen/nachwuchs/jugendfeuerwehr') ?>">Jugendfeuerwehr</a></li>
@@ -331,8 +334,8 @@ echo doctype('html5');
                                         </ul>
                                     </li>
                                     <li><a href="<?= base_url('technik') ?>">Technik</a></li>
-                                    <li class="subnavi">    
-                                        <ul>  
+                                    <li class="subnavi">
+                                        <ul>
                                             <li><a href="<?= base_url('technik/fahrzeuge') ?>" class="first">Fahrzeuge</a></li>
                                             <li><a href="<?= base_url('technik/fahrzeuge/ausserdienst') ?>">Fahrzeuge a.D.</a></li>
                                             <li><a href="<?= base_url('technik/rettungshunde') ?>">Rettungshundeeinheit</a></li>
@@ -340,8 +343,8 @@ echo doctype('html5');
                                         </ul>
                                     </li>
                                     <li><a href="<?= base_url('informationen/buergerinformationen') ?>">Infos</a></li>
-                                    <li class="subnavi">    
-                                        <ul>  
+                                    <li class="subnavi">
+                                        <ul>
                                             <li><a href="<?= base_url('informationen/buergerinformationen') ?>">Bürgerinfos</a></li>
                                             <li><a href="<?= base_url('informationen/einsatzgebiet') ?>" class="active">Einsatzgebiet</a></li>
                                             <li><a href="<?= base_url('informationen/aufgaben') ?>" class="active">Aufgaben &amp; Gesetze</a></li>
@@ -349,8 +352,8 @@ echo doctype('html5');
                                         </ul>
                                     </li>
                                     <li><a href="<?= base_url('verein') ?>">Verein</a></li>
-                                    <li class="subnavi">    
-                                        <ul>  
+                                    <li class="subnavi">
+                                        <ul>
                                             <li><a href="<?= base_url('verein') ?>" class="first">Verein</a></li>
                                         </ul>
                                     </li>
@@ -375,7 +378,7 @@ echo doctype('html5');
                                             <img src="<?= img_path("fahrzeuge/bildbuehnen/" . $stage_info["stage_image"]) ?>" />
                                         </div>
                                     </div>
-                                </div>    
+                                </div>
                             </section>
                             <div id="substage">
                                 <div class="slidewrapper">
@@ -428,21 +431,21 @@ echo doctype('html5');
                                 }
                                 ?>
                                 <div class="<?= $stage->type->css_outer_class ?>" id="pictures_<?= $key ?>" style="background-image: url(<?= img_path("bildbuehnen/" . $image->image) ?>); display: none;">
-                                    <div id="stagewrapper">    
-                                        <div class="<?= $css_inner_class ?>">            
-                                            <?php if ($stage_type == 'default') : ?>   
+                                    <div id="stagewrapper">
+                                        <div class="<?= $css_inner_class ?>">
+                                            <?php if ($stage_type == 'default') : ?>
                                             <?php if($text1 != "") : ?> <h1<?= $image->get_css_text_class_1() ?>><?= $text1 ?></h1> <?php endif; ?>
-                                            <?php if($text2 != "") : ?> <h2<?= $image->get_css_text_class_2() ?>><?= $text2 ?></h2> <?php endif; ?>  
-                                            <?php if($text3 != "") : ?> <p><?= $text3 ?></p> <? endif; ?>       
+                                            <?php if($text2 != "") : ?> <h2<?= $image->get_css_text_class_2() ?>><?= $text2 ?></h2> <?php endif; ?>
+                                            <?php if($text3 != "") : ?> <p><?= $text3 ?></p> <? endif; ?>
                                             <?php else : ?>
                                             <figure><img src="<?= assets_path('icons/'.$stage_text["class"].'.png') ?>" /></figure>
                                             <h1><?= $text1 ?></h1>
-                                            <h2><?= $text2 ?></h2>  
-                                            <?php endif; ?>      
+                                            <h2><?= $text2 ?></h2>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
-                                <?php endforeach; ?> 
+                                <?php endforeach; ?>
                             </section>
                             <?php endif; ?>
 
@@ -458,10 +461,10 @@ echo doctype('html5');
                                             $class = ' first';
                                             else
                                             $class = '';
-                                            ?>             
+                                            ?>
                                             <li><a href="#<?= $key ?>" class="changeStage<?= $class ?>" id="slide-link-<?= $key ?>"><?= $key + 1 ?></a></li>
-                                                <?php endforeach; ?>                
+                                                <?php endforeach; ?>
                                         </ul>
-                                    </div> 
+                                    </div>
                                     <?php endif; ?>
                                     <?php endif; ?>
