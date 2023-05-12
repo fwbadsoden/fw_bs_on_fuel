@@ -32,6 +32,15 @@ echo doctype('html5');
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de-de" lang="de-de">
     <head>
+     <!-- Google tag (gtag.js) -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0XCK6TMZH"></script>
+     <script>
+       window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+
+       gtag('config', 'G-P0XCK6TMZH');
+     </script>
         <?= meta($meta) ?>
         <title><?= fuel_var('pagetitle'); ?></title>
 
