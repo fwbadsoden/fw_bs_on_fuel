@@ -94,24 +94,4 @@
 <? 
     $j++;
     endforeach; 
-?>      
-        <a id="anker_dienstplan"></a>   
-        <h1 class="module" id="anker_dienstplan?>">Dienstplan</h1>
-        <div class="oneColumnBox">            
-            <ul class="terminListe">
-                <li>
-                    <div class="oneColumnBox">       
-                        <div class="listContent">
-                            <div class="row">
-                                <a href="<?=pdf_path('dienstplan/Dienstplan.pdf')?>" target="_blank">
-                                	<div class="date_small trenner"><span class="inline_date"><?=get_asset_date('pdf/dienstplan/Dienstplan.pdf')?></span></div>
-                                 	<div class="size trenner"><p>PDF</p><p class="bytes"><?=get_asset_size('pdf/dienstplan/Dienstplan.pdf')?></p></div>
-                	               	<div class="headline smallBoxHead"><span class="medium">Einsatzabteilung Bad Soden</span><br/>Dienstplan</div>
-                               	</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <hr class="clear" />
+?>   
