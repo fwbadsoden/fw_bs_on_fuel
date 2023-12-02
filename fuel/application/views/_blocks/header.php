@@ -263,6 +263,14 @@ echo doctype('html5');
                                     </li>
 
                                     <?php
+                                    if (current_url() == base_url('unserewache')) : $class = ' class="active"';
+                                    else : $class = '';
+                                    endif;
+                                    ?>
+                                    <li><a href="<?= base_url('unserewache') ?>"<?= $class ?>>Unsere Wache</a>
+                                    </li>
+
+                                    <?php
                                     if (current_url() == base_url('informationen')) : $class = ' class="active"';
                                     else : $class = '';
                                     endif;
@@ -340,6 +348,12 @@ echo doctype('html5');
                                             <li><a href="<?= base_url('technik/fahrzeuge/ausserdienst') ?>">Fahrzeuge a.D.</a></li>
                                             <li><a href="<?= base_url('technik/rettungshunde') ?>">Rettungshundeeinheit</a></li>
                                             <li><a href="<?= base_url('technik/gabc-zug') ?>">Gefahrstoffeinheit</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="<?= base_url('unserewache') ?>">Unsere Wache</a></li>
+                                    <li class="subnavi">
+                                        <ul>
+                                            <li><a href="<?= base_url('unserewache') ?>" class="first">Unsere Wache</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="<?= base_url('informationen/buergerinformationen') ?>">Infos</a></li>
