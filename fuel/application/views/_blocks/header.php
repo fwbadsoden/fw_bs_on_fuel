@@ -257,7 +257,7 @@ echo doctype('html5');
                                             <ul>
                                                 <li class="headline"><a>Spezialeinheiten</a></li>
                                                 <li><a href="<?= base_url('technik/rettungshunde') ?>">Rettungshundeeinheit</a></li>
-                                                <li><a href="<?= base_url('technik/gefahrstoffkomponente') ?>">Gefahrstoffeinheit</a></li>
+                                                <li><a href="<?= base_url('technik/gabc-zug') ?>">Gefahrstoffeinheit</a></li>
                                             </ul>
                                         </div>
                                     </li>
@@ -339,7 +339,7 @@ echo doctype('html5');
                                             <li><a href="<?= base_url('technik/fahrzeuge') ?>" class="first">Fahrzeuge</a></li>
                                             <li><a href="<?= base_url('technik/fahrzeuge/ausserdienst') ?>">Fahrzeuge a.D.</a></li>
                                             <li><a href="<?= base_url('technik/rettungshunde') ?>">Rettungshundeeinheit</a></li>
-                                            <li><a href="<?= base_url('technik/gefahrstoffkomponente') ?>">Gefahrstoffeinheit</a></li>
+                                            <li><a href="<?= base_url('technik/gabc-zug') ?>">Gefahrstoffeinheit</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="<?= base_url('informationen/buergerinformationen') ?>">Infos</a></li>
