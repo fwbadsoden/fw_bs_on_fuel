@@ -17,6 +17,7 @@
  * @date       2008-10-23
  * @package    Dwoo
  */
+#[AllowDynamicProperties]
 abstract class Dwoo_Block_Plugin extends Dwoo_Plugin
 {
 	/**

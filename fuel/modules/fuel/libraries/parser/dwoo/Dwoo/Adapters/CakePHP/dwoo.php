@@ -25,6 +25,7 @@ App::import('vendor', 'dwoo', array("file" => 'dwoo/dwooAutoload.php'));
  * @date       2009-07-18
  * @package    Dwoo
  */
+#[AllowDynamicProperties]
 class DwooView extends View
 {
 	protected $_sv_template_dir;

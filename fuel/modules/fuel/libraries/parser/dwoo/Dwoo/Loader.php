@@ -14,6 +14,7 @@
  * @date       2009-07-18
  * @package    Dwoo
  */
+#[AllowDynamicProperties]
 class Dwoo_Loader implements Dwoo_ILoader
 {
 	/**

@@ -16,6 +16,7 @@
  * @date       2010-02-28
  * @package    Dwoo
  */
+#[AllowDynamicProperties]
 class Dwoo_Adapters_ZendFramework_Dwoo extends Dwoo_Core
 {
 	/**

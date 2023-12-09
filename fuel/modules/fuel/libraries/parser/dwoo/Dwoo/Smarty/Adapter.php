@@ -29,6 +29,7 @@ if (class_exists('Dwoo_Compiler', false) === false) {
  * @date       2009-07-18
  * @package    Dwoo
  */
+#[AllowDynamicProperties]
 class Dwoo_Smarty__Adapter extends Dwoo_Core
 {
 	// magic get/set/call functions that handle unsupported features

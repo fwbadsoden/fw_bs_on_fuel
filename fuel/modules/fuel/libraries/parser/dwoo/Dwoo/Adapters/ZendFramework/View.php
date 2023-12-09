@@ -17,6 +17,7 @@
  * @date       2009-07-18
  * @package    Dwoo
  */
+#[AllowDynamicProperties]
 class Dwoo_Adapters_ZendFramework_View extends Zend_View_Abstract
 {
 	/**

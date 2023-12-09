@@ -612,11 +612,9 @@ class Menu {
 			}
 			
 			
-			if (!empty($this->item_tag))
-			{
-				$str .= "\t<".$this->item_tag.">";
-			}
-			$str .= $home_anchor;
+			$li = (!empty($this->item_tag)) ? $this->_create_open_li($home_anchor, 0, 0, FALSE) : $home_anchor;
+			$str .= $li;
+
 			if ($num >= 0) $str .= ' <span class="'.$this->arrow_class.'">'.$this->delimiter.'</span> ';
 			if (!empty($this->item_tag))
 			{
@@ -627,18 +625,17 @@ class Menu {
 		{
 			$val = $this->_active_items[$i];
 			$label = $this->_get_label($this->_items[$val]);
-			if (!empty($this->item_tag))
-			{
-				$str .= "\t<".$this->item_tag.">";
-			}
 			if ($i != 0)
 			{
-				$str .= anchor($this->_items[$val]['location'], $label);
-				$str .= ' <span class="'.$this->arrow_class.'">'.$this->delimiter.'</span> ';
+				$li = anchor($this->_items[$val]['location'], $label);
+				$li .= ' <span class="'.$this->arrow_class.'">'.$this->delimiter.'</span> ';
+
+				$str .= $this->_create_open_li($li, 0, $num - $i + 1, FALSE);
 			}
 			else if ($this->display_current) 
 			{
-				$str .= $label;
+				$li = '<span aria-current="page">'.$label.'</span>';
+				$str .= $this->_create_open_li($li, 0, $num - $i + 1, TRUE);
 			}
 			if (!empty($this->item_tag))
 			{
@@ -895,7 +892,8 @@ class Menu {
 			$str .= $this->_get_li_classes($val, $level, $i, $is_last);
 			$str .= '>';
 		}
-		$str .= $this->_create_link($val);
+		$active = (is_array($val)) ? $val['id'] : $val;
+		$str .= $this->_create_link($val, $active);
 		return $str;
 	}
 	
@@ -937,7 +935,7 @@ class Menu {
 			
 			if (!empty($active) AND $this->active == $active)
 			{
-				$attrs .= ' class="'.$this->active_class.'"';
+				$attrs .= ' class="'.$this->active_class.'" aria-current="page"';
 			}
 
 			$location = (preg_match('/^#/', $val['location'])) ? $val['location'] : url_to($val['location']);
@@ -947,7 +945,7 @@ class Menu {
 		{
 			if (!empty($active) AND $this->active == $active)
 			{
-				$str .= '<span class="'.$this->active_class.'">';
+				$str .= '<span class="'.$this->active_class.'" aria-current="page">';
 				$has_active = TRUE;
 			}
 			$str .= $label;

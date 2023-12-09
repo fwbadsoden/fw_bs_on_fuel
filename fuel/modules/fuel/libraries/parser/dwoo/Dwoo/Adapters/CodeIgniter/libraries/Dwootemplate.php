@@ -19,6 +19,7 @@ require "dwoo/dwooAutoload.php";
  *
  * @uses the dwoo package from http://dwoo.org
  */
+#[AllowDynamicProperties]
 class Dwootemplate extends Dwoo_Core {
     protected $dwoo_data = array();
 

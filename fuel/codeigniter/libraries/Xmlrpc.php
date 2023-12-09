@@ -54,6 +54,7 @@ if ( ! function_exists('xml_parser_create'))
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/userguide3/libraries/xmlrpc.html
  */
+#[AllowDynamicProperties]
 class CI_Xmlrpc {
 
 	/**

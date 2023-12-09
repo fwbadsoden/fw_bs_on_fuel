@@ -14,6 +14,7 @@
  * @date       2008-10-23
  * @package    Dwoo
  */
+#[AllowDynamicProperties]
 class Dwoo_Compilation_Exception extends Dwoo_Exception
 {
 	protected $compiler;

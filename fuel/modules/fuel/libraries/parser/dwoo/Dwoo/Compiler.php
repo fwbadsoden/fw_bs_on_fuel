@@ -16,6 +16,7 @@ include dirname(__FILE__) . '/Compilation/Exception.php';
  * @date       2009-07-18
  * @package    Dwoo
  */
+#[AllowDynamicProperties]
 class Dwoo_Compiler implements Dwoo_ICompiler
 {
 	/**

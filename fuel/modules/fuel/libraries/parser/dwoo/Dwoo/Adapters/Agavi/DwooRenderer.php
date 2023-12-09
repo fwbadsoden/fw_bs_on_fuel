@@ -45,6 +45,7 @@
  * @date       2010-04-06
  * @package    Dwoo
  */
+#[AllowDynamicProperties]
 class DwooRenderer extends AgaviRenderer implements AgaviIReusableRenderer
 {
 	/**

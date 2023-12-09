@@ -28,6 +28,7 @@ define('DWOO_DIRECTORY', dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
  * @date       2009-07-18
  * @package    Dwoo
  */
+#[AllowDynamicProperties]
 class Dwoo_Core
 {
     /**
