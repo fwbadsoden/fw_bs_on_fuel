@@ -27,7 +27,7 @@
  * @type Array
  * @cat Plugins/Methods/Date
  */
-Date.dayNames = ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
+Date.dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 /**
  * An Array of abbreviated day names starting with Sun.
@@ -39,7 +39,7 @@ Date.dayNames = ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag"
  * @type Array
  * @cat Plugins/Methods/Date
  */
-Date.abbrDayNames = ["Son","Mon","Die","Mit","Don","Fre","Sam"];
+Date.abbrDayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 /**
  * An Array of month names starting with Janurary.
@@ -51,7 +51,7 @@ Date.abbrDayNames = ["Son","Mon","Die","Mit","Don","Fre","Sam"];
  * @type Array
  * @cat Plugins/Methods/Date
  */
-Date.monthNames = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+Date.monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 /**
  * An Array of abbreviated month names starting with Jan.
@@ -63,7 +63,7 @@ Date.monthNames = ["Januar","Februar","März","April","Mai","Juni","Juli","Augus
  * @type Array
  * @cat Plugins/Methods/Date
  */
-Date.abbrMonthNames = ["Jan","Feb","Mär","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"];
+Date.abbrMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 /**
  * The first day of the week for this locale.
@@ -83,7 +83,7 @@ Date.firstDayOfWeek = 1;
  * @cat Plugins/Methods/Date
  * @author Kelvin Luck
  */
-Date.format = 'd.m.Y';
+Date.format = 'dd/mm/yyyy';
 //Date.format = 'mm/dd/yyyy';
 //Date.format = 'yyyy-mm-dd';
 //Date.format = 'dd mmm yy';

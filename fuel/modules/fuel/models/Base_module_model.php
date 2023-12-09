@@ -56,6 +56,7 @@ class Base_module_model extends MY_Model {
 	
 	public $limit_to_user_field = ''; // a user ID field in your model that can be used to limit records based on the logged in user
 	public static $tables = array(); // cached array of table names that can be accessed statically
+	protected $dsn = FUEL_DSN;
 	protected $CI = NULL; // reference to the main CI object
 	protected $fuel = NULL; // reference to the FUEL object
 	protected $_formatters = array(
@@ -334,6 +335,12 @@ class Base_module_model extends MY_Model {
 		}
 
 		$escape_order_by = (property_exists($this, 'escape_order_by')) ? $this->escape_order_by : TRUE;
+		
+		// Additional cleaning
+		if ($escape_order_by && strpos($col, ')') !== FALSE)
+		{
+			$col = '';
+		}
 		if (!empty($col)) $this->db->order_by($col, $order, $escape_order_by);
 		if (!empty($limit)) $this->db->limit((int) $limit);
 		$this->db->offset((int)$offset);
@@ -1224,8 +1231,14 @@ class Base_module_model extends MY_Model {
 
 			$this->db->group_end();
 		}
+
+		$limit = (isset($params['limit'])) ? $params['limit'] : NULL;
+		$offset = (isset($params['offset'])) ? $params['offset'] : 0;
+		$col = (isset($params['col'])) ? $params['col'] : $module->info('default_col');
+		$order = (isset($params['order'])) ? $params['order'] : $module->info('default_order');
+				
+		$list_items = $this->list_items($limit, $offset, $col, $order);
 		
-		$list_items = $this->list_items();
 		if (empty($list_items))
 		{
 			return '';

@@ -51,6 +51,7 @@ class MY_Model extends CI_Model {
 	public $default_date = 0; // default date value that get's passed to the model on save. Using 0000-00-00 will not work if it is a required field since it is not seen as an empty value
 	public $auto_trim = TRUE; // will trim on clean
 	public $auto_encode_entities = TRUE; // determines whether to automatically encode html entities. An array can be set instead of a boolean value for the names of the fields to perform the safe_htmlentities on
+	public $purify = FALSE; // determines whether to run purifier on the values before save
 	public $xss_clean = FALSE; // determines whether automatically run the xss_clean. An array can be set instead of a boolean value for the names of the fields to perform the xss_clean on
 	public $readonly = FALSE; // sets the model to readonly mode where you can't save or delete data
 	public $hidden_fields = array(); // fields to hide when creating a form
@@ -147,7 +148,7 @@ class MY_Model extends CI_Model {
 		}
 		
 		// if a DSN property is set,then we will load that database in
-		if (!empty($this->dsn))
+		if (!empty($this->dsn) AND ($this->dsn != FUEL_DSN))
 		{
 			$this->set_db($this->load->database($this->dsn, TRUE, TRUE));
 		}
@@ -172,6 +173,7 @@ class MY_Model extends CI_Model {
 				show_error(lang('db_unable_to_connect'));
 			}
 		}
+
 		$this->validator = new Validator();
 		$this->validator->register_to_global_errors = FALSE;
 
@@ -1404,6 +1406,17 @@ class MY_Model extends CI_Model {
 				)
 				{
 					$val = xss_clean(($val));
+				}
+			}
+
+			if ($this->purify)
+			{
+				if ((is_array($this->purify) AND in_array($key, $this->purify))
+					OR (is_string($this->purify) AND $key == $this->purify)
+					OR ($this->purify === TRUE)
+				)
+				{
+					$val = html_purify($val);
 				}
 			}
 		}

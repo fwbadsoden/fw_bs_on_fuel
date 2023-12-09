@@ -203,7 +203,7 @@ if (!function_exists('safe_htmlentities'))
 	 *
 	 * @param	string	string to evaluate
 	 * @param	boolean	determines whether to encode the ampersand or not
-	 * @param	boolean	determines whether to sanitize the string
+	 * @param	mixed	determines whether to sanitize the string
 	 * @return	string
 	 */
 	function safe_htmlentities($str, $protect_amp = TRUE, $sanitize = TRUE)
@@ -248,15 +248,17 @@ if (!function_exists('safe_htmlentities'))
 		// sanitize
 		if ($sanitize)
 		{
-			//$str = strip_javascript($str);
-			// Better method
-			// $CI =& get_instance();
-			// $allowed_funcs = $CI->fuel->config('parser_allowed_functions');
-			// $keep_search = array('{', '}');
-			// $keep_replace = array('__TEMP_LEFT_CURLY_BRACE__', '__TEMP_RIGHT_CURLY_BRACE__');
-			// $str = str_replace($keep_search, $keep_replace, $str);
-			$str = html_purify($str);
-			// $str = str_replace($keep_replace, $keep_search, $str);
+			$CI = &get_instance();
+			$CI->load->config('purifier', TRUE);
+			if ($CI->config->item('enabled', 'purifier'))
+			{
+				// Better method
+				$str = html_purify($str);
+			}
+			else
+			{
+				$str = strip_javascript($str);
+			}
 		}
 
 		return $str;
