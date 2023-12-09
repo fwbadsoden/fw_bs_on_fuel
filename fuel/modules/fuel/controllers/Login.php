@@ -89,16 +89,9 @@ class Login extends Fuel_base_controller {
 					{
 						// reset failed login attempts
 						$user_data['failed_login_timer'] = 0;
-						// set the cookie for viewing the live site with added FUEL capabilities
-						$config = array(
-							'name' => $this->fuel->auth->get_fuel_trigger_cookie_name(), 
-							'value' => serialize(array('id' => $this->fuel->auth->user_data('id'), 'language' => $this->fuel->auth->user_data('language'))),
-							'expire' => 0,
-							//'path' => WEB_PATH
-							'path' => $this->fuel->config('fuel_cookie_path')
-						);
 
-						set_cookie($config);
+						// Problems using CI set_cookie helper in CI 3.1.13 so resorted to native PHP.
+						setcookie($this->fuel->auth->get_fuel_trigger_cookie_name(), serialize(array('id' => $this->fuel->auth->user_data('id'), 'language' => $this->fuel->auth->user_data('language'))), 0, $this->fuel->config('fuel_cookie_path'));
 
 						$forward = $this->input->post('forward');
 						$forward_uri = uri_safe_decode($forward);
@@ -138,6 +131,7 @@ class Login extends Fuel_base_controller {
 		$fields['forward'] = array('type' => 'hidden', 'value' => fuel_uri_segment(2));
 		$this->form_builder->show_required = FALSE;
 		$this->form_builder->submit_value = lang('login_btn');
+		$this->form_builder->use_form_tag = FALSE;
 		$this->form_builder->set_fields($fields);
 		$this->form_builder->remove_js();
 		if (!empty($_POST)) $this->form_builder->set_field_values($this->input->post(NULL, TRUE));
@@ -251,6 +245,7 @@ class Login extends Fuel_base_controller {
 		$fields['email'] = array('required' => TRUE, 'size' => 30, 'placeholder' => 'email', 'display_label' => FALSE);
 
 		$this->form_builder->show_required = FALSE;
+		$this->form_builder->use_form_tag = FALSE;
 		$this->form_builder->set_fields($fields);
 		$this->_prep_csrf();
 
@@ -370,6 +365,7 @@ class Login extends Fuel_base_controller {
 		$fields['_token'] = array('type' => 'hidden', 'value' => $token);
 
 		$this->form_builder->show_required = FALSE;
+		$this->form_builder->use_form_tag = FALSE;
 		$this->form_builder->set_fields($fields);
 		$this->_prep_csrf();
 
@@ -416,6 +412,7 @@ class Login extends Fuel_base_controller {
 
 		$this->form_builder->show_required = FALSE;
 		$this->form_builder->submit_value = 'Login';
+		$this->form_builder->use_form_tag = FALSE;
 		$this->form_builder->set_fields($fields);
 		if ( ! empty($_POST)) $this->form_builder->set_field_values($this->input->post(NULL, TRUE));
 		$this->_prep_csrf();
