@@ -333,9 +333,10 @@ class Base_module_model extends MY_Model {
 			$this->db->select($this->table_name.'.*'); // make select table specific
 		}
 
-		if (!empty($col)) $this->db->order_by($col, $order, FALSE);
-		if (!empty($limit)) $this->db->limit($limit);
-		$this->db->offset($offset);
+		$escape_order_by = (property_exists($this, 'escape_order_by')) ? $this->escape_order_by : TRUE;
+		if (!empty($col)) $this->db->order_by($col, $order, $escape_order_by);
+		if (!empty($limit)) $this->db->limit((int) $limit);
+		$this->db->offset((int)$offset);
 
 		$query = $this->db->get();
 		$data = $query->result_array();

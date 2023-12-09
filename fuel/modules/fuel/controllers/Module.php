@@ -1141,7 +1141,7 @@ class Module extends Fuel_base_controller {
 	{
 		$this->model->on_before_post($this->input->post());
 
-		$posted = $this->_process();
+		$posted = $this->_process($id);
 
 		// run before_edit hook
 		$this->_run_hook('before_edit', $posted);
@@ -1208,53 +1208,45 @@ class Module extends Fuel_base_controller {
 
 			if ($this->sanitize_input === TRUE)
 			{
-				foreach($data as $key => $val)
+				$this->sanitize_input = array('xss');
+			}
+
+			// force to array to normalize
+			$sanitize_input = (array) $this->sanitize_input;
+
+			if (is_array($data))
+			{
+				foreach($data as $key => $post)
 				{
-					if ( ! empty($val))
+					if (is_array($post))
 					{
-						$posted[$key] = xss_clean($val);	
+						$posted[$key] = $this->_sanitize($post);
+					}
+					else
+					{
+						// loop through sanitization functions 
+						foreach($sanitize_input as $func)
+						{
+							$func = (isset($valid_funcs[$func])) ? $valid_funcs[$func] : FALSE;
+
+							if ($func)
+							{
+								$posted[$key] = $func($posted[$key]);
+							}
+						}
 					}
 				}
 			}
 			else
 			{
-				// force to array to normalize
-				$sanitize_input = (array) $this->sanitize_input;
-
-				if (is_array($data))
+				// loop through sanitization functions 
+				foreach($sanitize_input as $key => $val)
 				{
-					foreach($data as $key => $post)
-					{
-						if (is_array($post))
-						{
-							$posted[$key] = $this->_sanitize($data[$key]);
-						}
-						else
-						{
-							// loop through sanitization functions 
-							foreach($sanitize_input as $func)
-							{
-								$func = (isset($valid_funcs[$func])) ? $valid_funcs[$func] : FALSE;
+					$func = (isset($valid_funcs[$val])) ? $valid_funcs[$val] : FALSE;
 
-								if ($func)
-								{
-									$posted[$key] = $func($posted[$key]);
-								}
-							}
-						}
-					}
-				}
-				else
-				{
-					// loop through sanitization functions 
-					foreach($sanitize_input as $key => $val)
+					if ($func)
 					{
-						$func = (isset($valid_funcs[$val])) ? $valid_funcs[$val] : FALSE;
-
-						if ($func)
-						{
-							$posted = $func($posted);
-						}
+						$posted = $func($posted);
 					}
 				}
 			}
@@ -1461,7 +1453,7 @@ class Module extends Fuel_base_controller {
 		return $vars;
 	}
 
-	protected function _process()
+	protected function _process($id = NULL)
 	{
 		$this->load->helper('security');
 		$this->load->library('form_builder');
@@ -1522,7 +1514,7 @@ class Module extends Fuel_base_controller {
 		// set key_field if it is not id
 		if ( ! empty($_POST['id']) AND $this->model->key_field() != 'id')
 		{
-			$_POST[$this->model->key_field()] = $_POST['id'];
+			$_POST[$this->model->key_field()] = !empty($id) ? $id : $_POST['id'];
 		}
 
 		// run any form field post processing hooks
@@ -1811,7 +1803,7 @@ class Module extends Fuel_base_controller {
 		{
 			if ( ! empty($_POST['fuel_replace_id']))
 			{
-				$replace_id = $this->input->post('fuel_replace_id');
+				$replace_id = (int) $this->input->post('fuel_replace_id', true);
 				//$delete = is_true_val($this->input->post('fuel_delete_replacement'));
 				$delete = TRUE;
 				if (!$this->model->replace($replace_id, $id, $delete))
@@ -1841,7 +1833,7 @@ class Module extends Fuel_base_controller {
 
 		if ($success)
 		{
-			$fields['new_fuel_replace_id'] = array('type' => 'hidden', 'value' => $replace_id);
+			$fields['new_fuel_replace_id'] = array('type' => 'hidden', 'value' => (int) $replace_id);
 		}
 
 		//$this->form_builder->use_form_tag = FALSE;

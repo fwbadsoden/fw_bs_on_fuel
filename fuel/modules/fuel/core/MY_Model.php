@@ -1769,9 +1769,11 @@ class MY_Model extends CI_Model {
 	</code>
 	 *
 	 * @access public
+	 * @param array $related_field
 	 * @param array $values
 	 * @param string $related_model
 	 * @param string $mode, has_many or belongs_to (optional)
+	 * @param string $rel_config which provides information on the relationship table but will use built in fuel_relationships by default (optional)
 	 * @return array
 	 */
 	public function get_related_keys($related_field, $values, $related_model, $mode = 'has_many', $rel_config = '')
@@ -2342,10 +2344,11 @@ class MY_Model extends CI_Model {
 	public function field_type($field)
 	{
 		$field_info = $this->field_info($field);
+		$switch = (!empty($field_info['type'])) ? $field_info['type'] : '';
 		
-		switch($field_info['type'])
+		switch($switch)
 		{
-			case 'var' : case 'varchar': case 'string': case 'tinytext': case 'text':  case 'longtext':
+			case 'var': case 'char': case 'varchar': case 'string': case 'tinytext': case 'text': case 'longtext': case 'mediumtext':
 				return 'string';
 			case 'int': case 'tinyint': case 'smallint': case 'mediumint': case 'float':  case 'double':  case 'decimal':
 				return 'number';
@@ -2362,7 +2365,7 @@ class MY_Model extends CI_Model {
 			case 'enum':
 				return 'enum';
 			default:
-				return $field_info['type'];
+				return $switch;
 		}
 	}
 	
@@ -2404,7 +2407,7 @@ class MY_Model extends CI_Model {
 						break;
 					case 'number':
 						$this->validator->add_rule($field, 'is_numeric', lang('error_not_number', $field_name), $value);
-						if ($field_data['type'] != 'float' AND $field_data['type'] != 'double') $this->validator->add_rule($field, 'length_max', lang('error_value_exceeds_length', $field_name), array($value, $field_data['max_length']));
+						if (!empty($field_data['max_length']) AND $field_data['type'] != 'float' AND $field_data['type'] != 'double') $this->validator->add_rule($field, 'length_max', lang('error_value_exceeds_length', $field_name), array($value, $field_data['max_length']));
 						break;
 					case 'date':
 						if (strncmp($value, '0000', 4) !== 0)

@@ -1250,7 +1250,7 @@ class Dwoo_Core
         }
         unset($varstr);
 
-        foreach($m[1] as $k => $sep) {
+        while (list($k, $sep) = each($m[1])) {
             if ($sep === '.' || $sep === '[' || $sep === '') {
                 // strip enclosing quotes if present
                 $m[2][$k] = preg_replace('#^(["\']?)(.*?)\1$#', '$2', $m[2][$k]);
@@ -1425,8 +1425,7 @@ class Dwoo_Core
             $cur = $this->scope;
         }
 
-        foreach($m[1] as $k => $sep) {
-        //while (list($k, $sep) = each($m[1])) {
+        while (list($k, $sep) = each($m[1])) {
             if ($sep === '.' || $sep === '[' || $sep === '') {
                 if ((is_array($cur) || $cur instanceof ArrayAccess) && isset($cur[$m[2][$k]])) {
                     $cur = $cur[$m[2][$k]];
@@ -1471,8 +1470,7 @@ class Dwoo_Core
             $cur =& $this->scope;
             $last = array(array_pop($m[1]), array_pop($m[2]));
 
-            foreach($m[1] as $k => $sep) {
-            //while (list($k, $sep) = each($m[1])) {
+            while (list($k, $sep) = each($m[1])) {
                 if ($sep === '.' || $sep === '[' || $sep === '') {
                     if (is_array($cur) === false) {
                         $cur = array();
