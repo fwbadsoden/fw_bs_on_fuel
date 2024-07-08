@@ -320,7 +320,6 @@ echo doctype('html5');
 
                             <div id="mobileNavigation">
                                 <ul class="mobileMainNavContainer">
-                                    <li><a href="<?= base_url('menschen/jugend/jubilaeum') ?>">Jubiläum</a></li>
                                     <li><a href="<?= base_url('mitmachen') ?>">Mitmachen</a></li>
                                     <li><a href="<?= base_url('aktuelles') ?>">News</a></li>
                                     <li class="subnavi">
