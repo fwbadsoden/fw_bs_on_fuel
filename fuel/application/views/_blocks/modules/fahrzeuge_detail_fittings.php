@@ -10,8 +10,8 @@ if (count($data->fahrzeug_fittings) > 0) :
                     $css_text = "text textleft";
                     $picture_orientation = "right";
                 } else {
-                    $css_image = "image";
-                    $css_text = "text";
+                    $css_image = "image imageright";
+                    $css_text = "text textright";
                     $picture_orientation = "left";
                 }
 ?> 
