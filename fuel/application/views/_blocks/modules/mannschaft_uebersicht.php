@@ -34,9 +34,12 @@ $zugfuehrer = array("Zugführer");
                 }
 
                 switch ($listcount) {
-                    case '1': $class = ' class="first"';
+                    case '1': 
+                        $class = ' class="first"';
+                        ?> <hr class="clear" /> <?
                         break;
-                    case '2': $class = ' class="second"';
+                    case '2': 
+                        $class = ' class="second"';
                         break;
                     case '3': $class = ' class="third"';
                         break;
@@ -89,11 +92,14 @@ $zugfuehrer = array("Zugführer");
                 }
 
                 switch ($listcount) {
-                    case '1': $class = ' class="first"';
+                    case '1': 
+                        $class = ' class="first"';
+                        ?> <hr class="clear" /> <?
                         break;
                     case '2': $class = ' class="second"';
                         break;
-                    case '3': $class = ' class="third"';
+                    case '3': 
+                        $class = ' class="third"';
                         break;
                 }
 
@@ -144,11 +150,15 @@ $zugfuehrer = array("Zugführer");
                 }
 
                 switch ($listcount) {
-                    case '1': $class = ' class="first"';
+                    case '1': 
+                        $class = ' class="first"';
+                        ?> <hr class="clear" /> <?
                         break;
-                    case '2': $class = ' class="second"';
+                    case '2': 
+                        $class = ' class="second"';
                         break;
-                    case '3': $class = ' class="third"';
+                    case '3': 
+                        $class = ' class="third"';
                         break;
                 }
 
@@ -198,11 +208,15 @@ $zugfuehrer = array("Zugführer");
             }
 
             switch ($listcount) {
-                case '1': $class = ' class="first"';
+                case '1': 
+                    $class = ' class="first"';
+                    ?> <hr class="clear" /> <?
                     break;
-                case '2': $class = ' class="second"';
+                case '2': 
+                    $class = ' class="second"';
                     break;
-                case '3': $class = ' class="third"';
+                case '3': 
+                    $class = ' class="third"';
                     break;
             }
 
@@ -255,11 +269,15 @@ $zugfuehrer = array("Zugführer");
                     $listcount = 1;
 
                 switch ($listcount) {
-                    case '1': $class = ' class="first"';
+                    case '1': 
+                        $class = ' class="first"';
+                        ?> <hr class="clear" /> <?
                         break;
-                    case '2': $class = ' class="second"';
+                    case '2': 
+                        $class = ' class="second"';
                         break;
-                    case '3': $class = ' class="third"';
+                    case '3': 
+                        $class = ' class="third"';
                         break;
                 }
                 $listcount++;
