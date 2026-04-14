@@ -11,7 +11,10 @@
                 
         switch($i)
         {
-            case '1': $class = ''; break;
+            case '1': 
+                $class = ''; 
+                        ?> <hr class="clear" /> <?
+                break;
             case '2': $class = ' class="second"'; break;
             case '3': $class = ' class="third"'; break;
         }
