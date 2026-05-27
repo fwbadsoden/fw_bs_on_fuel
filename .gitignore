@@ -36,6 +36,7 @@ ehthumbs.db
 Thumbs.db
 dwsync.xml
 WS_FTP.LOG
+.DAV/
 
 # Code Igniter ignores #
 ########################
@@ -53,6 +54,17 @@ fuel/application/cache/
 !fuel/application/cache/.htaccess
 !fuel/application/cache/index.html
 
+assets/pressarticles
+assets/images/
+!assets/images/_template_icons.svg
+!assets/images/index.html
+assets/pdf/
+!assets/pdf/index.html
+assets/icons/
+!assets/icons/index.html
+assets/layout/
+!assets/layout/index.html
+
 # IntelliJ IDEA       #
 #######################
 .idea
@@ -62,3 +74,6 @@ fuel/application/cache/
 ####################### 
 /nbproject/private/
 /nbproject/
+
+# VS Code
+.vscode/
