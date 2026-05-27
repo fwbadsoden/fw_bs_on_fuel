@@ -64,7 +64,7 @@ class Fuel_Router extends MX_Router
 {
 	// --------------------------------------------------------------------
 
-	//private $located;
+	protected $located;
 
 	/**
 	 * Parse Routes

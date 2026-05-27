@@ -170,12 +170,12 @@ class Fuel_Loader extends CI_Loader
 		if (!isset($module)) $module = $this->_module; // FUEL
 		if (is_array($library)) return $this->libraries($library);		
 		
-		$class = strtolower(basename($library));
+		$class = strtolower((string) basename($library));
 
 		if (isset($this->_ci_classes[$class]) && $_alias = $this->_ci_classes[$class])
 			return $this;
 			
-		($_alias = strtolower($object_name)) OR $_alias = $class;
+		($_alias = strtolower((string) $object_name)) OR $_alias = $class;
 		
 		list($path, $_library) = Modules::find($library, $module, 'libraries/');
 		
@@ -229,7 +229,7 @@ class Fuel_Loader extends CI_Loader
 			return $this;
 			
 		/* check module */
-		list($path, $_model) = Modules::find(strtolower($model), $module, 'models/');
+		list($path, $_model) = Modules::find(strtolower((string) $model), $module, 'models/');
 		
 		if ($path == FALSE)
 		{
@@ -268,7 +268,7 @@ class Fuel_Loader extends CI_Loader
 	{
 		if (is_array($module)) return $this->modules($module);
 
-		$_alias = strtolower(basename($module));
+		$_alias = strtolower((string) basename($module));
 		CI::$APP->$_alias = Modules::load(array($module => $params));
 		return $this;
 	}
@@ -567,7 +567,7 @@ class Fuel_Loader extends CI_Loader
 						return $this->_ci_init_library($class, '', $params, $object_name);
 					}
 				}
-				elseif (!isset($CI->{strtolower($class)}))
+				elseif (!isset($CI->{strtolower((string) $class)}))
 				{
 					return $this->_ci_init_library($class, '', $params, $object_name);
 				}
@@ -717,25 +717,25 @@ class Fuel_Loader extends CI_Loader
 					// We test for both uppercase and lowercase, for servers that
 					// are case-sensitive with regard to file names. Load global first,
 					// override with environment next
-					if (file_exists($path.'config/'.strtolower($class).'.php'))
+					if (file_exists($path.'config/'.strtolower((string) $class).'.php'))
 					{
-						include($path.'config/'.strtolower($class).'.php');
+						include($path.'config/'.strtolower((string) $class).'.php');
 						$found = TRUE;
 					}
-					elseif (file_exists($path.'config/'.ucfirst(strtolower($class)).'.php'))
+					elseif (file_exists($path.'config/'.ucfirst(strtolower((string) $class)).'.php'))
 					{
-						include($path.'config/'.ucfirst(strtolower($class)).'.php');
+						include($path.'config/'.ucfirst(strtolower((string) $class)).'.php');
 						$found = TRUE;
 					}
 
-					if (file_exists($path.'config/'.ENVIRONMENT.'/'.strtolower($class).'.php'))
+					if (file_exists($path.'config/'.ENVIRONMENT.'/'.strtolower((string) $class).'.php'))
 					{
-						include($path.'config/'.ENVIRONMENT.'/'.strtolower($class).'.php');
+						include($path.'config/'.ENVIRONMENT.'/'.strtolower((string) $class).'.php');
 						$found = TRUE;
 					}
-					elseif (file_exists($path.'config/'.ENVIRONMENT.'/'.ucfirst(strtolower($class)).'.php'))
+					elseif (file_exists($path.'config/'.ENVIRONMENT.'/'.ucfirst(strtolower((string) $class)).'.php'))
 					{
-						include($path.'config/'.ENVIRONMENT.'/'.ucfirst(strtolower($class)).'.php');
+						include($path.'config/'.ENVIRONMENT.'/'.ucfirst(strtolower((string) $class)).'.php');
 						$found = TRUE;
 					}
 
@@ -762,7 +762,7 @@ class Fuel_Loader extends CI_Loader
 		// Was a custom class name supplied? If so we'll use it
 		if (empty($object_name))
 		{
-			$object_name = strtolower($class);
+			$object_name = strtolower((string) $class);
 			if (isset($this->_ci_varmap[$object_name]))
 			{
 				$object_name = $this->_ci_varmap[$object_name];

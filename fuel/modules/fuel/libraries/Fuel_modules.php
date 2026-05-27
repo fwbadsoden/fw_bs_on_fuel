@@ -202,7 +202,7 @@ class Fuel_modules extends Fuel_base_library {
 			if (file_exists($file_path))
 			{
 				// class must extend the fuel_module class to be legit
-				if (strtolower(get_parent_class($class_name)) == 'fuel_module')
+				if (class_exists($class_name, FALSE) && strtolower((string) get_parent_class($class_name)) == 'fuel_module')
 				{
 					$this->CI->load->module_library($init['folder'], strtolower($class_name));
 					$fuel_module =& $this->CI->$class_name;

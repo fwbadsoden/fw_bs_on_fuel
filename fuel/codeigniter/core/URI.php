@@ -49,6 +49,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @link		https://codeigniter.com/user_guide/libraries/uri.html
  */
 class CI_URI {
+	/**
+	 * CI Config reference
+	 *
+	 * @var	CI_Config
+	 */
+	public $config;
 
 	/**
 	 * List of cached URI segments

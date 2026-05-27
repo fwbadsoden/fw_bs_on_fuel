@@ -51,6 +51,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class CI_Controller {
 
+	/** @var object */
+	public $benchmark;
+	/** @var object */
+	public $hooks;
+	/** @var object */
+	public $config;
+	/** @var object */
+	public $utf8;
+	/** @var object */
+	public $uri;
+	/** @var object */
+	public $router;
+	/** @var object */
+	public $output;
+	/** @var object */
+	public $security;
+	/** @var object */
+	public $input;
+	/** @var object */
+	public $lang;
+	/** @var object */
+	public $log;
+	/** @var object */
+	public $asset;
+	/** @var object */
+	public $fuel;
+	/** @var object */
+	public $weather;
+	/** @var object */
+	public $load;
+
 	/**
 	 * Reference to the CI singleton
 	 *

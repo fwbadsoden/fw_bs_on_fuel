@@ -1,0 +1,75 @@
+services:
+  db:
+    image: mariadb:10.4
+    container_name: fw-bs-db
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: db403895_3
+      MARIADB_USER: fuel
+      MARIADB_PASSWORD: fuel
+      TZ: Europe/Berlin
+    ports:
+      - "33067:3306"
+    healthcheck:
+      test:
+        ["CMD-SHELL", "mariadb-admin ping -h 127.0.0.1 -uroot -proot --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  web72:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: docker/php72/Dockerfile
+    container_name: fw-bs-web72
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      CI_ENV: docker
+      TZ: Europe/Berlin
+    ports:
+      - "8072:80"
+    volumes:
+      - ./:/var/www/html
+
+  web84:
+    build:
+      context: .
+      dockerfile: docker/php84/Dockerfile
+    container_name: fw-bs-web84
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      CI_ENV: docker
+      TZ: Europe/Berlin
+    ports:
+      - "8084:80"
+    volumes:
+      - ./:/var/www/html
+
+  phpmyadmin:
+    image: phpmyadmin:5-apache
+    container_name: fw-bs-pma
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+      UPLOAD_LIMIT: 256M
+    ports:
+      - "8081:80"
+
+volumes:
+  mariadb_data:

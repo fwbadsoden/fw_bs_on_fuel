@@ -1,0 +1,151 @@
+Setup lokale Umgebung (Fuel CMS / CI) - Stand: 26.05.2026
+
+Ziel
+- Altstand lokal reproduzierbar mit PHP 7.2 + MariaDB 10.4
+- Danach Vergleich/Migration auf PHP 8.4
+
+Bereits im Repo vorhanden
+- docker-compose.yml
+- docker/php72/Dockerfile
+- docker/php84/Dockerfile
+- docker/apache/vhost.conf
+- docker/php/php-local.ini
+- fuel/application/config/docker/database.php
+- LOCAL_DEVELOPMENT.md
+
+Mac-Status (ermittelt)
+- OrbStack ist installiert (Homebrew Cask: orbstack)
+- App-Bundle vorhanden: /Applications/OrbStack.app
+- Docker verifiziert: 29.5.2
+- Docker Compose verifiziert: v5.1.2
+- Compose-Konfiguration validiert (docker compose config)
+
+A) OrbStack starten und Docker aktivieren
+1. OrbStack direkt starten:
+   open -a OrbStack
+
+2. Falls das nicht geht, absoluter Pfad:
+   open /Applications/OrbStack.app
+
+3. Falls Spotlight nur Web-Ergebnisse zeigt:
+   - Systemeinstellungen -> Siri & Spotlight -> Suchergebnisse:
+     "Programme" aktivieren
+   - Systemeinstellungen -> Siri & Spotlight -> Spotlight-Datenschutz:
+     pruefen, dass /Applications dort NICHT ausgeschlossen ist
+   - Danach Terminal:
+     killall Spotlight
+     sudo mdutil -E /
+   - Index-Neuaufbau kann einige Minuten dauern
+
+4. Docker-Pruefung:
+   docker --version
+   docker compose version
+
+B) Projekt starten (Altstand PHP 7.2)
+1. In den Projektordner wechseln
+2. Images bauen:
+   docker compose build web72 web84
+
+3. Services fuer Altstand starten:
+   docker compose up -d db phpmyadmin web72
+
+4. Erreichbarkeit:
+   - App (PHP 7.2): http://localhost:8072
+   - phpMyAdmin: http://localhost:8081
+   - DB-Port lokal: 127.0.0.1:33067
+
+C) Datenbank importieren
+1. Komplettdump importieren:
+   docker compose exec -T db mariadb -uroot -proot db403895_3 < dev_stuff/sql/2019-11-03_db403895_3_with_content.sql
+
+Alternative: Produktions-Export als ZIP mit mehreren SQL-Dateien (verwendet)
+1. DB zuruecksetzen:
+  docker compose exec -T db mariadb -uroot -proot -e "DROP DATABASE IF EXISTS db403895_3; CREATE DATABASE db403895_3 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+
+2. Alle SQL-Dateien aus ZIP importieren:
+  unzip -p /Users/habibsarbas/Downloads/db403895_3.sql.zip '*.sql' | docker compose exec -T db mariadb -uroot -proot db403895_3
+
+2. DB-Zugangsdaten im Compose-Setup:
+   - DB: db403895_3
+   - User: fuel
+   - Passwort: fuel
+   - Root: root / root
+
+D) Zwischen PHP 7.2 und 8.4 wechseln
+- PHP 7.2 aktiv:
+  docker compose up -d db phpmyadmin web72
+  docker compose stop web84
+
+- PHP 8.4 aktiv:
+  docker compose up -d db phpmyadmin web84
+  docker compose stop web72
+
+- PHP 8.4 URL:
+  http://localhost:8084
+
+E) Nützliche Diagnose-Kommandos
+- Status:
+  docker compose ps
+
+- Logs:
+  docker compose logs -f web72
+  docker compose logs -f web84
+  docker compose logs -f db
+
+- Stoppen:
+  docker compose down
+
+- Stoppen inkl. DB-Volume-Reset:
+  docker compose down -v
+
+F) Bekannte Stolperstellen
+- Apple Silicon: web72 ist bewusst auf linux/amd64 gesetzt (legacy PHP 7.2)
+- Schreibrechte falls noetig:
+  chmod -R 0777 fuel/application/cache fuel/application/logs assets/cache
+- Wenn web72 Build wegen alter Debian-Repos fehlschlaegt:
+  docker compose build --no-cache web72
+
+G) Migrationsreihenfolge (empfohlen)
+1. Altstand stabil mit PHP 7.2 + MariaDB 10.4
+2. Fuel CMS Update auf aktuelle Version
+3. Danach PHP 8.4 lauffaehig machen
+
+H) Aktueller Verifizierungsstand (26.05.2026)
+- Images erfolgreich gebaut:
+  - fw_bs_on_fuel-web72
+  - fw_bs_on_fuel-web84
+- Dienste fuer Altstand gestartet:
+  - db (healthy)
+  - phpmyadmin
+  - web72
+- Vergleichslaufzeit gestartet:
+  - web84
+- SQL-Dump importiert:
+  dev_stuff/sql/2019-11-03_db403895_3_with_content.sql
+- Import verifiziert:
+  - 43 Tabellen in db403895_3
+  - Tabelle fw_users vorhanden
+- HTTP-Test verifiziert:
+  - http://localhost:8072 antwortet mit HTTP 200
+  - PHP-Version im Response-Header: 7.2.34
+  - http://localhost:8084 antwortet mit HTTP 200
+  - PHP-Version im Response-Header: 8.4.21
+
+I) Update 27.05.2026
+- Produktivabzug importiert aus:
+  /Users/habibsarbas/Downloads/db403895_3.sql.zip
+- Importmodus:
+  ZIP enthaelt mehrere SQL-Dateien, zusammen per unzip -p in MariaDB gepiped
+- Verifikation nach Import:
+  - 43 Tabellen in db403895_3
+  - Tabellen fw_users und fw_fahrzeuge vorhanden
+
+Hinweis
+- Diese Datei ist als zusammengefasste Schritt-fuer-Schritt-Anleitung gedacht und wird bei Bedarf im Verlauf erweitert.
+
+J) Volltest-Unterseitenstand 27.05.2026
+- Automatisierter HTTP-Volltest ueber 66 veroeffentlichte fw_pages-URLs plus /, /fuel/login, /robots.txt (gesamt 69 URLs)
+- Ergebnis 7.2: 69/69 erreichbar, keine 5xx, keine 404, 12 Seiten mit PHP-Error-Block
+- Ergebnis 8.4: 69/69 erreichbar, keine 5xx, keine 404, 12 Seiten mit PHP-Error-Block
+- Vergleich 7.2 vs 8.4: identisch (diff 0)
+- Detaillierter Report: LOCAL_TEST_REPORT_2026-05-27.md
