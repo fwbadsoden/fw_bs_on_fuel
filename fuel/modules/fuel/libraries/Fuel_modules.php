@@ -236,14 +236,21 @@ class Fuel_modules extends Fuel_base_library {
 	 */	
 	public function get($module = NULL, $include_advanced = TRUE)
 	{
+		$has_uri = FALSE;
+
 		// used to extract model name when there is an array with the key being the advanced module folder
 		if (is_array($module))
 		{
 			$module = current($module);
 		}
 
+		if (is_string($module))
+		{
+			$has_uri = (strpos($module, '/') !== FALSE);
+		}
+
 		// allows you to get a module based on the model name
-		if (!empty($module) AND is_string($module) AND preg_match('#\w+_model$#', $module) OR $has_uri = (strpos($module, '/') !== FALSE))
+		if (!empty($module) AND is_string($module) AND (preg_match('#\w+_model$#', $module) OR $has_uri))
 		{
 			$modules = $this->get(NULL, FALSE);
 			foreach($modules as $key => $mod)

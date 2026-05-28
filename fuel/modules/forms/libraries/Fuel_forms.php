@@ -1659,8 +1659,7 @@ class Fuel_form extends Fuel_base_library {
 		{
 			if (property_exists($this, $found[1]))
 			{
-				$method = $this->$found[1];
-				return $this->$method;
+				return $this->{$found[1]};
 			}
 		}
 		elseif (preg_match("/^is_(.*)/", $method, $found))
@@ -1669,7 +1668,7 @@ class Fuel_form extends Fuel_base_library {
 			{
 				if (!empty($found[1]))
 				{
-					return is_true_val($this->$found[1]);
+					return is_true_val($this->{$found[1]});
 				}
 			}
 		}
@@ -1677,7 +1676,7 @@ class Fuel_form extends Fuel_base_library {
 		{
 			if (property_exists($this, $found[1]))
 			{
-				return !empty($this->$found[1]);
+				return !empty($this->{$found[1]});
 			}
 		}
 		return FALSE;
