@@ -35,6 +35,7 @@ class Fuel_cache extends Fuel_base_library {
 	
 	public $ignore = '#^(\..+)|(index\.html)#'; // Regular expression of files to exclude from clearing like .gitignore and .htaccess
 	public $cache_path = ''; // The cache path. If no path is provided it will use the cache path value found in the main CI config file.
+	public $compiled_path = ''; // Path to compiled parser templates.
 	
 	protected $_cache; // the Cache object used for saving, retrieving and deleting cached files
 	protected $_types = array(

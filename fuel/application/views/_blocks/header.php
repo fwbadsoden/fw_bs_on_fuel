@@ -24,7 +24,9 @@ $year_optout_cookie = date("Y") + 90;
 // Open Graph Tags
 if (isset($facebook_infos)) {
 foreach ($facebook_infos as $info) {
-array_push($meta, array('name' => $info["property"], 'content' => $info["content"], 'type' => 'property'));
+if (is_array($info) && isset($info['property'], $info['content'])) {
+array_push($meta, array('name' => $info['property'], 'content' => $info['content'], 'type' => 'property'));
+}
 }
 }
 echo doctype('html5');

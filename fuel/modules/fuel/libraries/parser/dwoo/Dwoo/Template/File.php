@@ -183,7 +183,7 @@ class Dwoo_Template_File extends Dwoo_Template_String
 	 * 											an include, extends or any other plugin)
 	 * @return Dwoo_Template_File|null
 	 */
-	public static function templateFactory(Dwoo_Core $dwoo, $resourceId, $cacheTime = null, $cacheId = null, $compileId = null, Dwoo_ITemplate $parentTemplate = null)
+	public static function templateFactory(Dwoo_Core $dwoo, $resourceId, $cacheTime = null, $cacheId = null, $compileId = null, ?Dwoo_ITemplate $parentTemplate = null)
 	{
 		if (DIRECTORY_SEPARATOR === '\\') {
 			$resourceId = str_replace(array("\t", "\n", "\r", "\f", "\v"), array('\\t', '\\n', '\\r', '\\f', '\\v'), $resourceId);

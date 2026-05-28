@@ -17,6 +17,13 @@
 class Dwoo_Template_String implements Dwoo_ITemplate
 {
 	/**
+	 * raw template source
+	 *
+	 * @var string
+	 */
+	protected $template;
+
+	/**
 	 * template name
 	 *
 	 * @var string
@@ -335,7 +342,7 @@ class Dwoo_Template_String implements Dwoo_ITemplate
 	 * @param Dwoo_ICompiler $compiler the compiler that must be used
 	 * @return string
 	 */
-	public function getCompiledTemplate(Dwoo_Core $dwoo, Dwoo_ICompiler $compiler = null)
+	public function getCompiledTemplate(Dwoo_Core $dwoo, ?Dwoo_ICompiler $compiler = null)
 	{
 		$compiledFile = $this->getCompiledFilename($dwoo);
 
@@ -404,7 +411,7 @@ class Dwoo_Template_String implements Dwoo_ITemplate
 	 * 											an include, extends or any other plugin)
 	 * @return Dwoo_Template_String
 	 */
-	public static function templateFactory(Dwoo_Core $dwoo, $resourceId, $cacheTime = null, $cacheId = null, $compileId = null, Dwoo_ITemplate $parentTemplate = null)
+	public static function templateFactory(Dwoo_Core $dwoo, $resourceId, $cacheTime = null, $cacheId = null, $compileId = null, ?Dwoo_ITemplate $parentTemplate = null)
 	{
 		return new self($resourceId, $cacheTime, $cacheId, $compileId);
 	}
