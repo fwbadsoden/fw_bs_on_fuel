@@ -4,6 +4,7 @@ if (!defined('BASEPATH'))
 
 $stabis = array("Stadtbrandinspektor", "stellv. Stadtbrandinspektor");
 $wehrfuehrung = array("Wehrführer", "stellv. Wehrführer");
+$verbandsfuehrer = array("Verbandsführer");
 $zugfuehrer = array("Zugführer");
 ?>
 
@@ -140,7 +141,65 @@ $zugfuehrer = array("Zugführer");
             }
         }
 
-        // Block 3 Zugführer
+        // Block 3 Verbandsführung
+        $listcount = 1;
+        foreach ($fuehrung as $key => $f) {
+            if (in_array($f["executive_name"], $verbandsfuehrer)) {
+
+                if ($listcount > 3) {
+                    $listcount = 1;
+                }
+
+                switch ($listcount) {
+                    case '1': 
+                        $class = ' class="first"';
+                        ?> <hr class="clear" /> <?
+                        break;
+                    case '2': $class = ' class="second"';
+                        break;
+                    case '3': 
+                        $class = ' class="third"';
+                        break;
+                }
+
+                if ($f["geschlecht"] == 'm')
+                    $dienstgrad_name = $f["grade_name_m"];
+                elseif ($f["geschlecht"] == 'w')
+                    $dienstgrad_name = $f["grade_name_w"];
+                else
+                    $dienstgrad_name = $f["dienstgrad_name"];
+                ?>
+                <li<?= $class ?>>
+                    <figure>
+                        <img src="<?= img_path('mannschaft/' . $f["image"]) ?>" />
+                        <img src="<?= img_path('dienstgrad/' . $f["grade_image"]) ?>" class="abzeichen" original-title="Dienstgrad" rel="tipsy" />
+                    </figure>
+                    <h1><?= $f["vorname"] ?> <?= $f["name"] ?></h1>
+                    <h2><?= $dienstgrad_name . ', ' . $f["executive_name"] ?></h2>
+                    <p>
+                        <?php
+                        if (isset($f["geburtstag"]) && $f["geburtstag"] != '0000-00-00' && $f["beruf"] != "") {
+                            echo get_alter($f["geburtstag"]) . " Jahre<br/> " . $f["beruf"];
+                        } elseif (isset($f["geburtstag"]) && $f["geburtstag"] != '0000-00-00' && $f["beruf"] == "") {
+                            echo get_alter($f["geburtstag"]) . " Jahre<br/>&nbsp;";
+                        } else {
+                            if (isset($f["beruf"]) && $f["beruf"] != "") {
+                                echo "&nbsp;<br/>".$f["beruf"];
+                            } else {
+                                echo '&nbsp;<br/>&nbsp; ';
+                            }
+                        }
+                        ?>      
+                    </p>
+                </li>
+
+                <?php
+                $listcount++;
+                unset($fuehrung[$key]);
+            }
+        }
+
+        // Block 4 Zugführer
         $listcount = 1;
         foreach ($fuehrung as $key => $f) {
             if (in_array($f["executive_name"], $zugfuehrer)) {
@@ -199,7 +258,7 @@ $zugfuehrer = array("Zugführer");
             }
         }
 
-// Block 4 Gruppenführer
+// Block 5 Gruppenführer
         $listcount = 1;
         foreach ($fuehrung as $f) {
 
