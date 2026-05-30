@@ -37,6 +37,5 @@
 			<a href="<?=fuel_url('login/pwd_reset')?>" id="forgotten_pwd"><?=lang('login_forgot_pwd')?></a>
 		<?php endif; ?>
 	</div>
-</div>
 </body>
 </html>

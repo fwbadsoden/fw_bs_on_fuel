@@ -198,7 +198,9 @@ function validate_stopforumspam($name, $email, $ip = NULL, $thresholds = array()
 		{
 			log_message('error', 'STOPFORUMSPAM :: '.$CI->stopforumspam->last_error());	
 		}
-		return FALSE;
+		// API not reachable or errored: assume NOT spam (fail-open) so legitimate
+		// submissions are not silently discarded
+		return TRUE;
 	}
 	else
 	{

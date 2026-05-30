@@ -150,8 +150,8 @@ class Login extends CI_Controller {
 		
 		// build form
 		$this->form_builder->set_validator($this->fuel_users_model->get_validation());
-		$fields['user_name'] = array('size' => 25, 'placeholder' => 'username', 'display_label' => FALSE);
-		$fields['password'] = array('type' => 'password', 'size' => 25, 'placeholder' => 'password', 'display_label' => FALSE);
+		$fields['user_name'] = array('size' => 25, 'max_length' => 255, 'placeholder' => 'username', 'display_label' => FALSE);
+		$fields['password'] = array('type' => 'password', 'size' => 25, 'max_length' => 255, 'placeholder' => 'password', 'display_label' => FALSE);
 		$fields['forward'] = array('type' => 'hidden', 'value' => fuel_uri_segment(2));
 		$this->form_builder->show_required = FALSE;
 		$this->form_builder->submit_value = lang('login_btn');

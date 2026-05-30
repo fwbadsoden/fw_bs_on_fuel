@@ -290,7 +290,7 @@ class Fuel_admin extends Fuel_base_library {
 		$this->no_cache();
 
 		// check if logged in
-		if (!$this->CI->fuel->auth->is_logged_in() OR !is_fuelified())
+		if (!$this->CI->fuel->auth->is_logged_in())
 		{
 			$login = $this->CI->fuel->config('fuel_path').'login';
 			
@@ -308,6 +308,25 @@ class Fuel_admin extends Fuel_base_library {
 				$output .= "</script>\n";
 				$this->CI->output->set_output($output);
 				return;
+			}
+		}
+
+		// Some environments can lose the non-session trigger cookie after redirect.
+		// If session is valid, rebuild the cookie instead of forcing another login.
+		if (!is_fuelified())
+		{
+			$user_id = $this->CI->fuel->auth->user_data('id');
+			$user_lang = $this->CI->fuel->auth->user_data('language');
+			if (!empty($user_id))
+			{
+				$config = array(
+					'name' => $this->CI->fuel->auth->get_fuel_trigger_cookie_name(),
+					'value' => serialize(array('id' => $user_id, 'language' => $user_lang)),
+					'expire' => 0,
+					'path' => $this->fuel->config('fuel_cookie_path')
+				);
+
+				set_cookie($config);
 			}
 		}
 	}
@@ -876,7 +895,19 @@ class Fuel_admin extends Fuel_base_library {
 	 */	
 	public function ui_cookie($key = NULL)
 	{
-		$cookie_val = json_decode(urldecode($this->CI->input->cookie('fuel_ui')), TRUE);
+		$raw_cookie = $this->CI->input->cookie('fuel_ui');
+		if ($raw_cookie === NULL || $raw_cookie === FALSE || $raw_cookie === '')
+		{
+			$cookie_val = array();
+		}
+		else
+		{
+			$cookie_val = json_decode(urldecode((string) $raw_cookie), TRUE);
+			if (!is_array($cookie_val))
+			{
+				$cookie_val = array();
+			}
+		}
 		if (!empty($key))
 		{
 			if (isset($cookie_val[$key]))

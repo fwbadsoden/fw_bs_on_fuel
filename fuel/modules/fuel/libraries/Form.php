@@ -828,15 +828,17 @@ class Form_input {
 	 */
 	public function render ()
 	{
+		$attrs = (string) $this->attrs;
+		$value = (string) $this->value;
 		$id = '';
-		if (strpos($this->attrs, 'id="') === FALSE)
+		if (strpos($attrs, 'id="') === FALSE)
 		{
 			$name = Form::create_id($this->name);
-			$id = ($this->type == 'radio') ? ' id="'.$name.'_'.str_replace(' ', '_', $this->value).'"' : ' id="'.$name.'"';
+			$id = ($this->type == 'radio') ? ' id="'.$name.'_'.str_replace(' ', '_', $value).'"' : ' id="'.$name.'"';
 		}
-		$this->attrs = str_replace('id=""', '', $this->attrs);
+		$attrs = str_replace('id=""', '', $attrs);
 		
-		$str = "<input type=\"".$this->type."\" name=\"".$this->name."\"".$id." value=\"".$this->value."\"".$this->attrs." />";
+		$str = "<input type=\"".$this->type."\" name=\"".$this->name."\"".$id." value=\"".$value."\"".$attrs." />";
 		return $str;
 	}
 

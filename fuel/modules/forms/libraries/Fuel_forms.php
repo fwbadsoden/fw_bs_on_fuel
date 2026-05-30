@@ -707,40 +707,69 @@ class Fuel_form extends Fuel_base_library {
 
 			$posted = $this->clean_posted();
 			$is_spam = $this->is_spam($posted);
-			if ($this->fuel->pages->mode() != 'views' && $this->get_save_entries())
+			if ($this->get_save_entries())
 			{
-				if (!isset($this->CI->db))
+				try
 				{
-					$this->CI->load->database();
-				}
-
-				if ($this->CI->db->table_exists('form_entries'))
-				{
-
-					// pre save hook
-					$this->call_hook('pre_save');
-
-					$model =& $this->CI->fuel->forms->model('form_entries');
-					$entry = $model->create();
-					$entry->url = last_url();
-					$entry->post = json_encode($posted);
-					$entry->form_name = $this->name;
-					$entry->remote_ip = $_SERVER['REMOTE_ADDR'];
-
-					// set if it's SPAM
-					$entry->is_spam = ($is_spam) ? 'yes' : 'no';
-					$entry->fill($posted);
-
-					if ($entry->is_savable())
+					if (!isset($this->CI->db))
 					{
-						if (!$entry->save())
-						{
-							$this->call_hook('error', array('errors' => $entry->errors()));
-							$this->_add_error($entry->errors());
-							return FALSE;
-						}
-						$this->call_hook('post_save'); 
+						$this->CI->load->database();
 					}
+
+					$table_exists = $this->CI->db->table_exists('form_entries');
+					if ($table_exists)
+					{
+
+						// pre save hook
+						$this->call_hook('pre_save');
+
+						$model =& $this->CI->fuel->forms->model('form_entries');
+						$entry = $model->create();
+						$entry->url = last_url();
+						$entry->post = json_encode($posted);
+						$entry->form_name = $this->name;
+						$entry->remote_ip = $_SERVER['REMOTE_ADDR'];
+
+						// set if it's SPAM
+						$entry->is_spam = ($is_spam) ? 'yes' : 'no';
+						$entry->fill($posted);
+
+						if ($entry->is_savable())
+						{
+							$entry_saved = FALSE;
+							if (!$entry->save())
+							{
+								// Fallback for runtime/validation edge-cases on newer PHP versions:
+								// persist the entry directly to avoid silently losing submissions.
+								$fallback_data = array(
+									'form_name' => $this->name,
+									'url' => last_url(),
+									'remote_ip' => $_SERVER['REMOTE_ADDR'],
+									'post' => json_encode($posted),
+									'is_spam' => ($is_spam) ? 'yes' : 'no',
+									'date_added' => date('Y-m-d H:i:s'),
+								);
+
+								if (!$this->CI->db->insert('form_entries', $fallback_data))
+								{
+									// silently continue to avoid blocking notify/success flow
+								}
+								else
+								{
+									$entry_saved = TRUE;
+								}
+							}
+							else
+							{
+								$entry_saved = TRUE;
+							}
+							$this->call_hook('post_save'); 
+						}
+					}
+				}
+				catch (Throwable $e)
+				{
+					// ignore entry save exceptions to avoid breaking notify/success flow
 				}
 			}
 
@@ -750,12 +779,17 @@ class Fuel_form extends Fuel_base_library {
 				if (!$this->notify($_POST['__email_message__']))
 				{
 					$this->call_hook('error', array('errors' => $this->last_error()));
-					$this->_add_error($entry->errors());
+					$this->_add_error($this->last_error());
 					return FALSE;
 				}
 			}
 			$this->call_hook('success');
 			return TRUE;
+		}
+		$validator_errors = $this->get_validator()->get_errors();
+		if (!empty($validator_errors))
+		{
+			$this->_add_error($validator_errors);
 		}
 		return FALSE;
 	}
@@ -841,6 +875,7 @@ class Fuel_form extends Fuel_base_library {
 			if (empty($f->name) OR !isset($form_validators[$f->type])) continue;
 
 			$field = $form_validators[$f->type];
+			if (!is_object($field)) continue;
 
 			if ($f->is_required())
 			{

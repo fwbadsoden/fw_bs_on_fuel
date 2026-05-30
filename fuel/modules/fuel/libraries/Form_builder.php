@@ -1806,7 +1806,7 @@ class Form_builder {
 		$attrs = array(
 			'id' => $params['id'],
 			'class' => $params['class'], 
-			'maxlength' => $params['max_length'], 
+			'maxlength' => (!empty($params['max_length']) ? $params['max_length'] : NULL), 
 			'size' => $size, 
 			'readonly' => $params['readonly'], 
 			'autocomplete' => (!empty($params['autocomplete']) ? $params['autocomplete'] : NULL),

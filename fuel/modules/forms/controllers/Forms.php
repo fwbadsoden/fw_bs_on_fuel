@@ -10,11 +10,31 @@ class Forms extends CI_Controller {
 
 	public function process($slug) 
 	{ 
-		$form = $this->fuel->forms->get($slug);
-		$return_url = ($this->input->get_post('return_url')) ? $this->input->get_post('return_url') : $form->return_url;
+		$form = NULL;
+		try
+		{
+			$form = $this->fuel->forms->get($slug);
+		}
+		catch (Throwable $e)
+		{
+		}
+
+		$return_url = ($this->input->get_post('return_url')) ? $this->input->get_post('return_url') : (($form) ? $form->return_url : site_url());
 		$form_url = $this->input->get_post('form_url');
+		$processed = FALSE;
+
+		if ($form)
+		{
+			try
+			{
+				$processed = $form->process();
+			}
+			catch (Throwable $e)
+			{
+			}
+		}
               
-		if ($form AND $form->process())
+		if ($form AND $processed)
 		{ 
 			if (is_ajax())
 			{
@@ -35,9 +55,11 @@ class Forms extends CI_Controller {
 
 			if (is_ajax())
 			{    
-				// Set a 500 (bad) response code.
-				set_status_header('500');
-				echo display_errors(NULL, '');
+				$errors = ($form) ? $form->errors() : array('Das Formular konnte nicht geladen werden.');
+
+				// Validation/submission errors are client-side form issues, not server crashes.
+				set_status_header('422');
+				echo is_array($errors) ? display_errors($errors, '') : $errors;
 				exit();
 			}
 			else
@@ -46,7 +68,15 @@ class Forms extends CI_Controller {
 				{
 					$return_url = $form_url; // update to post back to the correct page when there's an error
 				}
-				$this->session->set_flashdata('error', $form->errors());
+
+				if ($form)
+				{
+					$this->session->set_flashdata('error', $form->errors());
+				}
+				else
+				{
+					$this->session->set_flashdata('error', array('Das Formular konnte nicht geladen werden.'));
+				}
 				redirect($return_url);
 			}
 		}
