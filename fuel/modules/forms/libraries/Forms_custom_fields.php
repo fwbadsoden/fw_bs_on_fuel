@@ -61,16 +61,19 @@ class Forms_custom_fields {
 		}
 
 		$params['type'] = 'none';
-		$error_message = $params['error_message'];
-		$recaptcha_private_key = $params['recaptcha_private_key'];
-		$posted_recaptcha = $this->CI->input->post('recaptcha_response_field');
-		$func = function($value) use ($error_message, $recaptcha_private_key, $posted_recaptcha) {
-			$CI =& get_instance();
-			$validator =& $CI->form_builder->get_validator();
-			$validator->add_rule('recaptcha_response_field', 'required', $error_message, array($posted_recaptcha));
-			$validator->add_rule('recaptcha_response_field', 'validate_recaptcha', $error_message, array($recaptcha_private_key));
-		};
-		$form_builder->set_post_process($params['key'], $func);
+		if (!empty($_POST))
+		{
+			$error_message = $params['error_message'];
+			$recaptcha_private_key = $params['recaptcha_private_key'];
+			$posted_recaptcha = $this->CI->input->post('recaptcha_response_field');
+			$func = function($value) use ($error_message, $recaptcha_private_key, $posted_recaptcha) {
+				$CI =& get_instance();
+				$validator =& $CI->form_builder->get_validator();
+				$validator->add_rule('recaptcha_response_field', 'required', $error_message, array($posted_recaptcha));
+				$validator->add_rule('recaptcha_response_field', 'validate_recaptcha', $error_message, array($recaptcha_private_key));
+			};
+			$form_builder->set_post_process($params['key'], $func);
+		}
 
 		$str = '<script>
              var RecaptchaOptions = {

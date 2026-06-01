@@ -706,6 +706,30 @@ class Fuel_form extends Fuel_base_library {
 			$this->call_hook('post_validate');
 
 			$posted = $this->clean_posted();
+
+			// Guard against bot submissions that only send technical fields (e.g. captcha/honeypot)
+			// but no actual user content.
+			$has_content = FALSE;
+			foreach ($posted as $posted_value)
+			{
+				if (trim((string) $posted_value) !== '')
+				{
+					$has_content = TRUE;
+					break;
+				}
+			}
+			if (!$has_content)
+			{
+				$error_msg = lang('forms_error_invalid_submission');
+				if (empty($error_msg) OR $error_msg == 'forms_error_invalid_submission')
+				{
+					$error_msg = 'Invalid submission.';
+				}
+				$this->_add_error($error_msg);
+				$this->call_hook('error', array('errors' => $this->errors()));
+				return FALSE;
+			}
+
 			$is_spam = $this->is_spam($posted);
 			if ($this->get_save_entries())
 			{
@@ -736,32 +760,11 @@ class Fuel_form extends Fuel_base_library {
 
 						if ($entry->is_savable())
 						{
-							$entry_saved = FALSE;
 							if (!$entry->save())
 							{
-								// Fallback for runtime/validation edge-cases on newer PHP versions:
-								// persist the entry directly to avoid silently losing submissions.
-								$fallback_data = array(
-									'form_name' => $this->name,
-									'url' => last_url(),
-									'remote_ip' => $_SERVER['REMOTE_ADDR'],
-									'post' => json_encode($posted),
-									'is_spam' => ($is_spam) ? 'yes' : 'no',
-									'date_added' => date('Y-m-d H:i:s'),
-								);
-
-								if (!$this->CI->db->insert('form_entries', $fallback_data))
-								{
-									// silently continue to avoid blocking notify/success flow
-								}
-								else
-								{
-									$entry_saved = TRUE;
-								}
-							}
-							else
-							{
-								$entry_saved = TRUE;
+								$this->_add_error($entry->errors());
+								$this->call_hook('error', array('errors' => $this->errors()));
+								return FALSE;
 							}
 							$this->call_hook('post_save'); 
 						}
@@ -769,7 +772,9 @@ class Fuel_form extends Fuel_base_library {
 				}
 				catch (Throwable $e)
 				{
-					// ignore entry save exceptions to avoid breaking notify/success flow
+					$this->_add_error($e->getMessage());
+					$this->call_hook('error', array('errors' => $this->errors()));
+					return FALSE;
 				}
 			}
 
