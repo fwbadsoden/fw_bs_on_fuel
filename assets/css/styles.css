@@ -793,6 +793,29 @@ header nav {
     float: right;
     padding: 5px 15px;
 }
+
+/* Keep Notruffax button style consistent with "Mehr lesen" buttons */
+.notruf_layer .greybox p.button a.button_black {
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 15px;
+    background-color: #121212;
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    color: #FFF;
+    border: 0;
+}
+
+.notruf_layer .greybox p.button a.button_black:hover {
+    background-color: #f2b600;
+    color: #FFF;
+}
+
 .notruf_layer .greybox p.button span.zusatz {
     display: inline-block;
 }

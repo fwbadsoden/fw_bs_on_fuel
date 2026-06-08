@@ -179,10 +179,10 @@
 		</ul>
 	</div>
 	<hr class="clear" />
-	<div class="greybox">
-    	<p class="number">Zentrale Leitstelle <span>+49 6192-5095</span></p>
-    	<p class="button"><a href="http://www.gehoerlosen-bund.de/images/stories/pdfs/dgb_notruftelefaxvorlage.pdf" class="button_black_gross" target="_blank">Notruffax &raquo;</a></p>
-    	<hr class="clear" />
+    <div class="greybox">
+        <p class="number">Zentrale Leitstelle <span>+49 6192-5095</span></p>
+        <p class="button"><a href="http://www.gehoerlosen-bund.de/images/stories/pdfs/dgb_notruftelefaxvorlage.pdf" class="button_black" target="_blank">Notruffax &raquo;</a></p>
+        <hr class="clear" />
 	</div>
 </div>
 
