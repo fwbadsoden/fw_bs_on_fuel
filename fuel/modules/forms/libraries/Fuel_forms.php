@@ -813,6 +813,29 @@ class Fuel_form extends Fuel_base_library {
 		$is_spam = FALSE;
 		$anti_spam_params = $this->get_antispam_params();
 		$spam_config = $this->fuel->forms->config('spam_fields');
+		$comment_post_field = (!empty($spam_config['comment_post_field'])) ? $spam_config['comment_post_field'] : 'comment';
+
+		if (empty($posted[$comment_post_field]))
+		{
+			if (!empty($posted['message']))
+			{
+				$comment_post_field = 'message';
+			}
+			elseif (!empty($posted['comment']))
+			{
+				$comment_post_field = 'comment';
+			}
+			elseif (!empty($posted['text']))
+			{
+				$comment_post_field = 'text';
+			}
+		}
+
+		if ($this->has_spammy_content($posted, $comment_post_field))
+		{
+			return TRUE;
+		}
+
 		if (isset($posted[$spam_config['name_post_field']]) AND isset($posted[$spam_config['email_post_field']]))
 		{
 
@@ -820,7 +843,7 @@ class Fuel_form extends Fuel_base_library {
 			$akismet_key = $this->fuel->forms->config('akismet_api_key');
 			if (!empty($akismet_key))
 			{
-				$is_spam = (isset($posted[$spam_config['comment_post_field']]) AND !validate_akismet($akismet_key, $posted[$spam_config['name_post_field']], $posted[$spam_config['email_post_field']], $posted[$spam_config['comment_post_field']]));
+				$is_spam = (isset($posted[$comment_post_field]) AND !validate_akismet($akismet_key, $posted[$spam_config['name_post_field']], $posted[$spam_config['email_post_field']], $posted[$comment_post_field]));
 			}
 
 			// if still no spam, we'll check stopfurmspam to just be sure
@@ -830,6 +853,64 @@ class Fuel_form extends Fuel_base_library {
 			}
 		}
 		return $is_spam;
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Lightweight content-based spam detection to catch obvious bot payloads
+	 * even when external services are unavailable.
+	 *
+	 * @access	protected
+	 * @param	array	Posted form values
+	 * @param	string	Field name that likely contains the message body
+	 * @return	boolean
+	 */
+	protected function has_spammy_content($posted, $comment_post_field)
+	{
+		if (empty($comment_post_field) OR empty($posted[$comment_post_field]) OR !is_string($posted[$comment_post_field]))
+		{
+			return FALSE;
+		}
+
+		$content = trim($posted[$comment_post_field]);
+		if ($content === '')
+		{
+			return FALSE;
+		}
+
+		$patterns = $this->fuel->forms->config('content_spam_patterns');
+		if (!is_array($patterns))
+		{
+			$patterns = array();
+		}
+
+		foreach ($patterns as $pattern)
+		{
+			if (!is_string($pattern) OR $pattern === '')
+			{
+				continue;
+			}
+
+			if (@preg_match($pattern, $content) === 1)
+			{
+				return TRUE;
+			}
+		}
+
+		$url_threshold = $this->fuel->forms->config('content_spam_url_threshold');
+		if (!is_numeric($url_threshold))
+		{
+			$url_threshold = 2;
+		}
+
+		$urls_found = preg_match_all('#https?://|www\.#i', $content, $matches);
+		if ($urls_found !== FALSE AND $urls_found >= (int) $url_threshold)
+		{
+			return TRUE;
+		}
+
+		return FALSE;
 	}
 
 	// --------------------------------------------------------------------

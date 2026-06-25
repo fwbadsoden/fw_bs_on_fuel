@@ -71,11 +71,21 @@ $config['forms']['stopforumspam'] = array(
 	'email_threshold_ignore' => 50,
 );
 
+// Optional regex list for local content-based spam detection.
+// Keep patterns conservative to minimize false positives.
+$config['forms']['content_spam_patterns'] = array(
+    '/\b(?:viagra|cialis|casino|porn|sexcam|seo\s+service|forex|crypto\s+investment|telegram\s*[:@])\b/i',
+    '/\b(?:loan|payday|debt\s*relief|escort|adult\s*dating)\b/i',
+);
+
+// Mark as spam if this many URL markers are present in the message body.
+$config['forms']['content_spam_url_threshold'] = 2;
+
 // The fields used for SPAM checking
 $config['forms']['spam_fields'] = array(
 	'email_post_field'       => 'email',
 	'name_post_field'        => 'name',
-	'comment_post_field'     => 'comment',
+    'comment_post_field'     => 'message',
 );
 
 // Save Spam to form_entries table?
