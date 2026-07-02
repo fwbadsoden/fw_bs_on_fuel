@@ -46,7 +46,7 @@ $config['forms']['forms'] = array(
 $config['forms']['custom_fields'] = array();
 
 // The default testing email address for when then application is not in production
-$config['forms']['test_email'] = array('habib@familiepleines.de', 'pa_ritter@arcor.de');
+$config['forms']['test_email'] = array('mail@habibsarbas.de', 'pa_ritter@arcor.de');
 
 // The default from address to use when sending email notifications
 $config['forms']['email_from'] = 'noreply@feuerwehr-bs.de';
@@ -61,7 +61,7 @@ $config['forms']['blacklist'] = array();
 $config['forms']['js'] = array();
 
 // Akismet API key if AKISMET is set for the antispam method
-$config['forms']['akismet_api_key'] = '';
+$config['forms']['akismet_api_key'] = '5104712c88b9';
 
 // Stopforumspam settings
 $config['forms']['stopforumspam'] = array(
@@ -76,9 +76,14 @@ $config['forms']['stopforumspam'] = array(
 $config['forms']['content_spam_patterns'] = array(
     '/\b(?:viagra|cialis|casino|porn|sexcam|seo\s+service|forex|crypto\s+investment|telegram\s*[:@])\b/i',
     '/\b(?:loan|payday|debt\s*relief|escort|adult\s*dating)\b/i',
+    // Lottery / gambling spam (e.g. "JACKPOT", "$27,000,000 PRIZE", "YOU WON")
+    '/\b(?:jackpot|lottery|lotto|prize\s+winner|you(?:\s+have)?\s+won|gambling|slot\s*machine|free\s+spin|claim\s+(?:your\s+)?(?:prize|reward|winnings?))\b/i',
+    // Suspicious money amounts combined with urgency keywords
+    '/\$\s*[\d,]+(?:\.\d+)?\s*(?:jackpot|prize|reward|million|usd)/i',
+    // 4+ consecutive ALL-CAPS words (shouting style used in gambling/lottery spam)
+    '/(?<!\w)[A-Z]{3,}(?:\s+[A-Z]{3,}){3,}(?!\w)/',
 );
 
-// Mark as spam if this many URL markers are present in the message body.
 $config['forms']['content_spam_url_threshold'] = 2;
 
 // The fields used for SPAM checking
