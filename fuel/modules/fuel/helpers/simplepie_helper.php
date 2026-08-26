@@ -90,7 +90,10 @@ if (!function_exists('simplepie'))
 		$CI->simplepie->handle_content_type();
 		$feed_data = $CI->simplepie->get_items(0, $limit);
 		$latest_fuel_version = $CI->simplepie->get_channel_tags('', 'latestFuelVersion');
-		if ( ! is_null($latest_fuel_version[0]))
+		if (is_array($latest_fuel_version)
+			AND isset($latest_fuel_version[0])
+			AND is_array($latest_fuel_version[0])
+			AND ! empty($latest_fuel_version[0]['data']))
 		{
 			$feed_data['latest_fuel_version'] = $latest_fuel_version[0]['data'];
 		}
