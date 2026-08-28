@@ -507,7 +507,14 @@ class Fuel_auth extends Fuel_base_library {
 		static $is_fuelified;
 		if (is_null($is_fuelified))
 		{
-			$is_fuelified = get_cookie($this->get_fuel_trigger_cookie_name());
+			$cookie_val = get_cookie($this->get_fuel_trigger_cookie_name());
+
+			if (is_string($cookie_val))
+			{
+				$cookie_val = @unserialize($cookie_val);
+			}
+
+			$is_fuelified = (is_array($cookie_val) AND ((isset($cookie_val['id']) AND (int) $cookie_val['id'] > 0) OR !empty($cookie_val['user_name'])));
 		}
 		return $is_fuelified;
 	}
@@ -530,12 +537,15 @@ class Fuel_auth extends Fuel_base_library {
 			$cookie_val = get_cookie($this->get_fuel_trigger_cookie_name());
 			if (is_string($cookie_val))
 			{
-				$cookie_val = unserialize($cookie_val);
-				if (empty($cookie_val['language']) OR !is_string($cookie_val['language']))
+				$unserialized = @unserialize($cookie_val);
+				if (is_array($unserialized) AND !empty($unserialized['language']) AND is_string($unserialized['language']))
 				{
-					$cookie_val['language'] = $default_lang;
+					$user_lang = $unserialized['language'];
 				}
-				$user_lang = $cookie_val['language'];
+				else
+				{
+					$user_lang = $default_lang;
+				}
 			}
 			else
 			{

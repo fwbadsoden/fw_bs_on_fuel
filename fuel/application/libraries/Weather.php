@@ -15,12 +15,16 @@ class Weather extends Fuel_base_library {
 
     public function get_weather_warning($load_prewarnings = FALSE) {
         $json_object = $this->get_dwd_json_as_object();
-        if($json_object == NULL){
+        if ($json_object == NULL || !is_object($json_object)) {
             return NULL;
         }
-        $warnings = $json_object->warnings;
+        $warnings = (isset($json_object->warnings) && (is_array($json_object->warnings) || is_object($json_object->warnings)))
+            ? $json_object->warnings
+            : array();
         $hasWarning = false;
-        $prewarnings = $json_object->vorabInformation;
+        $prewarnings = (isset($json_object->vorabInformation) && (is_array($json_object->vorabInformation) || is_object($json_object->vorabInformation)))
+            ? $json_object->vorabInformation
+            : array();
 
         //echo "\n Warnstufe............: ".$value[$j]->level;
         // 5 = Warnungen vor extremem Unwetter
@@ -44,6 +48,9 @@ class Weather extends Fuel_base_library {
         //11 = Binnenseewarnungen ?
 
         foreach ($warnings as $warning) {
+            if (!is_array($warning) || !isset($warning[0]) || !is_object($warning[0])) {
+                continue;
+            }
             $content = $warning[0];
             $content->regionName = $this->trans_toUmlaut($content->regionName);
 
@@ -63,6 +70,9 @@ class Weather extends Fuel_base_library {
 
         if (!$hasWarning && $load_prewarnings) {
             foreach ($prewarnings as $prewarning) {
+                if (!is_array($prewarning) || !isset($prewarning[0]) || !is_object($prewarning[0])) {
+                    continue;
+                }
                 $content = $prewarning[0];
                 $content->regionName = $this->trans_toUmlaut($content->regionName);
 
@@ -94,6 +104,8 @@ class Weather extends Fuel_base_library {
             curl_setopt($ch, CURLOPT_STDERR, $out);  
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
             curl_setopt($ch, CURLOPT_URL, $url);
             $result = curl_exec($ch);
             
@@ -107,8 +119,15 @@ class Weather extends Fuel_base_library {
             $result = $this->get_dwd_testjson();
         }
 
+        if (!is_string($result) || $result === '') {
+            return NULL;
+        }
+
         // JavaScript Function Code entfernen (wird vom DWD als JSONP ausgeliefert)
         $json = $this->extract_unit($result, 'warnWetter.loadWarnings(', ');');
+        if (!is_string($json) || $json === '') {
+            return NULL;
+        }
 
         // Umlaute und ß umwandeln und mit nachfolgendem Q markieren für Rückumwandlung ( wegen json_Decode )
         $json_trans = $this->trans_Umlaut($json);
@@ -118,10 +137,22 @@ class Weather extends Fuel_base_library {
 
     // *** JSON Daten aus JSON Stream extrahieren ***
     private function extract_unit($string, $start, $end) {
+        if (!is_string($string) || $string === '') {
+            return NULL;
+        }
+
         $pos = stripos($string, $start);
+        if ($pos === false) {
+            return NULL;
+        }
+
         $str = substr($string, $pos);
         $str_two = substr($str, strlen($start));
         $second_pos = stripos($str_two, $end);
+        if ($second_pos === false) {
+            return NULL;
+        }
+
         $str_three = substr($str_two, 0, $second_pos);
         $unit = trim($str_three); // remove whitespaces
         return $unit;

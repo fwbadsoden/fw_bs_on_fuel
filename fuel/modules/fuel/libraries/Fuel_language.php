@@ -613,7 +613,7 @@ class Fuel_language extends Fuel_base_library {
 	function cleaned_uri($uri = NULL, $routed = FALSE)
 	{
 		$segs = $this->cleaned_uri_segments($uri, $routed);
-		return implode($segs, '/');
+		return implode('/', $segs);
 	}
 
 	// --------------------------------------------------------------------
